@@ -1,4 +1,10 @@
 
+#Package managment
+alias update="sudo apt-get update && sudo apt-get upgrade"
+alias install="sudo apt-get install"
+alias remove="sudo apt-get remove"
+
+
 # Directory traversal
 alias ..="cd .."
 alias ...="cd ../.."
@@ -54,3 +60,7 @@ alias php-server="php -S localhost:8000 & xdg-open http://localhost:8000"
 
 #Shortcut for editing zsh file
 alias zshedit="sudo nano .zshrc"
+
+
+# Network
+alias my-ip="curl https://ipinfo.io/ip"

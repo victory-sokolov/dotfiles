@@ -34,12 +34,12 @@ py_packages=(
   "twocaptchaapi"
   "pipreqs"
   "logger"
-	"PrettyTable"
+  "PrettyTable"
   "scikit-image"
   "tesseract-ocr"
   "pytesseract"
-	"tesseract-ocr-all" #languages
-	"opencv-python"
+  "tesseract-ocr-all" #languages
+  "opencv-python"
   "colorama"
 )
 

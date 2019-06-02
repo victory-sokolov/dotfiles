@@ -1,5 +1,6 @@
+# Git shortcuts
 
-alias gc='git commit'
+alias gc='git commit -m'
 alias gca='git commit -a'
 alias gco='git checkout'
 alias gcb='git copy-branch-name'

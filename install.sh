@@ -148,6 +148,9 @@ function dev_tools {
     sudo apt-get update -y
     sudo apt-get install docker-ce -y
 
+	# zeal - offline documentation 
+	sudo apt-get install zeal
+
 
 }
 
