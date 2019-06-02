@@ -21,6 +21,7 @@ py_packages=(
   "scipy"
   "jupyter"
   "matplotlib"
+  "seaborn"
   "xlrd"
   "pandas"
   "openpyxl"
@@ -32,10 +33,16 @@ py_packages=(
   "gspread"
   "twocaptchaapi"
   "pipreqs"
+  "logger"
+	"PrettyTable"
+  "scikit-image"
+  "tesseract-ocr"
+  "pytesseract"
+	"tesseract-ocr-all" #languages
+	"opencv-python"
+  "colorama"
 )
 
-#Update pip
-#pip install --upgrade pip
 
 for element in ${py_packages[@]}
 do
