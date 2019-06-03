@@ -1,0 +1,17 @@
+[alias]
+
+    gc='git commit -m'
+    gca='git commit -a'
+    gco='git checkout'
+    gcb='git copy-branch-name'
+    gb='git branch'
+    gs='git status'
+    gac='git add -A && git commit -m'
+    ge='git-edit-new'
+    gpom="git push origin master"
+
+
+[url "git@github.com:"]
+	insteadOf = "gh:"
+	pushInsteadOf = "github:"
+	pushInsteadOf = "git://github.com/"
