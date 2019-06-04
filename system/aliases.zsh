@@ -79,3 +79,7 @@ alias crypto="curl rate.sx"
 
 # Network
 alias my-ip="curl https://ipinfo.io/ip"
+
+# Clipboard
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'

@@ -106,6 +106,7 @@ function cli_tools {
         postgres
         mongo
         elasticsearch
+		xclip # clipboard manipulation
 
     )
 
@@ -148,7 +149,7 @@ function dev_tools {
     sudo apt-get update -y
     sudo apt-get install docker-ce -y
 
-	# zeal - offline documentation 
+	# zeal - offline documentation
 	sudo apt-get install zeal
 
 

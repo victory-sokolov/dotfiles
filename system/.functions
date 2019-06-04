@@ -70,4 +70,9 @@ if [ ! $(uname -s) = 'Darwin' ]; then
 fi
 
 
+# Get cheat sheet of command from cheat.sh. h <cmd>
+h(){
+  curl cheat.sh/${@:-cheat}
+  # curl cheat.sh/$@
+}
 
