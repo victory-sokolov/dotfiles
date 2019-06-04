@@ -1,3 +1,7 @@
+[user]
+    name = Viktor Sokolov
+    email = viktorsokolov.and@gmail.com
+
 [alias]
 
     gc='git commit -m'
@@ -15,3 +19,7 @@
 	insteadOf = "gh:"
 	pushInsteadOf = "github:"
 	pushInsteadOf = "git://github.com/"
+
+[url "https://bitbucket.org/"]
+    insteadOf = "bb:"
+    pushInsteadOf = "bitbucket:"
