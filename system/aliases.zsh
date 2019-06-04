@@ -74,6 +74,8 @@ alias php-server="php -S localhost:8000 & xdg-open http://localhost:8000"
 #Shortcut for editing zsh file
 alias zshedit="sudo nano .zshrc"
 
+# Get crypto prices
+alias crypto="curl rate.sx"
 
 # Network
 alias my-ip="curl https://ipinfo.io/ip"
