@@ -86,9 +86,9 @@ function base_install {
 
 }
 
-function cli_tools {
+function cli {
 
-    CLI_TOOLS=(
+    cli_tools=(
         dos2unix  # converts the line endings from DOS/Windows style to Unix style
         tree      #Tree folder structure
         youtube-dl
@@ -107,7 +107,7 @@ function cli_tools {
         mongo
         elasticsearch
 		xclip # clipboard manipulation
-
+		csvtool
     )
 
 
@@ -116,8 +116,11 @@ function cli_tools {
 
 function dev_tools {
 
-    # C, C++ compiler, tools
-	sudo apt-get install build-essential -y
+	sudo apt-get install \
+		 build-essential -y  # C, C++ compiler, tools
+
+
+	sudo apt-get install
 
 	#Node JS
 	sudo npm cache clean -f
