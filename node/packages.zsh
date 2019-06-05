@@ -1,5 +1,13 @@
 #!/bin/bash
 
+
+
+# Node install
+sudo npm cache clean -f
+sudo npm install -g n
+sudo n stable
+sudo n latest
+
 npm_scripts=(
 	"-g trash-cli",
 	"electron --save-dev --save-exact",

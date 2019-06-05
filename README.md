@@ -1,4 +1,4 @@
 
-# Ubuntu Dotfiles
+# My configuration files for Linux
 
-This is my personalised ubuntu dotfiles
+This is my personalised Linux dotfiles
