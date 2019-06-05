@@ -54,29 +54,29 @@ function base_install {
 
     sudo apt install snapd -y
 
-    #Spotify
+    # Spotify
 	snap install spotify -y
 
     # Gnome panel
 	sudo apt-get install gnome-panel -y
 
-	#Gedit plugins
+	# Gedit plugins
 	sudo apt-get install gedit-plugins -y
 
-	#Grub customizer
+	# Grub customizer
 	yes | sudo add-apt-repository ppa:danielrichter2007/grub-customizer
 	sudo apt-get update
 	sudo apt-get install grub-customizer -y
 
-	#Tweak Tool
+	# Tweak Tool
 	#sudo apt-get install unity-tweak-tool -y
 	sudo apt install gnome-tweak-tool -y
 
 
-    #Pulse audio control
+    #P ulse audio control
 	sudo apt-get update && sudo apt-get install pavucontrol paman -y
 
-    #Firefox Portable 49
+    # Firefox Portable 49
 	wget -O Firefox49Portable http://ftp.mozilla.org/pub/firefox/releases/49.0/linux-x86_64/en-US/firefox-49.0.tar.bz2 && tar xvjf Firefox49Portable && rm Firefox49Portable && mv firefox Firefox49
 
     # Google Drive
