@@ -19,36 +19,35 @@ base_settings() {
 
     #Add favoirtes to taskbar
 	gsettings set com.canonical.Unity.Launcher favorites
-	"['application://fslack_slack.desktop', 'application://ubiquity.desktop', 'application://org.gnome.Nautilus.desktop', 'application://firefox.desktop',
+	"['application://ubiquity.desktop', 'application://org.gnome.Nautilus.desktop', 'application://firefox.desktop',
      'application://org.gnome.Software.desktop', 'application://unity-control-center.desktop', 'unity://running-apps', 'unity://expo-icon', 'unity://devices','application://gnome-terminal.desktop',
      'application://vscode_vscode.desktop',
 	]"
+
+
 }
 
 base_install() {
 
     sudo \
 	apt-get install -y \
-					chromium-browser \
-					firefox -y \
-					# Codecs & Fonts
-					ubuntu-restricted-extras \
-					vlc browser-plugin-vlc \
-					snapd \
-					spotify \
-					gnome-panel \
-					slack \
-					gedit-plugins \
-					gnome-tweak-tool \
+			chromium-browser \
+			firefox -y \
+			ubuntu-restricted-extras \
+			vlc browser-plugin-vlc \
+			snapd \
+			spotify \
+			gnome-panel \
+			slack \
+			gedit-plugins \
+			gnome-tweak-tool \
 
     # Numix icons
-    yes | sudo apt-add-repository ppa:numix/ppa
-    sudo apt-get update
+    sudo apt-add-repository ppa:numix/ppa -yes
     sudo apt-get install numix-icon-theme-circle -y
 
     # Install Dropbox
     cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
-
 
 	# Grub customizer
 	sudo add-apt-repository ppa:danielrichter2007/grub-customizer -y
@@ -68,9 +67,11 @@ base_install() {
 
 }
 
-cli() {
+tools() {
+
 
     tools=(
+		docker-ce
         dos2unix  # converts the line endings from DOS/Windows style to Unix style
         tree      # Tree folder structure
         youtube-dl
@@ -79,11 +80,9 @@ cli() {
         tmux
         wine
         npm
-        git
-        texlive #Latex
+        texlive # Latex
         gedit-plugins
         postman # Postman Client for API testing
-        pipenv # python pipenv
         # Databases
         postgres
         mongo
@@ -93,33 +92,30 @@ cli() {
 		zsh
 		build-essential # C, C++ compiler, tools
 		zeal # offline documentation
+		fonts-powerline
     )
 
+	for package in ${tools[@]}
+	do
+	    sudo apt-get install -y $package
+	done
 
-}
-
-
-dev_tools() {
-
-
-    # Install ZSH
-    sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-	git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
-	sudo apt-get install fonts-powerline
-
-	# R statistic
-	# sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
-	# sudo add-apt-repository 'deb [arch=amd64,i386] https://cran.rstudio.com/bin/linux/ubuntu xenial/'
-	# sudo apt-get update
-	# sudo apt-get install r-base -y
-
-    # Docker
-    sudo add-apt-repository \
+	sudo add-apt-repository \
     "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
     $(lsb_release -cs) stable"
-    sudo apt-get install docker-ce -y
+
+	sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+	git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
 
 }
+
+
+
+# R statistic
+# sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
+# sudo add-apt-repository 'deb [arch=amd64,i386] https://cran.rstudio.com/bin/linux/ubuntu xenial/'
+# sudo apt-get update
+# sudo apt-get install r-base -y
 
 
 php_tools() {
@@ -162,7 +158,7 @@ php_tools() {
 
 java_tools() {
 
-	# JDK
+	# JDK8
 	sudo add-apt-repository ppa:webupd8team/java -y
 	sudo apt-get install oracle-java8-installer
 	sudo update-alternatives --config java
@@ -171,7 +167,7 @@ java_tools() {
 }
 
 
-python_tools {
+python() {
 
     # Install Geckodriver for Selenium
     wget -O geckodriver get https://github.com/mozilla/geckodriver/releases/download/v0.23.0/geckodriver-v0.23.0-linux64.tar.gz
@@ -181,9 +177,11 @@ python_tools {
     chmod +x geckodriver
     sudo mv geckodriver /usr/local/bin/
 
-	# Python PIP manager
-	sudo apt install python-pip -y
-	# Update to lates version
-	# pip install --upgrade pip
+
+	sudo apt-get install -y \
+					python-pip \
+					pipenv \
+
+
 }
 
