@@ -93,6 +93,9 @@ tools() {
 		build-essential # C, C++ compiler, tools
 		zeal # offline documentation
 		fonts-powerline
+		make
+		ruby
+
     )
 
 	for package in ${tools[@]}
@@ -156,7 +159,7 @@ php_tools() {
 }
 
 
-java_tools() {
+install_java() {
 
 	# JDK8
 	sudo add-apt-repository ppa:webupd8team/java -y
@@ -167,7 +170,7 @@ java_tools() {
 }
 
 
-python() {
+install_python() {
 
     # Install Geckodriver for Selenium
     wget -O geckodriver get https://github.com/mozilla/geckodriver/releases/download/v0.23.0/geckodriver-v0.23.0-linux64.tar.gz
@@ -181,7 +184,17 @@ python() {
 	sudo apt-get install -y \
 					python-pip \
 					pipenv \
+					pylint \
 
 
 }
 
+
+main() {
+
+
+
+	sudo apt-get autoremove
+	sudo apt-get autoclean
+	sudo apt-get clean
+}
