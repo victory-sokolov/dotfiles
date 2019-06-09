@@ -95,6 +95,7 @@ tools() {
 		fonts-powerline
 		make
 		ruby
+		jq # json processor
 
     )
 
