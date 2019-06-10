@@ -12,6 +12,7 @@ shopt -s nocaseglob
 # Autocorrect typos in path names when using `cd`
 shopt -s cdspell
 
+export EDITOR="vim"
 
 
 # Make Python use UTF-8 encoding for output to stdin, stdout, and stderr.

@@ -31,16 +31,16 @@ base_install() {
 
     sudo \
 	apt-get install -y \
-			chromium-browser \
-			firefox -y \
-			ubuntu-restricted-extras \
-			vlc browser-plugin-vlc \
-			snapd \
-			spotify \
-			gnome-panel \
-			slack \
-			gedit-plugins \
-			gnome-tweak-tool \
+		chromium-browser \
+		firefox -y \
+		ubuntu-restricted-extras \
+		vlc browser-plugin-vlc \
+		snapd \
+		spotify \
+		gnome-panel \
+		slack \
+		gedit-plugins \
+		gnome-tweak-tool \
 
     # Numix icons
     sudo apt-add-repository ppa:numix/ppa -yes
@@ -69,7 +69,6 @@ base_install() {
 
 tools() {
 
-
     tools=(
 		docker-ce
         dos2unix  # converts the line endings from DOS/Windows style to Unix style
@@ -83,7 +82,6 @@ tools() {
         texlive # Latex
         gedit-plugins
         postman # Postman Client for API testing
-        # Databases
         postgres
         mongo
         elasticsearch
@@ -96,7 +94,6 @@ tools() {
 		make
 		ruby
 		jq # json processor
-
     )
 
 	for package in ${tools[@]}
