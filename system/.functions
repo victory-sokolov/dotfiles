@@ -98,3 +98,11 @@ gifify() {
   fi
 }
 
+# open current folder in nautilus or specified directory
+open(){
+    if [ $# -eq 0 ]; then
+        nautilus ${pwd} > /dev/null 2>&1
+    else
+        nautilus "$@" > /dev/null 2>&1
+    fi
+}
