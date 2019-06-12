@@ -94,6 +94,8 @@ tools() {
 		make
 		ruby
 		jq # json processor
+		screenfetch # terminal info about system
+		flameshot
     )
 
 	for package in ${tools[@]}
@@ -104,6 +106,16 @@ tools() {
 	sudo add-apt-repository \
     "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
     $(lsb_release -cs) stable"
+
+	# install flux
+	sudo add-apt-repository ppa:nathan-renniewaldock/flux
+	sudo apt-get update
+	sudo apt-get install fluxgui
+
+	# install albert
+	sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/manuelschneid3r/xUbuntu_19.04/ /' > /etc/apt/sources.list.d/home:manuelschneid3r.list"
+	sudo apt-get update
+	sudo apt-get install albert -y
 
 	sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 	git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
