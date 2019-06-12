@@ -73,6 +73,8 @@ plugins=(
 	cloudapp
 )
 
+eval $(thefuck --alias)
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration

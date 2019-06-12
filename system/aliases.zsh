@@ -80,6 +80,9 @@ alias crypto="curl rate.sx"
 # Network
 alias my-ip="curl https://ipinfo.io/ip"
 
+# linux version
+alias release="lsb_release -a"
+
 # Clipboard
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'

@@ -195,6 +195,7 @@ install_python() {
 					python-pip \
 					pipenv \
 					pylint \
+					thefuck
 
 
 }

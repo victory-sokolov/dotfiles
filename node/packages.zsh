@@ -18,6 +18,7 @@ npm_scripts=(
 	"-g uncss" #remove unused css
 	"stylelint --save-dev"
 	"python-shell"
+	"-g vtop"
 )
 
 for element in "${npm_scripts[@]}"
