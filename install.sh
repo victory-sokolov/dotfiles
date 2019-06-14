@@ -93,6 +93,7 @@ tools() {
 		fonts-powerline
 		make
 		ruby
+		nginx
 		jq # json processor
 		screenfetch # terminal info about system
 		flameshot
@@ -119,6 +120,9 @@ tools() {
 
 	sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 	git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+
+	# set zsh as default shell
+	sudo chsh -s $(which zsh)
 
 }
 
