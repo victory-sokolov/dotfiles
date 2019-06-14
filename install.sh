@@ -97,6 +97,8 @@ tools() {
 		jq # json processor
 		screenfetch # terminal info about system
 		flameshot
+		postgresql postgresql-contrib
+		sqlite3 libsqlite3-dev
     )
 
 	for package in ${tools[@]}
