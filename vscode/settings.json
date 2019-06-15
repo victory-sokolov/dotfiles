@@ -26,8 +26,12 @@
     "python.formatting.provider": "autopep8",
     "python.linting.pylintEnabled": false,
     "python.linting.flake8Enabled": true,
+    //Java
+    "java.saveActions.organizeImports": true,
+    "java.completion.enabled": true,
+    "java.format.enabled": false,
     //Color & Font
-    "workbench.colorTheme": "Cobalt2",
+    "workbench.colorTheme": "Monokai Night",
     "editor.fontFamily": "Fira Code",
     "editor.fontLigatures": true,
     "editor.lineHeight": 25,
@@ -36,6 +40,7 @@
     "editor.fontWeight": "400",
     "editor.cursorStyle": "line",
     "editor.cursorWidth": 4,
+    "editor.tabSize": 2,
     "editor.cursorBlinking": "solid",
     // Very important: Install this plugin: https://github.com/be5invis/vscode-custom-css
     // you'll need to change this to an absolute path on your computer
@@ -78,5 +83,19 @@
     "sftp.debug": true,
     "files.autoSave": "afterDelay",
     //code runner
-    "code-runner.clearPreviousOutput": true
+    "code-runner.clearPreviousOutput": true,
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "workbench.iconTheme": "material-icon-theme",
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.git": true,
+        "**/.factorypath": true,
+        "node_modules": true,
+        "**/.idea": true,
+        "**/target": true,
+        "**/.DS_Store": true
+    }
 }
