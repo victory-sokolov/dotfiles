@@ -1,5 +1,5 @@
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$DOTFILES_DIR/bin"
-export EDITOR="code"
+export EDITOR="vim"
 export CLICOLOR=1
 export LSCOLORS=gxfxcxdxbxegedabagacad
 
@@ -11,9 +11,6 @@ shopt -s nocaseglob
 
 # Autocorrect typos in path names when using `cd`
 shopt -s cdspell
-
-export EDITOR="vim"
-
 
 # Make Python use UTF-8 encoding for output to stdin, stdout, and stderr.
 export PYTHONIOENCODING='UTF-8';
@@ -28,4 +25,5 @@ export HISTCONTROL='ignoreboth';
 export LANG='en_US.UTF-8';
 export LC_ALL='en_US.UTF-8';
 
-
+# Browser
+export CHROME="google-chrome"

@@ -39,7 +39,7 @@ alias date="date +%D"
 alias untar="tar xvf"
 
 alias db="cd ~/Dropbox"
-alias dev="cd /home/viktor/Dropbox/Code/Code Files/"
+alias dev="cd /home/$USER/Dropbox/Code/Code Files/"
 
 # vhosts
 alias hosts="sudo vim /etc/hosts"
@@ -81,7 +81,10 @@ alias crypto="curl rate.sx"
 alias my-ip="curl https://ipinfo.io/ip"
 
 # linux version
-alias release="lsb_release -a"
+alias version="lsb_release -a"
+
+# Browser
+alias chrome="google-chrome $1"
 
 # Clipboard
 alias pbcopy='xclip -selection clipboard'

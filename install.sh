@@ -29,8 +29,8 @@ base_settings() {
 
 base_install() {
 
-    sudo \
-	apt-get install -y \
+	sudo \
+		apt-get install -y \
 		chromium-browser \
 		firefox -y \
 		ubuntu-restricted-extras \
@@ -71,20 +71,20 @@ tools() {
 
     tools=(
 		docker-ce
-        dos2unix  # converts the line endings from DOS/Windows style to Unix style
-        tree      # Tree folder structure
-        youtube-dl
-        vim
-        curl
-        tmux
-        wine
-        npm
-        texlive # Latex
-        gedit-plugins
-        postman # Postman Client for API testing
-        postgres
-        mongo
-        elasticsearch
+		dos2unix  # converts the line endings from DOS/Windows style to Unix style
+		tree      # Tree folder structure
+		youtube-dl
+		vim
+		curl
+		tmux
+		wine
+		npm
+		texlive # Latex
+		gedit-plugins
+		postman # Postman Client for API testing
+		postgres
+		mongo
+		elasticsearch
 		xclip # clipboard manipulation
 		csvtool
 		zsh
@@ -103,7 +103,7 @@ tools() {
 
 	for package in ${tools[@]}
 	do
-	    sudo apt-get install -y $package
+	  sudo apt-get install -y $package
 	done
 
 	sudo add-apt-repository \
@@ -126,8 +126,12 @@ tools() {
 	# set zsh as default shell
 	sudo chsh -s $(which zsh)
 
-}
+	# Install Chrome
+	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O google.deb
+	sudo dpkg -i google-chrome-stable_current_amd64.deb && rm google.deb
 
+
+}
 
 
 # R statistic
@@ -182,7 +186,7 @@ install_java() {
 	sudo apt-get install oracle-java8-installer
 	sudo update-alternatives --config java
 	# Setting java PATH - https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-get-on-ubuntu-16-04
-
+	# JDK 12
 }
 
 
@@ -201,7 +205,9 @@ install_python() {
 					python-pip \
 					pipenv \
 					pylint \
-					thefuck
+					thefuck \
+					powerline-status # https://powerline.readthedocs.io/en/latest/installation.html#generic-requirements
+
 
 
 }
