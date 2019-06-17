@@ -73,6 +73,8 @@ plugins=(
 	cloudapp
 	npm
 	zsh-autosuggestions
+	extract
+	sudo
 )
 
 eval $(thefuck --alias)

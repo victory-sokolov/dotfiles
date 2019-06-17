@@ -69,7 +69,7 @@ base_install() {
 
 tools() {
 
-    tools=(
+  tools=(
 		docker-ce
 		dos2unix  # converts the line endings from DOS/Windows style to Unix style
 		tree      # Tree folder structure
@@ -92,23 +92,23 @@ tools() {
 		zeal # offline documentation
 		fonts-powerline
 		make
-		ruby
+		ruby-full
 		nginx
 		jq # json processor
 		screenfetch # terminal info about system
 		flameshot
 		postgresql postgresql-contrib
 		sqlite3 libsqlite3-dev
-    )
+  )
 
-	for package in ${tools[@]}
+	for package in {tools[@]}
 	do
-	  sudo apt-get install -y $package
+	  sudo apt-get install -y package
 	done
 
 	sudo add-apt-repository \
     "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-    $(lsb_release -cs) stable"
+    (lsb_release -cs) stable"
 
 	# install flux
 	sudo add-apt-repository ppa:nathan-renniewaldock/flux
@@ -120,16 +120,25 @@ tools() {
 	sudo apt-get update
 	sudo apt-get install albert -y
 
-	sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+	sh -c "(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 	git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
 
 	# set zsh as default shell
-	sudo chsh -s $(which zsh)
+	sudo chsh -s (which zsh)
 
 	# Install Chrome
 	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O google.deb
 	sudo dpkg -i google-chrome-stable_current_amd64.deb && rm google.deb
 
+	# Install watchman
+	# https://facebook.github.io/watchman/docs/install.html
+	git clone https://github.com/facebook/watchman.git
+	cd watchman
+	sudo git checkout v4.9.0  # the latest stable release
+	sudo s./autogen.sh
+	./configure
+	make
+	sudo make install
 
 }
 
@@ -140,6 +149,18 @@ tools() {
 # sudo apt-get update
 # sudo apt-get install r-base -y
 
+
+ruby_gems(){
+	gems = (
+		colorls # colorised with folder output of ls command
+	)
+
+	for gems in {gem[@]}
+	do
+		sudo gem install -y gem
+	done
+
+}
 
 php_tools() {
 

@@ -7,6 +7,10 @@ alias remove="sudo apt-get remove"
 # Print each PATH entry on a separate line
 alias path="echo -e ${PATH//:/\\n}"
 
+# list directories colorised
+alias ls='colorls --group-directories-first'
+alias ll='colorls -lA --sd --group-directories-first'
+
 # Directory traversal
 alias ..="cd .."
 alias ...="cd ../.."
