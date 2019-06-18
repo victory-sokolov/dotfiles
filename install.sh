@@ -1,5 +1,9 @@
 #!bin/bash
 
+info() {
+	printf '\033[32m '"$1"' %s\033[m\n'
+}
+
 base_settings() {
 
     #Make hide feature available
@@ -29,6 +33,8 @@ base_settings() {
 
 base_install() {
 
+	info 'Basic packages installation...'
+
 	sudo \
 		apt-get install -y \
 		chromium-browser \
@@ -42,10 +48,6 @@ base_install() {
 		gedit-plugins \
 		gnome-tweak-tool \
 
-    # Numix icons
-    sudo apt-add-repository ppa:numix/ppa -yes
-    sudo apt-get install numix-icon-theme-circle -y
-
     # Install Dropbox
     cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
 
@@ -53,17 +55,16 @@ base_install() {
 	sudo add-apt-repository ppa:danielrichter2007/grub-customizer -y
 	sudo apt-get install grub-customizer -y
 
-
-    # Pulse audio control
+  # Pulse audio control
 	#sudo apt-get update && sudo apt-get install pavucontrol paman -y
 
-    # Firefox Portable 49
+  # Firefox Portable 49
 	wget -O Firefox49Portable http://ftp.mozilla.org/pub/firefox/releases/49.0/linux-x86_64/en-US/firefox-49.0.tar.bz2 && tar xvjf Firefox49Portable && rm Firefox49Portable && mv firefox Firefox49
 
-    # Google Drive
-    # sudo add-apt-repository ppa:alessandro-strada/ppa
-    # sudo apt-get update -y
-    # sudo apt-get install google-drive-ocamlfuse -y
+	# Google Drive
+	# sudo add-apt-repository ppa:alessandro-strada/ppa
+	# sudo apt-get update -y
+	# sudo apt-get install google-drive-ocamlfuse -y
 
 }
 
@@ -100,6 +101,8 @@ tools() {
 		postgresql postgresql-contrib
 		sqlite3 libsqlite3-dev
   )
+
+	info 'installing cli tools...'
 
 	for package in {tools[@]}
 	do
@@ -167,6 +170,8 @@ ruby_gems(){
 
 php_tools() {
 
+	info 'Installing PHP Tools...'
+
 	# PHP7 CLI Install
 	sudo apt-get install php7.0-cli -y
 
@@ -205,6 +210,8 @@ php_tools() {
 
 install_java() {
 
+	info 'Installing JAVA Tools...'
+
 	# JDK8
 	sudo add-apt-repository ppa:webupd8team/java -y
 	sudo apt-get install oracle-java8-installer
@@ -215,6 +222,8 @@ install_java() {
 
 
 install_python() {
+
+		info 'Installing Python Tools...'
 
     # Install Geckodriver for Selenium
     wget -O geckodriver get https://github.com/mozilla/geckodriver/releases/download/v0.23.0/geckodriver-v0.23.0-linux64.tar.gz
@@ -239,7 +248,7 @@ install_python() {
 
 main() {
 
-
+	
 
 	sudo apt-get autoremove
 	sudo apt-get autoclean
