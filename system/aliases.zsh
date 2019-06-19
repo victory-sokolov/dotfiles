@@ -87,7 +87,7 @@ alias crypto="curl rate.sx"
 alias my-ip="curl https://ipinfo.io/ip"
 
 # linux version
-alias version="lsb_release -a"
+alias version="lsb_release -r -s"
 
 # Browser
 alias chrome="google-chrome $1"

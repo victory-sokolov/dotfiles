@@ -6,27 +6,33 @@ info() {
 
 base_settings() {
 
-    #Make hide feature available
+  # Make hide feature available
 	gsettings set org.compiz.unityshell:/org/compiz/profiles/unity/plugins/unityshell/ 	launcher-minimize-window true
 
-	#Launcher at the bottom
-	gsettings set com.canonical.Unity.Launcher launcher-position Bottom
+	# For ubuntu 19
+	gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize'
 
-	#Use local time same way Window does
+	#Launcher at the bottom
+	#gsettings set com.canonical.Unity.Launcher launcher-position Bottom
+
+	# Use local time same way Window does
 	timedatectl set-local-rtc 1 --adjust-system-clock
 
-	#Set icons size to 38
+	# Set icons size to 38
 	dconf write /org/compiz/profiles/unity/plugins/unityshell/icon-size 38
+
+	# Battery percentage
+	gsettings set org.gnome.desktop.interface show-battery-percentage true
 
 	#Libreoffice write available from right click
 	touch ./Templates/New\ Document.odt
 
-    #Add favoirtes to taskbar
-	gsettings set com.canonical.Unity.Launcher favorites
-	"['application://ubiquity.desktop', 'application://org.gnome.Nautilus.desktop', 'application://firefox.desktop',
-     'application://org.gnome.Software.desktop', 'application://unity-control-center.desktop', 'unity://running-apps', 'unity://expo-icon', 'unity://devices','application://gnome-terminal.desktop',
-     'application://vscode_vscode.desktop',
-	]"
+  # Add favoirtes to taskbar
+	# gsettings set org.gnome.shell favorite-apps
+	# "['application://ubiquity.desktop', 'application://org.gnome.Nautilus.desktop',
+  #    'application://org.gnome.Software.desktop', 'application://unity-control-center.desktop', 'unity://running-apps', 'unity://expo-icon', 'unity://devices','application://gnome-terminal.desktop',
+  #    'application://vscode_vscode.desktop',
+	# ]"
 
 	# Remove software & packages
 	sudo apt-get purge thunderbird -y
@@ -40,7 +46,7 @@ base_install() {
 	sudo \
 		apt-get install -y \
 		chromium-browser \
-		firefox -y \
+		firefox \
 		ubuntu-restricted-extras \
 		vlc browser-plugin-vlc \
 		snapd \
@@ -50,8 +56,8 @@ base_install() {
 		gedit-plugins \
 		gnome-tweak-tool \
 
-    # Install Dropbox
-    cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
+  # Install Dropbox
+  cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
 
 	# Grub customizer
 	sudo add-apt-repository ppa:danielrichter2007/grub-customizer -y
@@ -84,7 +90,7 @@ tools() {
 		npm
 		texlive # Latex
 		gedit-plugins
-		postman # Postman Client for API testing
+		postman
 		postgres
 		mongo
 		elasticsearch
@@ -111,6 +117,12 @@ tools() {
 	  sudo apt-get install -y package
 	done
 
+	# Install vscode
+	wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
+	sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
+	sudo apt install code -y
+
+	# Install Docker
 	sudo add-apt-repository \
     "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
     (lsb_release -cs) stable"
@@ -127,6 +139,11 @@ tools() {
 
 	sh -c "(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 	git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+
+	# install nerd fonts
+	git clone https://github.com/ryanoasis/nerd-fonts
+	cd nerd-fonts
+	./install.sh
 
 	# set zsh as default shell
 	sudo chsh -s (which zsh)
@@ -145,8 +162,14 @@ tools() {
 	make
 	sudo make install
 
+	# NGinx server
+	sudo add-apt-repository ppa:nginx/stable
+	sudo apt-get update
+	sudo apt-get install nginx
+
+
 	# Download color schemes
-	git clone https://github.com/mbadolato/iTerm2-Color-Schemes
+	#git clone https://github.com/mbadolato/iTerm2-Color-Schemes && unzip nerd-fonts.zip
 
 }
 
@@ -190,11 +213,6 @@ php_tools() {
 
 	# Laravel
 	composer global require laravel/installer
-
-	# NGinx server
-	sudo add-apt-repository ppa:nginx/stable
-	sudo apt-get update
-	sudo apt-get install nginx
 
 	# XDEBUG
 	sudo apt-get install php5-dev
