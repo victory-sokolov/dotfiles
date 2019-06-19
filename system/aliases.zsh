@@ -75,6 +75,8 @@ alias xmp-stop="sudo /opt/lampp/lampp stop"
 #Alias for build in php server
 alias php-server="php -S localhost:8000 & xdg-open http://localhost:8000"
 
+
+
 #Shortcut for editing zsh file
 alias zshedit="sudo nano .zshrc"
 

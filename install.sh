@@ -28,6 +28,8 @@ base_settings() {
      'application://vscode_vscode.desktop',
 	]"
 
+	# Remove software & packages
+	sudo apt-get purge thunderbird -y
 
 }
 
@@ -248,7 +250,7 @@ install_python() {
 
 main() {
 
-	
+
 
 	sudo apt-get autoremove
 	sudo apt-get autoclean
