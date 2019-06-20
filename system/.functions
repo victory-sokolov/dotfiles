@@ -104,3 +104,10 @@ open(){
         nautilus "$@" > /dev/null 2>&1
     fi
 }
+
+function gacp() # Git: add all, commit and push. [-m "comment"]
+{
+	git add .;
+	git commit $@
+	git push
+}

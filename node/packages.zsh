@@ -1,7 +1,5 @@
 #!/bin/bash
 
-
-
 # Node install
 sudo npm cache clean -f
 sudo npm install -g n

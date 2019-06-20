@@ -3,6 +3,7 @@
 alias update="sudo apt-get update && sudo apt-get upgrade"
 alias install="sudo apt-get install"
 alias remove="sudo apt-get remove"
+alias reboot="sudo reboot"
 
 # Print each PATH entry on a separate line
 alias path="echo -e ${PATH//:/\\n}"
@@ -75,6 +76,13 @@ alias xmp-stop="sudo /opt/lampp/lampp stop"
 #Alias for build in php server
 alias php-server="php -S localhost:8000 & xdg-open http://localhost:8000"
 
+# Database Settings
+
+# Dump mysql db
+alias mysqldump="mysqldump -u [uname] -p[pass] [dbname] | gzip -9 > [db.sql.gz]"
+
+# Restore db dump from archive
+alias undump="gunzip < db.sql.gz | mysql -u [uname] -p[pass] db"
 
 
 #Shortcut for editing zsh file
@@ -83,11 +91,17 @@ alias zshedit="sudo nano .zshrc"
 # Get crypto prices
 alias crypto="curl rate.sx"
 
+# output all custom available functions
+alias dhelp="grep "^function" ~/dotfiles/functions | sed 's/function/+/g' | sed 's/() #/ - /g'"
+
 # Network
 alias my-ip="curl https://ipinfo.io/ip"
 
 # linux version
 alias version="lsb_release -r -s"
+
+# show all custom aliases
+alias al="compgen -a"
 
 # Browser
 alias chrome="google-chrome $1"

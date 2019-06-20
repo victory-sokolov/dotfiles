@@ -30,6 +30,7 @@ plugins=(
 	zsh-syntax-highlighting
 	extract
 	sudo
+	web-search
 )
 
 eval $(thefuck --alias)
@@ -45,3 +46,4 @@ fi
 
 source $ZSH/oh-my-zsh.sh
 source $HOME/Documents/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $HOME/.functions

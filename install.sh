@@ -21,7 +21,6 @@ base_settings() {
 
 	fi
 
-
 	#Launcher at the bottom
 	#gsettings set com.canonical.Unity.Launcher launcher-position Bottom
 
@@ -86,7 +85,6 @@ base_install() {
 tools() {
 
   tools=(
-		docker-ce
 		dos2unix  # converts the line endings from DOS/Windows style to Unix style
 		tree      # Tree folder structure
 		youtube-dl
@@ -133,6 +131,7 @@ tools() {
 	sudo add-apt-repository \
     "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
     (lsb_release -cs) stable"
+	sudo apt-get install docker-ce
 
 	# install flux
 	sudo add-apt-repository ppa:nathan-renniewaldock/flux
