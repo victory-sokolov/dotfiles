@@ -2,7 +2,7 @@
 call plug#begin('~/.vim/autoload')
 
 Plug 'mattn/emmet-vim'
-
+Plugin 'scrooloose/nerdtree'
 
 call plug#end()
 
@@ -33,3 +33,5 @@ nmap <S-Enter> O<Esc>
 nmap <CR> o<Esc>
 
 " nmap <DOWN> <NOP> - press down key no operation
+
+map <F5> :NERDTreeToggle<CR>

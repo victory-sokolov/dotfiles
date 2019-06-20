@@ -6,20 +6,27 @@ info() {
 
 base_settings() {
 
-  # Make hide feature available
-	gsettings set org.compiz.unityshell:/org/compiz/profiles/unity/plugins/unityshell/ 	launcher-minimize-window true
+	version=$(lsb_release -r -s | grep -Eo '^[0-9]{2}')
 
-	# For ubuntu 19
-	gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize'
+	if [ "$version" -gt 18 ]; then
+
+		gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize'
+
+	else
+		# Make hide feature available
+		gsettings set org.compiz.unityshell:/org/compiz/profiles/unity/plugins/unityshell/ 	launcher-minimize-window true
+
+		# Set icons size to 38
+		dconf write /org/compiz/profiles/unity/plugins/unityshell/icon-size 38
+
+	fi
+
 
 	#Launcher at the bottom
 	#gsettings set com.canonical.Unity.Launcher launcher-position Bottom
 
 	# Use local time same way Window does
 	timedatectl set-local-rtc 1 --adjust-system-clock
-
-	# Set icons size to 38
-	dconf write /org/compiz/profiles/unity/plugins/unityshell/icon-size 38
 
 	# Battery percentage
 	gsettings set org.gnome.desktop.interface show-battery-percentage true
