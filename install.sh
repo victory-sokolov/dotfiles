@@ -41,49 +41,22 @@ base_settings() {
 	# ]"
 
 	# Remove software & packages
-	sudo apt-get purge thunderbird -y
+	sudo apt purge thunderbird -y
 
 }
 
-base_install() {
-
-	info 'Basic packages installation...'
-
-	sudo \
-		apt-get install -y \
-		chromium-browser \
-		ubuntu-restricted-extras \
-		vlc browser-plugin-vlc \
-		snapd \
-		spotify \
-		gnome-panel \
-		slack \
-		gedit-plugins \
-		gnome-tweak-tool \
-
-  # Install Dropbox
-  cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
-
-	# Grub customizer
-	sudo add-apt-repository ppa:danielrichter2007/grub-customizer -y
-	sudo apt-get install grub-customizer -y
-
-  # Pulse audio control
-	#sudo apt-get update && sudo apt-get install pavucontrol paman -y
-
-  # Firefox Portable 49
-	wget -O Firefox49Portable http://ftp.mozilla.org/pub/firefox/releases/49.0/linux-x86_64/en-US/firefox-49.0.tar.bz2 && tar xvjf Firefox49Portable && rm Firefox49Portable && mv firefox Firefox49
-
-	# Google Drive
-	# sudo add-apt-repository ppa:alessandro-strada/ppa
-	# sudo apt-get update -y
-	# sudo apt-get install google-drive-ocamlfuse -y
-
-}
 
 tools() {
 
   tools=(
+		ubuntu-restricted-extras
+		snapd
+		gedit-plugins
+		spotify
+		vlc browser-plugin-vlc
+		slack
+		chromium-browser
+		gnome-tweak-tool
 		dos2unix  # converts the line endings from DOS/Windows style to Unix style
 		tree      # Tree folder structure
 		youtube-dl
@@ -114,11 +87,35 @@ tools() {
 		sqlite3 libsqlite3-dev
   )
 
-	info 'installing cli tools...'
+	zsh_plugins = (
+		https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+		https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+		https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
+	)
+
+	info 'installing software...'
+
+	# Install Dropbox
+  cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
+
+	# Grub customizer
+	sudo add-apt-repository ppa:danielrichter2007/grub-customizer -y
+	sudo apt install grub-customizer -y
+
+  # Pulse audio control
+	#sudo apt install pavucontrol paman -y
+
+  # Firefox Portable 49
+	wget -O Firefox49Portable http://ftp.mozilla.org/pub/firefox/releases/49.0/linux-x86_64/en-US/firefox-49.0.tar.bz2 && tar xvjf Firefox49Portable && rm Firefox49Portable && mv firefox Firefox49
+
+	# Google Drive
+	# sudo add-apt-repository ppa:alessandro-strada/ppa
+	# sudo apt install google-drive-ocamlfuse -y
+
 
 	for package in {tools[@]}
 	do
-	  sudo apt-get install -y package
+	  sudo apt install -y package
 	done
 
 	# Install vscode
@@ -130,22 +127,27 @@ tools() {
 	sudo add-apt-repository \
     "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
     (lsb_release -cs) stable"
-	sudo apt-get install docker-ce
+	sudo apt install docker-ce
 
 	# install flux
-	sudo add-apt-repository ppa:nathan-renniewaldock/flux
-	sudo apt-get update
-	sudo apt-get install fluxgui
+	# sudo add-apt-repository ppa:nathan-renniewaldock/flux -y
+	# sudo apt install fluxgui
 
 	# install albert
 	sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/manuelschneid3r/xUbuntu_19.04/ /' > /etc/apt/sources.list.d/home:manuelschneid3r.list"
-	sudo apt-get update
-	sudo apt-get install albert -y
+	sudo apt install albert -y
 
 	sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" -y
 	git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
 	# set zsh as default shell
 	sudo chsh -s $(which zsh)
+
+
+	for plug in {zsh_plugins[@]}
+	do
+	  	git clone plug
+	done
+
 
 	# install nerd fonts
 	cd ~/.fonts
@@ -153,7 +155,6 @@ tools() {
 	cd nerd-fonts
 	./install.sh
 	fc-cache -fv
-
 
 	# Install Chrome
 	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O google.deb
@@ -170,9 +171,8 @@ tools() {
 	sudo make install
 
 	# NGinx server
-	sudo add-apt-repository ppa:nginx/stable
-	sudo apt-get update
-	sudo apt-get install nginx
+	sudo add-apt-repository ppa:nginx/stable -y
+	sudo apt install nginx -y
 
 	# Download color schemes
 	#git clone https://github.com/mbadolato/iTerm2-Color-Schemes && unzip nerd-fonts.zip
@@ -183,18 +183,17 @@ tools() {
 # R statistic
 # sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
 # sudo add-apt-repository 'deb [arch=amd64,i386] https://cran.rstudio.com/bin/linux/ubuntu xenial/'
-# sudo apt-get update
-# sudo apt-get install r-base -y
+# sudo apt install r-base -y
 
 
-ruby_gems(){
+ruby(){
 	gems = (
 		colorls # colorised with folder output of ls command
 	)
 
 	for gems in {gem[@]}
 	do
-		sudo gem install -y gem
+		sudo gem install -y
 	done
 
 }
@@ -204,7 +203,7 @@ php() {
 	info 'Installing PHP Tools...'
 
 	# PHP7 CLI Install
-	sudo apt-get install php7.0-cli -y
+	sudo apt install php7.0-cli -y
 
 	# Composer install
 	curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer -y
@@ -212,16 +211,16 @@ php() {
 	# XAMPP
 	wget https://www.apachefriends.org/xampp-files/5.6.20/xampp-linux-x64-5.6.20-0-installer.run
 	chmod +x xampp-linux-x64-5.6.20-0-installer.run
-	sudo ./xampp-linux-x64-5.6.20-0-installer.run
+	sudo ./xampp-linux-x64-5.6.20-0-installer.run -y
 
 	# PHP Extensions
-	sudo apt-get install php-zip -yes
+	sudo apt install php-zip -y
 
 	# Laravel
 	composer global require laravel/installer
 
 	# XDEBUG
-	sudo apt-get install php5-dev
+	sudo apt-get install php-xdebug -y
 
 	# WordPress CLI
 	curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
@@ -229,7 +228,7 @@ php() {
 	sudo mv wp-cli.phar /usr/local/bin/wp -yes
 
 	# Download WordPress
-	wp core download --path=project_name
+	curl -O https://wordpress.org/latest.tar.gz && tar xzvf latest.tar.gz
 
 }
 
@@ -240,27 +239,26 @@ java() {
 
 	# JDK8
 	sudo add-apt-repository ppa:webupd8team/java -y
-	sudo apt-get install oracle-java8-installer
-	sudo update-alternatives --config java
-	# Setting java PATH - https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-get-on-ubuntu-16-04
+	sudo apt install oracle-java8-installer -y
+	sudo update-alternatives --config java -y
+	# Setting java PATH - https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-on-ubuntu-16-04
 	# JDK 12
 }
 
 
 python() {
 
-		info 'Installing Python Tools...'
+	info 'Installing Python Tools...'
 
-    # Install Geckodriver for Selenium
-    wget -O geckodriver get https://github.com/mozilla/geckodriver/releases/download/v0.23.0/geckodriver-v0.23.0-linux64.tar.gz
-    # Extract
-    tar -xvzf geckodriver*
-    # Make it executable
-    chmod +x geckodriver
-    sudo mv geckodriver /usr/local/bin/
+	# Install Geckodriver for Selenium
+	wget -O geckodriver get https://github.com/mozilla/geckodriver/releases/download/v0.23.0/geckodriver-v0.23.0-linux64.tar.gz
+	# Extract
+	tar -xvzf geckodriver*
+	# Make it executable
+	chmod +x geckodriver
+	sudo mv geckodriver /usr/local/bin/
 
-
-	sudo apt-get install -y \
+	sudo apt install -y \
 					python-pip \
 					pipenv \
 					pylint \
@@ -289,12 +287,48 @@ main() {
 	files="vim/.vimrc zsh/.zshrc"
 
 	# symlink dotfiles
+	echo "Creating symlinks..."
 	for file in $files; do
-		echo "Creating symlinks..."
 		ln -s $dir/$file ~/.$file
 	done
 
-	sudo apt-get autoremove
-	sudo apt-get autoclean
-	sudo apt-get clean
+	# MENU
+	PS3="Choose Instalation option: "
+	menu=("Install Dotfiles" "Quit")
+
+	NC='\033[0m'
+	Purple='\033[0;35m'
+	Yellow='\033[0;33m'
+	Blue='\033[0;34m'
+
+	echo -e "${Purple} Dotfiles Instalation ${NC}"
+	echo "==================="
+
+	select opt in "${menu[@]}"; do
+		case $opt in
+				"Install Dotfiles")
+						echo -e "${Green} Installing dotfiles...${NC}"
+						base_settings()
+						tools()
+						python()
+						php()
+						java()
+						ruby()
+				break;;
+				"Quit")
+						exit
+						break;;
+
+				*) echo "Invalid option $REPLY";;
+		esac
+	done
+
+	echo -e "${Blue}Installation completed!"
+
+
+	sudo apt autoremove -y
+	sudo apt autoclean
+	sudo apt clean
 }
+
+main()

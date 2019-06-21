@@ -105,13 +105,10 @@ POWERLEVEL9K_CUSTOM_PYTHON="echo -n '\uf81f' Python"
 POWERLEVEL9K_CUSTOM_PYTHON_FOREGROUND="black"
 POWERLEVEL9K_CUSTOM_PYTHON_BACKGROUND="blue"
 
-
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(custom_lambda ssh dropbox dir dir_writable vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(command_execution_time status time)
 HIST_STAMPS="mm/dd/yyyy"
 DISABLE_UPDATE_PROMPT=true
-
-
 
 ENABLE_CORRECTION="true"
 # History.
@@ -124,10 +121,10 @@ plugins=(
 	cloudapp
 	npm
 	zsh-autosuggestions
-	zsh-syntax-highlighting
 	extract
 	sudo
 	web-search
+  zsh-syntax-highlighting
 )
 
 eval $(thefuck --alias)
