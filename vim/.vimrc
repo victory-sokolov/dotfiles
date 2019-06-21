@@ -1,3 +1,10 @@
+" Install plugin manager
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 " Plugins
 call plug#begin('~/.vim/autoload')
 
@@ -25,6 +32,8 @@ set ignorecase
 set tabstop=2 " Default indentation is 2 spaces long and uses tabs, not spaces
 set history=1000 " Increase the undo limit.
 set spell
+set wildignorecase
+set smartcase
 
 " Shortcuts
 

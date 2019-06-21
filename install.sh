@@ -173,7 +173,6 @@ tools() {
 	sudo apt-get update
 	sudo apt-get install nginx
 
-
 	# Download color schemes
 	#git clone https://github.com/mbadolato/iTerm2-Color-Schemes && unzip nerd-fonts.zip
 
