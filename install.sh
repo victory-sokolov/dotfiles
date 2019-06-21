@@ -52,7 +52,6 @@ base_install() {
 	sudo \
 		apt-get install -y \
 		chromium-browser \
-		firefox \
 		ubuntu-restricted-extras \
 		vlc browser-plugin-vlc \
 		snapd \
@@ -143,16 +142,18 @@ tools() {
 	sudo apt-get update
 	sudo apt-get install albert -y
 
-	sh -c "(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+	sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" -y
 	git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+	# set zsh as default shell
+	sudo chsh -s $(which zsh)
 
 	# install nerd fonts
+	cd ~/.fonts
 	git clone https://github.com/ryanoasis/nerd-fonts
 	cd nerd-fonts
 	./install.sh
+	fc-cache -fv
 
-	# set zsh as default shell
-	sudo chsh -s (which zsh)
 
 	# Install Chrome
 	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O google.deb
@@ -198,7 +199,7 @@ ruby_gems(){
 
 }
 
-php_tools() {
+php() {
 
 	info 'Installing PHP Tools...'
 
@@ -233,7 +234,7 @@ php_tools() {
 }
 
 
-install_java() {
+java() {
 
 	info 'Installing JAVA Tools...'
 
@@ -246,7 +247,7 @@ install_java() {
 }
 
 
-install_python() {
+python() {
 
 		info 'Installing Python Tools...'
 
@@ -266,14 +267,32 @@ install_python() {
 					thefuck \
 					powerline-status # https://powerline.readthedocs.io/en/latest/installation.html#generic-requirements
 
+}
 
+# Install necessery things for Virtual Machine
+vm_env() {
+
+	# vscode
+	wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
+	sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
+
+	python()
 
 }
 
-
 main() {
 
+	# dotfiles directory
+	dir=~/dotfiles
 
+	# files to symlink
+	files="vim/.vimrc zsh/.zshrc"
+
+	# symlink dotfiles
+	for file in $files; do
+		echo "Creating symlinks..."
+		ln -s $dir/$file ~/.$file
+	done
 
 	sudo apt-get autoremove
 	sudo apt-get autoclean
