@@ -1,0 +1,94 @@
+#!/bin/bash -ex
+
+source venv/bin/activate
+
+# ============================================================================
+# VARIABLE FONT ==============================================================
+
+# variable font
+rm -rf distr/variable_ttf
+fontmake -g FiraCode.glyphs -o variable --output-dir distr/variable_ttf
+
+# -------------------------------------------------------------
+# fix variable font metadata as needed ------------------------
+
+firaCodeVF=distr/variable_ttf/FiraCode-VF.ttf
+
+# fix variable font metadata – very important
+gftools fix-vf-meta $firaCodeVF
+
+# other fixes for metadata and hinting
+gftools fix-nonhinting $firaCodeVF $firaCodeVF
+gftools fix-gasp --autofix $firaCodeVF
+gftools fix-dsig --autofix $firaCodeVF
+
+# cleanup of temp files
+tempFiles=$(ls distr/variable_ttf/*.fix && ls distr/variable_ttf/*-gasp*)
+for temp in $tempFiles
+do
+    rm -rf $temp
+done
+
+# TODO (late 2019?): use TTFautohint-VF for variable font (current support is minimal)
+
+# ============================================================================
+# STATIC FONTS ===============================================================
+
+rm -rf distr/ttf
+fontmake -g FiraCode.glyphs -o ttf --output-dir distr/ttf -i
+
+rm -rf distr/otf
+fontmake -g FiraCode.glyphs -o otf --output-dir distr/otf -i
+
+# -------------------------------------------------------------
+# Autohinting -------------------------------------------------
+
+statics=$(ls distr/ttf/*.ttf)
+for file in $statics; do 
+    echo "fix DSIG in " ${file}
+    gftools fix-dsig --autofix ${file}
+
+    echo "TTFautohint " ${file}
+    # autohint with detailed info
+    hintedFile=${file/".ttf"/"-hinted.ttf"}
+    ttfautohint -I ${file} ${hintedFile} --stem-width-mode nnn
+    cp ${hintedFile} ${file}
+    rm -rf ${hintedFile}
+done
+
+
+# ============================================================================
+# Build woff2 fonts ==========================================================
+
+# requires woff2_compress (get from https://github.com/bramstein/homebrew-webfonttools)
+
+rm -rf distr/woff2
+
+ttfs=$(ls distr/*/*.ttf)
+for ttf in $ttfs; do
+    woff2_compress $ttf
+done
+
+mkdir -p distr/woff2
+woff2s=$(ls distr/*/*.woff2)
+for woff2 in $woff2s; do
+    mv $woff2 distr/woff2/$(basename $woff2)
+done
+
+# ============================================================================
+# Build woff fonts ===========================================================
+
+# requires sfnt2woff-zopfli (get from https://github.com/bramstein/homebrew-webfonttools)
+
+rm -rf distr/woff
+
+ttfs=$(ls distr/*/*.ttf)
+for ttf in $ttfs; do
+    sfnt2woff-zopfli $ttf
+done
+
+mkdir -p distr/woff
+woffs=$(ls distr/*/*.woff)
+for woff in $woffs; do
+    mv $woff distr/woff/$(basename $woff)
+done
