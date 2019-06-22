@@ -39,9 +39,7 @@ base_settings() {
 	touch ~/Templates/Text\ Document.txt
 
 	# Base HTML File
-	cd ~/Templates/ && wget https://www.dropbox.com/s/bqcji695g02eje1/index.html?dl=0 -O index.html
-
-	cd $HOME
+	wget https://www.dropbox.com/s/bqcji695g02eje1/index.html?dl=0 -O ~/Templates/index.html
 
 	# Add favoirtes to taskbar
 	# gsettings set org.gnome.shell favorite-apps
@@ -123,7 +121,7 @@ tools() {
 	#sudo apt install pavucontrol paman -y
 
 	# Firefox Portable 49
-	wget -O Firefox49Portable http://ftp.mozilla.org/pub/firefox/releases/49.0/linux-x86_64/en-US/firefox-49.0.tar.bz2 && tar xvjf Firefox49Portable && rm Firefox49Portable && mv firefox Firefox49
+	# wget -O Firefox49Portable http://ftp.mozilla.org/pub/firefox/releases/49.0/linux-x86_64/en-US/firefox-49.0.tar.bz2 && tar xvjf Firefox49Portable && rm Firefox49Portable && mv firefox Firefox49
 
 	# Google Drive
 	# sudo add-apt-repository ppa:alessandro-strada/ppa
@@ -146,25 +144,15 @@ tools() {
 	sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/manuelschneid3r/xUbuntu_19.04/ /' > /etc/apt/sources.list.d/home:manuelschneid3r.list"
 
 	# install nerd fonts
-	cd ~/.fonts
-	git clone https://github.com/ryanoasis/nerd-fonts
-	cd nerd-fonts
-	./install.sh
-	fc-cache -fv
+	# cd ~/.fonts
+	# git clone https://github.com/ryanoasis/nerd-fonts
+	# cd nerd-fonts
+	# ./install.sh
+	# fc-cache -fv
 
 	# Install Chrome
 	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O google.deb
 	sudo dpkg -i google-chrome-stable_current_amd64.deb && rm google.deb
-
-	# Install watchman
-	# https://facebook.github.io/watchman/docs/install.html
-	git clone https://github.com/facebook/watchman.git
-	cd watchman
-	git checkout v4.9.0 # the latest stable release
-	./autogen.sh
-	./configure
-	make
-	sudo make install
 
 	# NGinx server
 	sudo add-apt-repository ppa:nginx/stable -y
@@ -213,6 +201,15 @@ ruby() {
 		sudo gem install -y
 	done
 
+	# Install watchman
+	# https://facebook.github.io/watchman/docs/install.html
+	git clone https://github.com/facebook/watchman.git && cd watchman
+	git checkout v4.9.0 # the latest stable release
+	./autogen.sh
+	./configure
+	make
+	sudo make install
+
 }
 
 php() {
@@ -245,7 +242,7 @@ php() {
 	sudo mv wp-cli.phar /usr/local/bin/wp -yes
 
 	# Download WordPress
-	curl -O https://wordpress.org/latest.tar.gz && tar xzvf latest.tar.gz
+	# curl -O https://wordpress.org/latest.tar.gz && tar xzvf latest.tar.gz
 
 }
 
@@ -299,7 +296,7 @@ main() {
 	dir=~/dotfiles
 
 	# files to symlink
-	files="vim/.vimrc zsh/.zshrc"
+	files="vim/.vimrc zsh/.zshrc tmux.conf .fonts zsh/.inputrc zsh/.exports"
 
 	# MENU
 	PS3="Choose Instalation option: "
