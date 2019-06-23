@@ -1,124 +1,65 @@
 #!/bin/bash
 
-info() {
-	printf '\033[32m '"$1"' %s\033[m\n'
-}
+tools=(
+	ubuntu-restricted-extras
+	snapd
+	gedit-plugins
+	vlc browser-plugin-vlc
+	slack
+	chromium-browser
+	gnome-tweak-tool
+	dos2unix # converts the line endings from DOS/Windows style to Unix style
+	tree
+	youtube-dl
+	vim
+	curl
+	tmux
+	wine
+	npm
+	texlive # Latex
+	gedit-plugins
+	postman
+	xclip # clipboard manipulation
+	csvtool
+	zsh
+	build-essential # C, C++ compiler, tools
+	zeal # offline documentation
+	fonts-powerline
+	make
+	ruby-full
+	nginx
+	jq # json processor
+	screenfetch # terminal info about system
+	flameshot
+	postgresql postgresql-contrib
+	sqlite3 libsqlite3-dev
+	grub-customizer
+	code
+	nginx
+	docker-ce
+	albert
+	aptitude
+)
 
-base_settings() {
+snap_tools=(
+	spotify
+	vlc
+	postman
+)
 
-	version=$(lsb_release -r -s | grep -Eo '^[0-9]{2}')
+zsh_plugins=(
+	https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+	https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+	https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
+)
 
-	if [ "$version" -gt 18 ]; then
-
-		gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize'
-
-	else
-		# Make hide feature available
-		gsettings set org.compiz.unityshell:/org/compiz/profiles/unity/plugins/unityshell/ launcher-minimize-window true
-
-		# Set icons size to 38
-		dconf write /org/compiz/profiles/unity/plugins/unityshell/icon-size 38
-
-	fi
-
-	#Launcher at the bottom
-	#gsettings set com.canonical.Unity.Launcher launcher-position Bottom
-
-	# Use local time same way Window does
-	timedatectl set-local-rtc 1 --adjust-system-clock
-
-	# Battery percentage
-	gsettings set org.gnome.desktop.interface show-battery-percentage true
-
-	# -- Templates --
-
-	# Libreoffice write available from right click
-	touch ~/Templates/New\ Document.odt
-
-	# New Text Document
-	touch ~/Templates/Text\ Document.txt
-
-	# Base HTML File
-	wget https://www.dropbox.com/s/bqcji695g02eje1/index.html?dl=0 -O ~/Templates/index.html
-
-	# Add favoirtes to taskbar
-	# gsettings set org.gnome.shell favorite-apps
-	# "['application://ubiquity.desktop', 'application://org.gnome.Nautilus.desktop',
-	#    'application://org.gnome.Software.desktop', 'application://unity-control-center.desktop', 'unity://running-apps', 'unity://expo-icon', 'unity://devices','application://gnome-terminal.desktop',
-	#    'application://vscode_vscode.desktop',
-	# ]"
-
-	# Remove software & packages
-	sudo apt purge thunderbird -y
-
-}
-
-tools() {
-
-	tools=(
-		ubuntu-restricted-extras
-		snapd
-		gedit-plugins
-		vlc browser-plugin-vlc
-		slack
-		chromium-browser
-		gnome-tweak-tool
-		dos2unix # converts the line endings from DOS/Windows style to Unix style
-		tree # Tree folder structure
-		youtube-dl
-		vim
-		curl
-		tmux
-		wine
-		npm
-		texlive # Latex
-		gedit-plugins
-		postman
-		xclip # clipboard manipulation
-		csvtool
-		zsh
-		build-essential # C, C++ compiler, tools
-		zeal # offline documentation
-		fonts-powerline
-		make
-		ruby-full
-		nginx
-		jq # json processor
-		screenfetch # terminal info about system
-		flameshot
-		postgresql postgresql-contrib
-		sqlite3 libsqlite3-dev
-		grub-customizer
-		code
-		nginx
-		docker-ce
-		albert
-		aptitude
-	)
-
-	zsh_plugins=(
-		https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-		https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-		https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
-	)
-
-	# spotify
-	snap install spotify -y
-
-	# vlc
-	sudo snap install vlc -y
-
-	# Postman
-	sudo snap install postman -y
+installation() {
 
 	# Install Dropbox
 	cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
 
 	# Grub customizer
 	sudo add-apt-repository ppa:danielrichter2007/grub-customizer -y
-
-	# Pulse audio control
-	#sudo apt install pavucontrol paman -y
 
 	# Firefox Portable 49
 	# wget -O Firefox49Portable http://ftp.mozilla.org/pub/firefox/releases/49.0/linux-x86_64/en-US/firefox-49.0.tar.bz2 && tar xvjf Firefox49Portable && rm Firefox49Portable && mv firefox Firefox49
@@ -164,26 +105,6 @@ tools() {
 
 	# Download color schemes
 	#git clone https://github.com/mbadolato/iTerm2-Color-Schemes && unzip nerd-fonts.zip
-
-	info "Updating system..."
-
-	sudo apt-get update -y
-
-	info "Installing various software..."
-
-	for package in "${tools[@]}"; do
-		sudo apt install ${package} -y
-	done
-
-	info "Installing OhMyZsh and Plugins..."
-	sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" -y
-	git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
-	# set zsh as default shell
-	sudo chsh -s $(which zsh)
-
-	for plug in "${zsh_plugins[@]}"; do
-		git clone ${plug}
-	done
 
 }
 
@@ -289,60 +210,3 @@ vm_env() {
 	python
 
 }
-
-main() {
-
-	# dotfiles directory
-	dir=~/dotfiles
-
-	# files to symlink
-	files="vim/.vimrc zsh/.zshrc tmux.conf .fonts zsh/.inputrc zsh/.exports"
-
-	# MENU
-	PS3="Choose Instalation option: "
-	menu=("Install Dotfiles" "Quit")
-
-	NC='\033[0m'
-	Purple='\033[0;35m'
-	Yellow='\033[0;33m'
-	Blue='\033[0;34m'
-
-	echo -e "${Purple} Dotfiles Instalation ${NC}"
-	echo "==================="
-
-	select opt in "${menu[@]}"; do
-		case $opt in
-		"Install Dotfiles")
-			echo -e "${Green} Installing dotfiles...${NC}"
-			base_settings
-			tools
-			python
-			php
-			java
-			ruby
-
-			# symlink dotfiles
-			info "Creating symlinks..."
-			for file in $files; do
-				ln -s $dir/$file ~/.$file
-			done
-
-			break
-			;;
-		"Quit")
-			exit
-			break
-			;;
-
-		*) echo "Invalid option $REPLY" ;;
-		esac
-	done
-
-	echo -e "${Blue}Installation completed! ${NC}"
-
-	sudo apt autoremove -y
-	sudo apt autoclean
-	sudo apt clean
-}
-
-main
