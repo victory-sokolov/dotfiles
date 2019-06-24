@@ -39,6 +39,7 @@ tools=(
 	docker-ce
 	albert
 	aptitude
+	libtool
 )
 
 snap_tools=(
@@ -93,14 +94,15 @@ installation() {
 
 	# Install Chrome
 	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O google.deb
-	sudo dpkg -i google-chrome-stable_current_amd64.deb && rm google.deb
+	sudo dpkg -i google.deb
+	rm google.deb
 
 	# NGinx server
 	sudo add-apt-repository ppa:nginx/stable -y
 
 	# Stacer system monitoring
 	wget https://github.com/oguzhaninan/Stacer/releases/download/v1.1.0/stacer_1.1.0_amd64.deb -O stacer.deb
-	dpkg --install stacer.deb
+	sudo dpkg --install stacer.deb
 	rm stacer.deb
 
 	# Download color schemes
@@ -124,9 +126,9 @@ ruby() {
 
 	# Install watchman
 	# https://facebook.github.io/watchman/docs/install.html
-	git clone https://github.com/facebook/watchman.git && cd watchman
+	git clone https://github.com/facebook/watchman.git && cd ~/watchman
 	git checkout v4.9.0 # the latest stable release
-	./autogen.sh
+	sudo ./autogen.sh
 	./configure
 	make
 	sudo make install
@@ -138,7 +140,7 @@ php() {
 	info 'Installing PHP Tools...'
 
 	# PHP7 CLI Install
-	sudo apt install php7.0-cli -y
+	sudo apt install php7.2-cli -y
 
 	# Composer install
 	curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer -y

@@ -82,11 +82,13 @@ software_installation() {
 # Uninstalls packages installed via apt get and snap
 uninstall() {
 
-  echo -e "${Red}Removing apt installed packages${NC}"
+  echo -e "${Red}Removing apt packages${NC}"
 
   for i in "${tools[@]}"; do
     sudo apt purge ${i} -y
   done
+
+  echo -e "${Red}Removing snap packages${NC}"
 
   for i in "${snap_tools[@]}"; do
     sudo snap remove ${i} -y
@@ -100,7 +102,7 @@ uninstall() {
 main() {
 
   # dotfiles directory
-  dir=~/dotfiles
+  dir=$HOME/dotfiles/
 
   # files to symlink
   files="vim/.vimrc zsh/.zshrc tmux.conf .fonts zsh/.inputrc zsh/.exports"
@@ -121,9 +123,9 @@ main() {
   select opt in "${menu[@]}"; do
     case $opt in
     "Install Dotfiles")
-      echo -e "${Green} Installing dotfiles...${NC}"
+      echo -e "${Blue} Installing dotfiles...${NC}"
       base_settings
-      tools
+      software_installation
       python
       php
       java
@@ -132,7 +134,7 @@ main() {
       # symlink dotfiles
       info "Creating symlinks..."
       for file in $files; do
-        ln -s $dir/$file ~/.$file
+        ln -s $dir/$file $HOME
       done
 
       echo -e "${Blue}Installation completed! ${NC}"
