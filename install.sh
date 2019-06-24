@@ -3,7 +3,7 @@
 tools=(
 	ubuntu-restricted-extras
 	snapd
-	gedit-plugins
+	nautilus-dropbox
 	vlc browser-plugin-vlc
 	slack
 	chromium-browser
@@ -55,9 +55,6 @@ zsh_plugins=(
 )
 
 installation() {
-
-	# Install Dropbox
-	cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
 
 	# Grub customizer
 	sudo add-apt-repository ppa:danielrichter2007/grub-customizer -y
@@ -126,7 +123,8 @@ ruby() {
 
 	# Install watchman
 	# https://facebook.github.io/watchman/docs/install.html
-	git clone https://github.com/facebook/watchman.git && cd ~/watchman
+	git clone https://github.com/facebook/watchman.git
+	cd ~/watchman
 	git checkout v4.9.0 # the latest stable release
 	sudo ./autogen.sh
 	./configure
