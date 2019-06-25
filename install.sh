@@ -40,6 +40,8 @@ tools=(
 	albert
 	aptitude
 	libtool
+	imagemagick
+	xbindkeys
 )
 
 snap_tools=(
