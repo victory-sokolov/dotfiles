@@ -116,7 +116,7 @@ gifify() {
 }
 
 # open current folder in nautilus or specified directory
-open(){
+function open() {
     if [ $# -eq 0 ]; then
         nautilus ${pwd} > /dev/null 2>&1
     else

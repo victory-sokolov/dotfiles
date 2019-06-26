@@ -5,8 +5,6 @@ tools=(
 	snapd
 	nautilus-dropbox
 	vlc browser-plugin-vlc
-	slack
-	chromium-browser
 	gnome-tweak-tool
 	dos2unix # converts the line endings from DOS/Windows style to Unix style
 	tree
@@ -18,7 +16,6 @@ tools=(
 	npm
 	texlive # Latex
 	gedit-plugins
-	postman
 	xclip # clipboard manipulation
 	csvtool
 	zsh
@@ -36,8 +33,6 @@ tools=(
 	grub-customizer
 	code
 	nginx
-	docker-ce
-	albert
 	aptitude
 	libtool
 	imagemagick
@@ -46,8 +41,8 @@ tools=(
 
 snap_tools=(
 	spotify
-	vlc
 	postman
+    slack --classic
 )
 
 zsh_plugins=(
@@ -72,17 +67,10 @@ installation() {
 	wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
 	sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
 
-	# Install Docker
-	sudo add-apt-repository \
-		"deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-    (lsb_release -cs) stable"
-
-	# install flux
-	# sudo add-apt-repository ppa:nathan-renniewaldock/flux -y
-	# sudo apt install fluxgui
 
 	# install albert
-	sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/manuelschneid3r/xUbuntu_19.04/ /' > /etc/apt/sources.list.d/home:manuelschneid3r.list"
+	wget https://download.opensuse.org/repositories/home:/manuelschneid3r/xUbuntu_19.04/amd64/albert_0.16.1_amd64.deb -O albert.deb && sudo dpkg -i albert.deb && rm albert.deb
+
 
 	# install nerd fonts
 	# cd ~/.fonts
@@ -96,7 +84,7 @@ installation() {
 	sudo dpkg -i google.deb
 	rm google.deb
 
-	# NGinx server
+	# Nginx server
 	sudo add-apt-repository ppa:nginx/stable -y
 
 	# Stacer system monitoring
@@ -104,15 +92,25 @@ installation() {
 	sudo dpkg --install stacer.deb
 	rm stacer.deb
 
+	# RescueTime
+	wget https://www.rescuetime.com/setup/installer?os=amd64deb -O rescuetime
+	sudo dpkg --install rescuetime.deb  && rm rescuetime.deb
+	
+	# Install watchman
+	# https://facebook.github.io/watchman/docs/install.html
+	cd ~ && git clone https://github.com/facebook/watchman.git
+	cd ~/watchman
+	git checkout v4.9.0 # the latest stable release
+	sudo ./autogen.sh
+	./configure
+	make
+	sudo make install
+
 	# Download color schemes
 	#git clone https://github.com/mbadolato/iTerm2-Color-Schemes && unzip nerd-fonts.zip
 
 }
 
-# R statistic
-# sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
-# sudo add-apt-repository 'deb [arch=amd64,i386] https://cran.rstudio.com/bin/linux/ubuntu xenial/'
-# sudo apt install r-base -y
 
 ruby() {
 	gems=(
@@ -123,21 +121,13 @@ ruby() {
 		sudo gem install -y
 	done
 
-	# Install watchman
-	# https://facebook.github.io/watchman/docs/install.html
-	git clone https://github.com/facebook/watchman.git
-	cd ~/watchman
-	git checkout v4.9.0 # the latest stable release
-	sudo ./autogen.sh
-	./configure
-	make
-	sudo make install
-
 }
 
 php() {
 
 	info 'Installing PHP Tools...'
+
+	mkdir ~/PHP
 
 	# PHP7 CLI Install
 	sudo apt install php7.2-cli -y
@@ -146,7 +136,7 @@ php() {
 	curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer -y
 
 	# XAMPP
-	wget https://www.apachefriends.org/xampp-files/5.6.20/xampp-linux-x64-5.6.20-0-installer.run
+	wget https://www.apachefriends.org/xampp-files/5.6.20/xampp-linux-x64-5.6.20-0-installer.run -O ~/PHP
 	chmod +x xampp-linux-x64-5.6.20-0-installer.run
 	sudo ./xampp-linux-x64-5.6.20-0-installer.run -y
 
@@ -162,7 +152,7 @@ php() {
 	# WordPress CLI
 	curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 	chmod +x wp-cli.phar
-	sudo mv wp-cli.phar /usr/local/bin/wp -yes
+	sudo mv wp-cli.phar /usr/local/bin/wp -yes && rm wp-cli.phar
 
 	# Download WordPress
 	# curl -O https://wordpress.org/latest.tar.gz && tar xzvf latest.tar.gz
@@ -179,6 +169,9 @@ java() {
 	sudo update-alternatives --config java -y
 	# Setting java PATH - https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-on-ubuntu-16-04
 	# JDK 12
+
+	# Intellij IDEA
+ 	sudo snap install intellij-idea-community --classic
 }
 
 python() {

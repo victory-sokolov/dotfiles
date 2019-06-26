@@ -25,6 +25,10 @@ base_settings() {
 
   #Launcher at the bottom
   #gsettings set com.canonical.Unity.Launcher launcher-position Bottom
+	
+  # ALT + SHIFT change language
+  gsettings set org.gnome.desktop.input-sources xkb-options "['grp:alt_shift_toggle']"
+
 
   # Use local time same way Window does
   timedatectl set-local-rtc 1 --adjust-system-clock
@@ -53,12 +57,14 @@ base_settings() {
   # Remove software & packages
   sudo apt purge thunderbird -y
 
+
 }
 
 software_installation() {
 
   info "Updating system..."
   sudo apt-get update && sudo apt-get upgrade -y
+  sudo apt --fix-broken install -y
 
   info "Installing software..."
   installation
@@ -68,6 +74,7 @@ software_installation() {
   git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
   # set zsh as default shell
   sudo chsh -s $(which zsh)
+
 
   for plug in "${zsh_plugins[@]}"; do
     git clone ${plug}
@@ -91,7 +98,7 @@ uninstall() {
   echo -e "${Red}Removing snap packages${NC}"
 
   for i in "${snap_tools[@]}"; do
-    sudo snap remove ${i} -y
+    sudo snap remove ${i}
   done
 
   sudo apt autoremove -y
