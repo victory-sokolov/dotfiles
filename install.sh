@@ -5,6 +5,7 @@ tools=(
 	snapd
 	nautilus-dropbox
 	vlc browser-plugin-vlc
+	filemanager-actions
 	gnome-tweak-tool
 	dos2unix # converts the line endings from DOS/Windows style to Unix style
 	tree
@@ -37,6 +38,7 @@ tools=(
 	libtool
 	imagemagick
 	xbindkeys
+	tesseract-ocr-all
 )
 
 snap_tools=(
@@ -49,6 +51,7 @@ zsh_plugins=(
 	https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 	https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 	https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
+	https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm
 )
 
 installation() {

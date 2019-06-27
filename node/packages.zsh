@@ -9,7 +9,7 @@ sudo n latest
 npm_scripts=(
 	"-g trash-cli",
 	"electron --save-dev --save-exact",
-	"-g gulp",
+	"-g gulp-cli",
 	"-g browser-sync",
 	"express",
 	"-g eslint",

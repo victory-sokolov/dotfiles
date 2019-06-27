@@ -59,9 +59,7 @@ base_settings() {
 
   # Remove software & packages
   sudo apt purge thunderbird -y
-
   sudo apt purge gnome-screenshot -y
-
 
 }
 

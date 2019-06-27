@@ -33,6 +33,5 @@ PrettyTable
 scikit-image
 tesseract-ocr
 pytesseract
-tesseract-ocr-all
 opencv-python
 colorama

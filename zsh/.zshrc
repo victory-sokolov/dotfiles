@@ -120,6 +120,7 @@ plugins=(
 	npm
 	extract
 	sudo
+  zsh-nvm
 	web-search
   zsh-syntax-highlighting
   zsh-autosuggestions
