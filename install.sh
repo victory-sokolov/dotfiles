@@ -1,44 +1,43 @@
 #!/bin/bash
 
 tools=(
-	ubuntu-restricted-extras
-	snapd
-	nautilus-dropbox
-	vlc browser-plugin-vlc
-	filemanager-actions
-	gnome-tweak-tool
-	dos2unix # converts the line endings from DOS/Windows style to Unix style
-	tree
-	youtube-dl
-	vim
-	curl
-	tmux
-	wine
-	npm
-	texlive # Latex
-	gedit-plugins
-	xclip # clipboard manipulation
-	csvtool
-	zsh
-	build-essential # C, C++ compiler, tools
-	zeal # offline documentation
-	fonts-powerline
-	make
-	ruby-full
-	nginx
-	jq # json processor
-	screenfetch # terminal info about system
-	flameshot
-	postgresql postgresql-contrib
-	sqlite3 libsqlite3-dev
-	grub-customizer
-	code
-	nginx
 	aptitude
-	libtool
+	build-essential # C, C++ compiler, tools
+	code
+	csvtool
+	curl
+	dos2unix # converts the line endings from DOS/Windows style to Unix style
+	filemanager-actions
+	flameshot
+	fonts-powerline
+	gedit-plugins
+	gnome-tweak-tool
+	grub-customizer
 	imagemagick
-	xbindkeys
+	jq # json processor
+	libtool
+	make
+	nautilus-dropbox
+	nginx
+	npm
+	postgresql postgresql-contrib
+	ruby-full
+	screenfetch # terminal info about system
+	snapd
+	sqlite3 libsqlite3-dev
 	tesseract-ocr-all
+	texlive # Latex
+	tmux
+	tree
+	ubuntu-restricted-extras
+	vim
+	vlc browser-plugin-vlc
+	wine
+	xbindkeys
+	xclip # clipboard manipulation
+	youtube-dl
+	zeal # offline documentation
+	zsh
 )
 
 snap_tools=(
