@@ -67,6 +67,8 @@ installation() {
 	wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
 	sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
 
+	# sync extension for vs code
+	code --install-extension shan.code-settings-sync
 
 	# install albert
 	wget https://download.opensuse.org/repositories/home:/manuelschneid3r/xUbuntu_19.04/amd64/albert_0.16.1_amd64.deb -O albert.deb && sudo dpkg -i albert.deb && rm albert.deb
@@ -95,7 +97,7 @@ installation() {
 	# RescueTime
 	wget https://www.rescuetime.com/setup/installer?os=amd64deb -O rescuetime
 	sudo dpkg --install rescuetime.deb  && rm rescuetime.deb
-	
+
 	# Install watchman
 	# https://facebook.github.io/watchman/docs/install.html
 	cd ~ && git clone https://github.com/facebook/watchman.git
@@ -118,7 +120,7 @@ ruby() {
 	)
 
 	for gems in {gem[@]}; do
-		sudo gem install -y
+		sudo gem install ${gem} -y
 	done
 
 }
@@ -191,6 +193,7 @@ python() {
 		pipenv \
 		pylint \
 		thefuck \
+		howdoi \
 		powerline-status # https://powerline.readthedocs.io/en/latest/installation.html#generic-requirements
 
 }

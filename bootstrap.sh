@@ -25,10 +25,13 @@ base_settings() {
 
   #Launcher at the bottom
   #gsettings set com.canonical.Unity.Launcher launcher-position Bottom
-	
+
   # ALT + SHIFT change language
   gsettings set org.gnome.desktop.input-sources xkb-options "['grp:alt_shift_toggle']"
 
+  # set transparency for dock
+  gsettings set org.gnome.shell.extensions.dash-to-dock transparency-mode 'FIXED'
+  gsettings set org.gnome.shell.extensions.dash-to-dock background-opacity 0.7
 
   # Use local time same way Window does
   timedatectl set-local-rtc 1 --adjust-system-clock
@@ -56,6 +59,8 @@ base_settings() {
 
   # Remove software & packages
   sudo apt purge thunderbird -y
+
+  sudo apt purge gnome-screenshot -y
 
 
 }
@@ -112,7 +117,7 @@ main() {
   dir=$HOME/dotfiles/
 
   # files to symlink
-  files="vim/.vimrc zsh/.zshrc tmux.conf .fonts zsh/.inputrc zsh/.exports"
+  files="vim/.vimrc zsh/.zshrc tmux.conf .fonts zsh/.inputrc zsh/.exports git/.gitconfig"
 
   # MENU
   PS3="Choose Instalation option: "
@@ -137,6 +142,8 @@ main() {
       php
       java
       ruby
+			# nodejs
+			$dir/node/package.zsh
 
       # symlink dotfiles
       info "Creating symlinks..."

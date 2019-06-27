@@ -88,7 +88,7 @@ fi
 
 
 # Get cheat sheet of command from cheat.sh. h <cmd>
-h(){
+cheat(){
   curl cheat.sh/${@:-cheat}
   # curl cheat.sh/$@
 }
@@ -97,6 +97,9 @@ h(){
 cview() {
 	csvtool readable "$1" | view -
 }
+
+# howdoi colorised output
+hdi(){ howdoi $* -c; }
 
 
 # animated gifs from any video

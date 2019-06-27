@@ -55,7 +55,6 @@ prompt_zsh_battery_level() {
 }
 
 
-
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
@@ -127,7 +126,7 @@ plugins=(
   zsh-completions
 )
 
-# eval $(thefuck --alias)
+eval $(thefuck --alias)
 
 
 # Preferred editor for local and remote sessions

@@ -9,7 +9,7 @@ endif
 call plug#begin('~/.vim/autoload')
 
 Plug 'mattn/emmet-vim'
-Plugin 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 
 call plug#end()
 

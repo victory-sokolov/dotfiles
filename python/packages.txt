@@ -33,7 +33,6 @@ PrettyTable
 scikit-image
 tesseract-ocr
 pytesseract
-// languages package for tesseract
 tesseract-ocr-all
 opencv-python
 colorama

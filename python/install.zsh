@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 #Install python packages from file
 

@@ -19,7 +19,7 @@ npm_scripts=(
 	"-g vtop"
 )
 
-cd ~
+cd $HOME
 
 for element in "${npm_scripts[@]}"
 do
