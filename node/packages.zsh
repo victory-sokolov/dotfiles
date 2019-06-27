@@ -19,6 +19,8 @@ npm_scripts=(
 	"-g vtop"
 )
 
+cd ~
+
 for element in "${npm_scripts[@]}"
 do
     sudo npm install ${element}
