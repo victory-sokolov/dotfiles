@@ -1,6 +1,7 @@
 BeautifulSoup4
 colorama
 django
+virtualenv     
 gspread
 jupyter
 logger

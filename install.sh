@@ -192,7 +192,7 @@ python() {
 
 	sudo apt install -y \
 		python-pip \
-		pipenv \
+		python-virtualenv \
 		pylint \
 		thefuck \
 		howdoi \
