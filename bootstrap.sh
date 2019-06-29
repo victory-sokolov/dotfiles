@@ -72,7 +72,6 @@ software_installation() {
   info "Installing software..."
   installation
 
- 
   for package in "${tools[@]}"; do
     sudo apt install ${package} -y
   done

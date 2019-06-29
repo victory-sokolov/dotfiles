@@ -97,7 +97,7 @@ installation() {
 	rm stacer.deb
 
 	# RescueTime
-	wget https://www.rescuetime.com/setup/installer?os=amd64deb -O rescuetime
+	wget https://www.rescuetime.com/installers/rescuetime_current_amd64.deb -O rescuetime.deb
 	sudo dpkg --install rescuetime.deb  && rm rescuetime.deb
 
 	# Install watchman
