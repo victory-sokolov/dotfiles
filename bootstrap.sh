@@ -72,6 +72,15 @@ software_installation() {
   info "Installing software..."
   installation
 
+ 
+  for package in "${tools[@]}"; do
+    sudo apt install ${package} -y
+  done
+
+  for package in "${snap_tools[@]}"; do
+    sudo snap install ${package} -y
+  done
+
   info "Installing OhMyZsh and Plugins..."
   sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" -y
   git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
@@ -81,10 +90,6 @@ software_installation() {
 
   for plug in "${zsh_plugins[@]}"; do
     git clone ${plug}
-  done
-
-  for package in "${tools[@]}"; do
-    sudo apt install ${package} -y
   done
 
 }

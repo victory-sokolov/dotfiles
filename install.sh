@@ -43,7 +43,7 @@ tools=(
 snap_tools=(
 	spotify
 	postman
-    slack --classic
+    	slack --classic
 )
 
 zsh_plugins=(
@@ -140,9 +140,9 @@ php() {
 	curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer -y
 
 	# XAMPP
-	wget https://www.apachefriends.org/xampp-files/5.6.20/xampp-linux-x64-5.6.20-0-installer.run -O ~/PHP
-	chmod +x xampp-linux-x64-5.6.20-0-installer.run
-	sudo ./xampp-linux-x64-5.6.20-0-installer.run -y
+	wget https://www.apachefriends.org/xampp-files/5.6.20/xampp-linux-x64-5.6.20-0-installer.run -O ~/PHP/xampp.run
+	chmod +x ~/PHP/xampp.run
+	sudo ~/PHP/xampp.run
 
 	# PHP Extensions
 	sudo apt install php-zip -y
@@ -193,11 +193,13 @@ python() {
 	sudo apt install -y \
 		python3-pip \
 		python-virtualenv \
-		python3-venv
+		python3-venv \
 		pylint \
 		thefuck \
 		howdoi \
-		powerline-status # https://powerline.readthedocs.io/en/latest/installation.html#generic-requirements
+
+	# https://powerline.readthedocs.io/en/latest/installation.html#generic-requirements
+	pip3 install powerline-status 
 
 }
 
