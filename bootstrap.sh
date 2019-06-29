@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# start time of the installation
+start=`date +%s`
+
 source ./install.sh
 
 info() {
@@ -144,8 +147,7 @@ main() {
       php
       java
       ruby
-			# nodejs
-			$dir/node/package.zsh
+      $dir/node/package.zsh
 
       # symlink dotfiles
       info "Creating symlinks..."
@@ -176,6 +178,12 @@ main() {
     *) echo "Invalid option $REPLY" ;;
     esac
   done
+  
+  # end installation execution time
+  end=`date +%s`
+  runtime=$((end-start))
+  info "Installation Run Time: $runtime"
+
 
 }
 
