@@ -3,7 +3,7 @@
 #Install python packages from file
 
 while read -r line; do
-    sudo pip install "$line"
+    sudo pip3 install "$line"
 done < "packages.txt"
 
 

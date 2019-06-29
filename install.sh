@@ -191,8 +191,9 @@ python() {
 	sudo mv geckodriver /usr/local/bin/
 
 	sudo apt install -y \
-		python-pip \
+		python3-pip \
 		python-virtualenv \
+		python3-venv
 		pylint \
 		thefuck \
 		howdoi \
