@@ -56,21 +56,28 @@ settings() {
   # remove games
   sudo apt-get purge aisleriot gnome-sudoku gnome-mines gnome-mahjongg ace-of-penguins gnomine gbrainy cheese
 
+ # remove amazon 
+ sudo rm /usr/share/applications/ubuntu-amazon-default.desktop
+ sudo rm /usr/share/unity-webapps/userscripts/unity-webapps-amazon/Amazon.user.js
+ sudo rm /usr/share/unity-webapps/userscripts/unity-webapps-amazon/manifest.json
+
 }
 
 software_installation() {
+
+  info "Installing software..."
+  installation
 
   info "Updating system..."
   sudo apt-get update && sudo apt-get upgrade -y
   sudo apt --fix-broken install -y
 
-  info "Installing software..."
-  installation
-
+  info "Installing apt packages..."
   for package in "${tools[@]}"; do
     sudo apt install ${package} -y
   done
 
+  info "Installing snap packages..."
   for package in "${snap_tools[@]}"; do
     sudo snap install ${package}
   done

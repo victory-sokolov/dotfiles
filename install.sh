@@ -47,7 +47,7 @@ snap_tools=(
 )
 
 zsh_plugins=(
-	https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+	https://github.com/zsh-users/zsdh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 	https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 	https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
 	https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm
@@ -87,16 +87,14 @@ installation() {
 
 	
 	# Install Chrome
-	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O google.deb
-	sudo dpkg -i google.deb
+	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O google.deb && sudo dpkg -i google.deb
 	rm google.deb
 
 	# Nginx server
 	sudo add-apt-repository ppa:nginx/stable -y
 
 	# Stacer system monitoring
-	wget https://github.com/oguzhaninan/Stacer/releases/download/v1.1.0/stacer_1.1.0_amd64.deb -O stacer.deb
-	sudo dpkg --install stacer.deb
+	wget https://github.com/oguzhaninan/Stacer/releases/download/v1.1.0/stacer_1.1.0_amd64.deb -O stacer.deb && sudo dpkg --install stacer.deb
 	rm stacer.deb
 
 	# RescueTime
@@ -145,8 +143,7 @@ php() {
 	# XAMPP
 	wget https://www.apachefriends.org/xampp-files/5.6.20/xampp-linux-x64-5.6.20-0-installer.run -O ~/xampp.run
 	chmod +x ~/xampp.run
-	sudo ~/xampp.run
-	rm xampp.run
+	# sudo ~/xampp.run
 
 	# PHP Extensions
 	sudo apt install php-zip -y
