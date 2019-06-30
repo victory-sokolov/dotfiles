@@ -78,7 +78,6 @@ installation() {
 
 	# install nerd fonts
 	mkdir -p ~/.fonts
-
 	if [! -d "~/.fonts/nerd-fonts"]; then
 		git clone https://github.com/ryanoasis/nerd-fonts ~/.fonts
 		cd nerd-fonts
@@ -185,11 +184,15 @@ python() {
 
 	# Install Geckodriver for Selenium
 	wget https://github.com/mozilla/geckodriver/releases/download/v0.23.0/geckodriver-v0.23.0-linux64.tar.gz -O geckodriver
-	# Extract
 	tar -xvzf geckodriver*
-	# Make it executable
 	chmod +x geckodriver
 	sudo mv geckodriver /usr/local/bin/
+
+	# Chrome Driver
+	wget https://chromedriver.storage.googleapis.com/75.0.3770.90/chromedriver_linux64.zip -O ~/chromedriver.zip
+	unzip ~/chromedriver.zip
+	sudo rm chromedriver.zip
+	sudo mv chromedriver /usr/local/bin
 
 	sudo apt install -y \
 		python3-pip \
