@@ -9,7 +9,7 @@
     gco='git checkout'
     gcb='git copy-branch-name'
     gb='git branch'
-    gst='git status'
+    gst='git status --short'
     gac='git add -A && git commit -m'
     ge='git-edit-new'
     gpom="git push origin master"
