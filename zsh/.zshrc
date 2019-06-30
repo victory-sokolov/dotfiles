@@ -144,3 +144,4 @@ source $ZSH/custom/plugins/zsh-completions/zsh-completions.plugin.zsh
 source $ZSH/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $HOME/dotfiles/zsh/.functions
 source $HOME/dotfiles/zsh/.aliases
+source $HOME/dotfiles/zsh/.exports

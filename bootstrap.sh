@@ -106,8 +106,6 @@ uninstall() {
     sudo snap remove ${i}
   done
 
-
-
   sudo apt autoremove -y
   sudo apt autoclean
   sudo apt clean
