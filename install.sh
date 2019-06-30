@@ -43,11 +43,12 @@ tools=(
 snap_tools=(
 	spotify
 	postman
-    	slack --classic
+  slack --classic
+	todoist-thibaut
 )
 
 zsh_plugins=(
-	https://github.com/zsh-users/zsdh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+	https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 	https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 	https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
 	https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm
@@ -71,21 +72,21 @@ installation() {
 
 
 	# install albert
-	wget https://download.opensuse.org/repositories/home:/manuelschneid3r/xUbuntu_19.04/amd64/albert_0.16.1_amd64.deb -O albert.deb && sudo dpkg -i albert.deb 
+	wget https://download.opensuse.org/repositories/home:/manuelschneid3r/xUbuntu_19.04/amd64/albert_0.16.1_amd64.deb -O albert.deb && sudo dpkg -i albert.deb
 	rm albert.deb
 
 
 	# install nerd fonts
 	mkdir -p ~/.fonts && cd ~/.fonts
-	
+
 	if [! -d "~/.fonts/nerd-fonts"]; then
 		git clone https://github.com/ryanoasis/nerd-fonts
 		cd nerd-fonts
 		./install.sh
-		fc-cache -fv	
+		fc-cache -fv
 	fi
 
-	
+
 	# Install Chrome
 	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O google.deb && sudo dpkg -i google.deb
 	rm google.deb
@@ -99,7 +100,7 @@ installation() {
 
 	# RescueTime
 	wget https://www.rescuetime.com/installers/rescuetime_current_amd64.deb -O rescuetime.deb
-	sudo dpkg --install rescuetime.deb 
+	sudo dpkg --install rescuetime.deb
 	rm rescuetime.deb
 
 	# Install watchman
@@ -200,7 +201,7 @@ python() {
 		howdoi \
 
 	# https://powerline.readthedocs.io/en/latest/installation.html#generic-requirements
-	pip3 install powerline-status 
+	pip3 install powerline-status
 
 }
 
