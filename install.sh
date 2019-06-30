@@ -69,20 +69,23 @@ installation() {
 	wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
 	sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
 
-	# sync extension for vs code
-	code --install-extension shan.code-settings-sync
 
 	# install albert
-	wget https://download.opensuse.org/repositories/home:/manuelschneid3r/xUbuntu_19.04/amd64/albert_0.16.1_amd64.deb -O albert.deb && sudo dpkg -i albert.deb && rm albert.deb
+	wget https://download.opensuse.org/repositories/home:/manuelschneid3r/xUbuntu_19.04/amd64/albert_0.16.1_amd64.deb -O albert.deb && sudo dpkg -i albert.deb 
+	rm albert.deb
 
 
 	# install nerd fonts
-	# cd ~/.fonts
-	# git clone https://github.com/ryanoasis/nerd-fonts
-	# cd nerd-fonts
-	# ./install.sh
-	# fc-cache -fv
+	mkdir -p ~/.fonts && cd ~/.fonts
+	
+	if [! -d "~/.fonts/nerd-fonts"]; then
+		git clone https://github.com/ryanoasis/nerd-fonts
+		cd nerd-fonts
+		./install.sh
+		fc-cache -fv	
+	fi
 
+	
 	# Install Chrome
 	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O google.deb
 	sudo dpkg -i google.deb
@@ -98,7 +101,8 @@ installation() {
 
 	# RescueTime
 	wget https://www.rescuetime.com/installers/rescuetime_current_amd64.deb -O rescuetime.deb
-	sudo dpkg --install rescuetime.deb  && rm rescuetime.deb
+	sudo dpkg --install rescuetime.deb 
+	rm rescuetime.deb
 
 	# Install watchman
 	# https://facebook.github.io/watchman/docs/install.html
@@ -109,6 +113,7 @@ installation() {
 	./configure
 	make
 	sudo make install
+
 
 	# Download color schemes
 	#git clone https://github.com/mbadolato/iTerm2-Color-Schemes && unzip nerd-fonts.zip
@@ -131,8 +136,6 @@ php() {
 
 	info 'Installing PHP Tools...'
 
-	mkdir ~/PHP
-
 	# PHP7 CLI Install
 	sudo apt install php7.2-cli -y
 
@@ -140,9 +143,10 @@ php() {
 	curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer -y
 
 	# XAMPP
-	wget https://www.apachefriends.org/xampp-files/5.6.20/xampp-linux-x64-5.6.20-0-installer.run -O ~/PHP/xampp.run
-	chmod +x ~/PHP/xampp.run
-	sudo ~/PHP/xampp.run
+	wget https://www.apachefriends.org/xampp-files/5.6.20/xampp-linux-x64-5.6.20-0-installer.run -O ~/xampp.run
+	chmod +x ~/xampp.run
+	sudo ~/xampp.run
+	rm xampp.run
 
 	# PHP Extensions
 	sudo apt install php-zip -y

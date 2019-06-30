@@ -9,21 +9,17 @@ info() {
   printf '\033[32m '"$1"' %s\033[m\n'
 }
 
-base_settings() {
+settings() {
 
   version=$(lsb_release -r -s | grep -Eo '^[0-9]{2}')
 
+  # Make hide feature available
   if [ "$version" -gt 18 ]; then
-
-    gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize'
-
+	gsettings set org.compiz.unityshell:/org/compiz/profiles/unity/plugins/unityshell/launcher-minimize-window true    
   else
-    # Make hide feature available
-    gsettings set org.compiz.unityshell:/org/compiz/profiles/unity/plugins/unityshell/ launcher-minimize-window true
-
+    gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize'
     # Set icons size to 38
     dconf write /org/compiz/profiles/unity/plugins/unityshell/icon-size 38
-
   fi
 
   #Launcher at the bottom
@@ -36,7 +32,7 @@ base_settings() {
   gsettings set org.gnome.shell.extensions.dash-to-dock transparency-mode 'FIXED'
   gsettings set org.gnome.shell.extensions.dash-to-dock background-opacity 0.7
 
-  # Use local time same way Window does
+  # Use local time
   timedatectl set-local-rtc 1 --adjust-system-clock
 
   # Battery percentage
@@ -53,16 +49,12 @@ base_settings() {
   # Base HTML File
   wget https://www.dropbox.com/s/bqcji695g02eje1/index.html?dl=0 -O ~/Templates/index.html
 
-  # Add favoirtes to taskbar
-  # gsettings set org.gnome.shell favorite-apps
-  # "['application://ubiquity.desktop', 'application://org.gnome.Nautilus.desktop',
-  #    'application://org.gnome.Software.desktop', 'application://unity-control-center.desktop', 'unity://running-apps', 'unity://expo-icon', 'unity://devices','application://gnome-terminal.desktop',
-  #    'application://vscode_vscode.desktop',
-  # ]"
-
   # Remove software & packages
   sudo apt purge thunderbird -y
   sudo apt purge gnome-screenshot -y
+
+  # remove games
+  sudo apt-get purge aisleriot gnome-sudoku gnome-mines gnome-mahjongg ace-of-penguins gnomine gbrainy cheese
 
 }
 
@@ -80,7 +72,7 @@ software_installation() {
   done
 
   for package in "${snap_tools[@]}"; do
-    sudo snap install ${package} -y
+    sudo snap install ${package}
   done
 
   info "Installing OhMyZsh and Plugins..."
@@ -93,6 +85,9 @@ software_installation() {
   for plug in "${zsh_plugins[@]}"; do
     git clone ${plug}
   done
+
+  # sync extension for vs code
+  code --install-extension shan.code-settings-sync
 
 }
 
@@ -141,18 +136,19 @@ main() {
     case $opt in
     "Install Dotfiles")
       echo -e "${Blue} Installing dotfiles...${NC}"
-      base_settings
+      settings
       software_installation
       python
-      php
       java
       ruby
+      php
       $dir/node/package.zsh
+
 
       # symlink dotfiles
       info "Creating symlinks..."
       for file in $files; do
-        ln -s $dir/$file $HOME
+        ln -sf $dir/$file $HOME
       done
 
       echo -e "${Blue}Installation completed! ${NC}"
