@@ -98,9 +98,6 @@ cview() {
 	csvtool readable "$1" | view -
 }
 
-# howdoi colorised output
-hdi(){ howdoi $* -c; }
-
 
 # animated gifs from any video
 # from alex sexton   gist.github.com/SlexAxton/4989674

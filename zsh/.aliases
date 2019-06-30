@@ -29,10 +29,10 @@ alias q="exit"
 alias empty-trash="rm -rf ~/.local/share/Trash/files/*"
 
 # copy file interactive
-alias cp="cp -i"
+alias cp="sudo cp -i"
 
 # move file interactive
-alias mv="mv -i"
+alias mv="sudo mv -i"
 
 # remove file interactive
 alias rm='sudo rm -i -v'
@@ -61,19 +61,19 @@ alias vimrc="vim ~/.vimrc"
 # quick reload
 alias reload="source ~/.zprofile"
 
-#Youtube dll
+# Youtube dll
 alias ytmp3="youtube-dl --extract-audio --audio-format mp3"
 
 # vim
 alias vi="vim"
 
-#Start XAMPP Server
+# Start XAMPP Server
 alias xmp="sudo /opt/lampp/lampp start && firefox http://localhost"
 
-#Stop xampp
+# Stop xampp
 alias xmp-stop="sudo /opt/lampp/lampp stop"
 
-#Alias for build in php server
+# Alias for build in php server
 alias php-server="php -S localhost:8000 & xdg-open http://localhost:8000"
 
 # Database Settings
@@ -84,9 +84,11 @@ alias mysqldump="mysqldump -u [uname] -p[pass] [dbname] | gzip -9 > [db.sql.gz]"
 # Restore db dump from archive
 alias undump="gunzip < db.sql.gz | mysql -u [uname] -p[pass] db"
 
+# public ssh key to clipboard
+alias pubkey="pbcopy < ~/.ssh/id_rsa.pub | echo 'public key copied to clipboard'"
 
-#Shortcut for editing zsh file
-alias zshedit="sudo nano .zshrc"
+# Shortcut for editing zsh file
+alias zshedit="sudo vim .zshrc"
 
 # Get crypto prices
 alias crypto="curl rate.sx"
@@ -97,17 +99,22 @@ alias dhelp="grep "^function" ~/dotfiles/functions | sed 's/function/+/g' | sed 
 # Network
 alias my-ip="curl https://ipinfo.io/ip"
 
+alias mx='chmod +x'
+
 # linux version
 alias version="lsb_release -r -s"
 
 # show all custom aliases
 alias al="compgen -a"
 
+# howdoi colorised output
+alias how="howdoi $* -c"
+
 # Browser
 alias chrome="google-chrome $1"
 
 # Python
-alias py='python'
+alias python='python3'
 alias jn="jupyter notebook"
 
 

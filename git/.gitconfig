@@ -1,6 +1,6 @@
 [user]
-    name = victory-sokolov
-    email = viktorsokolov.and@gmail.com
+    name=victory-sokolov
+    email=viktorsokolov.and@gmail.com
 
 [alias]
 
@@ -9,7 +9,7 @@
     gco='git checkout'
     gcb='git copy-branch-name'
     gb='git branch'
-    gs='git status'
+    gst='git status'
     gac='git add -A && git commit -m'
     ge='git-edit-new'
     gpom="git push origin master"

@@ -77,10 +77,10 @@ installation() {
 
 
 	# install nerd fonts
-	mkdir -p ~/.fonts && cd ~/.fonts
+	mkdir -p ~/.fonts
 
 	if [! -d "~/.fonts/nerd-fonts"]; then
-		git clone https://github.com/ryanoasis/nerd-fonts
+		git clone https://github.com/ryanoasis/nerd-fonts ~/.fonts
 		cd nerd-fonts
 		./install.sh
 		fc-cache -fv
