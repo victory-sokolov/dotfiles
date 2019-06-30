@@ -73,6 +73,22 @@ software_installation() {
   # sync extension for vs code
   code --install-extension shan.code-settings-sync
 
+  # install icons if ubuntu version is lower that 19
+  if [ "$version" -gt 18 ]; then
+	  sudo snap install communitheme
+  fi
+
+  # Docker
+	sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
+  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable" -y
+  sudo apt update
+  sudo apt install docker-ce -y
+  # execute docker without sudo
+  sudo usermod -aG docker ${USER}
+  su - ${USER}
+  id -nG
+
 }
 
 # Uninstalls packages installed via apt get and snap
@@ -90,10 +106,7 @@ uninstall() {
     sudo snap remove ${i}
   done
 
-  # install icons if ubuntu version is lower that 19
-  if [ "$version" -gt 18 ]; then
-	sudo snap install communitheme
-  fi
+
 
   sudo apt autoremove -y
   sudo apt autoclean

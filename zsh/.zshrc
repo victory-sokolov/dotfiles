@@ -139,8 +139,8 @@ fi
 
 
 source $ZSH/oh-my-zsh.sh
-source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $ZSH/plugins/zsh-completions/zsh-completions.plugin.zsh
-source $ZSH/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $ZSH/custom/plugins/zsh-completions/zsh-completions.plugin.zsh
+source $ZSH/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $HOME/dotfiles/zsh/.functions
 source $HOME/dotfiles/zsh/.aliases

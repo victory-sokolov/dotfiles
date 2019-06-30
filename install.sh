@@ -113,7 +113,6 @@ installation() {
 	make
 	sudo make install
 
-
 	# Download color schemes
 	#git clone https://github.com/mbadolato/iTerm2-Color-Schemes && unzip nerd-fonts.zip
 
