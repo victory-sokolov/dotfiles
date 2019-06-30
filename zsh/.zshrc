@@ -1,6 +1,5 @@
 
-export ZSH="$HOME/.oh-my-zsh"
-
+export ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="powerlevel9k/powerlevel9k"
 POWERLEVEL9K_MODE="nerdfont-complete"
@@ -56,7 +55,6 @@ prompt_zsh_battery_level() {
 }
 
 
-
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
@@ -105,7 +103,7 @@ POWERLEVEL9K_CUSTOM_PYTHON="echo -n '\uf81f' Python"
 POWERLEVEL9K_CUSTOM_PYTHON_FOREGROUND="black"
 POWERLEVEL9K_CUSTOM_PYTHON_BACKGROUND="blue"
 
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(custom_lambda ssh dropbox dir dir_writable vcs)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(custom_lambda ssh dir dir_writable vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(command_execution_time status time)
 HIST_STAMPS="mm/dd/yyyy"
 DISABLE_UPDATE_PROMPT=true
@@ -120,11 +118,13 @@ plugins=(
 	git
 	cloudapp
 	npm
-	zsh-autosuggestions
 	extract
 	sudo
+  zsh-nvm
 	web-search
   zsh-syntax-highlighting
+  zsh-autosuggestions
+  zsh-completions
 )
 
 eval $(thefuck --alias)
@@ -139,6 +139,8 @@ fi
 
 
 source $ZSH/oh-my-zsh.sh
-source $HOME/Documents/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $ZSH/plugins/zsh-completions/zsh-completions.plugin.zsh
+source $ZSH/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $HOME/dotfiles/zsh/.functions
-source $HOME/zsh/.aliases
+source $HOME/dotfiles/zsh/.aliases

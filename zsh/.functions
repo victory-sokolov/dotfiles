@@ -88,7 +88,7 @@ fi
 
 
 # Get cheat sheet of command from cheat.sh. h <cmd>
-h(){
+cheat(){
   curl cheat.sh/${@:-cheat}
   # curl cheat.sh/$@
 }
@@ -97,6 +97,9 @@ h(){
 cview() {
 	csvtool readable "$1" | view -
 }
+
+# howdoi colorised output
+hdi(){ howdoi $* -c; }
 
 
 # animated gifs from any video
@@ -116,7 +119,7 @@ gifify() {
 }
 
 # open current folder in nautilus or specified directory
-open(){
+function open() {
     if [ $# -eq 0 ]; then
         nautilus ${pwd} > /dev/null 2>&1
     else

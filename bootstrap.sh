@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# start time of the installation
+start=`date +%s`
+
 source ./install.sh
 
 info() {
@@ -25,6 +28,13 @@ base_settings() {
 
   #Launcher at the bottom
   #gsettings set com.canonical.Unity.Launcher launcher-position Bottom
+
+  # ALT + SHIFT change language
+  gsettings set org.gnome.desktop.input-sources xkb-options "['grp:alt_shift_toggle']"
+
+  # set transparency for dock
+  gsettings set org.gnome.shell.extensions.dash-to-dock transparency-mode 'FIXED'
+  gsettings set org.gnome.shell.extensions.dash-to-dock background-opacity 0.7
 
   # Use local time same way Window does
   timedatectl set-local-rtc 1 --adjust-system-clock
@@ -52,6 +62,7 @@ base_settings() {
 
   # Remove software & packages
   sudo apt purge thunderbird -y
+  sudo apt purge gnome-screenshot -y
 
 }
 
@@ -59,9 +70,18 @@ software_installation() {
 
   info "Updating system..."
   sudo apt-get update && sudo apt-get upgrade -y
+  sudo apt --fix-broken install -y
 
   info "Installing software..."
   installation
+
+  for package in "${tools[@]}"; do
+    sudo apt install ${package} -y
+  done
+
+  for package in "${snap_tools[@]}"; do
+    sudo snap install ${package} -y
+  done
 
   info "Installing OhMyZsh and Plugins..."
   sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" -y
@@ -69,12 +89,9 @@ software_installation() {
   # set zsh as default shell
   sudo chsh -s $(which zsh)
 
+
   for plug in "${zsh_plugins[@]}"; do
     git clone ${plug}
-  done
-
-  for package in "${tools[@]}"; do
-    sudo apt install ${package} -y
   done
 
 }
@@ -91,7 +108,7 @@ uninstall() {
   echo -e "${Red}Removing snap packages${NC}"
 
   for i in "${snap_tools[@]}"; do
-    sudo snap remove ${i} -y
+    sudo snap remove ${i}
   done
 
   sudo apt autoremove -y
@@ -105,7 +122,7 @@ main() {
   dir=$HOME/dotfiles/
 
   # files to symlink
-  files="vim/.vimrc zsh/.zshrc tmux.conf .fonts zsh/.inputrc zsh/.exports"
+  files="vim/.vimrc zsh/.zshrc tmux.conf .fonts zsh/.inputrc zsh/.exports git/.gitconfig"
 
   # MENU
   PS3="Choose Instalation option: "
@@ -130,6 +147,7 @@ main() {
       php
       java
       ruby
+      $dir/node/package.zsh
 
       # symlink dotfiles
       info "Creating symlinks..."
@@ -160,6 +178,12 @@ main() {
     *) echo "Invalid option $REPLY" ;;
     esac
   done
+  
+  # end installation execution time
+  end=`date +%s`
+  runtime=$((end-start))
+  info "Installation Run Time: $runtime"
+
 
 }
 

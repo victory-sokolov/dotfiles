@@ -35,7 +35,7 @@ alias cp="cp -i"
 alias mv="mv -i"
 
 # remove file interactive
-alias rm='rm -i -v'
+alias rm='sudo rm -i -v'
 
 alias time="date +%T"
 alias date="date +%D"

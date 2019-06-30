@@ -1,59 +1,56 @@
 #!/bin/bash
 
 tools=(
-	ubuntu-restricted-extras
-	snapd
-	nautilus-dropbox
-	vlc browser-plugin-vlc
-	slack
-	chromium-browser
-	gnome-tweak-tool
-	dos2unix # converts the line endings from DOS/Windows style to Unix style
-	tree
-	youtube-dl
-	vim
-	curl
-	tmux
-	wine
-	npm
-	texlive # Latex
-	gedit-plugins
-	postman
-	xclip # clipboard manipulation
-	csvtool
-	zsh
-	build-essential # C, C++ compiler, tools
-	zeal # offline documentation
-	fonts-powerline
-	make
-	ruby-full
-	nginx
-	jq # json processor
-	screenfetch # terminal info about system
-	flameshot
-	postgresql postgresql-contrib
-	sqlite3 libsqlite3-dev
-	grub-customizer
-	code
-	nginx
-	docker-ce
-	albert
 	aptitude
-	libtool
+	build-essential # C, C++ compiler, tools
+	code
+	csvtool
+	curl
+	dos2unix # converts the line endings from DOS/Windows style to Unix style
+	filemanager-actions
+	flameshot
+	fonts-powerline
+	gedit-plugins
+	gnome-tweak-tool
+	grub-customizer
 	imagemagick
+	jq # json processor
+	libtool
+	make
+	nautilus-dropbox
+	nginx
+	npm
+	postgresql postgresql-contrib
+	ruby-full
+	screenfetch # terminal info about system
+	snapd
+	sqlite3 libsqlite3-dev
+	tesseract-ocr-all
+	texlive # Latex
+	tmux
+	tree
+	ubuntu-restricted-extras
+	vim
+	vlc browser-plugin-vlc
+	wine
 	xbindkeys
+	xclip # clipboard manipulation
+	youtube-dl
+	zeal # offline documentation
+	zsh
 )
 
 snap_tools=(
 	spotify
-	vlc
 	postman
+    	slack --classic
 )
 
 zsh_plugins=(
 	https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 	https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 	https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
+	https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm
 )
 
 installation() {
@@ -72,17 +69,12 @@ installation() {
 	wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
 	sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
 
-	# Install Docker
-	sudo add-apt-repository \
-		"deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-    (lsb_release -cs) stable"
-
-	# install flux
-	# sudo add-apt-repository ppa:nathan-renniewaldock/flux -y
-	# sudo apt install fluxgui
+	# sync extension for vs code
+	code --install-extension shan.code-settings-sync
 
 	# install albert
-	sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/manuelschneid3r/xUbuntu_19.04/ /' > /etc/apt/sources.list.d/home:manuelschneid3r.list"
+	wget https://download.opensuse.org/repositories/home:/manuelschneid3r/xUbuntu_19.04/amd64/albert_0.16.1_amd64.deb -O albert.deb && sudo dpkg -i albert.deb && rm albert.deb
+
 
 	# install nerd fonts
 	# cd ~/.fonts
@@ -96,7 +88,7 @@ installation() {
 	sudo dpkg -i google.deb
 	rm google.deb
 
-	# NGinx server
+	# Nginx server
 	sudo add-apt-repository ppa:nginx/stable -y
 
 	# Stacer system monitoring
@@ -104,28 +96,13 @@ installation() {
 	sudo dpkg --install stacer.deb
 	rm stacer.deb
 
-	# Download color schemes
-	#git clone https://github.com/mbadolato/iTerm2-Color-Schemes && unzip nerd-fonts.zip
-
-}
-
-# R statistic
-# sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
-# sudo add-apt-repository 'deb [arch=amd64,i386] https://cran.rstudio.com/bin/linux/ubuntu xenial/'
-# sudo apt install r-base -y
-
-ruby() {
-	gems=(
-		colorls # colorised with folder output of ls command
-	)
-
-	for gems in {gem[@]}; do
-		sudo gem install -y
-	done
+	# RescueTime
+	wget https://www.rescuetime.com/installers/rescuetime_current_amd64.deb -O rescuetime.deb
+	sudo dpkg --install rescuetime.deb  && rm rescuetime.deb
 
 	# Install watchman
 	# https://facebook.github.io/watchman/docs/install.html
-	git clone https://github.com/facebook/watchman.git
+	cd ~ && git clone https://github.com/facebook/watchman.git
 	cd ~/watchman
 	git checkout v4.9.0 # the latest stable release
 	sudo ./autogen.sh
@@ -133,11 +110,28 @@ ruby() {
 	make
 	sudo make install
 
+	# Download color schemes
+	#git clone https://github.com/mbadolato/iTerm2-Color-Schemes && unzip nerd-fonts.zip
+
+}
+
+
+ruby() {
+	gems=(
+		colorls # colorised with folder output of ls command
+	)
+
+	for gems in {gem[@]}; do
+		sudo gem install ${gem} -y
+	done
+
 }
 
 php() {
 
 	info 'Installing PHP Tools...'
+
+	mkdir ~/PHP
 
 	# PHP7 CLI Install
 	sudo apt install php7.2-cli -y
@@ -146,9 +140,9 @@ php() {
 	curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer -y
 
 	# XAMPP
-	wget https://www.apachefriends.org/xampp-files/5.6.20/xampp-linux-x64-5.6.20-0-installer.run
-	chmod +x xampp-linux-x64-5.6.20-0-installer.run
-	sudo ./xampp-linux-x64-5.6.20-0-installer.run -y
+	wget https://www.apachefriends.org/xampp-files/5.6.20/xampp-linux-x64-5.6.20-0-installer.run -O ~/PHP/xampp.run
+	chmod +x ~/PHP/xampp.run
+	sudo ~/PHP/xampp.run
 
 	# PHP Extensions
 	sudo apt install php-zip -y
@@ -162,7 +156,7 @@ php() {
 	# WordPress CLI
 	curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 	chmod +x wp-cli.phar
-	sudo mv wp-cli.phar /usr/local/bin/wp -yes
+	sudo mv wp-cli.phar /usr/local/bin/wp -yes && rm wp-cli.phar
 
 	# Download WordPress
 	# curl -O https://wordpress.org/latest.tar.gz && tar xzvf latest.tar.gz
@@ -179,6 +173,9 @@ java() {
 	sudo update-alternatives --config java -y
 	# Setting java PATH - https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-on-ubuntu-16-04
 	# JDK 12
+
+	# Intellij IDEA
+ 	sudo snap install intellij-idea-community --classic
 }
 
 python() {
@@ -194,11 +191,15 @@ python() {
 	sudo mv geckodriver /usr/local/bin/
 
 	sudo apt install -y \
-		python-pip \
-		pipenv \
+		python3-pip \
+		python-virtualenv \
+		python3-venv \
 		pylint \
 		thefuck \
-		powerline-status # https://powerline.readthedocs.io/en/latest/installation.html#generic-requirements
+		howdoi \
+
+	# https://powerline.readthedocs.io/en/latest/installation.html#generic-requirements
+	pip3 install powerline-status 
 
 }
 
