@@ -130,3 +130,9 @@ gacp() # Git: add all, commit and push. [-m "comment"]
 	git commit $@
 	git push
 }
+ 
+ggs() { # basic commit with message `update`
+    git add .
+    git commit . -m 'update'
+    git push
+}
