@@ -43,8 +43,8 @@ tools=(
 snap_tools=(
 	spotify
 	postman
-  slack --classic
-	todoist-thibaut
+  	slack --classic
+ 	todoist-thibaut
 )
 
 zsh_plugins=(
@@ -72,6 +72,7 @@ installation() {
 
 
 	# install albert
+	# https://software.opensuse.org/download.html?project=home:manuelschneid3r&package=albert
 	wget https://download.opensuse.org/repositories/home:/manuelschneid3r/xUbuntu_19.04/amd64/albert_0.16.1_amd64.deb -O albert.deb && sudo dpkg -i albert.deb
 	rm albert.deb
 
