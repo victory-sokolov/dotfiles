@@ -43,6 +43,7 @@ alias cw="cd ~/Dropbox/Code/Code\ Files/Python/Projects/Client\ Work/"
 alias zshrc="vim ~/.zshrc"
 alias bashrc="vim ~/.bashrc"
 alias vimrc="vim ~/.vimrc"
+alias viali="vim ~/dotfiles/zsh/.aliases"
 alias reload="source ~/.zshrc"
 alias v="vim"
 
@@ -65,6 +66,7 @@ alias my-ip="curl https://ipinfo.io/ip"
 # Python
 alias python='python3'
 alias jn="jupyter notebook"
+alias pip="pip3"
 
 # Clipboard
 alias pbcopy='xclip -selection clipboard'
