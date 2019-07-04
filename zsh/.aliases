@@ -35,15 +35,16 @@ alias ~="cd ~"
 alias -- -="cd -"
 alias go="cd "$@" && ls"
 alias db="cd ~/Dropbox"
-alias dev="cd ~/Dropbox/Code/Code Files/"
+alias dev="cd ~/Dropbox/Code/Code\ Files/"
 alias kn="cd ~/Dropbox/Knowledge/"
+alias cw="cd ~/Dropbox/Code/Code\ Files/Python/Projects/Client\ Work/"
 
 # quick edit
 alias zshrc="vim ~/.zshrc"
 alias bashrc="vim ~/.bashrc"
 alias vimrc="vim ~/.vimrc"
-alias reload="source ~/.zprofile"
-alias vi="vim"
+alias reload="source ~/.zshrc"
+alias v="vim"
 
 # media
 alias ytmp3="youtube-dl --extract-audio --audio-format mp3" # youtube video to mp3
