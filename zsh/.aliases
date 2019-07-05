@@ -35,9 +35,9 @@ alias ~="cd ~"
 alias -- -="cd -"
 alias go="cd "$@" && ls"
 alias db="cd ~/Dropbox"
-alias dev="cd ~/Dropbox/Code/Code\ Files/"
+alias dev="cd ~/Dropbox/Code/"
 alias kn="cd ~/Dropbox/Knowledge/"
-alias cw="cd ~/Dropbox/Code/Code\ Files/Python/Projects/Client\ Work/"
+alias cw="cd ~/Dropbox/Code/Python/Projects/Client\ Work/"
 
 # quick edit
 alias zshrc="vim ~/.zshrc"
