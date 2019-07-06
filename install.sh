@@ -104,6 +104,12 @@ installation() {
 	sudo dpkg --install rescuetime.deb
 	rm rescuetime.deb
 
+	# yarn install 
+	curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | 
+	sudo apt-key add - echo "deb https://dl.yarnpkg.com/debian/ stable main" | 
+	sudo tee /etc/apt/sources.list.d/yarn.list
+	sudo apt-get update && sudo apt-get install yarn
+
 	# Install watchman
 	# https://facebook.github.io/watchman/docs/install.html
 	cd ~ && git clone https://github.com/facebook/watchman.git
