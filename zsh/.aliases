@@ -68,6 +68,7 @@ alias python='python3'
 alias jn="jupyter notebook"
 alias pip="pip3"
 alias splash-inst="docker run -p 8050:8050 scrapinghub/splash"
+alias py-server="python -m http.server"
 
 # Clipboard
 alias pbcopy='xclip -selection clipboard'
