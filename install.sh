@@ -25,6 +25,7 @@ tools=(
 	screenfetch # terminal info about system
 	snapd
 	sqlite3 libsqlite3-dev
+	silversearcher-ag
 	tesseract-ocr-all
 	texlive # Latex
 	tmux
