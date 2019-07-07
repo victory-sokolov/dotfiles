@@ -70,6 +70,10 @@ alias pip="pip3"
 alias splash-inst="docker run -p 8050:8050 scrapinghub/splash"
 alias py-server="python -m http.server"
 
+# NodeJS
+alias npm-reset="rm -rf node_modules && npm install"
+alias yarn-reset="rm -rf node_modules && yarn install"
+
 # Clipboard
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
