@@ -1,4 +1,4 @@
 
-# My configuration files for Linux
+# My configuration files for Linux / Windows
 
-This is my personalised Linux dotfiles
+This is my personalised Linux / Windows dotfiles
