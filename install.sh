@@ -43,7 +43,7 @@ tools=(
 snap_tools=(
 	spotify
 	postman
-    	slack --classic
+  slack --classic
 )
 
 zsh_plugins=(
@@ -57,9 +57,6 @@ installation() {
 
 	# Grub customizer
 	sudo add-apt-repository ppa:danielrichter2007/grub-customizer -y
-
-	# Firefox Portable 49
-	# wget -O Firefox49Portable http://ftp.mozilla.org/pub/firefox/releases/49.0/linux-x86_64/en-US/firefox-49.0.tar.bz2 && tar xvjf Firefox49Portable && rm Firefox49Portable && mv firefox Firefox49
 
 	# Google Drive
 	# sudo add-apt-repository ppa:alessandro-strada/ppa
@@ -109,9 +106,6 @@ installation() {
 	./configure
 	make
 	sudo make install
-
-	# Download color schemes
-	#git clone https://github.com/mbadolato/iTerm2-Color-Schemes && unzip nerd-fonts.zip
 
 }
 
@@ -199,7 +193,7 @@ python() {
 		howdoi \
 
 	# https://powerline.readthedocs.io/en/latest/installation.html#generic-requirements
-	pip3 install powerline-status 
+	pip3 install powerline-status
 
 }
 

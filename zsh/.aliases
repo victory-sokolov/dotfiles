@@ -1,16 +1,31 @@
 
-#Package managment
-alias update="sudo apt-get update && sudo apt-get upgrade"
+# Genral
 alias install="sudo apt-get install"
 alias remove="sudo apt-get remove"
 alias reboot="sudo reboot"
-
-# Print each PATH entry on a separate line
-alias path="echo -e ${PATH//:/\\n}"
-
-# list directories colorised
+alias update="sudo apt-get update && sudo apt-get upgrade && sudo apt autoremove -y"
+alias path="echo -e ${PATH//:/\\n}" # print each PATH entry on a separate line
 alias ls='colorls --group-directories-first'
 alias ll='colorls -lA --sd --group-directories-first'
+alias cls="clear"
+alias chmod='chmod +x'
+alias grep="grep --color=auto "
+alias q="exit"
+alias trash="rm -rf ~/.local/share/Trash/files/*"
+alias cp="sudo cp -i" # copy file interactive
+alias mv="sudo mv -i" # move file interactive
+alias rm='sudo rm -i -v' # remove file interactive
+alias version="lsb_release -r -s" # linux version
+alias time="date +%T"
+alias date="date +%D"
+alias untar="tar xvf"
+alias al="compgen -a" # show all custom aliases
+alias crypto="curl rate.sx" # crypto prices
+alias pubkey="pbcopy < ~/.ssh/id_rsa.pub | echo 'public key copied to clipboard'" # public ssh key to clipboard
+alias dhelp="grep "^function" ~/dotfiles/functions | sed 's/function/+/g' | sed 's/() #/ - /g'" # custom available functions
+alias how="howdoi $* -c" # howdoi colorised output
+alias chrome="google-chrome $1" # open url in chrome
+
 
 # Directory traversal
 alias ..="cd .."
@@ -19,97 +34,41 @@ alias ....="cd ../../.."
 alias ~="cd ~"
 alias -- -="cd -"
 alias go="cd "$@" && ls"
-
-alias cls="clear"
-alias grep="grep --color=auto "
-
-alias q="exit"
-
-# Empty trash.
-alias empty-trash="rm -rf ~/.local/share/Trash/files/*"
-
-# copy file interactive
-alias cp="cp -i"
-
-# move file interactive
-alias mv="mv -i"
-
-# remove file interactive
-alias rm='sudo rm -i -v'
-
-alias time="date +%T"
-alias date="date +%D"
-
-# untar
-alias untar="tar xvf"
-
 alias db="cd ~/Dropbox"
-alias dev="cd /home/$USER/Dropbox/Code/Code Files/"
-
-# vhosts
-alias hosts="sudo vim /etc/hosts"
-
-# check for updates
-alias update="sudo apt-get update && sudo apt-get upgrade && sudo apt autoremove -y"
-alias install="sudo apt-get install"
+alias dev="cd ~/Dropbox/Code/"
+alias kn="cd ~/Dropbox/Knowledge/"
+alias cw="cd ~/Dropbox/Code/Python/Projects/Client\ Work/"
 
 # quick edit
 alias zshrc="vim ~/.zshrc"
 alias bashrc="vim ~/.bashrc"
 alias vimrc="vim ~/.vimrc"
+alias viali="vim ~/dotfiles/zsh/.aliases"
+alias reload="source ~/.zshrc"
+alias v="vim"
 
-# quick reload
-alias reload="source ~/.zprofile"
+# media
+alias ytmp3="youtube-dl --extract-audio --audio-format mp3" # youtube video to mp3
 
-#Youtube dll
-alias ytmp3="youtube-dl --extract-audio --audio-format mp3"
-
-# vim
-alias vi="vim"
-
-#Start XAMPP Server
-alias xmp="sudo /opt/lampp/lampp start && firefox http://localhost"
-
-#Stop xampp
-alias xmp-stop="sudo /opt/lampp/lampp stop"
-
-#Alias for build in php server
-alias php-server="php -S localhost:8000 & xdg-open http://localhost:8000"
+# PHP
+alias xmp="sudo /opt/lampp/lampp start && firefox http://localhost" # start xampp server
+alias xmp-stop="sudo /opt/lampp/lampp stop" # Stop xampp
+alias hosts="sudo vim /etc/hosts" # vhosts
+alias php-server="php -S localhost:8000 & xdg-open http://localhost:8000" # build in php server
 
 # Database Settings
-
-# Dump mysql db
-alias mysqldump="mysqldump -u [uname] -p[pass] [dbname] | gzip -9 > [db.sql.gz]"
-
-# Restore db dump from archive
-alias undump="gunzip < db.sql.gz | mysql -u [uname] -p[pass] db"
-
-
-#Shortcut for editing zsh file
-alias zshedit="sudo nano .zshrc"
-
-# Get crypto prices
-alias crypto="curl rate.sx"
-
-# output all custom available functions
-alias dhelp="grep "^function" ~/dotfiles/functions | sed 's/function/+/g' | sed 's/() #/ - /g'"
+alias mysqldump="mysqldump -u [uname] -p[pass] [dbname] | gzip -9 > [db.sql.gz]" # dump mysql db
+alias undump="gunzip < db.sql.gz | mysql -u [uname] -p[pass] db" # Restore db dump from archive
 
 # Network
 alias my-ip="curl https://ipinfo.io/ip"
 
-# linux version
-alias version="lsb_release -r -s"
-
-# show all custom aliases
-alias al="compgen -a"
-
-# Browser
-alias chrome="google-chrome $1"
-
 # Python
-alias py='python'
+alias python='python3'
 alias jn="jupyter notebook"
-
+alias pip="pip3"
+alias splash-inst="docker run -p 8050:8050 scrapinghub/splash"
+alias py-server="python -m http.server"
 
 # Clipboard
 alias pbcopy='xclip -selection clipboard'

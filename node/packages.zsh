@@ -17,6 +17,7 @@ npm_scripts=(
 	"stylelint --save-dev"
 	"python-shell"
 	"-g vtop"
+	"-g localtunnel"
 )
 
 cd $HOME
