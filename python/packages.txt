@@ -1,7 +1,7 @@
 BeautifulSoup4
 colorama
 django
-virtualenv     
+virtualenv
 gspread
 jupyter
 logger
@@ -28,6 +28,8 @@ requests
 scikit-image
 scipy
 scrapy
+scrapyd
+splash
 seaborn
 selenium
 sklearn
