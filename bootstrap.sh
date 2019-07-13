@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # start time of the installation
-start=`date +%s`
+start=$(date +%s)
 
 source ./install.sh
 
@@ -88,7 +88,6 @@ software_installation() {
   git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
   # set zsh as default shell
   sudo chsh -s $(which zsh)
-
 
   for plug in "${zsh_plugins[@]}"; do
     git clone ${plug}
@@ -178,12 +177,11 @@ main() {
     *) echo "Invalid option $REPLY" ;;
     esac
   done
-  
-  # end installation execution time
-  end=`date +%s`
-  runtime=$((end-start))
-  info "Installation Run Time: $runtime"
 
+  # end installation execution time
+  end=$(date +%s)
+  runtime=$((end - start))
+  info "Installation Run Time: $runtime"
 
 }
 

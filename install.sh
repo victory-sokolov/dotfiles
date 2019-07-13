@@ -196,4 +196,3 @@ python() {
 	pip3 install powerline-status
 
 }
-
