@@ -46,4 +46,4 @@ nmap <S-Enter> O<Esc>
 nmap <CR> o<Esc>
 "nmap <DOWN> <NOP> - press down key no operation
 map <F5> :NERDTreeToggle<CR>
->>>>>>> a7944c1679475714f54cae52976978e482dc8256
+

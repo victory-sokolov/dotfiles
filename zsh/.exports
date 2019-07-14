@@ -10,7 +10,7 @@ export GREP_OPTIONS='—color=auto'
 #shopt -s nocaseglob
 
 # Autocorrect typos in path names when using `cd`
-#shopt -s cdspell
+# shopt -s cdspell
 
 # Make Python use UTF-8 encoding for output to stdin, stdout, and stderr.
 export PYTHONIOENCODING='UTF-8';
