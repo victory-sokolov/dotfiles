@@ -1,3 +1,0 @@
-code
-curl
-chromium-browser

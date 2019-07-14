@@ -43,7 +43,7 @@ tools=(
 snap_tools=(
 	spotify
 	postman
-  slack --classic
+	slack --classic
 )
 
 zsh_plugins=(
@@ -72,7 +72,6 @@ installation() {
 	# install albert
 	wget https://download.opensuse.org/repositories/home:/manuelschneid3r/xUbuntu_19.04/amd64/albert_0.16.1_amd64.deb -O albert.deb && sudo dpkg -i albert.deb && rm albert.deb
 
-
 	# install nerd fonts
 	# cd ~/.fonts
 	# git clone https://github.com/ryanoasis/nerd-fonts
@@ -95,7 +94,7 @@ installation() {
 
 	# RescueTime
 	wget https://www.rescuetime.com/installers/rescuetime_current_amd64.deb -O rescuetime.deb
-	sudo dpkg --install rescuetime.deb  && rm rescuetime.deb
+	sudo dpkg --install rescuetime.deb && rm rescuetime.deb
 
 	# Install watchman
 	# https://facebook.github.io/watchman/docs/install.html
@@ -109,17 +108,16 @@ installation() {
 
 	# Docker
 	sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
-  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-  sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable" -y
-  sudo apt update
-  sudo apt install docker-ce -y
-  # execute docker without sudo
-  sudo usermod -aG docker ${USER}
-  su - ${USER}
-  id -nG
+	curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+	sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable" -y
+	sudo apt update
+	sudo apt install docker-ce -y
+	# execute docker without sudo
+	sudo usermod -aG docker ${USER}
+	su - ${USER}
+	id -nG
 
 }
-
 
 ruby() {
 	gems=(
@@ -180,7 +178,7 @@ java() {
 	# JDK 12
 
 	# Intellij IDEA
- 	sudo snap install intellij-idea-community --classic
+	sudo snap install intellij-idea-community --classic
 }
 
 python() {
@@ -201,7 +199,7 @@ python() {
 		python3-venv \
 		pylint \
 		thefuck \
-		howdoi \
+		howdoi
 
 	# https://powerline.readthedocs.io/en/latest/installation.html#generic-requirements
 	pip3 install powerline-status

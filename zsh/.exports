@@ -31,3 +31,9 @@ export CHROME="google-chrome"
 # Java
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
 export PATH=$PATH:/usr/lib/jvm/java-8-openjdk/bin
+
+# Docker on Windows WSL
+export DOCKER_HOST=tcp://192.168.99.100:2376  // your Docker IP
+export DOCKER_CERT_PATH=/mnt/c/Users/Viktor/.docker/machine/certs
+export DOCKER_TLS_VERIFY=1
+export DOCKER_HOST='tcp://0.0.0.0:2375'
