@@ -24,6 +24,7 @@ set number
 set cursorline
 set ruler
 set title
+set clipboard+=unnamed
 " Highlight searches
 set hlsearch
 " Ignore case of searches
@@ -46,4 +47,5 @@ nmap <S-Enter> O<Esc>
 nmap <CR> o<Esc>
 "nmap <DOWN> <NOP> - press down key no operation
 map <F5> :NERDTreeToggle<CR>
+map <C-a> <esc>ggVG<CR> #select all
 
