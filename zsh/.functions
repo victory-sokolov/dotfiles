@@ -16,7 +16,6 @@ function calc() # Simple calculator
 	printf "\n";
 }
 
-
 function mk() # Create a new directory and enter it
 {
   mkdir -p "$@" && cd "$@"
@@ -57,7 +56,6 @@ function targz() # Create a new directory and enter it
 	echo "${tmpFile}.gz ($((zippedSize / 1000)) kB) created successfully.";
 }
 
-
 function fs() # Create a new directory and enter it
 {
 	if du -b /dev/null > /dev/null 2>&1; then
@@ -72,7 +70,6 @@ function fs() # Create a new directory and enter it
 	fi;
 }
 
-
 # Normalize `open` across Linux, macOS, and Windows.
 # This is needed to make the `o` function (see below) cross-platform.
 if [ ! $(uname -s) = 'Darwin' ]; then
@@ -82,15 +79,13 @@ if [ ! $(uname -s) = 'Darwin' ]; then
 	else
 		alias open='xdg-open';
 	fi
-fi<M-C-F3>
-
+fi
 
 function cheat() # Create a new directory and enter it
 {
   curl cheat.sh/${@:-cheat}
   # curl cheat.sh/$@
 }
-
 
 function cview() # Create a new directory and enter it 
 {
@@ -114,27 +109,16 @@ function gifify() # Create a new directory and enter it
   fi
 }
 
-
-function open() # Create a new directory and enter it
-{
-    if [ $# -eq 0 ]; then
-        nautilus ${pwd} > /dev/null 2>&1
-    else
-        nautilus "$@" > /dev/null 2>&1
-    fi
-}
-
 function gacp() # Git: add all, commit and push. [-m "comment"]
 {
-	git add .;
-	git commit $@
+	git add .
+	git commit "$@"
 	git push
 }
 
 function ggs() # Create a new directory and enter it
-{
-    git add .
-    git commit . -m 'update'
+{    
+		git add -A
+    git commit -m 'update'
     git push
 }
-
