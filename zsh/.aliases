@@ -21,7 +21,7 @@ alias untar="tar xvf"
 alias al="compgen -a" # show all custom aliases
 alias crypto="curl rate.sx" # crypto prices
 alias pubkey="pbcopy < ~/.ssh/id_rsa.pub | echo 'public key copied to clipboard'" # public ssh key to clipboard
-alias dhelp="grep "^function" ~/dotfiles/functions | sed 's/function/+/g' | sed 's/() #/ - /g'" # custom available functions
+alias dhelp="grep "^function" ~/dotfiles/zsh/.functions | sed 's/function/+/g' | sed 's/() #/ - /g'" # custom available functions
 alias how="howdoi $* -c" # howdoi colorised output
 alias chrome="google-chrome $1" # open url in chrome
 

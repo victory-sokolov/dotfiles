@@ -1,5 +1,6 @@
 export ZSH=$HOME/.oh-my-zsh
 
+ZSH_DISABLE_COMPFIX=true
 ZSH_THEME="powerlevel9k/powerlevel9k"
 POWERLEVEL9K_MODE="nerdfont-complete"
 
@@ -73,6 +74,9 @@ plugins=(
   zsh-autosuggestions
   zsh-completions
 )
+
+# Tell ZSH not to nice background process
+unsetopt BG_NICE
 
 eval $(thefuck --alias)
 

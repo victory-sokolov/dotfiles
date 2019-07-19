@@ -4,7 +4,7 @@ export CLICOLOR=1
 export LSCOLORS=gxfxcxdxbxegedabagacad
 
 # Tell grep to highlight matches
-export GREP_OPTIONS='—color=auto'
+export GREP='grep -n --color'
 
 # Case-insensitive globbing (used in pathname expansion)
 #shopt -s nocaseglob

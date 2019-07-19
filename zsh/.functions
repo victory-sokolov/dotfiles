@@ -1,4 +1,4 @@
-calc() # Simple calculator
+function calc() # Simple calculator
 {
 	local result="";
 	result="$(printf "scale=10;$*\n" | bc --mathlib | tr -d '\\\n')";
@@ -17,15 +17,14 @@ calc() # Simple calculator
 }
 
 
-
-# Create a new directory and enter it
-mk() {
+function mk() # Create a new directory and enter it
+{
   mkdir -p "$@" && cd "$@"
 }
 
 
-# Create a .tar.gz archive, using `zopfli`, `pigz` or `gzip` for compression
-targz() {
+function targz() # Create a new directory and enter it 
+{
 	local tmpFile="${@%/}.tar";
 	tar -cvf "${tmpFile}" --exclude=".DS_Store" "${@}" || return 1;
 
@@ -59,8 +58,8 @@ targz() {
 }
 
 
-# Determine size of a file or total size of a directory
-fs() {
+function fs() # Create a new directory and enter it
+{
 	if du -b /dev/null > /dev/null 2>&1; then
 		local arg=-sbh;
 	else
@@ -83,24 +82,25 @@ if [ ! $(uname -s) = 'Darwin' ]; then
 	else
 		alias open='xdg-open';
 	fi
-fi
+fi<M-C-F3>
 
 
-# Get cheat sheet of command from cheat.sh. h <cmd>
-cheat(){
+function cheat() # Create a new directory and enter it
+{
   curl cheat.sh/${@:-cheat}
   # curl cheat.sh/$@
 }
 
-# Read csv file from command line
-cview() {
+
+function cview() # Create a new directory and enter it 
+{
 	csvtool readable "$1" | view -
 }
 
 
-# animated gifs from any video
 # from alex sexton   gist.github.com/SlexAxton/4989674
-gifify() {
+function gifify() # Create a new directory and enter it
+{
   if [[ -n "$1" ]]; then
 	if [[ $2 == '--good' ]]; then
 	  ffmpeg -i "$1" -r 10 -vcodec png out-static-%05d.png
@@ -114,8 +114,9 @@ gifify() {
   fi
 }
 
-# open current folder in nautilus or specified directory
-function open() {
+
+function open() # Create a new directory and enter it
+{
     if [ $# -eq 0 ]; then
         nautilus ${pwd} > /dev/null 2>&1
     else
@@ -123,15 +124,17 @@ function open() {
     fi
 }
 
-gacp() # Git: add all, commit and push. [-m "comment"]
+function gacp() # Git: add all, commit and push. [-m "comment"]
 {
 	git add .;
 	git commit $@
 	git push
 }
 
-ggs() { # basic commit with message `update`
+function ggs() # Create a new directory and enter it
+{
     git add .
     git commit . -m 'update'
     git push
 }
+
