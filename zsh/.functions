@@ -116,7 +116,7 @@ function gacp() # Git: add all, commit and push. [-m "comment"]
 	git push
 }
 
-function ggs() # Create a new directory and enter it
+function ggs() # push & commit with message `update`
 {    
 		git add -A
     git commit -m 'update'
