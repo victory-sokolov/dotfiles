@@ -73,6 +73,9 @@ alias py-server="python -m http.server"
 alias docker=docker.exe
 alias docker-compose=docker-compose.exe
 
+# Nodejs
+alias npm-restart="sudo rm -rf node_modules && npm install && npm start"
+
 # Clipboard
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
