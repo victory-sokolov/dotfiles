@@ -22,7 +22,7 @@ function mk() # Create a new directory and enter it
 }
 
 
-function targz() # Create a new directory and enter it 
+function targz() # Create a new directory and enter it
 {
 	local tmpFile="${@%/}.tar";
 	tar -cvf "${tmpFile}" --exclude=".DS_Store" "${@}" || return 1;
@@ -87,7 +87,7 @@ function cheat() # Create a new directory and enter it
   # curl cheat.sh/$@
 }
 
-function cview() # Create a new directory and enter it 
+function cview() # Create a new directory and enter it
 {
 	csvtool readable "$1" | view -
 }
@@ -117,8 +117,14 @@ function gacp() # Git: add all, commit and push. [-m "comment"]
 }
 
 function ggs() # push & commit with message `update`
-{    
+{
 		git add -A
     git commit -m 'update'
     git push
+}
+
+function docker-clean() { # stops and cleans all docker containers & images
+  docker container stop $(docker container ls -aq) &&
+  docker container rm $(docker container ls -aq) -f &&
+  docker rmi $(docker images -a -q) -f
 }
