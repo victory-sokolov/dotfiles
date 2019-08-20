@@ -1,1 +1,11 @@
-../../../.minttyrc
+Term=xterm-256color
+Transparency=medium
+Font=Fira Code
+FontHeight=11
+FontSmoothing=full
+Locale=en_US
+Charset=UTF-8
+ThemeFile=dracula
+Columns=90
+BellType=0
+Language=en_US
