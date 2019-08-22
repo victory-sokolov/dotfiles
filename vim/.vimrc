@@ -6,10 +6,12 @@ endif
 
 " Plugins
 call plug#begin('~/.vim/autoload')
-
 Plug 'mattn/emmet-vim'
 Plug 'scrooloose/nerdtree'
-
+Plug 'scrooloose/nerdcommenter'
+Plug 'pangloss/vim-javascript'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'zchee/deoplete-jedi'
 call plug#end()
 
 
@@ -35,6 +37,9 @@ set history=1000 " Increase the undo limit.
 set spell
 set wildignorecase
 set smartcase
+# increase vim responsiveness
+set -sg escape-time 0
+
 
 " VIM Diff
 highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=11 gui=none guifg=bg guibg=Red
