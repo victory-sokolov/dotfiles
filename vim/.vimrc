@@ -17,10 +17,11 @@ call plug#end()
 set autoindent
 set smartindent
 set encoding=utf-8 nobomb
-set fileformat=unix " Line endings
+set fileformat=unix
 filetype plugin on
 syntax on
 set number
+set modifiable
 set cursorline
 set ruler
 set title
