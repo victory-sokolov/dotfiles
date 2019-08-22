@@ -40,6 +40,13 @@ set smartcase
 # increase vim responsiveness
 set -sg escape-time 0
 
+" Invisible character colors
+hi NonText ctermfg=238
+hi SpecialKey ctermfg=238
+
+" Hightlight search result
+hi Search ctermbg=NONE ctermfg=red
+
 
 " VIM Diff
 highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=11 gui=none guifg=bg guibg=Red
