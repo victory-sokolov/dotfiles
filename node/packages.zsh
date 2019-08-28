@@ -18,6 +18,8 @@ npm_scripts=(
 	"python-shell"
 	"-g vtop"
 	"-g localtunnel"
+	"-g typescript"
+	"-g gitbook"
 )
 
 cd $HOME
