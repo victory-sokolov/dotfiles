@@ -54,10 +54,12 @@ alias xmp="sudo /opt/lampp/lampp start && firefox http://localhost" # start xamp
 alias xmp-stop="sudo /opt/lampp/lampp stop" # Stop xampp
 alias hosts="sudo vim /etc/hosts" # vhosts
 alias php-server="php -S localhost:8000 & xdg-open http://localhost:8000" # build in php server
+alias run-apache="sudo service mysql start && sudo service apache2 start"
 
 # Database Settings
 alias mysqldump="mysqldump -u [uname] -p[pass] [dbname] | gzip -9 > [db.sql.gz]" # dump mysql db
 alias undump="gunzip < db.sql.gz | mysql -u [uname] -p[pass] db" # Restore db dump from archive
+
 
 # Network
 alias my-ip="curl https://ipinfo.io/ip"

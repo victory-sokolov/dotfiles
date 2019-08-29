@@ -22,6 +22,7 @@ tools=(
 	npm
 	postgresql postgresql-contrib
 	ruby-full
+	software-properties-common
 	screenfetch # terminal info about system
 	snapd
 	sqlite3 libsqlite3-dev
@@ -134,24 +135,36 @@ php() {
 
 	info 'Installing PHP Tools...'
 
-	mkdir ~/PHP
+	sudo apt-get install apache2 nginx
 
 	# PHP7 CLI Install
-	sudo apt install php7.2-cli -y
+	sudo apt install -y php7.3 \
+		php7.3-cli \
+		libapache2-mod-php7.3 \
+		libaprutil1-dbd-sqlite3 \
+		php7.3-common \
+		php7.3-json \
+		php7.3-opcache \
+		php7.3-readline \
+		php-pear \
+		php7.3-curl \
+		php7.3-dev \
+		php7.3-gd \
+		php7.3-mbstring \
+		php7.3-zip \
+		php7.3-mysql \
+		php7.3-xml
+
+
+	# set default php version
+	sudo update-alternatives --set php /usr/bin/php7.3
+
+	# PHP Unit testing
+	wget -O phpunit https://phar.phpunit.de/phpunit-8.phar
+	chmod +x phpunit
 
 	# Composer install
 	curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer -y
-
-	# XAMPP
-	wget https://www.apachefriends.org/xampp-files/5.6.20/xampp-linux-x64-5.6.20-0-installer.run -O ~/PHP/xampp.run
-	chmod +x ~/PHP/xampp.run
-	sudo ~/PHP/xampp.run
-
-	# PHP Extensions
-	sudo apt install php-zip -y
-
-	# Laravel
-	composer global require laravel/installer
 
 	# XDEBUG
 	sudo apt-get install php-xdebug -y
@@ -161,8 +174,8 @@ php() {
 	chmod +x wp-cli.phar
 	sudo mv wp-cli.phar /usr/local/bin/wp -yes && rm wp-cli.phar
 
-	# Download WordPress
-	# curl -O https://wordpress.org/latest.tar.gz && tar xzvf latest.tar.gz
+	systemctl restart apache2
+
 
 }
 
