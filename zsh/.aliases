@@ -72,7 +72,7 @@ alias splash-server="sudo docker run -p 8050:8050 scrapinghub/splash"
 alias py-server="python -m http.server"
 
 # Docker
-alias run-splash="docker run -p 8050:8050 scrapinghub/splash"
+alias run-splash="docker run --rm --name scrapy-splash -d -p 8050:8050 scrapinghub/splash"
 
 
 # Nodejs
