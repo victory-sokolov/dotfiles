@@ -52,13 +52,11 @@ zsh_plugins=(
 	https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 	https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
 	https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm
-	https://github.com/bhilburn/powerlevel9k.git ~/powerlevel9k
+	https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/themes/powerlevel9k
 )
 
 installation() {
 
-	# Oh-my-zsh
-	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 	# Grub customizer
 	sudo add-apt-repository ppa:danielrichter2007/grub-customizer -y
@@ -75,7 +73,9 @@ installation() {
 	code --install-extension shan.code-settings-sync
 
 	# install albert
-	wget https://download.opensuse.org/repositories/home:/manuelschneid3r/xUbuntu_19.04/amd64/albert_0.16.1_amd64.deb -O albert.deb && sudo dpkg -i albert.deb && rm albert.deb
+	wget https://download.opensuse.org/repositories/home:/manuelschneid3r/xUbuntu_19.04/amd64/albert_0.16.1_amd64.deb -O albert.deb
+	sudo dpkg -i albert.deb
+	rm albert.deb
 
 	# install nerd fonts
 	# cd ~/.fonts
@@ -99,7 +99,8 @@ installation() {
 
 	# RescueTime
 	wget https://www.rescuetime.com/installers/rescuetime_current_amd64.deb -O rescuetime.deb
-	sudo dpkg --install rescuetime.deb && rm rescuetime.deb
+	sudo dpkg --install rescuetime.deb
+	rm rescuetime.deb
 
 	# Install watchman
 	# https://facebook.github.io/watchman/docs/install.html
@@ -139,7 +140,7 @@ php() {
 
 	info 'Installing PHP Tools...'
 
-	sudo apt-get install apache2 nginx
+	sudo apt-get install apache2
 
 	# PHP7 CLI Install
 	sudo apt install -y php7.3 \

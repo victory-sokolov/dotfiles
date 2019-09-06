@@ -73,7 +73,7 @@ software_installation() {
   sudo apt --fix-broken install -y
 
   info "Installing software..."
-  installation
+   installation
 
   for package in "${tools[@]}"; do
     sudo apt install ${package} -y
@@ -83,9 +83,9 @@ software_installation() {
     sudo snap install ${package} -y
   done
 
+
   info "Installing OhMyZsh and Plugins..."
-  sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" -y
-  git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" -y
   # set zsh as default shell
   sudo chsh -s $(which zsh)
 
@@ -151,7 +151,7 @@ main() {
       # symlink dotfiles
       info "Creating symlinks..."
       for file in $files; do
-        ln -s $dir/$file $HOME
+        ln -sf $dir/$file $HOME
       done
 
       echo -e "${Blue}Installation completed! ${NC}"

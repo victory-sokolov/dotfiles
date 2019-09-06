@@ -1,8 +1,10 @@
 export ZSH=$HOME/.oh-my-zsh
 
+
+unsetopt PROMPT_SP
 ZSH_DISABLE_COMPFIX=true
 ZSH_THEME="powerlevel9k/powerlevel9k"
-POWERLEVEL9K_MODE="nerdfont-complete"
+#POWERLEVEL9K_MODE="nerdfont-complete"
 
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
@@ -68,7 +70,7 @@ plugins=(
   npm
   extract
   sudo
-  zsh-nvm
+  #zsh-nvm
   web-search
   zsh-syntax-highlighting
   zsh-autosuggestions
