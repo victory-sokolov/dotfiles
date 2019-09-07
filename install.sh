@@ -188,13 +188,10 @@ java() {
 
 	info 'Installing JAVA Tools...'
 
-	# JDK8
-	sudo add-apt-repository ppa:webupd8team/java -y
-	sudo apt install oracle-java8-installer -y
-	sudo update-alternatives --config java -y
-	# Setting java PATH - https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-on-ubuntu-16-04
-	# JDK 12
-
+	# OPenJDK8
+	sudo apt-get update
+	sudo apt-get install openjdk-8-jdk
+	
 	# Intellij IDEA
 	sudo snap install intellij-idea-community --classic
 }
