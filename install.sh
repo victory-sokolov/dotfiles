@@ -20,6 +20,7 @@ tools=(
 	nautilus-dropbox
 	nginx
 	npm
+	net-tools
 	postgresql postgresql-contrib
 	ruby-full
 	software-properties-common
@@ -190,7 +191,7 @@ java() {
 
 	# OPenJDK8
 	sudo apt-get update
-	sudo apt-get install openjdk-8-jdk
+	sudo apt-get install openjdk-8-jdk -y
 	
 	# Intellij IDEA
 	sudo snap install intellij-idea-community --classic
