@@ -65,6 +65,7 @@ HIST_STAMPS="yyyy-mm-dd"
 
 # Plugins
 plugins=(
+  dotenv
   git
   cloudapp
   npm
@@ -75,6 +76,7 @@ plugins=(
   zsh-syntax-highlighting
   zsh-autosuggestions
   zsh-completions
+  z
 )
 
 # Tell ZSH not to nice background process
