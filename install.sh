@@ -129,6 +129,7 @@ installation() {
 ruby() {
 	gems=(
 		colorls # colorised with folder output of ls command
+		cloudapp_api
 	)
 
 	for gems in {gem[@]}; do
@@ -144,7 +145,7 @@ php() {
 	sudo apt-get install apache2
 	# set php default directory
 	PHP_DIR="/home/viktor/Dropbox/Code/PHP"
-	
+
 
 	# PHP7 CLI Install
 	sudo apt install -y php7.3 \
@@ -195,7 +196,7 @@ java() {
 	# OPenJDK8
 	sudo apt-get update
 	sudo apt-get install openjdk-8-jdk -y
-	
+
 	# Intellij IDEA
 	sudo snap install intellij-idea-community --classic
 }
