@@ -11,7 +11,7 @@ npm_scripts=(
 	"electron --save-dev --save-exact",
 	"-g gulp-cli",
 	"-g browser-sync",
-	"express",
+	"-g express",
 	"-g eslint",
 	"-g uncss" #remove unused css
 	"stylelint --save-dev"

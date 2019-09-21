@@ -224,4 +224,5 @@ python() {
 	# https://powerline.readthedocs.io/en/latest/installation.html#generic-requirements
 	pip3 install powerline-status
 
+
 }

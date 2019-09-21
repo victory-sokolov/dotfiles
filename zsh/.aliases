@@ -1,4 +1,4 @@
-# Genral
+# General
 alias install="sudo apt-get install"
 alias remove="sudo apt-get remove"
 alias reboot="sudo reboot"
@@ -13,7 +13,7 @@ alias q="exit"
 alias trash="rm -rf ~/.local/share/Trash/files/*"
 alias cp="sudo cp -i" # copy file interactive
 alias mv="sudo mv -i" # move file interactive
-alias rm='sudo rm -i -v' # remove file interactive
+alias rm='sudo trash' # remove file interactive
 alias version="lsb_release -r -s" # linux version
 alias time="date +%T"
 alias date="date +%D"
