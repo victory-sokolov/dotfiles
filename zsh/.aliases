@@ -15,7 +15,6 @@ alias cp="sudo cp -i" # copy file interactive
 alias mv="sudo mv -i" # move file interactive
 alias rm='sudo trash' # remove file interactive
 alias version="lsb_release -r -s" # linux version
-alias time="date '%H:%M':%S"
 alias date="date '+%Y-%m-%d'"
 alias untar="tar xvf"
 alias al="compgen -a" # show all custom aliases
