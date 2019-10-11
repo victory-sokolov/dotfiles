@@ -23,7 +23,7 @@ alias pubkey="pbcopy < ~/.ssh/id_rsa.pub | echo 'public key copied to clipboard'
 alias dhelp="grep "^function" ~/dotfiles/zsh/.functions | sed 's/function/+/g' | sed 's/() #/ - /g'" # custom available functions
 alias how="howdoi $* -c" # howdoi colorised output
 alias chrome="google-chrome $1" # open url in chrome
-
+alias anki="~/Anki/bin/./anki &>/dev/null &"
 
 # Directory traversal
 alias ..="cd .."
