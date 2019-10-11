@@ -12,6 +12,8 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'pangloss/vim-javascript'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'zchee/deoplete-jedi'
+Plug 'FootSoft/vim-argwrap' " breaks func arguments each on new line
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 call plug#end()
 
 
@@ -37,8 +39,11 @@ set history=1000 " Increase the undo limit.
 set spell
 set wildignorecase
 set smartcase
-# increase vim responsiveness
-set -sg escape-time 0
+" increase vim responsivness
+
+" don't bell or blink
+set noerrorbells
+set vb t_vb=
 
 " Invisible character colors
 hi NonText ctermfg=238
