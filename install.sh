@@ -22,6 +22,7 @@ tools=(
 	npm
 	net-tools
 	postgresql postgresql-contrib
+	pdftk # join, shuffle, select for pdf files
 	ruby-full
 	software-properties-common
 	screenfetch # terminal info about system
