@@ -1,6 +1,7 @@
 #!/bin/bash
 
 tools=(
+	at # schedule future tasks
 	aptitude
 	build-essential # C, C++ compiler, tools
 	code
@@ -24,6 +25,8 @@ tools=(
 	postgresql postgresql-contrib
 	pdftk # join, shuffle, select for pdf files
 	ruby-full
+	openssh-server
+	openssh-client
 	software-properties-common
 	screenfetch # terminal info about system
 	snapd
