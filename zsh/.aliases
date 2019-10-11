@@ -15,8 +15,8 @@ alias cp="sudo cp -i" # copy file interactive
 alias mv="sudo mv -i" # move file interactive
 alias rm='sudo trash' # remove file interactive
 alias version="lsb_release -r -s" # linux version
-alias time="date +%T"
-alias date="date +%D"
+alias time="date '%H:%M':%S"
+alias date="date '+%Y-%m-%d'"
 alias untar="tar xvf"
 alias al="compgen -a" # show all custom aliases
 alias crypto="curl rate.sx" # crypto prices
@@ -81,5 +81,5 @@ alias idea="/snap/intellij-idea-community/177/bin/idea.sh  &>/dev/null &"
 alias npm-restart="sudo rm -rf node_modules && npm install && npm start"
 
 # Clipboard
-alias pbcopy='xclip -selection clipboard'
-alias pbpaste='xclip -selection clipboard -o'
+alias pbcopy="xclip -selection clipboard"
+alias pbpaste="xclip -selection clipboard -o"

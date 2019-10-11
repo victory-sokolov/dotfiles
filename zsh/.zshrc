@@ -1,5 +1,6 @@
 export ZSH=$HOME/.oh-my-zsh
 
+set -m
 
 unsetopt PROMPT_SP
 ZSH_DISABLE_COMPFIX=true
