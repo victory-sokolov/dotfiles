@@ -118,13 +118,33 @@ function gacp() # Git: add all, commit and push. [-m "comment"]
 
 function ggs() # push & commit with message `update`
 {
-		git add -A
+	git add -A
     git commit -m 'update'
     git push
 }
+
+
+# Docker
 
 function docker-clean() { # stops and cleans all docker containers & images
   docker container stop $(docker container ls -aq) &&
   docker container rm $(docker container ls -aq) -f &&
   docker rmi $(docker images -a -q) -f
 }
+
+
+
+# Python
+
+function pyenv() { # create python virtual environment
+    if [ ! -d "pyenv" ]; then
+        mkdir ~/pyenv
+    fi
+
+    cd ~/pyenv
+    python3 -m venv "$1"
+    source "$1"/bin/activate
+}
+
+
+
