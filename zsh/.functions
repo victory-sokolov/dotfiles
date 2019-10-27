@@ -124,9 +124,9 @@ function ggs() # push & commit with message `update`
 }
 
 
-# Docker
 
-function docker-clean() { # stops and cleans all docker containers & images
+function docker-clean() # stops and cleans all docker containers & images
+{
   docker container stop $(docker container ls -aq) &&
   docker container rm $(docker container ls -aq) -f &&
   docker rmi $(docker images -a -q) -f
@@ -134,9 +134,8 @@ function docker-clean() { # stops and cleans all docker containers & images
 
 
 
-# Python
-
-function pyenv() { # create python virtual environment
+function pyenv() # create python virtual environment
+{
     if [ ! -d "pyenv" ]; then
         mkdir ~/pyenv
     fi
