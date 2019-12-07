@@ -32,6 +32,10 @@ export CHROME="google-chrome"
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
 export PATH=$PATH:/usr/lib/jvm/java-8-openjdk/bin
 
+# Python Flask
+export FLASK_APP=app
+export FLASK_ENV=development
+
 # Docker on Windows WSL
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 export PATH="$PATH:/mnt/c/Program\ Files/Docker/Docker/resources/bin"
