@@ -31,7 +31,6 @@ tools=(
 	screenfetch # terminal info about system
 	snapd
 	sqlite3 libsqlite3-dev
-	tesseract-ocr-all
 	texlive # Latex
 	tmux
 	tree
@@ -157,9 +156,6 @@ php() {
 	sudo apt-get update
 	sudo apt-get install -y php7.4
 	# sudo apt-cache search php7*
-
-	# set default php version
-	#sudo update-alternatives --set php /usr/bin/php7.3
 
 	# PHP Unit testing
 	wget -O phpunit https://phar.phpunit.de/phpunit-8.phar
