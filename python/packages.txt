@@ -33,8 +33,11 @@ splash
 seaborn
 selenium
 sklearn
+keras
 tesseract-ocr
+tensorflow
 twocaptchaapi
+flask
 --upgrade google-api-python-client
 xlrd
 zerorpc
