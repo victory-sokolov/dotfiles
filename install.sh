@@ -109,6 +109,7 @@ installation() {
 
 	# Install watchman
 	# https://facebook.github.io/watchman/docs/install.html
+	sudo apt-get install libtool -y	
 	cd ~ && git clone https://github.com/facebook/watchman.git
 	cd ~/watchman
 	git checkout v4.9.0 # the latest stable release
@@ -124,9 +125,9 @@ installation() {
 	sudo apt update
 	sudo apt install docker-ce -y
 	# execute docker without sudo
-	sudo usermod -aG docker ${USER}
-	su - ${USER}
-	id -nG
+	#sudo usermod -aG docker ${USER}
+	#su - ${USER}
+	#id -nG
 
 }
 
@@ -146,32 +147,19 @@ php() {
 
 	info 'Installing PHP Tools...'
 
-	sudo apt-get install apache2
+	sudo apt-get install apache2 -y
 	# set php default directory
 	PHP_DIR="/home/viktor/Dropbox/Code/PHP"
 
 
 	# PHP7 CLI Install
-	sudo apt install -y php7.3 \
-		php7.3-cli \
-		libapache2-mod-php7.3 \
-		libaprutil1-dbd-sqlite3 \
-		php7.3-common \
-		php7.3-json \
-		php7.3-opcache \
-		php7.3-readline \
-		php-pear \
-		php7.3-curl \
-		php7.3-dev \
-		php7.3-gd \
-		php7.3-mbstring \
-		php7.3-zip \
-		php7.3-mysql \
-		php7.3-xml
-
+	sudo add-apt-repository ppa:ondrej/php -yes
+	sudo apt-get update
+	sudo apt-get install -y php7.4
+	# sudo apt-cache search php7*
 
 	# set default php version
-	sudo update-alternatives --set php /usr/bin/php7.3
+	#sudo update-alternatives --set php /usr/bin/php7.3
 
 	# PHP Unit testing
 	wget -O phpunit https://phar.phpunit.de/phpunit-8.phar

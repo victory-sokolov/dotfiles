@@ -110,6 +110,8 @@ uninstall() {
     sudo snap remove ${i}
   done
 
+  sudo rm -rf ~/watchman
+
   sudo apt autoremove -y
   sudo apt autoclean
   sudo apt clean
