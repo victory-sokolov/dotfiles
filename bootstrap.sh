@@ -12,23 +12,24 @@ info() {
 base_settings() {
 
   version=$(lsb_release -r -s | grep -Eo '^[0-9]{2}')
+  desktop_env = $DESKTOP_SESSION    
 
-  if [ "$version" -gt 18 ]; then
+  if [ "$desktop_env" -eq "ubuntu" ]; then
+      if [ "$version" -gt 18 ]; then
 
-    gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize'
+        gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize'
 
-  else
-    # Make hide feature available
-    gsettings set org.compiz.unityshell:/org/compiz/profiles/unity/plugins/unityshell/ launcher-minimize-window true
+      else
+        # Make hide feature available
+        gsettings set org.compiz.unityshell:/org/compiz/profiles/unity/plugins/unityshell/ launcher-minimize-window true
 
-    # Set icons size to 38
-    dconf write /org/compiz/profiles/unity/plugins/unityshell/icon-size 38
+        # Set icons size to 38
+        dconf write /org/compiz/profiles/unity/plugins/unityshell/icon-size 38
 
+      fi
   fi
-
-  #Launcher at the bottom
-  #gsettings set com.canonical.Unity.Launcher launcher-position Bottom
-
+  
+  
   # ALT + SHIFT change language
   gsettings set org.gnome.desktop.input-sources xkb-options "['grp:alt_shift_toggle']"
 
@@ -148,7 +149,7 @@ main() {
       php
       java
       ruby
-      $dir/node/package.zsh
+      $dir/node/packages.sh
 
       # symlink dotfiles
       info "Creating symlinks..."
