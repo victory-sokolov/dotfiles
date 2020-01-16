@@ -12,9 +12,8 @@ info() {
 base_settings() {
 
   version=$(lsb_release -r -s | grep -Eo '^[0-9]{2}')
-  desktop_env = $DESKTOP_SESSION    
-
-  if [ "$desktop_env" -eq "ubuntu" ]; then
+      
+  if [ "$DESKTOP_SESSION" == "ubuntu" ]; then
       if [ "$version" -gt 18 ]; then
 
         gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize'
@@ -27,15 +26,14 @@ base_settings() {
         dconf write /org/compiz/profiles/unity/plugins/unityshell/icon-size 38
 
       fi
+        # ALT + SHIFT change language
+        gsettings set org.gnome.desktop.input-sources xkb-options "['grp:alt_shift_toggle']"
   fi
   
   
-  # ALT + SHIFT change language
-  gsettings set org.gnome.desktop.input-sources xkb-options "['grp:alt_shift_toggle']"
-
   # set transparency for dock
-  gsettings set org.gnome.shell.extensions.dash-to-dock transparency-mode 'FIXED'
-  gsettings set org.gnome.shell.extensions.dash-to-dock background-opacity 0.7
+  # gsettings set org.gnome.shell.extensions.dash-to-dock transparency-mode 'FIXED'
+  # gsettings set org.gnome.shell.extensions.dash-to-dock background-opacity 0.7
 
   # Use local time same way Window does
   timedatectl set-local-rtc 1 --adjust-system-clock
@@ -54,12 +52,6 @@ base_settings() {
   # Base HTML File
   wget https://www.dropbox.com/s/bqcji695g02eje1/index.html?dl=0 -O ~/Templates/index.html
 
-  # Add favoirtes to taskbar
-  # gsettings set org.gnome.shell favorite-apps
-  # "['application://ubiquity.desktop', 'application://org.gnome.Nautilus.desktop',
-  #    'application://org.gnome.Software.desktop', 'application://unity-control-center.desktop', 'unity://running-apps', 'unity://expo-icon', 'unity://devices','application://gnome-terminal.desktop',
-  #    'application://vscode_vscode.desktop',
-  # ]"
 
   # Remove software & packages
   sudo apt purge thunderbird -y
@@ -74,7 +66,7 @@ software_installation() {
   sudo apt --fix-broken install -y
 
   info "Installing software..."
-   installation
+  installation
 
   for package in "${tools[@]}"; do
     sudo apt install ${package} -y
