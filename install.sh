@@ -4,7 +4,6 @@ tools=(
 	at # schedule future tasks
 	aptitude
 	build-essential # C, C++ compiler, tools
-	code
 	csvtool
 	curl
 	dos2unix # converts the line endings from DOS/Windows style to Unix style
@@ -46,6 +45,7 @@ tools=(
 )
 
 snap_tools=(
+    vscode --classic
 	spotify
 	postman
 	slack --classic
@@ -68,12 +68,6 @@ installation() {
 	# Google Drive
 	# sudo add-apt-repository ppa:alessandro-strada/ppa
 	# sudo apt install google-drive-ocamlfuse -y
-
-	# Install vscode
-    sudo snap install code --classic
-
-	# sync extension for vs code
-	code --install-extension shan.code-settings-sync
 
 	# install albert
 	wget https://download.opensuse.org/repositories/home:/manuelschneid3r/xUbuntu_19.04/amd64/albert_0.16.1_amd64.deb -O albert.deb

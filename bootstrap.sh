@@ -86,6 +86,9 @@ software_installation() {
     git clone ${plug}
   done
 
+  # sync extension for vs code
+  code --install-extension shan.code-settings-sync
+
 }
 
 # Uninstalls packages installed via apt get and snap
