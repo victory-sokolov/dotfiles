@@ -117,9 +117,9 @@ installation() {
 	sudo apt update
 	sudo apt install docker-ce -y
 	# execute docker without sudo
-	#sudo usermod -aG docker ${USER}
-	#su - ${USER}
-	#id -nG
+	sudo usermod -aG docker ${USER}
+	su - ${USER}
+	id -nG
 
 }
 
