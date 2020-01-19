@@ -8,6 +8,7 @@ sudo apt-get install -y nodejs
 
 npm_scripts=(
 	"-g trash-cli",
+	"-g create-react-app",
 	"electron --save-dev --save-exact",
 	"-g gulp-cli",
 	"-g browser-sync",
