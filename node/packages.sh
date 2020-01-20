@@ -21,7 +21,8 @@ npm_scripts=(
 	"-g localtunnel"
 	"-g typescript"
 	"-g gitbook"
-)
+	"-g webpack"
+	)
 
 cd $HOME
 
