@@ -22,6 +22,7 @@ npm_scripts=(
 	"-g typescript"
 	"-g gitbook"
 	"-g webpack"
+	"-g pm2"
 	)
 
 cd $HOME
