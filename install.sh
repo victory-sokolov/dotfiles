@@ -19,6 +19,7 @@ tools=(
 	make
 	nautilus-dropbox
 	nginx
+	nghttp2-client
 	npm
 	net-tools
 	postgresql postgresql-contrib
