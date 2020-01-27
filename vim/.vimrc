@@ -8,6 +8,7 @@ endif
 call plug#begin('~/.vim/autoload')
 Plug 'mattn/emmet-vim'
 Plug 'scrooloose/nerdtree'
+Plug 'mattn/emmet-vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'pangloss/vim-javascript'
 Plug 'christoomey/vim-tmux-navigator'
@@ -52,6 +53,8 @@ hi SpecialKey ctermfg=238
 " Hightlight search result
 hi Search ctermbg=NONE ctermfg=red
 
+" Emmet trigger
+let g:user_emmet_leader_key=','
 
 " VIM Diff
 highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=11 gui=none guifg=bg guibg=Red
