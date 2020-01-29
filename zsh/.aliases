@@ -31,7 +31,6 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias ~="cd ~"
 alias -- -="cd -"
-alias go="cd "$@" && ls"
 alias db="cd ~/Dropbox"
 alias dev="cd ~/Dropbox/Code/"
 alias kn="cd ~/Dropbox/Knowledge/"
@@ -52,7 +51,7 @@ alias ytmp3="youtube-dl --extract-audio --audio-format mp3" # youtube video to m
 alias xmp="sudo /opt/lampp/lampp start && firefox http://localhost" # start xampp server
 alias xmp-stop="sudo /opt/lampp/lampp stop" # Stop xampp
 alias hosts="sudo vim /etc/hosts" # vhosts
-alias php-server="php -S localhost:8000 & xdg-open http://localhost:8000" # build in php server
+alias php-server="php -S localhost:8000 && xdg-open http://localhost:8000 &" # build in php server
 alias run-apache="sudo service mysql start && sudo service apache2 start"
 
 # Database Settings
