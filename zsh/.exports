@@ -46,3 +46,6 @@ export DOCKER_HOST='tcp://0.0.0.0:2375'
 # Tesseract
 export TESSDATA_PREFIX="/usr/share/tesseract-ocr/4.00/tessdata"
 export TESSERACT="/usr/share/tesseract-ocr"
+
+export GOPATH=$HOME/go
+export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
