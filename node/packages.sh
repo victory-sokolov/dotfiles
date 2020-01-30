@@ -2,9 +2,9 @@
 
 # Node install
 sudo npm cache clean -f
-sudo npm install -g n
 curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
 sudo apt-get install -y nodejs
+sudo npm install npm@latest -g
 
 npm_scripts=(
 	"-g trash-cli",
