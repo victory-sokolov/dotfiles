@@ -24,6 +24,7 @@ alias fhelp="grep "^function" ~/dotfiles/zsh/.functions | sed 's/function/+/g' |
 alias falias="grep "^alias" ~/dotfiles/zsh/.aliases | sed 's/alias/+/g' "
 alias how="howdoi $* -c" # howdoi colorised output
 alias chrome="google-chrome $1" # open url in chrome
+alias yt-mp3="youtube-dl -x --audio-format mp3 '$1'"
 
 # Directory traversal
 alias ..="cd .."
