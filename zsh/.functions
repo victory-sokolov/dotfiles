@@ -124,6 +124,15 @@ function ggs() # push & commit with message `update`
 }
 
 
+function ssh-key() { # generate ssh key with specific name
+    name="$1"
+    ssh-keygen -f $HOME/.ssh/$name -q -N ""
+    eval "$(ssh-agent -s)"
+    ssh-add ~/.ssh/$name
+    pbcopy < ~/.ssh/$name.pub
+    echo "public key copied to clipboard"
+}
+
 
 function docker-clean() # stops and cleans all docker containers & images
 {
