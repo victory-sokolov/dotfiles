@@ -10,6 +10,7 @@ tools=(
 	filemanager-actions
 	flameshot
 	fonts-powerline
+	silversearcher-ag
 	gedit-plugins
 	gnome-tweak-tool
 	grub-customizer
