@@ -15,7 +15,12 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'zchee/deoplete-jedi'
 Plug 'FootSoft/vim-argwrap' " breaks func arguments each on new line
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+
+" VIM Theme
+Plug 'dracula/vim', { 'as': 'dracula' }
+
 call plug#end()
+
 
 
 " Basic settings
