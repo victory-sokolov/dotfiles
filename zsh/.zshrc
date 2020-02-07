@@ -74,7 +74,8 @@ plugins=(
   sudo
   #zsh-nvm
   web-search
-  zsh-syntax-highlighting
+  you-should-use
+	zsh-syntax-highlighting
   zsh-autosuggestions
   zsh-completions
   z
