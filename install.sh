@@ -22,6 +22,7 @@ tools=(
 	nginx
 	nghttp2-client
 	npm
+	neovim
 	net-tools
 	postgresql postgresql-contrib
 	pdftk # join, shuffle, select for pdf files
