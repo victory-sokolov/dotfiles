@@ -65,7 +65,8 @@ HIST_STAMPS="yyyy-mm-dd"
 
 # Plugins
 plugins=(
-  dotenv
+ 	autoswitch_virtualenv
+	dotenv
   git
   cloudapp
   npm
@@ -90,6 +91,8 @@ if [[ -n $SSH_CONNECTION ]]; then
 else
   export EDITOR='code'
 fi
+
+export AUTOSWITCH_DEFAULTENV="mydefaultenv"
 
 source $ZSH/oh-my-zsh.sh
 source $ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
