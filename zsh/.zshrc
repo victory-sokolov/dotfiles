@@ -93,7 +93,8 @@ else
   export EDITOR='code'
 fi
 
-export AUTOSWITCH_DEFAULTENV="mydefaultenv"
+export AUTOSWITCH_DEFAULTENV="default"
+export AUTOSWITCH_DEFAULT_PYTHON="/usr/bin/python3"
 
 source $ZSH/oh-my-zsh.sh
 source $ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
