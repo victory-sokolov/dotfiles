@@ -36,6 +36,7 @@ alias db="cd ~/Dropbox"
 alias dev="cd ~/Dropbox/Code/"
 alias kn="cd ~/Dropbox/Knowledge/"
 alias cw="cd ~/Dropbox/Code/Python/Projects/Client\ Work/"
+alias dirs="dirs -v"
 
 # quick edit
 alias zshrc="vim ~/.zshrc"
