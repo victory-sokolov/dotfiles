@@ -17,6 +17,7 @@ tools=(
 	imagemagick
 	jq # json processor
 	libtool
+	inotifywait
 	make
 	nautilus-dropbox
 	nginx
