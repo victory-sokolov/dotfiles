@@ -24,6 +24,7 @@ tools=(
 	npm
 	neovim
 	net-tools
+	pandoc
 	postgresql postgresql-contrib
 	pdftk # join, shuffle, select for pdf files
 	ruby-full
