@@ -77,7 +77,8 @@ alias py-server="python -m http.server"
 
 # Docker
 alias run-splash="docker run --rm --name scrapy-splash -d -p 8050:8050 scrapinghub/splash"
-alias docker="sudo docker"
+alias dc="docker-compose"
+alias dm="docker-machine"
 
 # Java
 alias idea="/snap/intellij-idea-community/177/bin/idea.sh  &>/dev/null &"
