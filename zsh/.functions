@@ -141,6 +141,13 @@ function docker-clean() # stops and cleans all docker containers & images
   docker rmi $(docker images -a -q) -f
 }
 
+function dms() # docker-machine start
+{
+    machine_name="$@"
+    docker-machine start $machine_name
+    docker-machine env $machine_name
+    eval "$(docker-machine env $machine_name)"
+}
 
 
 function pyenv() # create python virtual environment
