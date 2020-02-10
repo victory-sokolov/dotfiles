@@ -96,10 +96,14 @@ fi
 export AUTOSWITCH_DEFAULTENV="default"
 export AUTOSWITCH_DEFAULT_PYTHON="/usr/bin/python3"
 
+AUTOENV_FILE_ENTER=.env
+
 source $ZSH/oh-my-zsh.sh
 source $ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $ZSH/custom/plugins/zsh-completions/zsh-completions.plugin.zsh
 source $ZSH/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $ZSH/custom/plugins/zsh-autoenv/autoenv.zsh
 source $HOME/dotfiles/zsh/.functions
 source $HOME/dotfiles/zsh/.aliases
 source $HOME/dotfiles/zsh/.exports
+
