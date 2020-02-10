@@ -129,7 +129,7 @@ function ssh-key() { # generate ssh key with specific name
     ssh-keygen -f ~/.ssh/$name -q -N ""
     eval "$(ssh-agent -s)"
     ssh-add ~/.ssh/$name
-    pbcopy < ~/.ssh/$name.pub
+    xclip -selection clipboard < ~/.ssh/$name.pub
     echo "public key copied to clipboard"
 }
 
