@@ -32,17 +32,6 @@ export CHROME="google-chrome"
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
 export PATH=$PATH:/usr/lib/jvm/java-8-openjdk/bin
 
-# Python Flask
-export FLASK_APP=app
-export FLASK_ENV=development
-
-# Docker on Windows WSL
-export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
-export PATH="$PATH:/mnt/c/Program\ Files/Docker/Docker/resources/bin"
-export DOCKER_TLS_VERIFY=1
-export DOCKER_HOST=tcp://192.168.99.100:2376
-export DOCKER_HOST='tcp://0.0.0.0:2375'
-
 # Tesseract
 export TESSDATA_PREFIX="/usr/share/tesseract-ocr/4.00/tessdata"
 export TESSERACT="/usr/share/tesseract-ocr"
