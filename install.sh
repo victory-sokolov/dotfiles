@@ -28,6 +28,7 @@ tools=(
 	pandoc
 	postgresql postgresql-contrib
 	pdftk # join, shuffle, select for pdf files
+	pwgen # random password generator
 	ruby-full
 	openssh-server
 	openssh-client
