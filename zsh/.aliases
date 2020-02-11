@@ -10,10 +10,10 @@ alias cls="clear"
 alias chmod='chmod +x'
 alias grep="grep --color=auto "
 alias q="exit"
-alias trash="rm -rf ~/.local/share/Trash/files/*"
+alias ctrash="sudo rm -rf ~/.local/share/Trash/files/*"
 alias cp="sudo cp -i" # copy file interactive
 alias mv="sudo mv -i" # move file interactive
-alias rm='sudo trash' # remove file interactive
+alias rm='trash' # remove file interactive
 alias version="lsb_release -r -s" # linux version
 alias now="date '+%Y-%m-%d'"
 alias untar="tar xvf"
