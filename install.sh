@@ -23,14 +23,12 @@ tools=(
 	nautilus-dropbox
 	nginx
 	nghttp2-client
-	npm
 	neovim
 	net-tools
 	pandoc
 	postgresql postgresql-contrib
 	pdftk # join, shuffle, select for pdf files
 	pwgen # random password generator
-	ruby-full
 	openssh-server
 	openssh-client
 	software-properties-common
@@ -64,7 +62,7 @@ zsh_plugins=(
 	https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm
 	https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/themes/powerlevel9k
 	https://github.com/MichaelAquilina/zsh-autoswitch-virtualenv.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/autoswitch_virtualenv
-  https://github.com/Tarrasch/zsh-autoenv ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-autoenv
+    https://github.com/Tarrasch/zsh-autoenv ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-autoenv
 )
 
 installation() {
@@ -108,7 +106,29 @@ installation() {
 	rm rescuetime.deb
 
 
-	# Docker
+	# YouTube-DLL
+	sudo wget http://yt-dl.org/downloads/latest/youtube-dl -O /usr/local/bin/youtube-dl
+	sudo chmod a+rx /usr/local/bin/youtube-dl
+
+}
+
+ruby() {
+
+    sudo apt-get install ruby-full -y
+
+	gems=(
+		colorls # colorised with folder output of ls command
+		cloudapp_api
+	)
+
+	for gems in {gem[@]}; do
+		sudo gem install ${gem} -y
+	done
+
+}
+
+docker() {
+    # Docker
 	sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
 	curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 	sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable" -y
@@ -121,34 +141,18 @@ installation() {
 	sudo groupadd docker
 	sudo gpasswd -a $USER docker
 	sudo service docker restart
-	
+
 	# Docker compose
 	sudo curl -L "https://github.com/docker/compose/releases/download/1.25.3/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 	sudo chmod +x /usr/local/bin/docker-compose
-	
+
 	# Docker Machine
 	base=https://github.com/docker/machine/releases/download/v0.16.0
 	curl -L $base/docker-machine-$(uname -s)-$(uname -m) >/tmp/docker-machine
 	sudo mv /tmp/docker-machine /usr/local/bin/docker-machine
 	sudo chmod +x /usr/local/bin/docker-machine
-
-	# YouTube-DLL
-	sudo wget http://yt-dl.org/downloads/latest/youtube-dl -O /usr/local/bin/youtube-dl
-	sudo chmod a+rx /usr/local/bin/youtube-dl
-
 }
 
-ruby() {
-	gems=(
-		colorls # colorised with folder output of ls command
-		cloudapp_api
-	)
-
-	for gems in {gem[@]}; do
-		sudo gem install ${gem} -y
-	done
-
-}
 
 php() {
 
