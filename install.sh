@@ -3,6 +3,7 @@
 tools=(
 	at # schedule future tasks
 	aptitude
+	autojump
 	build-essential # C, C++ compiler, tools
 	csvtool
 	curl

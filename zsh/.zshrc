@@ -101,6 +101,8 @@ export AUTOSWITCH_DEFAULT_PYTHON="/usr/bin/python3"
 
 AUTOENV_FILE_ENTER=.env
 
+. /usr/share/autojump/autojump.sh
+
 source $ZSH/oh-my-zsh.sh
 source $ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $ZSH/custom/plugins/zsh-completions/zsh-completions.plugin.zsh
