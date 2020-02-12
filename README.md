@@ -1,7 +1,7 @@
 
-# My DotFiles for Linux / Windows
+# My DotFiles for Linux
 
-This is my personalised Linux / Windows dotfiles.
+This is my personalised Linux dotfiles.
 This set of scripts helps to set up fresh installed Ubuntu based distribution.
 It includes predefined aliases, functions, script for installation various CLI utilities and software.
 
