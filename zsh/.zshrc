@@ -95,9 +95,6 @@ fi
 
 NPM_PACKAGES="${HOME}/.npm-packages"
 
-export PATH="$PATH:$NPM_PACKAGES/bin"
-export AUTOSWITCH_DEFAULTENV="default"
-export AUTOSWITCH_DEFAULT_PYTHON="/usr/bin/python3"
 
 AUTOENV_FILE_ENTER=.env
 

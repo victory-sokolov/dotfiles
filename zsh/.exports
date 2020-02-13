@@ -12,8 +12,6 @@ export GREP='grep -n --color'
 # Autocorrect typos in path names when using `cd`
 # shopt -s cdspell
 
-# Make Python use UTF-8 encoding for output to stdin, stdout, and stderr.
-export PYTHONIOENCODING='UTF-8';
 
 # Increase Bash history size. Allow 32³ entries; the default is 500.
 export HISTSIZE='32768';
@@ -36,5 +34,15 @@ export PATH=$PATH:/usr/lib/jvm/java-8-openjdk/bin
 export TESSDATA_PREFIX="/usr/share/tesseract-ocr/4.00/tessdata"
 export TESSERACT="/usr/share/tesseract-ocr"
 
+# NPM
+export PATH="$PATH:$NPM_PACKAGES/bin"
+
+# Python
+export AUTOSWITCH_DEFAULTENV="default"
+export AUTOSWITCH_DEFAULT_PYTHON="/usr/bin/python3"
+# Make Python use UTF-8 encoding for output to stdin, stdout, and stderr.
+export PYTHONIOENCODING='UTF-8';
+
+# GO
 export GOPATH=$HOME/go
 export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
