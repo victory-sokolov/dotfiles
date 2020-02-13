@@ -34,8 +34,7 @@ export PATH=$PATH:/usr/lib/jvm/java-8-openjdk/bin
 export TESSDATA_PREFIX="/usr/share/tesseract-ocr/4.00/tessdata"
 export TESSERACT="/usr/share/tesseract-ocr"
 
-# NPM
-export PATH="$PATH:$NPM_PACKAGES/bin"
+
 
 # Python
 export AUTOSWITCH_DEFAULTENV="default"

@@ -65,20 +65,20 @@ HIST_STAMPS="yyyy-mm-dd"
 
 # Plugins
 plugins=(
- 	autoswitch_virtualenv
+	autoswitch_virtualenv
 	dotenv
-  git
-  cloudapp
-  npm
-  extract
-  sudo
-  #zsh-nvm
-  web-search
-  you-should-use
+	git
+	cloudapp
+	npm
+	extract
+	sudo
+	#zsh-nvm
+	web-search
+	you-should-use
 	zsh-syntax-highlighting
-  zsh-autosuggestions
-  zsh-completions
-  z
+	zsh-autosuggestions
+	zsh-completions
+	z
 )
 
 # Tell ZSH not to nice background process
@@ -88,13 +88,14 @@ eval $(thefuck --alias)
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
+	export EDITOR='vim'
 else
-  export EDITOR='code'
+	export EDITOR='code'
 fi
 
+# NPM
 NPM_PACKAGES="${HOME}/.npm-packages"
-
+export PATH="$PATH:$NPM_PACKAGES/bin"
 
 AUTOENV_FILE_ENTER=.env
 
