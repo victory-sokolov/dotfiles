@@ -80,12 +80,6 @@ installation() {
 	sudo dpkg -i albert.deb
 	rm albert.deb
 
-	# install nerd fonts
-	# cd ~/.fonts
-	# git clone https://github.com/ryanoasis/nerd-fonts
-	# cd nerd-fonts
-	# ./install.sh
-	# fc-cache -fv
 
 	# Install Chrome
 	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O google.deb
