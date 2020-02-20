@@ -42,7 +42,7 @@ set hlsearch
 set ignorecase
 set tabstop=2 " Default indentation is 2 spaces long and uses tabs, not spaces
 set history=1000 " Increase the undo limit.
-set spell
+set nospell
 set wildignorecase
 set smartcase
 " increase vim responsivness
