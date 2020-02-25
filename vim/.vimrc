@@ -75,3 +75,5 @@ nmap <CR> o<Esc>
 map <F5> :NERDTreeToggle<CR>
 map <C-a> <esc>ggVG<CR> #select all
 
+
+
