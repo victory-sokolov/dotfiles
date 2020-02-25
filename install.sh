@@ -24,6 +24,7 @@ tools=(
 	nginx
 	nghttp2-client
 	neovim
+	neofetch
 	net-tools
 	pandoc
 	postgresql postgresql-contrib
