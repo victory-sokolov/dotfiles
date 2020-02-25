@@ -106,7 +106,7 @@ installation() {
 
 }
 
-ruby() {
+function ruby() {
 
     sudo apt-get install ruby-full -y
 
@@ -121,7 +121,7 @@ ruby() {
 
 }
 
-docker() {
+function docker() {
     # Docker
 	sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
 	curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -148,7 +148,7 @@ docker() {
 }
 
 
-php() {
+function php() {
 
 	info 'Installing PHP Tools...'
 
@@ -183,7 +183,7 @@ php() {
 
 }
 
-java() {
+function java() {
 
 	info 'Installing JAVA Tools...'
 
@@ -195,7 +195,14 @@ java() {
 	sudo snap install intellij-idea-community --classic
 }
 
-python() {
+function go() {
+    sudo snap install --classic go
+
+    # Packages
+    go get -u github.com/odeke-em/drive/cmd/drive
+}
+
+function python() {
 
 	info 'Installing Python Tools...'
 
@@ -217,6 +224,5 @@ python() {
 
 	# https://powerline.readthedocs.io/en/latest/installation.html#generic-requirements
 	pip3 install powerline-status
-
 
 }
