@@ -28,6 +28,8 @@ npm_scripts=(
 	"-g gitbook"
 	"-g webpack"
 	"-g pm2"
+	"-g nodemon"
+	"-g node-inspector"
 	)
 
 cd $HOME
