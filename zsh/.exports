@@ -27,7 +27,7 @@ export LC_ALL='en_US.UTF-8';
 export CHROME="google-chrome"
 
 # Java
-export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 export PATH=$PATH:/usr/lib/jvm/java-8-openjdk/bin
 
 # Tesseract
