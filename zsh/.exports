@@ -1,10 +1,12 @@
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$DOTFILES_DIR/bin"
 export EDITOR="code"
+export SHELL="/bin/zsh"
 export CLICOLOR=1
 export LSCOLORS=gxfxcxdxbxegedabagacad
 
 # Tell grep to highlight matches
 export GREP='grep -n --color'
+export LESS="--ignore-case --LONG-PROMPT --QUIET --chop-long-lines -Sm --RAW-CONTROL-CHARS --quit-if-one-screen --no-init"
 
 # Case-insensitive globbing (used in pathname expansion)
 #shopt -s nocaseglob
@@ -34,8 +36,6 @@ export PATH=$PATH:/usr/lib/jvm/java-8-openjdk/bin
 export TESSDATA_PREFIX="/usr/share/tesseract-ocr/4.00/tessdata"
 export TESSERACT="/usr/share/tesseract-ocr"
 
-
-
 # Python
 export AUTOSWITCH_DEFAULTENV="default"
 export AUTOSWITCH_DEFAULT_PYTHON="/usr/bin/python3"
@@ -45,3 +45,10 @@ export PYTHONIOENCODING='UTF-8';
 # GO
 export GOPATH=$HOME/go
 export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
+
+# Android
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
