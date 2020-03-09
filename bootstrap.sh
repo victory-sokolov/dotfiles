@@ -5,6 +5,9 @@ start=$(date +%s)
 
 source ./install.sh
 
+# Ask for the administrator password upfront
+sudo -v
+
 info() {
   printf '\033[32m '"$1"' %s\033[m\n'
 }
