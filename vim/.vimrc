@@ -57,6 +57,17 @@ hi SpecialKey ctermfg=238
 
 " Hightlight search result
 hi Search ctermbg=NONE ctermfg=red
+" Highlight matches as you type
+set incsearch
+
+" Show the status line all the time
+set laststatus=2
+
+" http://vim.wikia.com/wiki/Toggle_auto-indenting_for_code_paste
+set pastetoggle=<F2>
+
+" auto-reload files when changed
+set autoread
 
 " Emmet trigger
 let g:user_emmet_leader_key=','
