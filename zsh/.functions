@@ -149,6 +149,7 @@ function ssh-key() { # generate ssh key with specific name
     echo "public key copied to clipboard"
 }
 
+# Docker
 
 function docker-clean() # stops and cleans all docker containers & images
 {
@@ -166,6 +167,8 @@ function dms() # docker-machine start
 }
 
 
+# Python
+
 function pyenv() # create python virtual environment
 {
     if [ ! -d "pyenv" ]; then
@@ -178,4 +181,29 @@ function pyenv() # create python virtual environment
 }
 
 
+# ReactNative
+function bapk() # build android apk (Must run inside react-native project)
+{
+	
+	if [ ! -f package.json ]; then
+		echo "package.json was not found"
+		return 1
+	fi
 
+	if ! grep --quiet '"react-native":' package.json; then
+		echo "Not a react-native project"
+		return 1
+	fi
+
+	if [[ -d "android/app/src/main" && ! -d "android/app/src/main/assets" ]]; then	
+		mkdir android/app/src/main/assets
+	else
+		echo "android directory not found"
+		return 1	
+	fi
+	
+	react-native bundle --platform android --dev false \
+	--entry-file index.js \
+	--bundle-output android/app/src/main/assets/index.android.bundle \
+	--assets-dest android/app/src/main/res/ 
+}
