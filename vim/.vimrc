@@ -78,6 +78,9 @@ highlight DiffDelete cterm=bold ctermfg=10 ctermbg=11 gui=none guifg=bg guibg=Re
 highlight DiffChange cterm=bold ctermfg=10 ctermbg=11 gui=none guifg=bg guibg=Red
 highlight DiffText   cterm=bold ctermfg=10 ctermbg=88 gui=none guifg=bg guibg=Red
 
+" Highlight .dotfiles
+autocmd BufNewFile,BufRead *.aliases,*.functions set syntax=sh
+
 "Shortcuts
 "Shift-Enter for inserting a line before the current line
 nmap <S-Enter> O<Esc>
