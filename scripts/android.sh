@@ -2,9 +2,9 @@
 
 sudo snap install android-studio
 
-sudo apt install -y \
+sudo apt-get install -y \
     android-tools \
     android-sdk \
-    default-jdk
+    default-jdk \
+    adb
 
-sudo apt-get install adb
