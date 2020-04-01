@@ -186,6 +186,8 @@ function pyenv() # create python virtual environment
 function bapk() # build android apk (Must run inside react-native project)
 {
 
+    apk_path="./android/app/build/outputs/apk/debug"
+
 	if [ ! -f package.json ]; then
 		echo "package.json was not found. Run command inside root dir of your project."
 		return 1
@@ -201,11 +203,15 @@ function bapk() # build android apk (Must run inside react-native project)
 	fi
 
 	react-native bundle --platform android --dev false \
-	--entry-file index.js \
-	--bundle-output android/app/src/main/assets/index.android.bundle \
-	--assets-dest android/app/src/main/res/
+	                    --entry-file index.js \
+	                    --bundle-output android/app/src/main/assets/index.android.bundle \
+	                    --assets-dest android/app/build/intermediates/res/merged/release/ \
+	                    && rm -rf android/app/src/main/res/drawable-* \
+	                    && rm -rf android/app/src/main/res/raw/* \
+	                    && cd android && ./gradlew assembleRelease && cd ..
 
-	cd android && ./gradlew assembleRelease
+	# open folder where apk file is stored
+    xdg-open ${apk_path}
 }
 
 
