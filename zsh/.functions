@@ -93,15 +93,24 @@ if [ ! $(uname -s) = 'Darwin' ]; then
 	fi
 fi
 
-function cheat() # Create a new directory and enter it
+function cheat() # Cheatsheet function
 {
   curl cheat.sh/${@:-cheat}
   # curl cheat.sh/$@
 }
 
-function cview() # Create a new directory and enter it
+function cview() # Read csv file
 {
 	csvtool readable "$1" | view -
+}
+
+
+
+short()
+{
+   url=$1
+   curl http://tinyurl.com/api-create.php\?url\=$url
+
 }
 
 
