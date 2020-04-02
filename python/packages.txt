@@ -41,3 +41,4 @@ flask
 --upgrade google-api-python-client
 xlrd
 zerorpc
+jupyterlab
