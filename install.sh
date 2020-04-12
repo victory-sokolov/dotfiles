@@ -30,6 +30,7 @@ tools=(
 	postgresql postgresql-contrib
 	pdftk # join, shuffle, select for pdf files
 	pwgen # random password generator
+	preload # speed up app boot time
 	openssh-server
 	openssh-client
 	software-properties-common
