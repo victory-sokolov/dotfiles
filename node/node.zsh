@@ -13,7 +13,6 @@ npm config set prefix "${HOME}/.npm-packages"
 
 npm_scripts=(
 	"-g trash-cli",
-	"-g create-react-app",
 	"-g electron --save-dev --save-exact",
 	"-g gulp-cli",
 	"-g browser-sync",
@@ -30,6 +29,7 @@ npm_scripts=(
 	"-g pm2"
 	"-g nodemon"
 	"-g node-inspector"
+	"-g terminalizer"
 	)
 
 cd $HOME
