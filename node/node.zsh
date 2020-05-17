@@ -30,6 +30,7 @@ npm_scripts=(
 	"-g nodemon"
 	"-g node-inspector"
 	"-g terminalizer"
+	"-g depcheck"
 	)
 
 cd $HOME
