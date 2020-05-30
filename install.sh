@@ -223,8 +223,9 @@ function python() {
 		pylint \
 		thefuck \
 		howdoi
-
+	
 	# https://powerline.readthedocs.io/en/latest/installation.html#generic-requirements
-	pip3 install powerline-status
-
+	pip3 install -y \
+		powerline-status \
+		--upgrade setuptools 
 }
