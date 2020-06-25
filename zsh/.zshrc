@@ -78,7 +78,6 @@ plugins=(
 	virtualenv
 	dotenv
 	git
-	cloudapp
 	npm
 	extract
 	sudo
