@@ -20,6 +20,7 @@ tools=(
 	libtool
 	inotifywait
 	make
+	mycli
 	nautilus-dropbox
 	nginx
 	nghttp2-client
