@@ -28,14 +28,12 @@ tools=(
 	neofetch
 	net-tools
 	pandoc
-	postgresql postgresql-contrib
 	pdftk # join, shuffle, select for pdf files
 	pwgen # random password generator
 	preload # speed up app boot time
 	openssh-server
 	openssh-client
 	software-properties-common
-	screenfetch # terminal info about system
 	snapd
 	sqlite3 libsqlite3-dev
 	texlive # Latex
@@ -70,19 +68,13 @@ zsh_plugins=(
 
 installation() {
 
-
 	# Grub customizer
 	sudo add-apt-repository ppa:danielrichter2007/grub-customizer -y
-
-	# Google Drive
-	# sudo add-apt-repository ppa:alessandro-strada/ppa
-	# sudo apt install google-drive-ocamlfuse -y
 
 	# install albert
 	wget https://download.opensuse.org/repositories/home:/manuelschneid3r/xUbuntu_19.04/amd64/albert_0.16.1_amd64.deb -O albert.deb
 	sudo dpkg -i albert.deb
 	rm albert.deb
-
 
 	# Install Chrome
 	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O google.deb
@@ -102,7 +94,6 @@ installation() {
 	sudo dpkg --install rescuetime.deb
 	rm rescuetime.deb
 
-
 	# YouTube-DLL
 	sudo wget http://yt-dl.org/downloads/latest/youtube-dl -O /usr/local/bin/youtube-dl
 	sudo chmod a+rx /usr/local/bin/youtube-dl
@@ -115,7 +106,6 @@ function ruby() {
 
 	gems=(
 		colorls # colorised with folder output of ls command
-		cloudapp_api
 	)
 
 	for gems in {gem[@]}; do
@@ -159,7 +149,6 @@ function php() {
 	# set php default directory
 	PHP_DIR="/home/viktor/Dropbox/Code/PHP"
 
-
 	# PHP7 CLI Install
 	sudo add-apt-repository ppa:ondrej/php -yes
 	sudo apt-get update
@@ -182,7 +171,6 @@ function php() {
 	sudo mv wp-cli.phar /usr/local/bin/wp -yes && rm wp-cli.phar
 
 	systemctl restart apache2
-
 
 }
 
@@ -209,14 +197,6 @@ function python() {
 
 	info 'Installing Python Tools...'
 
-	# Install Geckodriver for Selenium
-	wget https://github.com/mozilla/geckodriver/releases/download/v0.23.0/geckodriver-v0.23.0-linux64.tar.gz -O geckodriver
-	# Extract
-	tar -xvzf geckodriver*
-	# Make it executable
-	chmod +x geckodriver
-	sudo mv geckodriver /usr/local/bin/
-
 	sudo apt install -y \
 		python3-pip \
 		python-virtualenv \
@@ -224,9 +204,9 @@ function python() {
 		pylint \
 		thefuck \
 		howdoi
-	
+
 	# https://powerline.readthedocs.io/en/latest/installation.html#generic-requirements
 	pip3 install -y \
 		powerline-status \
-		--upgrade setuptools 
+		--upgrade setuptools
 }
