@@ -50,8 +50,6 @@ alias v="vim"
 alias ytmp3="youtube-dl --extract-audio --audio-format mp3" # youtube video to mp3
 
 # PHP
-alias xmp="sudo /opt/lampp/lampp start && firefox http://localhost" # start xampp server
-alias xmp-stop="sudo /opt/lampp/lampp stop" # Stop xampp
 alias hosts="sudo vim /etc/hosts" # vhosts
 alias php-server="php -S localhost:8000 && xdg-open http://localhost:8000 &" # build in php server
 alias run-apache="sudo service mysql start && sudo service apache2 start"
@@ -79,9 +77,6 @@ alias py-server="python -m http.server"
 alias run-splash="docker run --rm --name scrapy-splash -d -p 8050:8050 scrapinghub/splash"
 alias dc="docker-compose"
 alias dm="docker-machine"
-
-# Java
-alias idea="/snap/intellij-idea-community/177/bin/idea.sh  &>/dev/null &"
 
 # Nodejs
 alias npm-restart="sudo rm -rf node_modules && npm install && npm start"
