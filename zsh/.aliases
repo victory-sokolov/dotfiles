@@ -61,6 +61,7 @@ alias undump="gunzip < db.sql.gz | mysql -u [uname] -p[pass] db" # Restore db du
 
 # Network
 alias my-ip="curl https://ipinfo.io/ip"
+alias localip="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
 
 # Git
 alias git-https="git remote set-url origin https://github.com/$(git remote get-url origin | sed 's/https:\/\/github.com\///' | sed 's/git@github.com://')"
