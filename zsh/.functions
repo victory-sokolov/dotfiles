@@ -139,7 +139,7 @@ function gacp() # Git: add all, commit and push. [-m "comment"]
 
 function ggs() # push & commit with message `update`
 {
-	git add -A
+    git add -A
     git commit -m 'update'
     git push
 }
@@ -177,6 +177,10 @@ function dms() # docker-machine start
 
 
 # Python
+
+function server {
+   python -m http.server $1
+}
 
 function pyenv() # create python virtual environment
 {
