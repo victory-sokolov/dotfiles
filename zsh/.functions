@@ -236,7 +236,7 @@ function rna() # clean cache & run react-native android simulator
 
 # Postgres
 
-function psql-create-db() # Create Posgres database
+function psql-create-db() # Create Postgres database
 {
     db_name="$@"
     sudo -u postgres createdb $db_name
