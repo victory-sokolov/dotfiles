@@ -25,7 +25,8 @@ alias falias="grep "^alias" ~/dotfiles/zsh/.aliases | sed 's/alias/+/g' "
 alias how="howdoi $* -c" # howdoi colorised output
 alias chrome="google-chrome $1" # open url in chrome
 alias yt-mp3="youtube-dl -x --audio-format mp3 '$1'"
-alias weather="curl -s "wttr.in/$1?m1""
+alias weather="curl -s 'wttr.in/$1?m1ī'"
+alias fontlist="fc-list | cut -d: -f1 | less"
 
 # Directory traversal
 alias ..="cd .."
