@@ -162,9 +162,8 @@ function ssh-key() { # generate ssh key with specific name
 
 function docker-clean() # stops and cleans all docker containers & images
 {
-  docker container stop $(docker container ls -aq) &&
-  docker container rm $(docker container ls -aq) -f &&
-  docker rmi $(docker images -a -q) -f
+	docker stop $(docker ps -a -q)
+	docker rm $(docker ps -a -q)
 }
 
 function dms() # docker-machine start
