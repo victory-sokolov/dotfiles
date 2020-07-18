@@ -1,0 +1,15 @@
+
+
+function docker-clean() # stops and cleans all docker containers & images
+{
+        docker stop $(docker ps -a -q)
+        docker rm $(docker ps -a -q)
+}
+
+function dms() # docker-machine start
+{
+    machine_name="$@"
+    docker-machine start $machine_name
+    docker-machine env $machine_name
+    eval "$(docker-machine env $machine_name)"
+}
