@@ -59,6 +59,12 @@ hi Search ctermbg=NONE ctermfg=red
 " Highlight matches as you type
 set incsearch
 
+" Always display statusline in all windows
+set laststatus=2
+
+" Always display tabline even if there is only one tab
+set showtabline=2
+
 " Show the status line all the time
 set laststatus=2
 
@@ -76,6 +82,11 @@ highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=11 gui=none guifg=bg guibg=Re
 highlight DiffDelete cterm=bold ctermfg=10 ctermbg=11 gui=none guifg=bg guibg=Red
 highlight DiffChange cterm=bold ctermfg=10 ctermbg=11 gui=none guifg=bg guibg=Red
 highlight DiffText   cterm=bold ctermfg=10 ctermbg=88 gui=none guifg=bg guibg=Red
+
+" Powerline
+python3 from powerline.vim import setup as powerline_setup
+python3 powerline_setup()
+python3 del powerline_setup
 
 " Open NerdTree when file not specified
 autocmd StdinReadPre * let s:std_in=1
