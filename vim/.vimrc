@@ -22,7 +22,6 @@ Plug 'dracula/vim', { 'as': 'dracula' }
 call plug#end()
 
 
-
 " Basic settings
 set autoindent
 set smartindent
@@ -78,6 +77,10 @@ highlight DiffDelete cterm=bold ctermfg=10 ctermbg=11 gui=none guifg=bg guibg=Re
 highlight DiffChange cterm=bold ctermfg=10 ctermbg=11 gui=none guifg=bg guibg=Red
 highlight DiffText   cterm=bold ctermfg=10 ctermbg=88 gui=none guifg=bg guibg=Red
 
+" Open NerdTree when file not specified
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
 " Highlight .dotfiles
 autocmd BufNewFile,BufRead *.aliases,*.functions set syntax=sh
 
@@ -88,6 +91,5 @@ nmap <CR> o<Esc>
 "nmap <DOWN> <NOP> - press down key no operation
 map <F5> :NERDTreeToggle<CR>
 map <C-a> <esc>ggVG<CR> #select all
-
 
 
