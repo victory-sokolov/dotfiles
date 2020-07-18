@@ -76,6 +76,7 @@ clitools: ## Install cli tools
 	pdftk # join, shuffle, select for pdf files
 	pwgen # random password generator
 	preload # speed up app boot time
+	powerline
 	openssh-server
 	openssh-client
 	software-properties-common
