@@ -13,3 +13,8 @@ function dms() # docker-machine start
     docker-machine env $machine_name
     eval "$(docker-machine env $machine_name)"
 }
+
+function drmnone() # remove untagged images
+{
+	docker rmi -f $(docker images -f "dangling=true" -q)
+}
