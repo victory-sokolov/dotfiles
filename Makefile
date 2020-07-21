@@ -2,6 +2,7 @@
 allinstall: ## Installs everything
 	android baseprogramms clitools docker go java mysql nginx node php postgresql python ruby tesseract vscode zsh
 
+
 install: ## Install default selected apps
 	baseprogramms clitools docker mysql nginx node php python ruby vscode zsh
 
@@ -121,6 +122,11 @@ mysql: ## Install Mysql database
 	sudo apt-get update -y
 	sudo apt install mysql-server -y
 	sudo apt install mycli
+	
+	# Create default mysql user
+	sudo mysql -e "CREATE USER '${USER}'@'localhost' IDENTIFIED BY '123456'";
+	sudo mysql -e "GRANT ALL PRIVILEGES ON * . * TO '${USER}'@'localhost'";
+	sudo mysql -e "FLUSH PRIVILEGES";
 
 postgresql: ## Install PosgreSQL
 	sudo apt-get update && sudo apt-get upgrade -y
