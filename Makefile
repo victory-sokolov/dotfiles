@@ -185,6 +185,18 @@ php: ## Install PHP7.4/Symfony, Apache
 	sudo apt-get update
 	sudo apt-get install -y php7.4
 
+	# Extension
+	sudo apt install -yes \
+		php7.4-mysql \
+		php7.4-curl \
+		php7.4-json \
+		php7.4-cgi \
+		php7.4-xsl \
+		php7.4-apcu \
+		php7.4-zip \
+		php7.4-gd
+
+	
 	# PHP Unit testing
 	wget -O phpunit https://phar.phpunit.de/phpunit-8.phar
 	chmod +x phpunit
