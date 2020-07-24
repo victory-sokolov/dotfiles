@@ -25,12 +25,13 @@ gnomesettings: # Gnome settings
 	# Remove default apps
 	sudo apt purge -y thunderbird gnome-screenshot
 
-baseprogramms: ## Install base programms: flameshot, albert, spotify, dropbox, vlc, chrome, postman
+linuxsoftware: ## Install base programms: flameshot, albert, spotify, dropbox, vlc, chrome, postman
 	sudo apt-get install -y \
 		flameshot \
 		gnome-tweak-tool \
 		nautilus-dropbox \
-		vlc browser-plugin-vlc
+		vlc browser-plugin-vlc \
+		gedit-plugins
 
 	# install chrome
 	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O google.deb
@@ -62,8 +63,6 @@ clitools: ## Install cli tools
 	filemanager-actions
 	fonts-powerline
 	silversearcher-ag
-	gedit-plugins
-	grub-customizer
 	imagemagick
 	jq # json processor
 	libtool
@@ -122,7 +121,7 @@ mysql: ## Install Mysql database
 	sudo apt-get update -y
 	sudo apt install mysql-server -y
 	sudo apt install mycli
-	
+
 	# Create default mysql user
 	sudo mysql -e "CREATE USER '${USER}'@'localhost' IDENTIFIED BY '123456'";
 	sudo mysql -e "GRANT ALL PRIVILEGES ON * . * TO '${USER}'@'localhost'";
