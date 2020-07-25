@@ -105,6 +105,7 @@ export PATH="$PATH:$NPM_PACKAGES/bin"
 
 . /usr/share/autojump/autojump.sh
 
+
 source $ZSH/oh-my-zsh.sh
 source $ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $ZSH/custom/plugins/zsh-completions/zsh-completions.plugin.zsh
@@ -113,3 +114,4 @@ source $ZSH/custom/plugins/zsh-autoenv/autoenv.zsh
 source $HOME/dotfiles/zsh/.functions
 source $HOME/dotfiles/zsh/.aliases
 source $HOME/dotfiles/zsh/.exports
+source $HOME/.poetry/env
