@@ -70,8 +70,8 @@ HIST_STAMPS="yyyy-mm-dd"
 
 # Plugins
 plugins=(
-	autoswitch_virtualenv
-	virtualenv
+	#autoswitch_virtualenv
+	#virtualenv
 	git
 	npm
 	extract
@@ -101,7 +101,7 @@ fi
 NPM_PACKAGES="${HOME}/.npm-packages"
 export PATH="$PATH:$NPM_PACKAGES/bin"
 
-AUTOENV_FILE_ENTER=.env
+#AUTOENV_FILE_ENTER=.env
 
 . /usr/share/autojump/autojump.sh
 
