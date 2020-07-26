@@ -41,6 +41,7 @@ export AUTOSWITCH_DEFAULTENV="default"
 export AUTOSWITCH_DEFAULT_PYTHON="/usr/bin/python3"
 # Make Python use UTF-8 encoding for output to stdin, stdout, and stderr.
 export PYTHONIOENCODING='UTF-8';
+export PYTHONPATH="/usr/bin/python3.8"
 
 # GO
 export GOPATH=$HOME/go
