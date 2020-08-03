@@ -197,7 +197,7 @@ php: ## Install PHP7.4/Symfony, Apache
 		php7.4-gd \
 		php7.4-bcmath
 
-	
+
 	# PHP Unit testing
 	wget -O phpunit https://phar.phpunit.de/phpunit-8.phar
 	chmod +x phpunit
@@ -285,6 +285,9 @@ zsh: ## Install zsh,oh-my-zsh & plugins
 		git clone ${plug}
 	done
 
+test: # Test Makefile with Docker
+	docker build -t dotfiles .
+	docker run it --name dotfiles:latest /bin/bash
 
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
