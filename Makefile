@@ -202,6 +202,10 @@ php: ## Install PHP7.4/Symfony, Apache
 	wget -O phpunit https://phar.phpunit.de/phpunit-8.phar
 	chmod +x phpunit
 
+	# PsySH
+	wget https://psysh.org/psysh
+	chmod +x psysh
+
 	# Composer install
 	curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer -y
 
