@@ -1,10 +1,10 @@
 
 allinstall: ## Installs everything
-	android baseprogramms clitools docker go java mysql nginx node php postgresql python ruby tesseract vscode zsh
+	android clitools docker go java mysql nginx node php postgresql python ruby tesseract code zsh
 
 
 install: ## Install default selected apps
-	baseprogramms clitools docker mysql nginx node php python ruby vscode zsh
+	clitools docker mysql nginx node php python ruby code zsh
 
 android: ## Install Android studio, sdk and tools
 	sudo snap install android-studio
@@ -30,7 +30,7 @@ linuxsoftware: ## Install base programms: flameshot, albert, spotify, dropbox, v
 		flameshot \
 		gnome-tweak-tool \
 		nautilus-dropbox \
-		vlc browser-plugin-vlc \
+		vlc \
 		gedit-plugins
 
 	# install chrome
@@ -53,43 +53,43 @@ linuxsoftware: ## Install base programms: flameshot, albert, spotify, dropbox, v
 
 
 clitools: ## Install cli tools
-	at # schedule future tasks
-	aptitude
-	autojump
-	build-essential
-	csvtool
-	curl
-	dos2unix
-	filemanager-actions
-	fonts-powerline
-	silversearcher-ag
-	imagemagick
-	jq # json processor
-	libtool
-	inotifywait
-	make
-	nghttp2-client
-	neovim
-	neofetch
-	net-tools
-	pandoc
-	pdftk # join, shuffle, select for pdf files
-	pwgen # random password generator
-	preload # speed up app boot time
-	powerline
-	openssh-server
-	openssh-client
-	software-properties-common
-	snapd
-	sqlite3 libsqlite3-dev
-	texlive # Latex
-	tmux
-	tree
-	ubuntu-restricted-extras
-	vim
-	wine
-	xbindkeys
-	xclip
+	sudo apt-get install -y \
+	   at \
+	   aptitude \
+	   autojump \
+	   build-essential \
+	   csvtool \
+	   curl \
+	   dos2unix \
+	   filemanager-actions \
+	   fonts-powerline \
+	   silversearcher-ag \
+	   imagemagick \
+	   jq \
+	   libtool\
+	   inotify-tools \
+	   nghttp2-client \
+	   neovim \
+	   neofetch \
+	   net-tools \
+	   pandoc \
+	   pdftk \
+	   pwgen \
+	   preload \
+	   powerline \
+	   openssh-server \
+	   openssh-client \
+	   software-properties-common \
+	   snapd \
+	   sqlite3 libsqlite3-dev \
+	   texlive \
+	   tmux \
+	   tree \
+	   ubuntu-restricted-extras \
+	   vim \
+	   wine \
+	   xbindkeys \
+	   xclip
 
 
 docker: ## Install Docker
@@ -181,12 +181,12 @@ php: ## Install PHP7.4/Symfony, Apache
 	sudo apt-get install apache2 -y
 
 	# PHP7 Install
-	sudo add-apt-repository ppa:ondrej/php -yes
-	sudo apt-get update
+	sudo add-apt-repository ppa:ondrej/php -y
+	sudo apt-get update -y
 	sudo apt-get install -y php7.4
 
 	# Extension
-	sudo apt install -yes \
+	sudo apt-get install -y \
 		php7.4-mysql \
 		php7.4-curl \
 		php7.4-json \
@@ -219,22 +219,22 @@ php: ## Install PHP7.4/Symfony, Apache
 python:: ## Install Python,Poetry & Dependencies
 	sudo apt-get install -y \
 		python3-pip \
-		python-virtualenv \
+		python3-virtualenv \
 		python3-venv \
 		pylint \
 		thefuck
 
 	# https://powerline.readthedocs.io/en/latest/installation.html#generic-requirements
-	pip3 install -y \
+	pip3 install \
 		powerline-status \
 		--upgrade setuptools
 
 	# Poetry dependency managment
-	curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
+	curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3
 
 
-vscode: ## Install VS Code editor
-	sudo snap install vscode --classic
+code: ## Install VS Code editor
+	sudo snap install code --classic
 	code --install-extension shan.code-settings-sync
 
 nginx: ## Install nginx
@@ -244,7 +244,8 @@ nginx: ## Install nginx
 node: ## Install NodeJS & packages
 	curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
 	sudo apt-get install -y nodejs
-	npm install npm@latest -g
+	sudo npm install npm@latest -g
+
 	# Node packages
 	npm_scripts=(
 		"-g trash-cli",
@@ -254,8 +255,6 @@ node: ## Install NodeJS & packages
 		"-g express",
 		"-g eslint",
 		"-g uncss"
-		"-g stylelint --save-dev"
-		"-g python-shell"
 		"-g vtop"
 		"-g localtunnel"
 		"-g typescript"
@@ -271,8 +270,8 @@ node: ## Install NodeJS & packages
 		npm install ${element}
 	done
 
-zsh: ## Install zsh,oh-my-zsh & plugins
-	sudo apt-get install -yes zsh
+ohmyzsh: ## Install zsh,oh-my-zsh & plugins
+	sudo apt-get install -y zsh
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" -y
 	sudo chsh -s $(which zsh)
 	# Install plugins
