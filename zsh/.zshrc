@@ -3,7 +3,7 @@ export ZSH=$HOME/.oh-my-zsh
 set -m
 unsetopt PROMPT_SP
 ZSH_DISABLE_COMPFIX=true
-ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_THEME="powerlevel9k/powerlevel9k"
 #POWERLEVEL9K_MODE="nerdfont-complete"
 
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
