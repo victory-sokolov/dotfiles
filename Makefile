@@ -172,6 +172,7 @@ ruby: ## Install ruby and gems
 
 java: ## Install Java JDK8, Intellij IDEA community
 	sudo apt-get update && apt-get install openjdk-8-jdk -y
+	sudo apt-get install maven -y
 	sudo snap install intellij-idea-community --classic
 
 go: ## Install Go lang
