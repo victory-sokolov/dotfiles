@@ -1,4 +1,8 @@
 
+export DOCKER_REPO_PREFIX=victory-sokolov
+
+
+# Helper functions
 
 function docker-clean() # stops and cleans all docker containers & images
 {
@@ -18,3 +22,9 @@ function drmnone() # remove untagged images
 {
 	docker rmi -f $(docker images -f "dangling=true" -q)
 }
+
+
+# Docker containers aliases and functions
+
+
+alias splash="docker run --rm --name scrapy-splash -d -p 8050:8050 scrapinghub/splash"
