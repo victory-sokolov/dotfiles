@@ -110,4 +110,6 @@ source $ZSH/custom/plugins/zsh-autoenv/autoenv.zsh
 source $HOME/dotfiles/zsh/.functions
 source $HOME/dotfiles/zsh/.aliases
 source $HOME/dotfiles/zsh/.exports
+source $HOME/dotfiles/zsh/.dockerfunc
+
 source $HOME/.poetry/env
