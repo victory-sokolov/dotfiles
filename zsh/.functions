@@ -16,9 +16,11 @@ function calc() # Simple calculator
 	printf "\n";
 }
 
+
 function mk() # Create a new directory and enter it
 {
-  mkdir -p "$@" && cd "$@"
+  mkdir -p "$@"
+  cd "$@"
 }
 
 function man() {  # Shows pretty `man` page.
