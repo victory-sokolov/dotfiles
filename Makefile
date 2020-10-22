@@ -1,10 +1,22 @@
+init: ## Symlink files
+	ln -vsf ${PWD}/zsh/.zshrc ${HOME}/.zshrc
+	ln -vsf ${PWD}/zsh/.aliases ${HOME}/.aliases
+	ln -vsf ${PWD}/zsh/.functions ${HOME}/.functions
+	ln -vsf ${PWD}/zsh/.exports ${HOME}/.exports
+	ln -vsf ${PWD}/zsh/.inputrc ${HOME}/.inputrc
+	ln -vsf ${PWD}/vim/.vimrc ${HOME}/.vimrc
+	ln -vsf ${PWD}/.tmux.conf ${HOME}/.tmux.conf
+	# Git
+	ln -vsf ${PWD}/git/.gitconfig ${HOME}/.gitconfig
+	ln -vsf ${PWD}/git/.gitignore_global ${HOME}/.gitignore_global
+
 
 allinstall: ## Installs everything
-	android clitools docker go java mysql nginx node php postgresql python ruby tesseract code zsh
+	install android go java postgresql tesseract
 
 
 install: ## Install default selected apps
-	clitools docker mysql nginx node php python ruby code zsh
+	clitools docker mysql nginx node php python ruby code zsh init
 
 android: ## Install Android sdk and tools
 	sudo apt-get install -y \
