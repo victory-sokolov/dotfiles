@@ -6,13 +6,20 @@ allinstall: ## Installs everything
 install: ## Install default selected apps
 	clitools docker mysql nginx node php python ruby code zsh
 
-android: ## Install Android studio, sdk and tools
-	sudo snap install android-studio
+android: ## Install Android sdk and tools
 	sudo apt-get install -y \
 		android-tools \
 		android-sdk \
 		default-jdk \
 		adb
+
+	export ANDROID_HOME=$HOME/Android/Sdk
+	export PATH=$PATH:$ANDROID_HOME/emulator
+	export PATH=$PATH:$ANDROID_HOME/tools
+	export PATH=$PATH:$ANDROID_HOME/tools/bin
+	export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+
 
 gnomesettings: # Gnome settings
 	# Use local time
