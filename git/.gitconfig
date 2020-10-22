@@ -2,6 +2,9 @@
     name = Viktor Sokolov
     email = viktorsokolov.and@gmail.com
 
+[core]
+  editor = vim
+
 [alias]
 
     gc='git commit -m'
