@@ -112,11 +112,11 @@ docker: ## Install Docker
 	sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable" -y
 	sudo apt update
 	sudo apt install docker-ce -y
-	sudo usermod -aG docker ${USERNAME}
-	su - ${USERNAME}
+	sudo usermod -aG docker ${USER}
+	su - ${USER}
 	id -nG
 	sudo groupadd docker
-	sudo gpasswd -a ${USERNAME} docker
+	sudo gpasswd -a ${USER} docker
 	sudo service docker restart
 
 	# Docker compose
@@ -310,7 +310,9 @@ ohmyzsh: ## Install zsh,oh-my-zsh & plugins
 
 test: # Test Makefile with Docker
 	docker build -t dotfiles . --build-arg CACHEBUST=0
-	docker run -it --name dotfiles dotfiles:latest /bin/bash
+	docker run -it --name dotfiles -d dotfiles:latest /bin/bash
+	docker exec -it dotfiles sh -c "make docker"
+	docker rm -f dotfiles
 
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
