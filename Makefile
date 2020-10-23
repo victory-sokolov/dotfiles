@@ -11,12 +11,9 @@ init: ## Symlink files
 	ln -vsf ${PWD}/git/.gitignore_global ${HOME}/.gitignore_global
 
 
-allinstall: ## Installs everything
-	install android go java postgresql tesseract
+allinstall: install android go java postgresql tesseract
 
-
-install: ## Install default selected apps
-	clitools docker mysql nginx node php python ruby code zsh init
+install: clitools docker mysql nginx node php python ruby code zsh init
 
 android: ## Install Android sdk and tools
 	sudo apt-get install -y \
@@ -99,7 +96,6 @@ clitools: ## Install cli tools
 	   openssh-server \
 	   openssh-client \
 	   software-properties-common \
-	   snapd \
 	   sqlite3 libsqlite3-dev \
 	   texlive \
 	   tmux \
@@ -311,8 +307,7 @@ ohmyzsh: ## Install zsh,oh-my-zsh & plugins
 
 test: # Test Makefile with Docker
 	docker build -t dotfiles .
-	docker run -it -d dotfiles /bin/bash
-	docker run -it dotfiles sh -c "make install"
+	docker run -it dotfiles /bin/bash
 
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
