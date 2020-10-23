@@ -16,6 +16,8 @@
     gac='git add -A && git commit -m'
     ge='git-edit-new'
     gpom="git push origin master"
+    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+
 
 [url "git@github.com:"]
     insteadOf = "gh:"
