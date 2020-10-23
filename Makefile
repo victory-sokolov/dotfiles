@@ -106,17 +106,17 @@ clitools: ## Install cli tools
 
 
 docker: ## Install Docker
+
 	sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
 	curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 	sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable" -y
 	sudo apt update
 	sudo apt install docker-ce -y
-	# execute docker without sudo
-	sudo usermod -aG docker ${USER}
-	su - ${USER}
+	sudo usermod -aG docker ${USERNAME}
+	su - ${USERNAME}
 	id -nG
 	sudo groupadd docker
-	sudo gpasswd -a $USER docker
+	sudo gpasswd -a ${USERNAME} docker
 	sudo service docker restart
 
 	# Docker compose
@@ -260,6 +260,11 @@ node: ## Install NodeJS & packages
 	sudo apt-get install -y nodejs
 	sudo npm install npm@latest -g
 
+	# Yarn
+	curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+	echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+	sudo apt update && sudo apt install yarn
+
 	# Node packages
 	npm_scripts=(
 		"-g trash-cli",
@@ -305,8 +310,7 @@ ohmyzsh: ## Install zsh,oh-my-zsh & plugins
 
 test: # Test Makefile with Docker
 	docker build -t dotfiles . --build-arg CACHEBUST=0
-	docker run -it --name dotfiles -d dotfiles:latest /bin/bash
-	docker exec -it dotfiles sh -c "make install"
+	docker run -it --name dotfiles dotfiles:latest /bin/bash
 
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
