@@ -14,11 +14,18 @@ init: ## Symlink files
 install: clitools docker mysql nginx node php python ruby code zsh init
 
 android: ## Install Android sdk and tools
-	sudo apt-get install -y \
-		android-tools \
-		android-sdk \
-		default-jdk \
-		android-tools-adb
+	SDK_VERSION=29
+
+	wget https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip -P /home/${USER}
+	unzip /home/${USER}/sdk-tools-linux-4333796.zip -d /home/${USER}/Android/Sdk
+
+	rm /home/${USER}/sdk-tools-linux-4333796.zip
+	sudo apt-get install -y lib32z1 openjdk-8-jdk gradle
+
+	yes | /home/${USER}/Android/tools/bin/sdkmanager "platform-tools" "platforms;android-29" "build-tools;29.0.3"
+
+	export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+	export PATH=$PATH:$JAVA_HOME/bin
 
 	export ANDROID_HOME=$HOME/Android/Sdk
 	export PATH=$PATH:$ANDROID_HOME/emulator
