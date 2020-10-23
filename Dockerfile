@@ -1,4 +1,4 @@
-FROM debian:jessie-slim
+FROM ubuntu:20.04
 MAINTAINER Viktor Sokolov
 
 ENV USERNAME=viktor
@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates \
     make \
     git \
+    vim \
     sudo
 
 WORKDIR dotfiles
@@ -19,7 +20,7 @@ RUN echo "${USERNAME}  ALL=(ALL:ALL) NOPASSWD: ALL" > /etc/sudoers
 RUN chown -R ${USERNAME} /dotfiles
 
 USER ${USERNAME}
-
+ARG CACHEBUST=1
 RUN git clone https://github.com/victory-sokolov/dotfiles /dotfiles
 
 CMD ["/bin/bash"]
