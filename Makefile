@@ -11,8 +11,6 @@ init: ## Symlink files
 	ln -vsf ${PWD}/git/.gitignore_global ${HOME}/.gitignore_global
 
 
-allinstall: install android go java postgresql tesseract
-
 install: clitools docker mysql nginx node php python ruby code zsh init
 
 android: ## Install Android sdk and tools
@@ -43,6 +41,8 @@ gnomesettings: # Gnome settings
 
 linuxsoftware: ## Install base programms: flameshot, albert, spotify, dropbox, vlc, chrome, postman
 	sudo apt-get install -y \
+		ubuntu-restricted-extras \
+		filemanager-actions \
 		flameshot \
 		gnome-tweak-tool \
 		nautilus-dropbox \
@@ -77,7 +77,6 @@ clitools: ## Install cli tools
 	   csvtool \
 	   curl \
 	   dos2unix \
-	   filemanager-actions \
 	   fonts-powerline \
 	   silversearcher-ag \
 	   imagemagick \
@@ -100,7 +99,6 @@ clitools: ## Install cli tools
 	   texlive \
 	   tmux \
 	   tree \
-	   ubuntu-restricted-extras \
 	   vim \
 	   wine \
 	   xbindkeys \
@@ -307,7 +305,7 @@ ohmyzsh: ## Install zsh,oh-my-zsh & plugins
 
 test: # Test Makefile with Docker
 	docker build -t dotfiles . --build-arg CACHEBUST=0
-	docker run -it dotfiles /bin/bash
+	docker run -it --name dotfiles -d dotfiles:latest /bin/bash
 	docker exec -it dotfiles sh -c "make install"
 
 help:
