@@ -306,8 +306,9 @@ ohmyzsh: ## Install zsh,oh-my-zsh & plugins
 	done
 
 test: # Test Makefile with Docker
-	docker build -t dotfiles .
+	docker build -t dotfiles . --build-arg CACHEBUST=0
 	docker run -it dotfiles /bin/bash
+	docker exec -it dotfiles sh -c "make install"
 
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
