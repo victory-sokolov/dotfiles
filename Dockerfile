@@ -2,20 +2,24 @@ FROM debian:jessie-slim
 MAINTAINER Viktor Sokolov
 
 ENV USERNAME=viktor
+ENV PASSWORD=qwerty
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    git
+    ca-certificates \
+    make \
+    git \
+    sudo
 
+WORKDIR dotfiles
 # Creating a new sudo user
-RUN useradd ${USERNAME}
-RUN usermod -aG sudo ${USERNAME}
+RUN useradd -ms /bin/bash ${USERNAME}
+RUN echo "root:${PASSWORD}" | chpasswd
+RUN echo "${USERNAME}:${PASSWORD}" | chpasswd
 RUN echo "${USERNAME}  ALL=(ALL:ALL) NOPASSWD: ALL" > /etc/sudoers
-RUN chown -R user:${USERNAME} /home/${USERNAME}
+RUN chown -R ${USERNAME} /dotfiles
 
 USER ${USERNAME}
-WORKDIR /home/${USERNAME}
-    
-# download dotfiles
-RUN git clone https://github.com/victory-sokolov/dotfiles
 
-# CMD ["/bin/bash"]
+RUN git clone https://github.com/victory-sokolov/dotfiles /dotfiles
+
+CMD ["/bin/bash"]
