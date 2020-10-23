@@ -11,19 +11,21 @@ init: ## Symlink files
 	ln -vsf ${PWD}/git/.gitignore_global ${HOME}/.gitignore_global
 
 
-allinstall: ## Installs everything
-	install android go java postgresql tesseract
-
-
-install: ## Install default selected apps
-	clitools docker mysql nginx node php python ruby code zsh init
+install: clitools docker mysql nginx node php python ruby code zsh init
 
 android: ## Install Android sdk and tools
-	sudo apt-get install -y \
-		android-tools \
-		android-sdk \
-		default-jdk \
-		adb
+	SDK_VERSION=29
+
+	wget https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip -P /home/${USER}
+	unzip /home/${USER}/sdk-tools-linux-4333796.zip -d /home/${USER}/Android/Sdk
+
+	rm /home/${USER}/sdk-tools-linux-4333796.zip
+	sudo apt-get install -y lib32z1 openjdk-8-jdk gradle
+
+	yes | /home/${USER}/Android/tools/bin/sdkmanager "platform-tools" "platforms;android-29" "build-tools;29.0.3"
+
+	export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+	export PATH=$PATH:$JAVA_HOME/bin
 
 	export ANDROID_HOME=$HOME/Android/Sdk
 	export PATH=$PATH:$ANDROID_HOME/emulator
@@ -46,6 +48,8 @@ gnomesettings: # Gnome settings
 
 linuxsoftware: ## Install base programms: flameshot, albert, spotify, dropbox, vlc, chrome, postman
 	sudo apt-get install -y \
+		ubuntu-restricted-extras \
+		filemanager-actions \
 		flameshot \
 		gnome-tweak-tool \
 		nautilus-dropbox \
@@ -80,7 +84,6 @@ clitools: ## Install cli tools
 	   csvtool \
 	   curl \
 	   dos2unix \
-	   filemanager-actions \
 	   fonts-powerline \
 	   silversearcher-ag \
 	   imagemagick \
@@ -99,12 +102,10 @@ clitools: ## Install cli tools
 	   openssh-server \
 	   openssh-client \
 	   software-properties-common \
-	   snapd \
 	   sqlite3 libsqlite3-dev \
 	   texlive \
 	   tmux \
 	   tree \
-	   ubuntu-restricted-extras \
 	   vim \
 	   wine \
 	   xbindkeys \
@@ -112,17 +113,17 @@ clitools: ## Install cli tools
 
 
 docker: ## Install Docker
+
 	sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
 	curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 	sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable" -y
 	sudo apt update
 	sudo apt install docker-ce -y
-	# execute docker without sudo
 	sudo usermod -aG docker ${USER}
 	su - ${USER}
 	id -nG
 	sudo groupadd docker
-	sudo gpasswd -a $USER docker
+	sudo gpasswd -a ${USER} docker
 	sudo service docker restart
 
 	# Docker compose
@@ -167,17 +168,17 @@ tesseract: ## Install Tesseract binaries
 	# Libs
 	sudo apt-get install libicu-dev libpango1.0-dev libcairo2-dev
 	cd /usr/share/tesseract-ocr
-	sudo git clone https://github.com/tesseract-ocr/tesseract
-	sudo git clone https://github.com/tesseract-ocr/langdata_lstm
+	git clone https://github.com/tesseract-ocr/tesseract
+	git clone https://github.com/tesseract-ocr/langdata_lstm
 	cd tesseract
 
-	sudo ./autogen.sh
-	sudo ./configure
-	sudo make
-	sudo make install
-	sudo ldconfig
-	sudo make training
-	sudo make training-install
+	./autogen.sh
+	./configure
+	make
+	make install
+	ldconfig
+	make training
+	make training-install
 
 
 ruby: ## Install ruby and gems
@@ -266,6 +267,11 @@ node: ## Install NodeJS & packages
 	sudo apt-get install -y nodejs
 	sudo npm install npm@latest -g
 
+	# Yarn
+	curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+	echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+	sudo apt update && sudo apt install yarn
+
 	# Node packages
 	npm_scripts=(
 		"-g trash-cli",
@@ -310,8 +316,10 @@ ohmyzsh: ## Install zsh,oh-my-zsh & plugins
 	done
 
 test: # Test Makefile with Docker
-	docker build -t dotfiles .
-	docker run it --name dotfiles:latest /bin/bash
+	docker build -t dotfiles . --build-arg CACHEBUST=0
+	docker run -it --name dotfiles -d dotfiles:latest /bin/bash
+	docker exec -it dotfiles sh -c "make install"
+	docker rm -f dotfiles
 
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
