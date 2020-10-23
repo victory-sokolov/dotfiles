@@ -161,17 +161,17 @@ tesseract: ## Install Tesseract binaries
 	# Libs
 	sudo apt-get install libicu-dev libpango1.0-dev libcairo2-dev
 	cd /usr/share/tesseract-ocr
-	sudo git clone https://github.com/tesseract-ocr/tesseract
-	sudo git clone https://github.com/tesseract-ocr/langdata_lstm
+	git clone https://github.com/tesseract-ocr/tesseract
+	git clone https://github.com/tesseract-ocr/langdata_lstm
 	cd tesseract
 
-	sudo ./autogen.sh
-	sudo ./configure
-	sudo make
-	sudo make install
-	sudo ldconfig
-	sudo make training
-	sudo make training-install
+	./autogen.sh
+	./configure
+	make
+	make install
+	ldconfig
+	make training
+	make training-install
 
 
 ruby: ## Install ruby and gems
@@ -311,7 +311,7 @@ ohmyzsh: ## Install zsh,oh-my-zsh & plugins
 test: # Test Makefile with Docker
 	docker build -t dotfiles . --build-arg CACHEBUST=0
 	docker run -it --name dotfiles -d dotfiles:latest /bin/bash
-	docker exec -it dotfiles sh -c "make docker"
+	docker exec -it dotfiles sh -c "make install"
 	docker rm -f dotfiles
 
 help:
