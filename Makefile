@@ -23,7 +23,7 @@ android: ## Install Android sdk and tools
 		android-tools \
 		android-sdk \
 		default-jdk \
-		adb
+		android-tools-adb
 
 	export ANDROID_HOME=$HOME/Android/Sdk
 	export PATH=$PATH:$ANDROID_HOME/emulator
@@ -311,7 +311,8 @@ ohmyzsh: ## Install zsh,oh-my-zsh & plugins
 
 test: # Test Makefile with Docker
 	docker build -t dotfiles .
-	docker run it --name dotfiles:latest /bin/bash
+	docker run -it -d dotfiles /bin/bash
+	docker run -it dotfiles sh -c "make install"
 
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
