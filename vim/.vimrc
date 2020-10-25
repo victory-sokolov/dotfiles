@@ -15,6 +15,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'zchee/deoplete-jedi'
 Plug 'FootSoft/vim-argwrap' " breaks func arguments each on new line
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
 " VIM Theme
 Plug 'dracula/vim', { 'as': 'dracula' }
@@ -82,6 +83,12 @@ highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=11 gui=none guifg=bg guibg=Re
 highlight DiffDelete cterm=bold ctermfg=10 ctermbg=11 gui=none guifg=bg guibg=Red
 highlight DiffChange cterm=bold ctermfg=10 ctermbg=11 gui=none guifg=bg guibg=Red
 highlight DiffText   cterm=bold ctermfg=10 ctermbg=88 gui=none guifg=bg guibg=Red
+
+" Markdown
+
+nmap <C-s> <Plug>MarkdownPreview
+nmap <M-s> <Plug>MarkdownPreviewStop
+nmap <C-p> <Plug>MarkdownPreviewToggle
 
 " Powerline
 python3 from powerline.vim import setup as powerline_setup
