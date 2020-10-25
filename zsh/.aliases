@@ -11,8 +11,8 @@ alias chmod='chmod +x'
 alias grep="grep --color=auto "
 alias q="exit"
 alias ctrash="sudo rm -rf ~/.local/share/Trash/files/*"
-alias cp="sudo cp -i" # copy file interactive
-alias mv="sudo mv -i" # move file interactive
+alias cp="cp -i" # copy file interactive
+alias mv="mv -i" # move file interactive
 alias rm='trash' # remove file interactive
 alias version="lsb_release -r -s" # linux version
 alias now="date '+%Y-%m-%d'"
@@ -50,6 +50,8 @@ alias v="vim"
 
 # media
 alias ytmp3="youtube-dl --extract-audio --audio-format mp3" # youtube video to mp3
+
+alias code="/mnt/c/Users/Viktor/AppData/Local/Programs/'Microsoft VS Code'/bin/code"
 
 # PHP
 alias hosts="sudo vim /etc/hosts" # vhosts
