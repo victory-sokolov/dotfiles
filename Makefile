@@ -196,7 +196,10 @@ java: ## Install Java JDK8, Intellij IDEA community
 	sudo snap install intellij-idea-community --classic
 
 go: ## Install Go lang
-	sudo snap install --classic go
+	sudo apt-get install golang-go
+
+	export GOPATH="$HOME/Go"
+	export PATH="$PATH:/usr/local/go/bin:$GOPATH/bin"
 
 php: ## Install PHP7.4/Symfony, Apache
 	sudo apt-get install apache2 -y
