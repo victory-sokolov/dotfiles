@@ -201,6 +201,9 @@ go: ## Install Go lang
 	export GOPATH="$HOME/Go"
 	export PATH="$PATH:/usr/local/go/bin:$GOPATH/bin"
 
+rust:
+	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
 php: ## Install PHP7.4/Symfony, Apache
 	sudo apt-get install apache2 -y
 
