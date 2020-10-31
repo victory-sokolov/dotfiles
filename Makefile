@@ -201,6 +201,13 @@ go: ## Install Go lang
 	export GOPATH="$HOME/Go"
 	export PATH="$PATH:/usr/local/go/bin:$GOPATH/bin"
 
+
+ghcli: ## GitHub CLI
+    sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
+    sudo apt-add-repository https://cli.github.com/packages
+    sudo apt update
+    sudo apt install gh
+
 rust:
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
