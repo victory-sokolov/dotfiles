@@ -183,9 +183,11 @@ tesseract: ## Install Tesseract binaries
 
 ruby: ## Install ruby and gems
 	sudo apt-get install ruby-full -y
+	
 	gems=(
 		colorls
 	)
+	
 	for gems in {gem[@]}; do
 		sudo gem install ${gem} -y
 	done
@@ -287,12 +289,12 @@ node: ## Install NodeJS & packages
 
 	# Node packages
 	npm_scripts=(
-		"-g trash-cli",
-		"-g electron --save-dev --save-exact",
-		"-g gulp-cli",
-		"-g browser-sync",
-		"-g express",
-		"-g eslint",
+		"-g trash-cli"
+		"-g electron"
+		"-g gulp-cli"
+		"-g browser-sync"
+		"-g express"
+		"-g eslint"
 		"-g uncss"
 		"-g vtop"
 		"-g localtunnel"
@@ -304,6 +306,7 @@ node: ## Install NodeJS & packages
 		"-g terminalizer"
 		"-g depcheck"
 	)
+
 	for element in "${npm_scripts[@]}"
 	do
 		npm install ${element}
@@ -313,6 +316,7 @@ ohmyzsh: ## Install zsh,oh-my-zsh & plugins
 	sudo apt-get install -y zsh
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" -y
 	sudo chsh -s $(which zsh)
+	
 	# Install plugins
 	zsh_plugins=(
 		https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
@@ -324,6 +328,7 @@ ohmyzsh: ## Install zsh,oh-my-zsh & plugins
 		https://github.com/MichaelAquilina/zsh-autoswitch-virtualenv.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/autoswitch_virtualenv
 		https://github.com/Tarrasch/zsh-autoenv ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-autoenv
 	)
+
 	for plug in "${zsh_plugins[@]}"; do
 		git clone ${plug}
 	done
