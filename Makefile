@@ -255,7 +255,6 @@ php: ## Install PHP7.4/Symfony, Apache
 python:: ## Install Python,Poetry & Dependencies
 	sudo apt-get install -y \
 		python3-pip \
-		python3-virtualenv \
 		python3-venv \
 		pylint \
 		thefuck
@@ -263,6 +262,7 @@ python:: ## Install Python,Poetry & Dependencies
 	# https://powerline.readthedocs.io/en/latest/installation.html#generic-requirements
 	pip3 install \
 		powerline-status \
+		virtualenv \
 		--upgrade setuptools
 
 	# Poetry dependency managment
