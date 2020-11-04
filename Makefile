@@ -314,7 +314,7 @@ node: ## Install NodeJS & packages
 
 ohmyzsh: ## Install zsh,oh-my-zsh & plugins
 	sudo apt-get install -y zsh
-	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" -y
+	sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 	sudo chsh -s $(which zsh)
 	
 	# Install plugins
@@ -323,10 +323,10 @@ ohmyzsh: ## Install zsh,oh-my-zsh & plugins
 		https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 		https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
 		https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm
-		https://github.com/bhilburn/powerlevel9k.git ~/powerlevel9k
+		https://github.com/bhilburn/powerlevel9k.git ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/themes/powerlevel9k
 		https://github.com/MichaelAquilina/zsh-you-should-use.git $ZSH_CUSTOM/plugins/you-should-use
-		https://github.com/MichaelAquilina/zsh-autoswitch-virtualenv.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/autoswitch_virtualenv
-		https://github.com/Tarrasch/zsh-autoenv ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-autoenv
+		# https://github.com/MichaelAquilina/zsh-autoswitch-virtualenv.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/autoswitch_virtualenv
+		# https://github.com/Tarrasch/zsh-autoenv ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-autoenv
 	)
 
 	for plug in "${zsh_plugins[@]}"; do
