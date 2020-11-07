@@ -252,14 +252,13 @@ php: ## Install PHP7.4/Symfony, Apache
 	wget https://get.symfony.com/cli/installer -O - | bash
 
 
-python: ## Install Python,Poetry & Dependencies
+python3: ## Install Python,Poetry & Dependencies
 	sudo apt-get install -y \
+		curl \
 		python3-pip \
 		python3-venv \
 		pylint \
-		thefuck \
-		curl
-
+		thefuck 
 
 	# https://powerline.readthedocs.io/en/latest/installation.html#generic-requirements
 	pip3 install \
@@ -270,8 +269,9 @@ python: ## Install Python,Poetry & Dependencies
 	# Poetry dependency managment
 	curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3
 
-	source $HOME/.poetry/env
-	export PATH="$HOME/.poetry/bin:$PATH"
+	# source $HOME/.poetry/env
+	# export PATH="$HOME/.poetry/bin:$PATH"
+
 
 code: ## Install VS Code editor
 	sudo snap install code --classic
@@ -338,10 +338,10 @@ ohmyzsh: ## Install zsh,oh-my-zsh & plugins
 	done
 
 test: # Test Makefile with Docker
-	docker build -t dotfiles . --build-arg CACHEBUST=1
+	docker build -t dotfiles .
 	docker run -it --name dotfiles -d dotfiles:latest /bin/bash
-	docker exec -it dotfiles sh -c "make python"
-	# docker rm -f dotfiles
+	docker exec -it dotfiles sh -c "cd dotfiles; make python3"
+	docker rm -f dotfiles
 
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
