@@ -269,8 +269,8 @@ python3: ## Install Python,Poetry & Dependencies
 	# Poetry dependency managment
 	curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3
 
-	# source $HOME/.poetry/env
-	# export PATH="$HOME/.poetry/bin:$PATH"
+	source ${HOME}/.poetry/env
+	export PATH="${HOME}/.poetry/bin:${PATH}"
 
 
 code: ## Install VS Code editor
@@ -341,7 +341,7 @@ test: # Test Makefile with Docker
 	docker build -t dotfiles .
 	docker run -it --name dotfiles -d dotfiles:latest /bin/bash
 	docker exec -it dotfiles sh -c "cd dotfiles; make python3"
-	docker rm -f dotfiles
+	# docker rm -f dotfiles
 
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
