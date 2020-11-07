@@ -339,7 +339,7 @@ ohmyzsh: ## Install zsh,oh-my-zsh & plugins
 test: # Test Makefile with Docker
 	docker build -t dotfiles .
 	docker run -it --name dotfiles -d dotfiles:latest /bin/bash
-	docker exec -it dotfiles sh -c "cd dotfiles; make python3"
+	docker exec -it dotfiles:latest sh -c "cd dotfiles; make python3"
 	# docker rm -f dotfiles
 
 help:
