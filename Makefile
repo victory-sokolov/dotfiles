@@ -269,7 +269,6 @@ python3: ## Install Python,Poetry & Dependencies
 	# Poetry dependency managment
 	curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3
 
-	source ${HOME}/.poetry/env
 	export PATH="${HOME}/.poetry/bin:${PATH}"
 
 
