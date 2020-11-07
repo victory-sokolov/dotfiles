@@ -252,7 +252,7 @@ php: ## Install PHP7.4/Symfony, Apache
 	wget https://get.symfony.com/cli/installer -O - | bash
 
 
-python:: ## Install Python,Poetry & Dependencies
+python: ## Install Python,Poetry & Dependencies
 	sudo apt-get install -y \
 		python3-pip \
 		python3-venv \
