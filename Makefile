@@ -81,6 +81,7 @@ clitools: ## Install cli tools
 	   aptitude \
 	   autojump \
 	   build-essential \
+	   cmake \
 	   csvtool \
 	   curl \
 	   dos2unix \
@@ -289,6 +290,9 @@ node: ## Install NodeJS & packages
 	curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 	echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 	sudo apt update && sudo apt install yarn
+
+	# node version manager
+	curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
 
 	# Node packages
 	npm_scripts=(
