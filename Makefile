@@ -95,6 +95,7 @@ clitools: ## Install cli tools
 	   neovim \
 	   neofetch \
 	   net-tools \
+	   pkg-config \
 	   pandoc \
 	   pdftk \
 	   pwgen \
