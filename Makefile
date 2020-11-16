@@ -367,6 +367,7 @@ node: ## Install NodeJS & packages
 		"-g node-inspector"
 		"-g terminalizer"
 		"-g depcheck"
+		"-g faker-cli"
 	)
 
 	for element in "${npm_scripts[@]}"
