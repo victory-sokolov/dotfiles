@@ -185,11 +185,11 @@ tesseract: ## Install Tesseract binaries
 
 ruby: ## Install ruby and gems
 	sudo apt-get install ruby-full -y
-	
+
 	gems=(
 		colorls
 	)
-	
+
 	for gems in {gem[@]}; do
 		sudo gem install ${gem} -y
 	done
@@ -214,6 +214,7 @@ ghcli: ## GitHub CLI
 
 rust:
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+	echo -e "source ${HOME}/.cargo/env" >> ${HOME}/.zshrc
 
 php: ## Install PHP7.4/Symfony, Apache
 	sudo apt-get install apache2 -y
@@ -260,7 +261,7 @@ python3: ## Install Python,Poetry & Dependencies
 		python3-pip \
 		python3-venv \
 		pylint \
-		thefuck 
+		thefuck
 
 	# https://powerline.readthedocs.io/en/latest/installation.html#generic-requirements
 	pip3 install \
@@ -281,7 +282,7 @@ opencv: ## Build OpenCV from source
 		build-essential \
 		cmake \
 		git \
-		libgtk2.0-dev \ 
+		libgtk2.0-dev \
 		pkg-config \
 		libavcodec-dev l \
 		libjpeg-dev \
@@ -297,11 +298,11 @@ opencv: ## Build OpenCV from source
 	git clone https://github.com/Itseez/opencv_contrib.git
 
 	# Build & Install OpenCV
-	cd opencv 
+	cd opencv
 	mkdir release
 	cd release
 
-	cmake \ 
+	cmake \
 		-D BUILD_TIFF=ON \
 		-D WITH_CUDA=OFF \
 		-D ENABLE_AVX=OFF \
@@ -379,7 +380,7 @@ ohmyzsh: ## Install zsh,oh-my-zsh & plugins
 	sudo apt-get install -y zsh
 	sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 	sudo chsh -s $(which zsh)
-	
+
 	# Install plugins
 	zsh_plugins=(
 		https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
