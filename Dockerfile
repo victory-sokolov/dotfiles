@@ -1,6 +1,8 @@
 FROM ubuntu:20.04
 MAINTAINER Viktor Sokolov
 
+ARG DEBIAN_FRONTEND=noninteractive
+
 ENV USERNAME=viktor
 ENV PASSWORD=qwerty
 
@@ -20,7 +22,7 @@ RUN echo "${USERNAME}  ALL=(ALL:ALL) NOPASSWD: ALL" > /etc/sudoers
 RUN chown -R ${USERNAME} /dotfiles
 
 USER ${USERNAME}
-ARG CACHEBUST=1
+ARG CACHEBUST=0
 RUN git clone https://github.com/victory-sokolov/dotfiles /dotfiles
 
 CMD ["/bin/bash"]
