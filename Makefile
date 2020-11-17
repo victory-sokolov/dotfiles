@@ -27,11 +27,11 @@ android: ## Install Android sdk and tools
 	export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 	export PATH=$PATH:$JAVA_HOME/bin
 
-	export ANDROID_HOME=$HOME/Android/Sdk
-	export PATH=$PATH:$ANDROID_HOME/emulator
-	export PATH=$PATH:$ANDROID_HOME/tools
-	export PATH=$PATH:$ANDROID_HOME/tools/bin
-	export PATH=$PATH:$ANDROID_HOME/platform-tools
+	export ANDROID_HOME=${HOME}/Android/Sdk
+	export PATH=${PATH}:${ANDROID_HOME}/tools
+	export PATH=${PATH}:${ANDROID_HOME}/emulator
+	export PATH=${PATH}:${ANDROID_HOME}/tools/bin
+	export PATH=${PATH}:${ANDROID_HOME}/platform-tools
 
 
 
@@ -81,6 +81,7 @@ clitools: ## Install cli tools
 	   aptitude \
 	   autojump \
 	   build-essential \
+	   cmake \
 	   csvtool \
 	   curl \
 	   dos2unix \
@@ -94,6 +95,7 @@ clitools: ## Install cli tools
 	   neovim \
 	   neofetch \
 	   net-tools \
+	   pkg-config \
 	   pandoc \
 	   pdftk \
 	   pwgen \
@@ -183,9 +185,11 @@ tesseract: ## Install Tesseract binaries
 
 ruby: ## Install ruby and gems
 	sudo apt-get install ruby-full -y
+
 	gems=(
 		colorls
 	)
+
 	for gems in {gem[@]}; do
 		sudo gem install ${gem} -y
 	done
@@ -203,13 +207,14 @@ go: ## Install Go lang
 
 
 ghcli: ## GitHub CLI
-    sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
-    sudo apt-add-repository https://cli.github.com/packages
-    sudo apt update
-    sudo apt install gh
+	sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
+	sudo apt-add-repository https://cli.github.com/packages
+	sudo apt update
+	sudo apt install gh
 
 rust:
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+	echo -e "source ${HOME}/.cargo/env" >> ${HOME}/.zshrc
 
 php: ## Install PHP7.4/Symfony, Apache
 	sudo apt-get install apache2 -y
@@ -250,10 +255,10 @@ php: ## Install PHP7.4/Symfony, Apache
 	wget https://get.symfony.com/cli/installer -O - | bash
 
 
-python:: ## Install Python,Poetry & Dependencies
+python3: ## Install Python,Poetry & Dependencies
 	sudo apt-get install -y \
+		curl \
 		python3-pip \
-		python3-virtualenv \
 		python3-venv \
 		pylint \
 		thefuck
@@ -261,10 +266,67 @@ python:: ## Install Python,Poetry & Dependencies
 	# https://powerline.readthedocs.io/en/latest/installation.html#generic-requirements
 	pip3 install \
 		powerline-status \
+		virtualenv \
 		--upgrade setuptools
 
 	# Poetry dependency managment
 	curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3
+
+	export PATH="${HOME}/.poetry/bin:${PATH}"
+
+
+opencv: ## Build OpenCV from source
+	sudo apt-get update && sudo apt-get upgrade
+
+	sudo apt-get install \
+		build-essential \
+		cmake \
+		git \
+		libgtk2.0-dev \
+		pkg-config \
+		libavcodec-dev l \
+		libjpeg-dev \
+		libpng-dev \
+		libtiff5-dev \
+		libjasper-dev \
+		libdc1394-22-dev \
+		libeigen3-dev li
+
+	# Download OpenCV source
+	cd opt/
+	git clone https://github.com/Itseez/opencv.git
+	git clone https://github.com/Itseez/opencv_contrib.git
+
+	# Build & Install OpenCV
+	cd opencv
+	mkdir release
+	cd release
+
+	cmake \
+		-D BUILD_TIFF=ON \
+		-D WITH_CUDA=OFF \
+		-D ENABLE_AVX=OFF \
+		-D WITH_OPENGL=OFF \
+		-D WITH_OPENCL=OFF \
+		-D WITH_IPP=OFF \
+		-D WITH_TBB=ON \
+		-D BUILD_TBB=ON \
+		-D WITH_EIGEN=OFF \
+		-D WITH_V4L=OFF \
+		-D WITH_VTK=OFF \
+		-D BUILD_TESTS=OFF \
+		-D BUILD_PERF_TESTS=OFF \
+		-D OPENCV_GENERATE_PKGCONFIG=ON \
+		-D CMAKE_BUILD_TYPE=RELEASE \
+		-D CMAKE_INSTALL_PREFIX=/usr/local \
+		-D OPENCV_EXTRA_MODULES_PATH=/opt/opencv_contrib/modules /opt/opencv/
+
+	 make -j4
+	 make install
+	 ldconfig
+
+	 # Set OpenCV file path
+	 sudo cp /usr/local/lib/pkgconfig/opencv4.pc  /usr/lib/x86_64-linux-gnu/pkgconfig/opencv.pc
 
 
 code: ## Install VS Code editor
@@ -285,14 +347,17 @@ node: ## Install NodeJS & packages
 	echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 	sudo apt update && sudo apt install yarn
 
+	# node version manager
+	curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
+
 	# Node packages
 	npm_scripts=(
-		"-g trash-cli",
-		"-g electron --save-dev --save-exact",
-		"-g gulp-cli",
-		"-g browser-sync",
-		"-g express",
-		"-g eslint",
+		"-g trash-cli"
+		"-g electron"
+		"-g gulp-cli"
+		"-g browser-sync"
+		"-g express"
+		"-g eslint"
 		"-g uncss"
 		"-g vtop"
 		"-g localtunnel"
@@ -303,7 +368,9 @@ node: ## Install NodeJS & packages
 		"-g node-inspector"
 		"-g terminalizer"
 		"-g depcheck"
+		"-g faker-cli"
 	)
+
 	for element in "${npm_scripts[@]}"
 	do
 		npm install ${element}
@@ -311,27 +378,29 @@ node: ## Install NodeJS & packages
 
 ohmyzsh: ## Install zsh,oh-my-zsh & plugins
 	sudo apt-get install -y zsh
-	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" -y
+	sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 	sudo chsh -s $(which zsh)
+
 	# Install plugins
 	zsh_plugins=(
 		https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 		https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 		https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
 		https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm
-		https://github.com/bhilburn/powerlevel9k.git ~/powerlevel9k
+		https://github.com/bhilburn/powerlevel9k.git ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/themes/powerlevel9k
 		https://github.com/MichaelAquilina/zsh-you-should-use.git $ZSH_CUSTOM/plugins/you-should-use
-		https://github.com/MichaelAquilina/zsh-autoswitch-virtualenv.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/autoswitch_virtualenv
-		https://github.com/Tarrasch/zsh-autoenv ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-autoenv
+		# https://github.com/MichaelAquilina/zsh-autoswitch-virtualenv.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/autoswitch_virtualenv
+		# https://github.com/Tarrasch/zsh-autoenv ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-autoenv
 	)
+
 	for plug in "${zsh_plugins[@]}"; do
 		git clone ${plug}
 	done
 
 test: # Test Makefile with Docker
-	docker build -t dotfiles . --build-arg CACHEBUST=0
-	docker run -it --name dotfiles -d dotfiles:latest /bin/bash
-	docker exec -it dotfiles sh -c "make install"
+	docker build -t dotfiles .
+	docker run -it --name dotfiles -d dotfiles /bin/bash; \
+	docker exec -it dotfiles sh -c "cd dotfiles; make python3"
 	docker rm -f dotfiles
 
 help:
