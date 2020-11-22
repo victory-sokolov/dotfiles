@@ -51,7 +51,7 @@ alias v="vim"
 # media
 alias ytmp3="youtube-dl --extract-audio --audio-format mp3" # youtube video to mp3
 
-alias code="/mnt/c/Users/Viktor/AppData/Local/Programs/'Microsoft VS Code'/bin/code"
+#alias code="/mnt/c/Users/Viktor/AppData/Local/Programs/'Microsoft VS Code'/bin/code"
 
 # PHP
 alias hosts="sudo vim /etc/hosts" # vhosts
@@ -78,6 +78,8 @@ alias python='python3'
 alias jn="jupyter notebook"
 alias pip="pip3"
 alias py-server="python -m http.server"
+# find all virtual envs in system
+alias venvs="find -O3 $HOME -name '*activate' -type f"
 
 # Docker
 alias dc="docker-compose"
