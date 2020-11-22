@@ -47,6 +47,7 @@ set nospell
 set wildignorecase
 set smartcase
 set noswapfile
+set nobackup
 
 " don't bell or blink
 set noerrorbells
