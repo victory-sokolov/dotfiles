@@ -18,6 +18,7 @@ Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'drewtempelmeyer/palenight.vim'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 call plug#end()
 
 
@@ -45,7 +46,7 @@ set history=1000 " Increase the undo limit.
 set nospell
 set wildignorecase
 set smartcase
-" increase vim responsivness
+set noswapfile
 
 " don't bell or blink
 set noerrorbells
@@ -77,6 +78,9 @@ set autoread
 
 " Emmet trigger
 let g:user_emmet_leader_key=','
+
+" Autocomletion
+let g:ycm_python_binary_path = '/usr/bin/python3'
 
 " VIM Diff
 highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=11 gui=none guifg=bg guibg=Red
