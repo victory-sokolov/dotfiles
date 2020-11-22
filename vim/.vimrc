@@ -19,6 +19,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 call plug#end()
 
 
