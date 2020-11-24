@@ -91,7 +91,10 @@ highlight DiffChange cterm=bold ctermfg=10 ctermbg=11 gui=none guifg=bg guibg=Re
 highlight DiffText   cterm=bold ctermfg=10 ctermbg=88 gui=none guifg=bg guibg=Red
 
 " Autocommands
-autocmd BufRead,BufNewFile * start "Switch to Insert mode when open a file
+" autocmd BufRead,BufNewFile * start "Switch to Insert mode when open a file
+
+" format JSON =j
+nmap =j :%!python3 -m json.tool
 
 " Markdown
 nmap <C-s> <Plug>MarkdownPreview
