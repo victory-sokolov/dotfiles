@@ -103,7 +103,8 @@ clitools: ## Install cli tools
 	   powerline \
 	   openssh-server \
 	   openssh-client \
-	   software-properties-common \
+	   subversion \
+		 software-properties-common \
 	   sqlite3 libsqlite3-dev \
 	   texlive \
 	   tmux \
