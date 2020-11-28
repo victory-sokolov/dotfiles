@@ -50,6 +50,10 @@ set smartcase
 set noswapfile
 set nobackup
 
+" disable bell
+set visualbell
+set t_vb=
+
 " don't bell or blink
 set noerrorbells
 set vb t_vb=
