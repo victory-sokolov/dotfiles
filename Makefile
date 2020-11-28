@@ -271,10 +271,14 @@ python3: ## Install Python,Poetry & Dependencies
 		--upgrade setuptools
 
 	# Poetry dependency managment
-	curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3
-
-	export PATH="${HOME}/.poetry/bin:${PATH}"
-
+	curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3 
+	echo 'export PATH="${HOME}/.poetry/bin:${PATH}"' >> ~/.exports
+	
+	# Python version manager
+	git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.0
+	
+	echo '. ${HOME}/.asdf/asdf.sh' >> ~/.zshrc
+	echo '. ${HOME}/.asdf/completions/asdf.bash' >> ~/.zshrc
 
 opencv: ## Build OpenCV from source
 	sudo apt-get update && sudo apt-get upgrade
