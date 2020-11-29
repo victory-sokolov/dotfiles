@@ -172,7 +172,7 @@ function server {
    python -m http.server $1
 }
 
-function pyenv() # create python virtual environment
+function mkenv() # create python virtual environment
 {
     if [ ! -d "pyenv" ]; then
         mkdir ~/pyenv
