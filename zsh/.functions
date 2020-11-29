@@ -183,12 +183,6 @@ function mkenv() # create python virtual environment
     source "$1"/bin/activate
 }
 
-
-function storm() # Open PHP project in Storm from terminal
-{
-	/mnt/c/Users/Viktor/AppData/Local/JetBrains/Toolbox/apps/PhpStorm/ch-0/202.6397.115/bin/phpstorm.exe $1
-}
-
 # ReactNative
 
 function bapk() # build android apk (Must run inside react-native project)
