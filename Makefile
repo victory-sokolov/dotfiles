@@ -90,6 +90,8 @@ clitools: ## Install cli tools
 	   imagemagick \
 	   jq \
 	   libtool\
+	   libbz2-dev \
+	   libssl-dev \
 	   inotify-tools \
 	   nghttp2-client \
 	   neovim \
@@ -104,7 +106,7 @@ clitools: ## Install cli tools
 	   openssh-server \
 	   openssh-client \
 	   subversion \
-		 software-properties-common \
+	   software-properties-common \
 	   sqlite3 libsqlite3-dev \
 	   texlive \
 	   tmux \
