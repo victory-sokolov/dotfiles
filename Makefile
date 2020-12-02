@@ -111,6 +111,7 @@ clitools: ## Install cli tools
 	   texlive \
 	   tmux \
 	   tree \
+	   traceroute \
 	   vim \
 	   wine \
 	   xbindkeys \
