@@ -370,6 +370,7 @@ node: ## Install NodeJS & packages
 		"-g vtop"
 		"-g localtunnel"
 		"-g typescript"
+		"-g ts-node"
 		"-g webpack"
 		"-g pm2"
 		"-g nodemon"
