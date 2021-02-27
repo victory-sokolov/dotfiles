@@ -264,6 +264,7 @@ python3: ## Install Python,Poetry & Dependencies
 		curl \
 		python3-pip \
 		python3-venv \
+		python3-dev \
 		pylint \
 		thefuck
 
