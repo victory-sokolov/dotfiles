@@ -98,6 +98,10 @@ fi
 NPM_PACKAGES="${HOME}/.npm-packages"
 export PATH="$PATH:$NPM_PACKAGES/bin"
 
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 . /usr/share/autojump/autojump.sh
 
@@ -113,3 +117,9 @@ source $HOME/dotfiles/zsh/.exports
 source $HOME/dotfiles/zsh/.dockerfunc
 
 source $HOME/.poetry/env
+
+. $HOME/.asdf/asdf.sh
+. $HOME/.asdf/completions/asdf.bash
+
+eval "$(pyenv init -)"
+export PATH="$HOME/.poetry/bin:$PATH"
