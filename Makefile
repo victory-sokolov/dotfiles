@@ -238,7 +238,8 @@ php: ## Install PHP7.4/Symfony, Apache
 		php7.4-apcu \
 		php7.4-zip \
 		php7.4-gd \
-		php7.4-bcmath
+		php7.4-bcmath \
+		php7.4-xml
 
 
 	# PHP Unit testing
