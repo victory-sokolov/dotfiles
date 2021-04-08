@@ -149,9 +149,12 @@ mysql: ## Install Mysql database
 	sudo apt install mycli
 
 	# Create default mysql user
+	# start mysql
+	sudo /etc/init.d/mysql start
 	sudo mysql -e "CREATE USER '${USER}'@'localhost' IDENTIFIED BY '123456'";
 	sudo mysql -e "GRANT ALL PRIVILEGES ON * . * TO '${USER}'@'localhost'";
 	sudo mysql -e "FLUSH PRIVILEGES";
+	sudo /etc/init.d/mysql stop
 
 postgresql: ## Install PosgreSQL
 	sudo apt-get update && sudo apt-get upgrade -y
@@ -201,7 +204,6 @@ ruby: ## Install ruby and gems
 java: ## Install Java JDK8, Intellij IDEA community
 	sudo apt-get update && apt-get install openjdk-8-jdk -y
 	sudo apt-get install maven -y
-	sudo snap install intellij-idea-community --classic
 
 go: ## Install Go lang
 	sudo apt-get install golang-go
