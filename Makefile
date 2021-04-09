@@ -368,29 +368,27 @@ node: ## Install NodeJS & packages
 
 	# Node packages
 	npm_scripts=(
-		"-g trash-cli"
-		"-g electron"
-		"-g gulp-cli"
-		"-g browser-sync"
-		"-g express"
-		"-g eslint"
-		"-g uncss"
-		"-g vtop"
-		"-g localtunnel"
-		"-g typescript"
-		"-g ts-node"
-		"-g webpack"
-		"-g pm2"
-		"-g nodemon"
-		"-g node-inspector"
-		"-g terminalizer"
-		"-g depcheck"
-		"-g faker-cli"
+		"trash-cli"
+		"electron"
+		"eslint"
+		"uncss"
+		"vtop"
+		"localtunnel"
+		"typescript"
+		"ts-node"
+		"webpack"
+		"-pm2"
+		"nodemon"
+		"node-inspector"
+		"terminalizer"
+		"depcheck"
+		"faker-cli"
+		"npm-check-updates"
 	)
 
 	for element in "${npm_scripts[@]}"
 	do
-		npm install ${element}
+		npm install -g ${element}
 	done
 
 ohmyzsh: ## Install zsh,oh-my-zsh & plugins
