@@ -34,8 +34,9 @@ android: ## Install Android sdk and tools
 	export PATH=${PATH}:${ANDROID_HOME}/platform-tools
 
 
+linux: ## Install base programms: flameshot, albert, spotify, dropbox, vlc, chrome, postman and update settings
+	# Settings
 
-gnomesettings: # Gnome settings
 	# Use local time
 	timedatectl set-local-rtc 1 --adjust-system-clock
 	# Show battery percentage
@@ -46,7 +47,6 @@ gnomesettings: # Gnome settings
 	# Remove default apps
 	sudo apt purge -y thunderbird gnome-screenshot
 
-linuxsoftware: ## Install base programms: flameshot, albert, spotify, dropbox, vlc, chrome, postman
 	sudo apt-get install -y \
 		ubuntu-restricted-extras \
 		filemanager-actions \
@@ -246,8 +246,6 @@ php: ## Install PHP7.4/Symfony, Apache
 		php7.4-intl \
 		php7.4-odbc \
 
-
-
 	# PHP Unit testing
 	wget -O home/phpunit https://phar.phpunit.de/phpunit-8.phar
 	chmod +x phpunit
@@ -282,12 +280,12 @@ python3: ## Install Python,Poetry & Dependencies
 		--upgrade setuptools
 
 	# Poetry dependency managment
-	curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3 
+	curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3
 	echo 'export PATH="${HOME}/.poetry/bin:${PATH}"' >> ~/.exports
-	
+
 	# Python version manager
 	git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.0
-	
+
 	echo '. ${HOME}/.asdf/asdf.sh' >> ~/.zshrc
 	echo '. ${HOME}/.asdf/completions/asdf.bash' >> ~/.zshrc
 
@@ -351,7 +349,7 @@ code: ## Install VS Code editor
 
 nginx: ## Install nginx
 	sudo add-apt-repository ppa:nginx/stable -y
-	sudo apt-get install nginx
+	sudo apt-get install nginx -y
 
 node: ## Install NodeJS & packages
 	curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
