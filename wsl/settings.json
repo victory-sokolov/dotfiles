@@ -185,7 +185,7 @@
 			"name": "Ubuntu",
 			"padding": "0, 0, 0, 0",
 			"snapOnInput": true,
-			"startingDirectory": "//wsl$/Ubuntu-18.04/home/viktor",
+			"startingDirectory": ".",
 			"useAcrylic": false
 		},
 		{
