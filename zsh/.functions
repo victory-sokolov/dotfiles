@@ -228,12 +228,22 @@ function rna() # clean cache & run react-native android simulator
 # Database related functions
 
 # Postgres
-
 function psql-create-db() # Create Postgres database
 {
     db_name="$@"
     sudo -u postgres createdb $db_name
     sudo -u postgres psql -c "grant all privileges on database $db_name to $USER;" > /dev/null 2>&1
     echo "Database $db_name successfully created!"
+}
+
+
+# Node
+function clone() {
+  git clone $1
+  cd $(basename $1)
+	if test -f "./package.json"; then
+    echo "Installing dependencies"
+    npm install
+  fi
 }
 
