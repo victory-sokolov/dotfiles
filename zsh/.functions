@@ -247,3 +247,11 @@ function clone() {
   fi
 }
 
+
+function removebg() { # Remove background from the image
+
+	curl -H "X-API-Key: $REMOVEBG_KEY" \
+       -F "image_file=@$1" \
+       -F "size=auto" \
+       -f https://api.remove.bg/v1.0/removebg -o no-bg.png
+}
