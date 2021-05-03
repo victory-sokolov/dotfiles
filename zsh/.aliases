@@ -88,6 +88,12 @@ alias dm="docker-machine"
 # Nodejs
 alias npm-restart="sudo rm -rf node_modules && npm install && npm start"
 
+# Yarn
+alias y='yarn'
+alias yd='yarn dev'
+alias ya='yarn add'
+alias ys='yarn start'
+
 # Clipboard
 alias pbcopy="xclip -selection clipboard"
 alias pbpaste="xclip -selection clipboard -o"
