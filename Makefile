@@ -98,7 +98,6 @@ clitools: ## Install cli tools
 	   neofetch \
 	   net-tools \
 	   pkg-config \
-	   pandoc \
 	   pdftk \
 	   pwgen \
 	   preload \
@@ -108,7 +107,6 @@ clitools: ## Install cli tools
 	   subversion \
 	   software-properties-common \
 	   sqlite3 libsqlite3-dev \
-	   texlive \
 	   tmux \
 	   tree \
 	   traceroute \
@@ -409,6 +407,10 @@ ohmyzsh: ## Install zsh,oh-my-zsh & plugins
 	for plug in "${zsh_plugins[@]}"; do
 		git clone ${plug}
 	done
+
+
+latex: # Istall Latex & Pandoc
+	sudo apt-get install -y texlive pandoc
 
 test: # Test Makefile with Docker
 	docker build -t dotfiles .
