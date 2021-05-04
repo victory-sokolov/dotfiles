@@ -69,6 +69,7 @@ alias msql="sudo /etc/init.d/mysql" # path to mysql executable
 # Network
 alias my-ip="curl https://ipinfo.io/ip"
 alias localip="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
+alias ports='sudo lsof -i -P -n | grep LISTEN'
 
 # Git
 alias git-https="git remote set-url origin https://github.com/$(git remote get-url origin | sed 's/https:\/\/github.com\///' | sed 's/git@github.com://')"
@@ -80,7 +81,7 @@ alias gri="git ls-files --ignored --exclude-standart | xargs -0 git rm -r"
 alias python='python3'
 alias jn="jupyter notebook"
 alias pip="pip3"
-alias py-server="python -m http.server"
+alias server="python -m http.server"
 # find all virtual envs in system
 alias venvs="find -O3 $HOME -name '*activate' -type f"
 
