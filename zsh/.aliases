@@ -28,6 +28,9 @@ alias yt-mp3="youtube-dl -x --audio-format mp3 '$1'"
 alias weather="curl -s 'wttr.in/$1?m1ī'"
 alias fontlist="fc-list | cut -d: -f1 | less"
 
+# Print each PATH entry on a separate line
+alias path='echo -e ${PATH//:/\\n}'
+
 # Directory traversal
 alias ..="cd .."
 alias ...="cd ../.."
