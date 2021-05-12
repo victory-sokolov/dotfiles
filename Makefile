@@ -352,12 +352,16 @@ nginx: ## Install nginx
 node: ## Install NodeJS & packages
 	curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
 	sudo apt-get install -y nodejs
-	sudo npm install npm@latest -g
+	
+	# NPM
+	npm install npm@latest -g
+	mkdir ~/.npm-packages
+	npm config set prefix ~/.npm-packages
 
 	# Yarn
 	curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 	echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-	sudo apt update && sudo apt install yarn
+	sudo apt update && apt-get install yarn
 
 	# node version manager
 	curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
