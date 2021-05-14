@@ -7,16 +7,17 @@
 
 [alias]
 
-    gc='git commit -m'
-    gca='git commit -a'
-    gco='git checkout'
-    gcb='git copy-branch-name'
-    gb='git branch'
-    gs='git status'
-    gac='git add -A && git commit -m'
-    ge='git-edit-new'
-    gpom="git push origin master"
-    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+		a = 'add'		
+		gc = 'git commit -m'
+    gca = 'git commit -a'
+    gco = 'git checkout'
+    gcb = 'git copy-branch-name'
+    gb = 'git branch'
+    gs = 'git status'
+    gac = 'git add -A && git commit -m'
+    ge = 'git-edit-new'
+    gpom = 'git push origin master'
+    lg = log --color --graph --stat --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 
 
 [url "ssh://git@github.com/"]
