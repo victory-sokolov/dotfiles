@@ -13,7 +13,7 @@ alias q="exit"
 alias ctrash="sudo rm -rf ~/.local/share/Trash/files/*"
 alias cp="cp -i" # copy file interactive
 alias mv="mv -i" # move file interactive
-alias rm='trash' # remove file interactive
+alias rm='rm -i' # remove file interactive
 alias version="lsb_release -r -s" # linux version
 alias now="date '+%Y-%m-%d'"
 alias untar="tar xvf"
@@ -50,7 +50,7 @@ alias dirs="dirs -v"
 alias zshrc="vim ~/.zshrc"
 alias bashrc="vim ~/.bashrc"
 alias vimrc="vim ~/.vimrc"
-alias viali="vim ~/dotfiles/zsh/.aliases"
+alias valias="vim ~/dotfiles/zsh/.aliases"
 alias reload="source ~/.zshrc"
 alias v="vim"
 
