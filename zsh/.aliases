@@ -31,6 +31,9 @@ alias fontlist="fc-list | cut -d: -f1 | less"
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
 
+# Get week number of current year
+alias week='date +%V'
+
 # Directory traversal
 alias ..="cd .."
 alias ...="cd ../.."
