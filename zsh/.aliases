@@ -94,6 +94,7 @@ alias dm="docker-machine"
 
 # Nodejs
 alias npm-restart="sudo rm -rf node_modules && npm install && npm start"
+alias npm-globals='npm list -g --depth=0'
 
 # Yarn
 alias y='yarn'
