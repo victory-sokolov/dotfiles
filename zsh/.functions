@@ -106,11 +106,18 @@ function cview() # Read csv file
 	csvtool readable "$1" | view -
 }
 
+
 function short() # Shorten url
 {
    url=$1
    curl http://tinyurl.com/api-create.php\?url\=$url
 
+}
+
+
+function kport() # Kill port
+{
+	kill $(lsof -t -i:$1)
 }
 
 function ghexport() # Download single folder from github
