@@ -13,6 +13,7 @@ init: ## Symlink files
 
 install: clitools docker mysql nginx node php python ruby code zsh init
 
+
 android: ## Install Android sdk and tools
 	SDK_VERSION=29
 
@@ -256,7 +257,7 @@ php: ## Install PHP7.4/Symfony, Apache
 	curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer -y
 
 	# XDEBUG
-	sudo apt-get install php-xdebug -y
+	sudo apt-get install php7.4-xdebug -y
 
 	# Symfony
 	wget https://get.symfony.com/cli/installer -O - | bash
