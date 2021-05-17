@@ -103,7 +103,8 @@ clitools: ## Install cli tools
 	   pwgen \
 	   preload \
 	   powerline \
-	   openssh-server \
+	   ripgrep \
+		 openssh-server \
 	   openssh-client \
 	   subversion \
 	   software-properties-common \
