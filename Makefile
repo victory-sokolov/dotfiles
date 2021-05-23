@@ -277,6 +277,7 @@ python3: ## Install Python,Poetry & Dependencies
 	pip3 install \
 		powerline-status \
 		virtualenv \
+		bpython \
 		--upgrade setuptools
 
 	# Poetry dependency managment
