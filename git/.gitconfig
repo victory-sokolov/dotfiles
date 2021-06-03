@@ -5,6 +5,12 @@
 [core]
   editor = vim
 
+[help]
+	autocorrect = 20
+
+[help]
+	autocorrect = 20
+
 [alias]
 
 		a = 'add'		
