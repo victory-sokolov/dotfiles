@@ -73,6 +73,7 @@ plugins=(
 	npm
 	extract
 	sudo
+	react-native
 	#zsh-nvm
 	web-search
 	you-should-use
