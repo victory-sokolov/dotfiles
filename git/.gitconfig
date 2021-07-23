@@ -6,15 +6,13 @@
   editor = vim
 
 [help]
-	autocorrect = 20
+  autocorrect = 20
 
-[help]
-	autocorrect = 20
+
 
 [alias]
-
-		a = 'add'		
-		gc = 'git commit -m'
+    a = 'add'		
+    gc = 'git commit -m'
     gca = 'git commit -a'
     gco = 'git checkout'
     gcb = 'git copy-branch-name'
@@ -30,7 +28,7 @@
     insteadOf = "gh:"
     pushInsteadOf = "github:"
     pushInsteadOf = "git://github.com/"
-		insteadOf = "https://github.com/"
+    insteadOf = "https://github.com/"
 
 [url "https://gist.github.com/"]
     insteadOf = gist:
