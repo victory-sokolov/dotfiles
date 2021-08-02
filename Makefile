@@ -115,6 +115,9 @@ clitools: ## Install cli tools
 	   xbindkeys \
 	   xclip
 
+	# install bat cat replacment with syntax hightlight
+	wget https://github.com/sharkdp/bat/releases/download/v0.18.2/bat-musl_0.18.2_amd64.deb
+	sudo dpkg -i bat-musl_0.18.2_amd64.deb
 
 docker: ## Docker
 	sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
