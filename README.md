@@ -12,9 +12,16 @@ I was bored to installing all the things manually all over again, so i decided t
 
 ### Contents
 
-* Installation
+* [Installation](#installation)
 * Aliases & Functions
 * ZSH 
 * CLI Tools
 * VIM
 * VS Code
+
+## Installation
+
+1. Clone repo `git clone https://github.com/victory-sokolov/dotfiles` 
+2. Installation of environment is defined in Makefile, execute `make` to see available commands
+
+![Make command](../images/Screenshot_1.png)
