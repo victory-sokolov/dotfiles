@@ -73,7 +73,9 @@ plugins=(
 	npm
 	extract
 	sudo
+	docker
 	react-native
+	kubectl
 	#zsh-nvm
 	web-search
 	you-should-use
@@ -95,9 +97,6 @@ else
 	export EDITOR='code'
 fi
 
-# Makefile autocomplete
-complete -W "\`grep -oE '^[a-zA-Z0-9_.-]+:([^=]|$)' ?akefile | sed 's/[^a-zA-Z0-9_.-]*$//'\`" make
-
 # NPM
 NPM_PACKAGES="${HOME}/.npm-packages"
 export PATH="$PATH:$NPM_PACKAGES/bin"
@@ -109,6 +108,9 @@ export NVM_DIR="$HOME/.nvm"
 
 . /usr/share/autojump/autojump.sh
 
+# docker
+zstyle ':completion:*:*:docker:*' option-stacking yes
+zstyle ':completion:*:*:docker-*:*' option-stacking yes
 
 source $ZSH/oh-my-zsh.sh
 source $ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
