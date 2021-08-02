@@ -13,8 +13,7 @@ init: ## Symlink files
 
 install: clitools docker mysql nginx node php python ruby code zsh init
 
-
-android: ## Install Android sdk and tools
+android: ## Android sdk and tools
 	SDK_VERSION=29
 
 	wget https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip -P /home/${USER}
@@ -36,8 +35,7 @@ android: ## Install Android sdk and tools
 
 
 linux: ## Install base programms: flameshot, albert, spotify, dropbox, vlc, chrome, postman and update settings
-	# Settings
-
+	# Installation ment only for Linux distros
 	# Use local time
 	timedatectl set-local-rtc 1 --adjust-system-clock
 	# Show battery percentage
@@ -104,7 +102,7 @@ clitools: ## Install cli tools
 	   preload \
 	   powerline \
 	   ripgrep \
-		 openssh-server \
+	   openssh-server \
 	   openssh-client \
 	   subversion \
 	   software-properties-common \
@@ -118,8 +116,7 @@ clitools: ## Install cli tools
 	   xclip
 
 
-docker: ## Install Docker
-
+docker: ## Docker
 	sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
 	curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 	sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable" -y
@@ -143,7 +140,7 @@ docker: ## Install Docker
 	sudo chmod +x /usr/local/bin/docker-machine
 
 
-mysql: ## Install Mysql database
+mysql: ## Mysql
 	sudo apt-get update -y
 	sudo apt install mysql-server -y
 	sudo apt install mycli
@@ -156,7 +153,7 @@ mysql: ## Install Mysql database
 	sudo mysql -e "FLUSH PRIVILEGES";
 	sudo /etc/init.d/mysql stop
 
-postgresql: ## Install PosgreSQL
+postgresql: ## PosgreSQL
 	sudo apt-get update && sudo apt-get upgrade -y
 	sudo apt-get install postgresql postgresql-contrib
 	# Add the GPG key
@@ -201,11 +198,11 @@ ruby: ## Install ruby and gems
 		sudo gem install ${gem} -y
 	done
 
-java: ## Install Java JDK8, Intellij IDEA community
+java: ## Java JDK8
 	sudo apt-get update && apt-get install openjdk-8-jdk -y
 	sudo apt-get install maven -y
 
-go: ## Install Go lang
+go: ## Go lang
 	sudo apt-get install golang-go
 
 	export GOPATH="$HOME/Go"
@@ -218,11 +215,11 @@ ghcli: ## GitHub CLI
 	sudo apt update
 	sudo apt install gh
 
-rust:
+rust: ## Rust
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 	echo -e "source ${HOME}/.cargo/env" >> ${HOME}/.zshrc
 
-php: ## Install PHP7.4/Symfony, Apache
+php: ## PHP7.4/Symfony, Apache
 	sudo apt-get install apache2 -y
 
 	# PHP7 Install
@@ -264,7 +261,7 @@ php: ## Install PHP7.4/Symfony, Apache
 	wget https://get.symfony.com/cli/installer -O - | bash
 
 
-python3: ## Install Python,Poetry & Dependencies
+python3: ## Python,Poetry & Dependencies
 	sudo apt-get install -y \
 		curl \
 		python3-pip \
@@ -344,18 +341,18 @@ opencv: ## Build OpenCV from source
 	 sudo cp /usr/local/lib/pkgconfig/opencv4.pc  /usr/lib/x86_64-linux-gnu/pkgconfig/opencv.pc
 
 
-code: ## Install VS Code editor
+code: ## VS Code
 	sudo snap install code --classic
 	code --install-extension shan.code-settings-sync
 
-nginx: ## Install nginx
+nginx: ## Nginx
 	sudo add-apt-repository ppa:nginx/stable -y
 	sudo apt-get install nginx -y
 
-node: ## Install NodeJS & packages
+node: ## NodeJS & packages
 	curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
 	sudo apt-get install -y nodejs
-	
+
 	# NPM
 	npm install npm@latest -g
 	mkdir ~/.npm-packages
@@ -416,10 +413,10 @@ ohmyzsh: ## Install zsh,oh-my-zsh & plugins
 	done
 
 
-latex: # Istall Latex & Pandoc
+latex: ## Install Latex & Pandoc
 	sudo apt-get install -y texlive pandoc
 
-test: # Test Makefile with Docker
+test: ## Test Makefile with Docker
 	docker build -t dotfiles .
 	docker run -it --name dotfiles -d dotfiles /bin/bash; \
 	docker exec -it dotfiles sh -c "cd dotfiles; make python3"
