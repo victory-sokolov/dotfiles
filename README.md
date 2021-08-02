@@ -1,27 +1,59 @@
 
 # My DotFiles for Linux
 
-This is my personalised Linux dotfiles.
-This set of scripts helps to set up fresh installed Ubuntu based distribution.
-It includes predefined aliases, functions, script for installation various CLI utilities and software.
+![](https://i.imgur.com/yuX27Pt.png)
 
-Can't count how many time i had to reinstall Linux system :)
-I was bored to installing all the things manually all over again, so i decided to make a shell script that could set-up system using few commands.
+This is my personalised Linux/WSL2 dotfiles.
+Configurations includes predefined aliases, functions, vim settings, script for installation various CLI utilities and software.
 
-#### Linux Distribution: Ubuntu-Mate 19.04
+Currently using **Windows 10 + WSL2**
 
 ### Contents
 
 * [Installation](#installation)
-* Aliases & Functions
-* ZSH 
-* CLI Tools
-* VIM
-* VS Code
-
+* [Aliases and functions](#aliases-and-functions)
+* [ZSH](#zsh-settings) 
+* [VIM](#vim)
+* [VSCode](#vs-code)
 ## Installation
-
+---
 1. Clone repo `git clone https://github.com/victory-sokolov/dotfiles` 
-2. Installation of environment is defined in Makefile, execute `make` to see available commands
+2. Installation of environment is defined in Makefile, execute `make` to see available commands. Check `make install` command which will set-up base development environment and soft link `dotfiles` like `aliases`, `function` and etc.
 
 ![](https://i.imgur.com/pwsL7mm.png)
+
+## Aliases and functions
+---
+You can list all available custom aliases and functions.
+* aliases - `lalias`
+* functions - `fhelp`
+
+## ZSH
+---
+List of ZSH plugins i use
+
+* [git](https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/git) - Git aliases
+* [extract](https://github.com/thetic/extract) - extracts all types of archives
+* [sudo](https://github.com/hcgraf/zsh-sudo) - press ESC twice to prepend command with sudo
+* [npm](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/npm) - npm aliases
+* [react-native](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/react-native) ReactNative aliases
+* [web-search](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/web-search)  - aliases for searching with Google, Wiki, Bing, YouTube
+* [you-should-use](https://github.com/MichaelAquilina/zsh-you-should-use) - reminds you to use defined alises
+* [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) - suggests commands as you type
+*  [zsh-completions](https://github.com/zsh-users/zsh-completions) - zsh autocomplete
+*  [z](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/z) -  tracks your most visited directories and allows you to access them with few keystrokes
+*  [kubectl](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/kubectl) Kubernetes aliases
+*  [encode64](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/encode64) base64 encode/decoder
+*  [docker](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/docker) docker autocompletion
+## VIM
+---
+NeoVim + NerdTree
+
+![](https://i.imgur.com/E5QxMMf.png)
+
+## VS Code
+---
+
+I'm using default VS code Theme as well i like [Cobalt2](https://marketplace.visualstudio.com/items?itemName=wesbos.theme-cobalt2) theme
+
+[Extensions](vscode/vscode-extensions.txt) that i'm using
