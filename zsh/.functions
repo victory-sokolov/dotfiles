@@ -23,7 +23,8 @@ function mk() # Create a new directory and enter it
   cd "$@"
 }
 
-function man() {  # Shows pretty `man` page.
+function man() # Shows pretty man page
+{
   env \
     LESS_TERMCAP_mb=$(printf "\e[1;31m") \
     LESS_TERMCAP_md=$(printf "\e[1;31m") \
@@ -70,20 +71,6 @@ function targz() # Create a new directory and enter it
 	echo "${tmpFile}.gz ($((zippedSize / 1000)) kB) created successfully.";
 }
 
-function fs() # Create a new directory and enter it
-{
-	if du -b /dev/null > /dev/null 2>&1; then
-		local arg=-sbh;
-	else
-		local arg=-sh;
-	fi
-	if [[ -n "$@" ]]; then
-		du $arg -- "$@";
-	else
-		du $arg .[^.]* ./*;
-	fi;
-}
-
 # Normalize `open` across Linux, macOS, and Windows.
 # This is needed to make the `o` function (see below) cross-platform.
 if [ ! $(uname -s) = 'Darwin' ]; then
@@ -111,9 +98,7 @@ function short() # Shorten url
 {
    url=$1
    curl http://tinyurl.com/api-create.php\?url\=$url
-
 }
-
 
 function kport() # Kill port
 {
@@ -163,7 +148,8 @@ function clean_comments # remove comments (#, //) and empty lines
 	sed -i.tmp "/^s*[#;//]/d;/^$/d" $1
 }
 
-function ssh-key() { # generate ssh key with specific name
+function ssh-key() # generate ssh key with specific name
+{
     name="$@"
     ssh-keygen -f ~/.ssh/$name -q -N ""
     eval "$(ssh-agent -s)"
@@ -174,8 +160,8 @@ function ssh-key() { # generate ssh key with specific name
 
 
 # Python
-
-function server {
+function server() # local python server
+{
    python -m http.server $1
 }
 
@@ -191,10 +177,8 @@ function mkenv() # create python virtual environment
 }
 
 # ReactNative
-
 function bapk() # build android apk (Must run inside react-native project)
 {
-
     apk_path="./android/app/build/outputs/apk/debug"
 
 	if [ ! -f package.json ]; then
@@ -230,8 +214,6 @@ function rna() # clean cache & run react-native android simulator
     cd .. && react-native run-android
 }
 
-
-
 # Database related functions
 
 # Postgres
@@ -243,22 +225,49 @@ function psql-create-db() # Create Postgres database
     echo "Database $db_name successfully created!"
 }
 
-
-# Node
-function clone() {
+function clone() # Clone repo and install dependencies
+{
   git clone $1
   cd $(basename $1)
+
 	if test -f "./package.json"; then
     echo "Installing dependencies"
     npm install
   fi
+
+	if test -f "./pyproject.toml"; then
+		echo "Installing poetry dependencies"
+		poetry install
+	elif test -f "./requirements.txt"; then
+		# create environment
+
+		pip install -r requirements.txt
+	fi
+
 }
 
-
-function removebg() { # Remove background from the image
+function removebg() # Remove background from the image
+{
 
 	curl -H "X-API-Key: $REMOVEBG_KEY" \
        -F "image_file=@$1" \
        -F "size=auto" \
        -f https://api.remove.bg/v1.0/removebg -o no-bg.png
+}
+
+# Run before each cli commands
+preexec() {
+
+	if [[ $1 == 'ls' ]]; then
+		#printf '%s ' 'erase all directories? (y/n)'
+		#read ans
+		#echo $ans
+		echo $1
+		case $input in
+    	[yY][eE][sS]|[yY])
+ 		echo "Yes"
+ 		;;
+		esac
+
+	fi
 }
