@@ -16,20 +16,20 @@ Currently using **Windows 10 + WSL2**
 * [VIM](#vim)
 * [VSCode](#vs-code)
 ## Installation
----
+
 1. Clone repo `git clone https://github.com/victory-sokolov/dotfiles` 
 2. Installation of environment is defined in Makefile, execute `make` to see available commands. Check `make install` command which will set-up base development environment and soft link `dotfiles` like `aliases`, `function` and etc.
 
 ![](https://i.imgur.com/pwsL7mm.png)
 
 ## Aliases and functions
----
+
 You can list all available custom aliases and functions.
 * aliases - `lalias`
 * functions - `fhelp`
 
 ## ZSH
----
+
 List of ZSH plugins i use
 
 * [git](https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/git) - Git aliases
@@ -46,13 +46,12 @@ List of ZSH plugins i use
 *  [encode64](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/encode64) base64 encode/decoder
 *  [docker](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/docker) docker autocompletion
 ## VIM
----
+
 NeoVim + NerdTree
 
 ![](https://i.imgur.com/E5QxMMf.png)
 
 ## VS Code
----
 
 I'm using default VS code Theme as well i like [Cobalt2](https://marketplace.visualstudio.com/items?itemName=wesbos.theme-cobalt2) theme
 
