@@ -105,14 +105,6 @@ function kport() # Kill port
 	kill $(lsof -t -i:$1)
 }
 
-function ghexport() # Download single folder from github
-{
-	github_link=$1
-	link="${github_link/tree\/main/trunk}"
-	svn export ${link}
-}
-
-
 # from alex sexton   gist.github.com/SlexAxton/4989674
 function gifify() # Create a new directory and enter it
 {
@@ -129,6 +121,15 @@ function gifify() # Create a new directory and enter it
   fi
 }
 
+# Git functions
+
+function ghexport() # Download single folder from github
+{
+	github_link=$1
+	link="${github_link/tree\/main/trunk}"
+	svn export ${link}
+}
+
 function gacp() # Git: add all, commit and push. [-m "comment"]
 {
 	git add .
@@ -142,6 +143,17 @@ function ggs() # push & commit with message `update`
     git commit -m 'update'
     git push
 }
+
+function git-https # Git: Http to Https
+{
+	git remote set-url origin https://github.com/$(git remote get-url origin | sed 's/https:\/\/github.com\///' | sed 's/git@github.com://')
+}
+
+function git-ssh # Git: Https to SSH
+{
+	git remote set-url origin git@github.com:$(git remote get-url origin | sed 's/https:\/\/github.com\///' | sed 's/git@github.com://')
+}
+
 
 function clean_comments # remove comments (#, //) and empty lines
 {

@@ -33,7 +33,7 @@ alias uuid='uuidgen'
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
 
-# Get week number of current year
+# Get week number of the current year
 alias week='date +%V'
 
 # Directory traversal
@@ -77,9 +77,7 @@ alias localip="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo
 alias ports='sudo lsof -i -P -n | grep LISTEN'
 
 # Git
-alias git-https="git remote set-url origin https://github.com/$(git remote get-url origin | sed 's/https:\/\/github.com\///' | sed 's/git@github.com://')"
-alias git-ssh="git remote set-url origin git@github.com:$(git remote get-url origin | sed 's/https:\/\/github.com\///' | sed 's/git@github.com://')"
-# remove file from git and frm the history
+# remove the file from git and from the history
 alias gri="git ls-files --ignored --exclude-standart | xargs -0 git rm -r"
 
 # Python
