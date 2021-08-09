@@ -86,7 +86,8 @@ clitools: ## Install cli tools
 	   dos2unix \
 	   fonts-powerline \
 	   silversearcher-ag \
-	   imagemagick \
+	   shellcheck \ 
+		 imagemagick \
 	   jq \
 	   libtool\
 	   libbz2-dev \
