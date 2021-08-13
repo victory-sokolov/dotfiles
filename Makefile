@@ -85,7 +85,8 @@ clitools: ## Install cli tools
 	   curl \
 	   dos2unix \
 	   fonts-powerline \
-	   silversearcher-ag \
+	   ffmpeg \
+		 silversearcher-ag \
 	   shellcheck \ 
 		 imagemagick \
 	   jq \
