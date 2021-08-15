@@ -155,6 +155,14 @@ function git-ssh # Git: Https to SSH
 }
 
 
+function ignorefile() # Get .gitignore file for specific lang
+{
+	lang="${@}"
+	wget "https://raw.githubusercontent.com/github/gitignore/master/${lang}.gitignore"
+	mv "${lang}.gitignore" .gitignore
+}
+
+
 function clean_comments # remove comments (#, //) and empty lines
 {
 	sed -i.tmp "/^s*[#;//]/d;/^$/d" $1
