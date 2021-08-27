@@ -79,6 +79,7 @@ alias ports='sudo lsof -i -P -n | grep LISTEN'
 # Git
 # remove the file from git and from the history
 alias gri="git ls-files --ignored --exclude-standart | xargs -0 git rm -r"
+alias gopen="open https://github.$(git config remote.origin.url | cut -f2 -d. | tr ':' /)" 
 
 # Python
 alias python='python3'
