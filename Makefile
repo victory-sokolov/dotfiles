@@ -167,6 +167,15 @@ postgresql: ## PosgreSQL
 	sudo apt-get update
 
 
+mongodb: ## MongoDB
+	wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | sudo apt-key add -
+	echo "deb https://repo.mongodb.org/apt/ubuntu $(lsb_release -sc)/mongodb-org/5.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-5.0.list
+
+	sudo apt update -y
+	sudo apt install -y mongodb-org
+	sudo systemctl enable --now mongod
+
+
 tesseract: ## Install Tesseract binaries
 	# installation: https://github.com/tesseract-ocr/tesseract/wiki/Compiling-%E2%80%93-GitInstallation
 	sudo apt-get update -y
