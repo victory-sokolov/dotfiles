@@ -9,10 +9,10 @@
   autocorrect = 20
 
 
-
 [alias]
-    a = 'add'		
-    gc = 'git commit -m'
+		a = 'add'		
+		br = branch		
+		gc = 'git commit -m'
     gca = 'git commit -a'
     gco = 'git checkout'
     gcb = 'git copy-branch-name'
@@ -22,7 +22,7 @@
     ge = 'git-edit-new'
     gpom = 'git push origin master'
     lg = log --color --graph --stat --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-
+		current = rev-parse --abbrev-ref HEAD
 
 [url "ssh://git@github.com/"]
     insteadOf = "gh:"
