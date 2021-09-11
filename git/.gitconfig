@@ -23,6 +23,8 @@
     gpom = 'git push origin master'
     lg = log --color --graph --stat --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 		current = rev-parse --abbrev-ref HEAD
+		branchcleanup = !git remote prune origin
+
 
 [url "ssh://git@github.com/"]
     insteadOf = "gh:"
