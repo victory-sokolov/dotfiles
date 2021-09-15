@@ -126,7 +126,8 @@ function gifify() # Create a new directory and enter it
 function ghexport() # Download single folder from github
 {
 	github_link=$1
-	link="${github_link/tree\/main/trunk}"
+	remove_path="/tree/master"
+  link="${github_link/$remove_path/trunk/}"		
 	svn export ${link}
 }
 
