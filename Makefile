@@ -86,6 +86,7 @@ clitools: ## Install cli tools
 	   dos2unix \
 	   fonts-powerline \
 	   ffmpeg \
+		 fdupes \ # search dublicate files
 		 silversearcher-ag \
 	   shellcheck \ 
 		 imagemagick \
