@@ -11,20 +11,23 @@
 
 [alias]
 		a = 'add'		
+		amend = commit --amend -m
 		br = branch		
-		gc = 'git commit -m'
-    gca = 'git commit -a'
-    gco = 'git checkout'
-    gcb = 'git copy-branch-name'
-    gb = 'git branch'
-    gs = 'git status'
+		gc = 'commit -m'
+    gca = 'commit -a'
+    co = 'checkout'
+    gcb = 'copy-branch-name'
+    br = 'branch'
+    st = 'status'
     gac = 'git add -A && git commit -m'
     ge = 'git-edit-new'
     gpom = 'git push origin master'
     lg = log --color --graph --stat --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 		current = rev-parse --abbrev-ref HEAD
 		branchcleanup = !git remote prune origin
-
+		undo = reset HEAD~1
+		pop = stash pop
+		apply = stash apply
 
 [url "ssh://git@github.com/"]
     insteadOf = "gh:"
