@@ -88,7 +88,7 @@ clitools: ## Install cli tools
 	   ffmpeg \
 		 fdupes \ # search dublicate files
 		 silversearcher-ag \
-	   shellcheck \ 
+	   shellcheck \
 		 imagemagick \
 	   jq \
 	   libtool\
@@ -216,6 +216,12 @@ ruby: ## Install ruby and gems
 java: ## Java JDK8
 	sudo apt-get update && apt-get install openjdk-8-jdk -y
 	sudo apt-get install maven -y
+
+dotnet ## C#, Net core
+	sudo apt-get install -y \
+		dotnet-sdk-5.0 \
+		dotnet-runtime-5.0
+
 
 go: ## Go lang
 	sudo apt-get install golang-go
