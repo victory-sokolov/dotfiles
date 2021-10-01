@@ -29,7 +29,7 @@ alias weather="curl -s 'wttr.in/$1?m1ī'"
 alias fontlist="fc-list | cut -d: -f1 | less"
 
 # Generate uuid
-alias uuid='uuidgen'
+alias uuid='uuidgen | pbcopy && pbpaste && echo'
 
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
@@ -93,6 +93,8 @@ alias venvs="find -O3 $HOME -name '*activate' -type f"
 # Docker
 alias dc="docker-compose"
 alias dm="docker-machine"
+alias dstop-all='docker stop $(dpaq)'
+alias dclean='dstop-all && drm-all && drmi-all'
 
 # Nodejs
 alias npm-restart="sudo rm -rf node_modules && npm install && npm start"
