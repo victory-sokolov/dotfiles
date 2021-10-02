@@ -21,6 +21,7 @@ Plug 'drewtempelmeyer/palenight.vim'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'vim-syntastic/syntastic'
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 
