@@ -127,7 +127,7 @@ function ghexport() # Download single folder from github
 {
 	github_link=$1
 	remove_path="/tree/master"
-  link="${github_link/$remove_path/trunk/}"		
+  link="${github_link/$remove_path/trunk/}"
 	svn export ${link}
 }
 
@@ -248,28 +248,33 @@ function psql-create-db() # Create Postgres database
 
 function clone() # Clone repo and install dependencies
 {
-  git clone $1
-  cd $(basename $1)
+	git clone $1
+	cd $(basename $1)
 
 	if test -f "./package.json"; then
-    echo "Installing dependencies"
-    npm install
-  fi
-
-	if test -f "./pyproject.toml"; then
-		echo "Installing poetry dependencies"
+		echo "Installing NPM dependencies"
+		npm install
+		exit 0
+	elif test -f "./pyproject.toml"; then
+		echo "Installing Poetry dependencies"
 		poetry install
+		exit 0
 	elif test -f "./requirements.txt"; then
-		# create environment
-
+		python3 -m venv .
+		source venv/bin/activate
 		pip install -r requirements.txt
+		exit 0
+	fi
+	elif test -f "./composer.json"; then
+		echo "Installing composer dependencies"
+		composer install
+		exit 0
 	fi
 
 }
 
 function removebg() # Remove background from the image
 {
-
 	curl -H "X-API-Key: $REMOVEBG_KEY" \
        -F "image_file=@$1" \
        -F "size=auto" \
@@ -278,7 +283,6 @@ function removebg() # Remove background from the image
 
 # Run before each cli commands
 preexec() {
-
 	if [[ $1 == 'ls' ]]; then
 		#printf '%s ' 'erase all directories? (y/n)'
 		#read ans
