@@ -264,7 +264,6 @@ function clone() # Clone repo and install dependencies
 		source venv/bin/activate
 		pip install -r requirements.txt
 		exit 0
-	fi
 	elif test -f "./composer.json"; then
 		echo "Installing composer dependencies"
 		composer install
