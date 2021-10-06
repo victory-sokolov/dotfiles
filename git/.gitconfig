@@ -10,7 +10,7 @@
 
 
 [alias]
-		a = 'add'		
+		a = add		
 		amend = commit --amend -m
 		br = branch		
 		gc = 'commit -m'
@@ -28,6 +28,7 @@
 		undo = reset HEAD~1
 		pop = stash pop
 		apply = stash apply
+		sl = stash list --pretty=format:\"%C(bold red)%gd%C(dim yellow)%C(reset) %<(70,trunc)%s %C(green)(%ad)\"
 
 [url "ssh://git@github.com/"]
     insteadOf = "gh:"
