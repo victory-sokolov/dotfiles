@@ -163,6 +163,16 @@ function ignorefile() # Get .gitignore file for specific lang
 	mv "${lang}.gitignore" .gitignore
 }
 
+isup() # Check if URL is up
+{
+	local uri=$1
+
+	if curl -s --head  --request GET "$uri" | grep "200 OK" > /dev/null ; then
+		notify-send --urgency=critical "$uri is down"
+	else
+		notify-send --urgency=low "$uri is up"
+	fi
+}
 
 function clean_comments # remove comments (#, //) and empty lines
 {
