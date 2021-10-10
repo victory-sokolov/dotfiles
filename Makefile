@@ -99,7 +99,9 @@ clitools: ## Install cli tools
 	   neovim \
 	   neofetch \
 	   net-tools \
-	   pkg-config \
+	   # navigable overview of file space
+		 ncdu \
+		 pkg-config \
 	   pdftk \
 	   pwgen \
 	   preload \
