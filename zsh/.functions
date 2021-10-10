@@ -23,6 +23,36 @@ function mk() # Create a new directory and enter it
   cd "$@"
 }
 
+function cdls() # Show contents of the directory after changing to it 
+{
+    builtin cd "$1"
+    ls -ACF
+}
+
+function backup() # Backup files and folders
+{
+	$FILE=$1
+
+	$DIRECTORY="$HOME/backup"
+	# check if backup folder exists
+	if [ ! -d "$DIRECTORY" ]; then
+		mkdir $DIRECTORY
+	fi
+
+	# check if passed argument is file or directory
+	if [[ -d $ ]]; then
+		echo "$FILE is a directory"
+	elif [[ -f $FILE ]]; then
+		echo "$FILE is a file"
+	else
+		echo "$PASSED is not valid"
+		exit 1
+	fi
+
+	# backup_name_template=
+
+}
+
 function man() # Shows pretty man page
 {
   env \
