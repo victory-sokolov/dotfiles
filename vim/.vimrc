@@ -11,6 +11,8 @@ Plug 'scrooloose/nerdtree'
 Plug 'mattn/emmet-vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'HerringtonDarkholme/yats.vim' " TypeScript syntax
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'zchee/deoplete-jedi'
 Plug 'FootSoft/vim-argwrap' " breaks func arguments each on new line
@@ -22,6 +24,7 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'vim-syntastic/syntastic'
 Plug 'ryanoasis/vim-devicons'
+Plug 'jiangmiao/auto-pairs'
 call plug#end()
 
 
@@ -52,8 +55,8 @@ set smartcase
 set noswapfile
 set nobackup
 
-set ai # auto indent
-set si # smart indent
+set ai " auto indent
+set si " smart indent
 
 " disable bell
 set visualbell
