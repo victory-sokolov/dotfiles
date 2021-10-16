@@ -71,6 +71,7 @@ alias ytmp3="youtube-dl --extract-audio --audio-format mp3" # youtube video to m
 alias hosts="sudo vim /etc/hosts" # vhosts
 alias php-server="php -S localhost:8000 && xdg-open http://localhost:8000 &" # build in php server
 alias run-apache="sudo service mysql start && sudo service apache2 start"
+alias composer-flush="rm -rf vendor/ composer.lock && composer i"
 
 # Mysql
 alias mysqldump="mysqldump -u [uname] -p[pass] [dbname] | gzip -9 > [db.sql.gz]" # dump mysql db
@@ -86,6 +87,7 @@ alias ports='sudo lsof -i -P -n | grep LISTEN'
 # remove the file from git and from the history
 alias gri="git ls-files --ignored --exclude-standart | xargs -0 git rm -r"
 alias gopen="open https://github.$(git config remote.origin.url | cut -f2 -d. | tr ':' /)"
+alias amend="git add . && git commit --amend --no-edit"
 
 # Python
 alias python='python3'
@@ -101,8 +103,8 @@ alias dm="docker-machine"
 alias dstop-all='docker stop $(dpaq)'
 alias dclean='dstop-all && drm-all && drmi-all'
 
-# Nodejs
-alias npm-restart="sudo rm -rf node_modules && npm install && npm start"
+# NPM
+alias npm-flush="sudo rm -rf node_modules/ package.lock && npm i && npm start"
 alias npm-globals='npm list -g --depth=0'
 
 # Yarn
