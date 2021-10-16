@@ -52,6 +52,9 @@ set smartcase
 set noswapfile
 set nobackup
 
+set ai # auto indent
+set si # smart indent
+
 " disable bell
 set visualbell
 set t_vb=
