@@ -135,6 +135,16 @@ function kport() # Kill port
 	kill $(lsof -t -i:$1)
 }
 
+function lowerDir # Lower case every file in current directory
+{
+	for i in *; do mv $i ${(L)i}; done
+}
+
+function findEmpty # Find empty files and directories in current directory
+{
+	find . -type f -exec bash -c 'if [ `cat "{}" |wc -w` -eq 0 ]; then echo "file - {}";fi' \; -or -empty -exec bash -c "echo dir - {}" \;
+}
+
 # from alex sexton   gist.github.com/SlexAxton/4989674
 function gifify() # Create a new directory and enter it
 {
