@@ -320,18 +320,33 @@ function removebg() # Remove background from the image
        -f https://api.remove.bg/v1.0/removebg -o no-bg.png
 }
 
-# Run before each cli commands
-preexec() {
-	if [[ $1 == 'ls' ]]; then
-		#printf '%s ' 'erase all directories? (y/n)'
-		#read ans
-		#echo $ans
-		echo $1
-		case $input in
-    	[yY][eE][sS]|[yY])
- 		echo "Yes"
- 		;;
-		esac
 
-	fi
+function bash-file() # Create new shell file 
+{
+  FILE_PATH=$1
+  mkdir -p -- $(dirname "$FILE_PATH") && touch -- "$FILE_PATH"
+  echo '#!/usr/bin/env bash' >> "$FILE_PATH"
+  echo '' >> "$FILE_PATH"
+  chmod +x "$FILE_PATH"
 }
+
+function repl() # Launch Repl for specified language
+{
+	lang=$1
+  	
+	if [ $lang = "python" ]; then
+		lang="python3"
+	elif [ $lang = "node" ]; then
+		lang="nodejs"
+	elif [ $lang = "java" ]; then
+		lang="java10"
+	elif [ $lang = "c#" ]; then
+		lang="csharp"
+	fi
+	
+	python -m webbrowser "https://replit.com/languages/$lang" &
+
+}
+
+
+
