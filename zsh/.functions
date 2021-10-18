@@ -247,6 +247,11 @@ function mkenv() # create python virtual environment
     source "$1"/bin/activate
 }
 
+function token # generate secret, token
+{
+	python -c 'import secrets; print(secrets.token_urlsafe(16))'
+}
+
 # ReactNative
 function bapk() # build android apk (Must run inside react-native project)
 {
