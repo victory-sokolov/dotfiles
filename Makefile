@@ -298,6 +298,8 @@ python3: ## Python,Poetry & Dependencies
 		powerline-status \
 		virtualenv \
 		bpython \
+		icecream \
+		pylint \
 		--upgrade setuptools
 
 	# Poetry dependency managment
