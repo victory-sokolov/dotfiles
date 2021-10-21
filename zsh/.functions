@@ -364,4 +364,13 @@ function repl() # Launch Repl for specified language
 }
 
 
+function lorem () # Generate Loremipsum text 
+{
+	
+	if [ "${1}" = "" ] || [ "${2}" = "" ]; then
+		echo "Usage: loremipsum [paragraphs, sentences] [integer]"
+	else
+		curl -s http://metaphorpsum.com/"${1}"/"${2}" && printf "\n"
+	fi
+}
 
