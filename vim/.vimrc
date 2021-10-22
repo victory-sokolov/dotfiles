@@ -54,9 +54,14 @@ set wildignorecase
 set smartcase
 set noswapfile
 set nobackup
+set showmatch " highlights matching brackets
 
 set ai " auto indent
 set si " smart indent
+
+set showmatch "highlights matching brackets
+set incsearch "search as characters are entered
+set nohlsearch "remove highlight
 
 " disable bell
 set visualbell
