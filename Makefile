@@ -9,7 +9,8 @@ init: ## Symlink files
 	# Git
 	ln -vsf ${PWD}/git/.gitconfig ${HOME}/.gitconfig
 	ln -vsf ${PWD}/git/.gitignore_global ${HOME}/.gitignore_global
-
+	
+	ln -vsf ${PWD}/.sqliterc ${HOME}/.sqliterc
 
 install: clitools docker mysql nginx node php python ruby code zsh init
 
