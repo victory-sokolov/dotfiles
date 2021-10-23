@@ -3,7 +3,7 @@
     email = viktorsokolov.and@gmail.com
 
 [core]
-  editor = vim
+	editor = vim
 
 [help]
   autocorrect = 20
@@ -29,7 +29,7 @@
 		pop = stash pop
 		apply = stash apply
 		sl = stash list --pretty=format:\"%C(bold red)%gd%C(dim yellow)%C(reset) %<(70,trunc)%s %C(green)(%ad)\"
-
+		last = log -1 HEAD --stat
 [url "ssh://git@github.com/"]
     insteadOf = "gh:"
     pushInsteadOf = "github:"
