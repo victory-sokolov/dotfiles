@@ -44,6 +44,9 @@ alias path='echo -e ${PATH//:/\\n}'
 
 # Get week number of the current year
 alias week='date +%V'
+# Unix timestamp
+alias timestamp='date +%s'
+
 
 # Directory traversal
 alias ..="cd .."
