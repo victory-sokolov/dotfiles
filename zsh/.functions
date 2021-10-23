@@ -196,11 +196,9 @@ function git-ssh # Git: Https to SSH
 }
 
 
-function ignorefile() # Get .gitignore file for specific lang
+function gitignore() # Get .gitignore file for specific lang
 {
-	lang="${@}"
-	wget "https://raw.githubusercontent.com/github/gitignore/master/${lang}.gitignore"
-	mv "${lang}.gitignore" .gitignore
+	curl -sL "https://www.gitignore.io/api/$@" >> .gitignore
 }
 
 isup() # Check if URL is up
