@@ -245,6 +245,13 @@ function mkenv() # create python virtual environment
     cd ~/pyenv
     python3 -m venv "$1"
     source "$1"/bin/activate
+
+		# install base packages
+		pip install \
+			black \
+			flake8 \
+			pylint
+				
 }
 
 function token # generate secret, token
