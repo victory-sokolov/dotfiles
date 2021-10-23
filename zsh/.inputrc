@@ -7,6 +7,11 @@ set show-all-if-ambiguous
 # List all matches in case multiple possible completions are possible
 set show-all-if-ambiguous
 
+# Autocorrect typos in path names when using `cd`
+shopt -s cdspell
+# Allows me to cd into a dir by just typing the dir name
+shopt -s autocd
+
 # Allow UTF-8 input and output, instead of showing stuff like $'\0123\0456'
 set input-meta on
 set output-meta on
