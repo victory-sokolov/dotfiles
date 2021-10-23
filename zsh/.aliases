@@ -2,7 +2,10 @@
 alias install="sudo apt-get install"
 alias remove="sudo apt-get remove"
 alias reboot="sudo reboot"
-alias update="sudo apt-get update && sudo apt-get upgrade && sudo apt autoremove -y"
+alias update="sudo apt-get update --fix-missing && sudo apt-get upgrade && sudo apt autoremove -y"
+# show installed packages
+alias show-installed="comm -23 <(apt-mark showmanual | sort -u) <(gzip -dc /var/log/installer/initial-status.gz | sed -n 's/^Package: //p' | sort -u)"
+
 alias path="echo -e ${PATH//:/\\n}" # print each PATH entry on a separate line
 alias ls='colorls --group-directories-first'
 alias ll='colorls -lA --sd --group-directories-first'
