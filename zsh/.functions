@@ -53,6 +53,12 @@ function backup() # Backup files and folders
 
 }
 
+# Example linecount js
+function linecount() # Count lines of a filw with specific extension
+{
+    find . -name "*.$1" | xargs wc -l
+}
+
 function man() # Shows pretty man page
 {
   env \
@@ -167,8 +173,13 @@ function ghexport() # Download single folder from github
 {
 	github_link=$1
 	remove_path="/tree/master"
-  link="${github_link/$remove_path/trunk/}"
+  	link="${github_link/$remove_path/trunk/}"
 	svn export ${link}
+}
+
+function clean_merged_branches()  # Delete all merged branches
+{
+    git branch --merged | grep -v "\*" | xargs -n 1 git branch -d
 }
 
 function gacp() # Git: add all, commit and push. [-m "comment"]
