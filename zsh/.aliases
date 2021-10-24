@@ -79,6 +79,9 @@ alias hosts="sudo vim /etc/hosts" # vhosts
 alias php-server="php -S localhost:8000 && xdg-open http://localhost:8000 &" # build in php server
 alias run-apache="sudo service mysql start && sudo service apache2 start"
 alias composer-flush="rm -rf vendor/ composer.lock && composer i"
+# Switch PHP version
+alias php74="sudo update-alternatives --set php /usr/bin/php7.4"
+alias php80="sudo update-alternatives --set php /usr/bin/php8.0"
 
 # Mysql
 alias mysqldump="mysqldump -u [uname] -p[pass] [dbname] | gzip -9 > [db.sql.gz]" # dump mysql db
