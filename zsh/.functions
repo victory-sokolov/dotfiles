@@ -23,7 +23,7 @@ function mk() # Create a new directory and enter it
   cd "$@"
 }
 
-function cdls() # Show contents of the directory after changing to it 
+function cdls() # Show contents of the directory after changing to it
 {
     builtin cd "$1"
     ls -ACF
@@ -249,7 +249,7 @@ function mkenv() # create python virtual environment
 			black \
 			flake8 \
 			pylint
-				
+
 }
 
 function token # generate secret, token
@@ -287,7 +287,6 @@ function bapk() # build android apk (Must run inside react-native project)
 	# open folder where apk file is stored
     xdg-open ${apk_path}
 }
-
 
 function rna() # clean cache & run react-native android simulator
 {
@@ -341,7 +340,7 @@ function removebg() # Remove background from the image
 }
 
 
-function bash-file() # Create new shell file 
+function bash-file() # Create new shell file
 {
   FILE_PATH=$1
   mkdir -p -- $(dirname "$FILE_PATH") && touch -- "$FILE_PATH"
@@ -353,7 +352,7 @@ function bash-file() # Create new shell file
 function repl() # Launch Repl for specified language
 {
 	lang=$1
-  	
+
 	if [ $lang = "python" ]; then
 		lang="python3"
 	elif [ $lang = "node" ]; then
@@ -363,15 +362,14 @@ function repl() # Launch Repl for specified language
 	elif [ $lang = "c#" ]; then
 		lang="csharp"
 	fi
-	
+
 	python -m webbrowser "https://replit.com/languages/$lang" &
 
 }
 
-
-function lorem () # Generate Loremipsum text 
+function lorem () # Generate Loremipsum text
 {
-	
+
 	if [ "${1}" = "" ] || [ "${2}" = "" ]; then
 		echo "Usage: loremipsum [paragraphs, sentences] [integer]"
 	else
@@ -379,3 +377,11 @@ function lorem () # Generate Loremipsum text
 	fi
 }
 
+function dataurl() # Create a data URL from a file
+{
+	local mimeType=$(file -b --mime-type "$1");
+	if [[ $mimeType == text/* ]]; then
+		mimeType="${mimeType};charset=utf-8";
+	fi
+	echo "data:${mimeType};base64,$(openssl base64 -in "$1" | tr -d '\n')";
+}
