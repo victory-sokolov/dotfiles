@@ -9,7 +9,6 @@ init: ## Symlink files
 	# Git
 	ln -vsf ${PWD}/git/.gitconfig ${HOME}/.gitconfig
 	ln -vsf ${PWD}/git/.gitignore_global ${HOME}/.gitignore_global
-	
 	ln -vsf ${PWD}/.sqliterc ${HOME}/.sqliterc
 
 install: clitools docker mysql nginx node php python ruby code zsh init
@@ -35,8 +34,9 @@ android: ## Android sdk and tools
 	export PATH=${PATH}:${ANDROID_HOME}/platform-tools
 
 
-linux: ## Install base programms: flameshot, albert, spotify, dropbox, vlc, chrome, postman and update settings
-	# Installation ment only for Linux distros
+linux: ## Install Ubuntu programms: flameshot, albert, spotify, dropbox, vlc, chrome, postman and update settings
+	# Installation is ment only for Linux distros
+
 	# Use local time
 	timedatectl set-local-rtc 1 --adjust-system-clock
 	# Show battery percentage
@@ -54,6 +54,7 @@ linux: ## Install base programms: flameshot, albert, spotify, dropbox, vlc, chro
 		gnome-tweak-tool \
 		nautilus-dropbox \
 		vlc \
+		wine \
 		gedit-plugins
 
 	# install chrome
@@ -77,49 +78,47 @@ linux: ## Install base programms: flameshot, albert, spotify, dropbox, vlc, chro
 
 clitools: ## Install cli tools
 	sudo apt-get install -y \
-	   at \
-	   aptitude \
-	   autojump \
-	   build-essential \
-	   cmake \
-	   csvtool \
-	   curl \
-	   dos2unix \
-	   fonts-powerline \
-	   ffmpeg \
-		 fdupes \ # search dublicate files
-		 silversearcher-ag \
-	   shellcheck \
-		 imagemagick \
-	   jq \
-	   libtool\
-	   libbz2-dev \
-	   libssl-dev \
-	   inotify-tools \
-	   nghttp2-client \
-	   neovim \
-	   neofetch \
-	   net-tools \
-	   # navigable overview of file space
-		 ncdu \
-		 pkg-config \
-	   pdftk \
-	   pwgen \
-	   preload \
-	   powerline \
-	   ripgrep \
-	   openssh-server \
-	   openssh-client \
-	   subversion \
-	   software-properties-common \
-	   sqlite3 libsqlite3-dev \
-	   tmux \
-	   tree \
-	   traceroute \
-	   vim \
-	   wine \
-	   xbindkeys \
-	   xclip
+		at \
+		aptitude \
+		autojump \
+		build-essential \
+		cmake \
+		csvtool \
+		curl \
+		dos2unix \
+		fonts-powerline \
+		ffmpeg \
+		fdupes \ # search dublicate files
+		silversearcher-ag \
+		shellcheck \
+		imagemagick \
+		jq \
+		libtool \
+		libbz2-dev \
+		libssl-dev \
+		inotify-tools \
+		nghttp2-client \
+		neovim \
+		neofetch \
+		net-tools \
+		ncdu \ # navigatable overview of file space
+		pkg-config \
+		pdftk \
+		pwgen \
+		preload \
+		powerline \
+		ripgrep \
+		openssh-server \
+		openssh-client \
+		subversion \
+		software-properties-common \
+		sqlite3 libsqlite3-dev \
+		tmux \
+		tree \
+		traceroute \
+		vim \
+		xbindkeys \
+		xclip
 
 	# install bat cat replacment with syntax hightlight
 	wget https://github.com/sharkdp/bat/releases/download/v0.18.2/bat-musl_0.18.2_amd64.deb
@@ -152,7 +151,7 @@ docker: ## Docker
 mysql: ## Mysql
 	sudo apt-get update -y
 	sudo apt install mysql-server -y
-	sudo apt install mycli
+	sudo apt install mycli -y
 
 	# Create default mysql user
 	# start mysql
@@ -168,7 +167,7 @@ postgresql: ## PosgreSQL
 	# Add the GPG key
 	wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
 	sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
-	sudo apt-get update
+	sudo apt-get update -y
 
 
 mongodb: ## MongoDB
@@ -383,6 +382,9 @@ node: ## NodeJS & packages
 	npm install npm@latest -g
 	mkdir ~/.npm-packages
 	npm config set prefix ~/.npm-packages
+
+	# symlink .npmrc
+	ln -vsf ${PWD}/.npmrc ${HOME}/.npmrc
 
 	# Yarn
 	curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
