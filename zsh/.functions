@@ -254,6 +254,15 @@ function mkenv() # create python virtual environment
 
 }
 
+function json() # Usage: `json '{"foo":42}'` or `echo '{"foo":42}' | json`
+{
+	if [ -t 0 ]; then # argument
+		python -mjson.tool <<< "$*" | pygmentize -l javascript;
+	else # pipe
+		python -mjson.tool | pygmentize -l javascript;
+	fi;
+}
+
 function token # generate secret, token
 {
 	python -c 'import secrets; print(secrets.token_urlsafe(16))'
