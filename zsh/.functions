@@ -396,3 +396,14 @@ function dataurl() # Create a data URL from a file
 	fi
 	echo "data:${mimeType};base64,$(openssl base64 -in "$1" | tr -d '\n')";
 }
+
+# Stopwatch, press enter to time.
+# Source: http://superuser.com/questions/611538/is-there-a-way-to-display-a-countdown-or-stopwatch-timer-in-a-terminal
+stopwatch() {
+	date1=$(date +%s);
+	while :; do
+		days=$(( $(($(date +%s) - date1)) / 86400 ))
+		echo -ne "$days day(s) and $(date -u --date @$(($(date +%s) - $date1)) +%H:%M:%S)\r";
+		sleep 0.1
+	done
+}
