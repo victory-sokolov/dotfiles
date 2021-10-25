@@ -12,6 +12,16 @@ shopt -s cdspell
 # Allows me to cd into a dir by just typing the dir name
 shopt -s autocd
 
+# Do not require a leading '.' in a filename to be matched explicitly
+setopt globdots
+
+# Try to make the completion list smaller (occupying less lines) by printing
+# the matches in columns with different widths
+setopt listpacked
+
+# Try to correct the spelling of commands
+setopt correct
+
 # Allow UTF-8 input and output, instead of showing stuff like $'\0123\0456'
 set input-meta on
 set output-meta on
