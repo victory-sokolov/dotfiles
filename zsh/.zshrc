@@ -1,7 +1,6 @@
 export ZSH=$HOME/.oh-my-zsh
 export TERM="xterm-256color"
 
-
 # zstyle
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 

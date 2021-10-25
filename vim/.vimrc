@@ -25,6 +25,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'vim-syntastic/syntastic'
 Plug 'ryanoasis/vim-devicons'
 Plug 'jiangmiao/auto-pairs'
+Plug 'ap/vim-css-color'
 call plug#end()
 
 
@@ -45,6 +46,7 @@ set title
 set clipboard+=unnamed
 " Highlight searches
 set hlsearch
+set foldenable " Use folding
 " Ignore case of searches
 set ignorecase
 set tabstop=2 " Default indentation is 2 spaces long and uses tabs, not spaces
@@ -59,6 +61,7 @@ set showmatch " highlights matching brackets
 set ai " auto indent
 set si " smart indent
 
+set t_Co=256	"Set number of colors.
 set showmatch "highlights matching brackets
 set incsearch "search as characters are entered
 set nohlsearch "remove highlight
@@ -66,10 +69,12 @@ set nohlsearch "remove highlight
 " disable bell
 set visualbell
 set t_vb=
-
 " don't bell or blink
 set noerrorbells
 set vb t_vb=
+
+" display all matching files when we tab complete
+set wildmenu
 
 " Invisible character colors
 hi NonText ctermfg=238
