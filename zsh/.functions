@@ -408,13 +408,18 @@ function dataurl() # Create a data URL from a file
 	echo "data:${mimeType};base64,$(openssl base64 -in "$1" | tr -d '\n')";
 }
 
-# Stopwatch, press enter to time.
 # Source: http://superuser.com/questions/611538/is-there-a-way-to-display-a-countdown-or-stopwatch-timer-in-a-terminal
-stopwatch() {
+function stopwatch() # Stopwatch, press enter to time.
+{
 	date1=$(date +%s);
 	while :; do
 		days=$(( $(($(date +%s) - date1)) / 86400 ))
 		echo -ne "$days day(s) and $(date -u --date @$(($(date +%s) - $date1)) +%H:%M:%S)\r";
 		sleep 0.1
 	done
+}
+
+function pngtojpg() # Bulk convert png to jpg
+{
+	for i in *.png ; do convert "$i" "${i%.*}.jpg" ; done
 }
