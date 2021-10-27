@@ -4,15 +4,48 @@
 
 [core]
 	editor = vim
+  excludesfile = ~/.gitignore
 
 [help]
   autocorrect = 20
 
+[pager]
+  diff = delta
+  log = delta
+  reflog = delta
+  show = delta
+
+[interactive]
+  diffFilter = delta --color-only --features=interactive
+
+[delta]
+	max-line-length = 700
+  syntax-theme = base16
+  file-decoration-style = yellow ol ul
+  file-style = bold yellow ul
+  hunk-header-decoration-style = blue
+  hunk-header-line-number-style = purple bold
+
+[color]
+	ui = auto
+
+[push]
+  default = current
+
+[merge]
+	tool = opendiff
+	renameLimit = 0
+
+[checkout]
+	defaultRemote = origin
+
+[stash]
+	showPatch = true
 
 [alias]
-		a = add		
+		a = add
 		amend = commit --amend -m
-		br = branch		
+		br = branch
 		gc = 'commit -m'
     gca = 'commit -a'
     co = 'checkout'
@@ -35,6 +68,8 @@
     pushInsteadOf = "github:"
     pushInsteadOf = "git://github.com/"
     insteadOf = "https://github.com/"
+    # Show the diff between the latest commit and the current state
+	  d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
 
 [url "https://gist.github.com/"]
     insteadOf = gist:
@@ -42,6 +77,3 @@
 [url "https://bitbucket.org/"]
     insteadOf = "bb:"
     pushInsteadOf = "bitbucket:"
-
-[push]
-    default = current
