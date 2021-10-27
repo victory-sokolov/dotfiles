@@ -1,0 +1,78 @@
+import os
+import sys
+
+# Ned's .pdbrc
+# source: http://nedbatchelder.com/blog/200704/my_pdbrc.html
+
+# other pdbrc alias source
+# source: https://github.com/jmcantrell/dotfiles/blob/8590c5af3c68c7ec2b52f7151f8ca5f2bb54bf9a/sh/.pdbrc
+
+######################################################################################################################
+# source: https://github.com/storax/storaxcastle/blob/ed3a3930030c964eac86849eca96c077109f85be/home/.pdbrc
+# Print a dictionary, sorted. %1 is the dict, %2 is the prefix for the names.
+alias p_ for k in sorted(%1.keys()): print("%s%-15s= %-80.80s" % ("%2",k,repr(%1[k])))
+
+# Print the instance variables of a thing.
+alias pi p_ dir(%1) %1.
+
+# Print the instance variables of self.
+alias ps pi self
+
+# Print the locals.
+alias pl p_ locals() local:
+
+# Next and list, and step and list.
+alias nl n;;l
+alias sl s;;l
+
+# Short cuts for walking up and down the stack
+alias uu u;;u
+alias uuu u;;u;;u
+alias uuuu u;;u;;u;;u
+alias uuuuu u;;u;;u;;u;;u
+alias dd d;;d
+alias ddd d;;d;;d
+alias dddd d;;d;;d;;d
+alias ddddd d;;d;;d;;d;;d
+
+# Print contents of an object's class (including bases).
+alias pc for k,v in sorted({k:v for cls in reversed(%1.__class__.__mro__) for k,v in cls.__dict__.items() if cls is not object}.items()): print("%s%-20s= %-80.80s" % ("%1.",k,repr(v)))
+
+# SOURCE: https://github.com/ericof/bin/blob/3a46bdd47219b62d850a4512ce11091b1fb06b4f/dotfiles/.pdbrc
+# SOURCE: https://github.com/saimn/dotfiles/blob/1fad07b556862172df4b264e96dd491a3eb27f9d/pdbrc
+
+# Enable tab completion
+import pdb
+import rlcompleter
+pdb.Pdb.complete = rlcompleter.Completer(locals()).complete
+
+# Sometimes when you do something funky, you may lose your terminal echo. This
+# should restore it when spanwning new pdb.
+import termios, sys
+termios_fd = sys.stdin.fileno()
+termios_echo = termios.tcgetattr(termios_fd)
+termios_echo[3] = termios_echo[3] | termios.ECHO
+termios_result = termios.tcsetattr(termios_fd, termios.TCSADRAIN, termios_echo)
+
+# 'inspect x' will print the source code for a method, class or function.
+alias inspect import inspect; print(inspect.getsource(%1))
+
+# For ordinary Python objects, ppo will pretty-print members and their values.
+alias po pp %1.__dict__
+
+# ppio runs ppo over a sequence of objects
+alias ppo po [a.__dict__ for a in %*]
+
+# 'help x' opens the man-style help viewer from the interpreter on an object
+alias hh !print(help(%1))
+
+
+# ===================================================================
+# Python
+# ===================================================================
+# SOURCE: https://github.com/giampaolo/sysconf/blob/8e80194e59d643eae54f063d32a4feac8138a5f3/home/.pdbrc
+
+!import os, sys
+!PY3 = sys.version_info[0] == 3
+!PYFILE = os.path.expanduser("~/.pdbrc.py")
+!eval("exec(open(PYFILE).read())") if PY3 else execfile(PYFILE)
