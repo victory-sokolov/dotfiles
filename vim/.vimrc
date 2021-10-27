@@ -32,8 +32,10 @@ call plug#end()
 colorscheme palenight
 
 " Basic settings
-set autoindent
+set autoindent " Copy indent from last line when starting new line
 set smartindent
+set smartcase " Ignore 'ignorecase' if search patter contains uppercase characters
+set smarttab " At start of line, <Tab> inserts shiftwidth spaces, <Bs> deletes shiftwidth spaces
 set encoding=utf-8 nobomb
 set fileformat=unix
 filetype plugin on
@@ -41,25 +43,21 @@ syntax on
 set number
 set modifiable
 set cursorline
-set ruler
-set title
+set ruler " Show the cursor position
+set title " Show the filename in the window titlebar
 set clipboard+=unnamed
-" Highlight searches
-set hlsearch
+set hlsearch " Highlight searches
+set showmatch " Highlights matching brackets
 set foldenable " Use folding
-" Ignore case of searches
-set ignorecase
+set ignorecase " Ignore case of searches
 set tabstop=2 " Default indentation is 2 spaces long and uses tabs, not spaces
 set history=1000 " Increase the undo limit.
 set nospell
 set wildignorecase
-set smartcase
 set noswapfile
 set nobackup
-set showmatch " highlights matching brackets
-
-set ai " auto indent
-set si " smart indent
+set magic " Enable extended regexes
+set noerrorbells " Disable error bells
 
 set t_Co=256	"Set number of colors.
 set showmatch "highlights matching brackets
@@ -84,21 +82,17 @@ hi SpecialKey ctermfg=238
 hi Search ctermbg=NONE ctermfg=red
 " Highlight matches as you type
 set incsearch
-
-" Always display statusline in all windows
-set laststatus=2
-
-" Always display tabline even if there is only one tab
-set showtabline=2
-
-" Show the status line all the time
-set laststatus=2
+set showtabline=2 " Always display tabline even if there is only one tab
+set laststatus=2 " Show the status line all the time
 
 " http://vim.wikia.com/wiki/Toggle_auto-indenting_for_code_paste
 set pastetoggle=<F2>
 
-" auto-reload files when changed
-set autoread
+set autoread " auto-reload files when changed
+
+set wildignore+=*.jpg,*.jpeg,*.gif,*.png,*.gif,*.psd,*.o,*.obj,*.min.js
+set wildignore+=*/bower_components/*,*/node_modules/*
+set wildignore+=*/smarty/*,*/vendor/*,*/.git/*,*/.hg/*,*/.svn/*,*/.sass-cache/*,*/log/*,*/tmp/*,*/build/*,*/ckeditor/*,*/doc/*,*/source_maps/*,*/dist/*
 
 " Emmet trigger
 let g:user_emmet_leader_key=','
