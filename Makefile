@@ -124,6 +124,10 @@ clitools: ## Install cli tools
 	wget https://github.com/sharkdp/bat/releases/download/v0.18.2/bat-musl_0.18.2_amd64.deb
 	sudo dpkg -i bat-musl_0.18.2_amd64.deb
 
+	# Better Git diff tool
+	wget https://github.com/dandavison/delta/releases/download/0.9.1/delta-0.9.1-aarch64-unknown-linux-gnu.tar.gz
+	sudo tar -tvf delta-0.9.1-aarch64-unknown-linux-gnu.tar.gz
+
 docker: ## Docker
 	sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
 	curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
