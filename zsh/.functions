@@ -31,26 +31,25 @@ function cdls() # Show contents of the directory after changing to it
 
 function backup() # Backup files and folders
 {
-	$FILE=$1
+	FILE=$1
+	BACKUP_NAME="$FILE-["`date +"%Y-%m-%d-%H:%M:%S"`"]"
+	DIRECTORY="$HOME/backups"
 
-	$DIRECTORY="$HOME/backup"
-	# check if backup folder exists
+	# Check if backup folder exists
 	if [ ! -d "$DIRECTORY" ]; then
 		mkdir $DIRECTORY
 	fi
 
-	# check if passed argument is file or directory
-	if [[ -d $ ]]; then
-		echo "$FILE is a directory"
+  	# check if passed argument is file or directory
+	if [[ -d $FILE ]]; then
+		echo "Creating backup of the directory: $FILE"
+    	tar -czf "$DIRECTORY/$BACKUP_NAME.tar.gz" --exclude={$FILE/.venv,$FILE/node_modules} $FILE
 	elif [[ -f $FILE ]]; then
-		echo "$FILE is a file"
+		echo "Creating backup of the file: $FILE"
+		cp -a $FILE $DIRECTORY
 	else
-		echo "$PASSED is not valid"
-		exit 1
+		echo "$FILE is not valid format"
 	fi
-
-	# backup_name_template=
-
 }
 
 # Example linecount js
