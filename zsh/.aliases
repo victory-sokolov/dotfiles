@@ -13,7 +13,7 @@ alias ls='colorls --group-directories-first'
 alias ll='colorls -lA --sd --group-directories-first'
 # tree with ignoring specific directories
 alias t="tree -I 'node_modules|cache|test_*|__pycache__'"
-
+alias top="htop"
 alias cls="clear"
 alias chmod="chmod +x"
 alias grep="grep --color=auto "
@@ -83,10 +83,17 @@ alias ytmp3="youtube-dl --extract-audio --audio-format mp3" # youtube video to m
 alias hosts="sudo vim /etc/hosts" # vhosts
 alias php-server="php -S localhost:8000 && xdg-open http://localhost:8000" # build in php server
 alias run-apache="sudo service mysql start && sudo service apache2 start"
-alias composer-flush="rm -rf vendor/ composer.lock && composer i"
 # Switch PHP version
 alias php74="sudo update-alternatives --set php /usr/bin/php7.4"
 alias php80="sudo update-alternatives --set php /usr/bin/php8.0"
+
+# Composer
+alias cr="composer require"
+alias cu="composer update"
+alias ci="composer install"
+alias cda="composer dump-autoload"
+alias cdo="composer dump-autoload"
+alias composer-flush="rm -rf vendor/ composer.lock && composer i"
 
 # Mysql
 alias mysqldump="mysqldump -u [uname] -p[pass] [dbname] | gzip -9 > [db.sql.gz]" # dump mysql db
