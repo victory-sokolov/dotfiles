@@ -223,6 +223,7 @@ java: ## Java JDK8
 	sudo apt-get update && apt-get install openjdk-8-jdk -y
 	sudo apt-get install maven -y
 
+
 dotnet ## C#, Net core
 	sudo apt-get install -y \
 		dotnet-sdk-5.0 \
@@ -304,6 +305,7 @@ python3: ## Python,Poetry & Dependencies
 		bpython \
 		icecream \
 		pylint \
+		httpie \
 		--upgrade setuptools
 
 	# Poetry dependency managment
