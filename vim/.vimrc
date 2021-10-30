@@ -26,8 +26,9 @@ Plug 'vim-syntastic/syntastic'
 Plug 'ryanoasis/vim-devicons'
 Plug 'jiangmiao/auto-pairs'
 Plug 'ap/vim-css-color'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 call plug#end()
-
 
 colorscheme palenight
 
@@ -99,6 +100,11 @@ let g:user_emmet_leader_key=','
 
 " Autocomletion
 let g:ycm_python_binary_path = '/usr/bin/python3'
+
+" Trigger snippets
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " VIM Diff
 highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=11 gui=none guifg=bg guibg=Red
