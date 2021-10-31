@@ -5,10 +5,8 @@ alias reboot="sudo reboot"
 alias update="sudo apt-get update --fix-missing && sudo apt-get upgrade && sudo apt autoremove -y"
 # show installed packages
 alias show-installed="comm -23 <(apt-mark showmanual | sort -u) <(gzip -dc /var/log/installer/initial-status.gz | sed -n 's/^Package: //p' | sort -u)"
-
 # print each PATH entry on a separate line
 alias path="echo -e ${PATH//:/\\n}"
-
 alias ls='colorls --group-directories-first'
 alias ll='colorls -lA --sd --group-directories-first'
 # tree with ignoring specific directories
@@ -48,10 +46,9 @@ alias cwd="pwd | tr -d "\r\n" | xclip -selection clipboard"
 alias uuid="uuidgen | pbcopy && pbpaste && echo"
 
 # Get week number of the current year
-alias week='date +%V'
+alias week="date +%V"
 # Unix timestamp
-alias timestamp='date +%s'
-
+alias timestamp="date +%s"
 
 # Directory traversal
 alias ..="cd .."
@@ -107,22 +104,34 @@ alias ports='sudo lsof -i -P -n | grep LISTEN'
 
 # Git
 # remove the file from git and from the history
-alias gri="git ls-files --ignored --exclude-standart | xargs -0 git rm -r"
-alias gopen="open https://github.$(git config remote.origin.url | cut -f2 -d. | tr ':' /)"
-alias amend="git add . && git commit --amend --no-edit"
+alias gri='git ls-files --ignored --exclude-standart | xargs -0 git rm -r'
+alias gopen='open https://github.$(git config remote.origin.url | cut -f2 -d. | tr ':' /)'
+alias amend='git add . && git commit --amend --no-edit'
 
 # Python
-alias python='python3'
+alias python="python3"
 alias jn="jupyter notebook"
-alias pip="pip3"
 alias server="python -m http.server"
 # find all virtual envs in system
 alias venvs="find -O3 $HOME -name '*activate' -type f"
+alias pip="pip3"
+alias pir="pip install -r requirements.txt"
+alias pfr="(pip freeze | grep -v "pkg-resources") > requirements.txt"
+
+
+# Django
+alias drs="python manage.py runserver"
+alias dm="python manage.py migrate"
+alias dmm="python manage.py makemigrations"
+alias ds="python manage.py shell"
+alias dt="python manage.py test"
+alias su="python manage.py createsuperuser"
+
 
 # Docker
-alias dc="docker-compose"
-alias dm="docker-machine"
-alias dcup="docker-compose up -d"
+alias dc='docker-compose'
+alias dm='docker-machine'
+alias dcup='docker-compose up -d'
 alias dstop='docker stop $(docker ps -q)'
 # Stop and remove all containers
 alias dclean='dstop && docker rm -f $(docker ps -q -a)'
