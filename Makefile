@@ -388,6 +388,9 @@ node: ## NodeJS & packages
 	npm install npm@latest -g
 	mkdir ~/.npm-packages
 	npm config set prefix ~/.npm-packages
+  
+  sudo chown -R $USER ~/.npm-packages
+  sudo chown -R $USER /usr/local/lib/node_modules
 
 	# symlink .npmrc
 	ln -vsf ${PWD}/.npmrc ${HOME}/.npmrc
