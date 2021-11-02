@@ -207,6 +207,8 @@ tesseract: ## Install Tesseract binaries
 	make training
 	make training-install
 
+haskell: ## Install Haskell
+  sudo apt-get install haskell-platform -y
 
 ruby: ## Install ruby and gems
 	sudo apt-get install ruby-full -y
@@ -306,7 +308,8 @@ python3: ## Python,Poetry & Dependencies
 		icecream \
 		pylint \
 		httpie \
-		--upgrade setuptools
+		faker \
+    --upgrade setuptools
 
 	# Poetry dependency managment
 	curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3
