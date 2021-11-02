@@ -422,3 +422,9 @@ function pngtojpg() # Bulk convert png to jpg
 {
 	for i in *.png ; do convert "$i" "${i%.*}.jpg" ; done
 }
+
+function dockerlint # Lint Dockerfile with Hadolint
+{
+  docker container run --rm -i \
+    hadolint/hadolint hadolint --ignore DL3008 "${@}" - < Dockerfile
+}
