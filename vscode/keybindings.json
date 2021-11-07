@@ -6,26 +6,6 @@
         "when": "editorTextFocus"
     },
     {
-        "key": "shift+k",
-        "command": "editor.action.deleteLines",
-        "when": "textInputFocus && !editorReadonly"
-    },
-    {
-        "key": "ctrl+shift+k",
-        "command": "-editor.action.deleteLines",
-        "when": "textInputFocus && !editorReadonly"
-    },
-    {
-        "key": "shift+e",
-        "command": "editor.action.insertCursorAtEndOfEachLineSelected",
-        "when": "editorTextFocus"
-    },
-    {
-        "key": "shift+alt+i",
-        "command": "-editor.action.insertCursorAtEndOfEachLineSelected",
-        "when": "editorTextFocus"
-    },
-    {
         "key": "alt+f2",
         "command": "code-runner.run"
     },
@@ -65,4 +45,23 @@
         "command": "-markdown.showPreviewToSide",
         "when": "editorLangId == 'markdown'"
     },
-]
+    {
+        "key": "ctrl+alt+s ctrl+alt+c",
+        "command": "workbench.action.toggleScreencastMode"
+    },
+    {
+        "key": "ctrl+k ctrl+e",
+        "command": "workbench.view.explorer"
+    },
+    {
+        "key": "ctrl+k ctrl+g",
+        "command": "workbench.view.scm"
+    },
+    {
+        "key": "ctrl+k ctrl+d",
+        "command": "workbench.view.debug"
+    },
+    {
+        "key": "ctrl+k ctrl+x",
+        "command": "workbench.extensions.action.showInstalledExtensions"
+    ]
