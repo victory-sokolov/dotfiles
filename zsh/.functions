@@ -428,3 +428,13 @@ function dockerlint # Lint Dockerfile with Hadolint
   docker container run --rm -i \
     hadolint/hadolint hadolint --ignore DL3008 "${@}" - < Dockerfile
 }
+
+
+# C++ snippets
+
+function cpp-run() # compile and run executable
+{
+    echo "Compiling file..."
+    g++ -o "$1" "$1.cpp"
+    ./$1.cpp
+}
