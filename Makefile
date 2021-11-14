@@ -297,7 +297,6 @@ python3: ## Python,Poetry & Dependencies
 		python3-pip \
 		python3-venv \
 		python3-dev \
-		pylint \
 		thefuck
 
 	# https://powerline.readthedocs.io/en/latest/installation.html#generic-requirements
@@ -306,12 +305,11 @@ python3: ## Python,Poetry & Dependencies
 		virtualenv \
 		bpython \
 		icecream \
-		pylint \
 		httpie \
 		faker \
     --upgrade setuptools
-				
-  python3 -m pip install --user pipx
+
+	python3 -m pip install --user pipx pylint black pipenv bandit mypy flake8
 
 	# Poetry dependency managment
 	curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3
@@ -393,7 +391,7 @@ node: ## NodeJS & packages
 	npm install npm@latest -g
 	mkdir ~/.npm-packages
 	npm config set prefix ~/.npm-packages
-  
+
   sudo chown -R $USER ~/.npm-packages
   sudo chown -R $USER /usr/local/lib/node_modules
 
