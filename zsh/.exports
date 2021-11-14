@@ -9,11 +9,10 @@ export GREP='grep -n --color'
 export LESS="--ignore-case --LONG-PROMPT --QUIET --chop-long-lines -Sm --RAW-CONTROL-CHARS --quit-if-one-screen --no-init"
 
 # Case-insensitive globbing (used in pathname expansion)
-#shopt -s nocaseglob
+shopt -s nocaseglob
 
 # Autocorrect typos in path names when using `cd`
-# shopt -s cdspell
-
+shopt -s cdspell
 
 # Increase Bash history size. Allow 32³ entries; the default is 500.
 export HISTSIZE='32768';
@@ -28,7 +27,7 @@ export LC_ALL='en_US.UTF-8';
 # Browser
 export CHROME="google-chrome"
 
-# NPM 
+# NPM
 export PATH="$PATH:$HOME/npm/bin"
 
 
@@ -42,7 +41,7 @@ export PATH=$PATH:/usr/lib/jvm/java-8-openjdk/bin
 # Maven
 export M2_HOME=/usr/local/apache-maven/apache-maven-3.6.3
 export M2=$M2_HOME/bin
-export PATH=$M2:$PATH 
+export PATH=$M2:$PATH
 
 # Tesseract
 export TESSDATA_PREFIX="/usr/share/tesseract-ocr/4.00/tessdata"
@@ -54,10 +53,10 @@ export AUTOSWITCH_DEFAULT_PYTHON="/usr/bin/python3"
 # Make Python use UTF-8 encoding for output to stdin, stdout, and stderr.
 export PYTHONIOENCODING='UTF-8';
 export PYTHONPATH="/usr/bin/python3.8"
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
 # Prevents Python from writing pyc files to disc
 export PYTHONDONTWRITEBYTECODE=1
+export PYTHONSTARTU=P~/.pythonrc
+export PATH="$HOME/.local/bin:$PATH"
 
 # GO
 export GOPATH=$HOME/go
