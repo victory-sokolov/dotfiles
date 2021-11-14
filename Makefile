@@ -310,6 +310,8 @@ python3: ## Python,Poetry & Dependencies
 		httpie \
 		faker \
     --upgrade setuptools
+				
+  python3 -m pip install --user pipx
 
 	# Poetry dependency managment
 	curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3
