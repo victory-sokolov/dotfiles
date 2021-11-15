@@ -107,6 +107,8 @@ alias ports='sudo lsof -i -P -n | grep LISTEN'
 alias gri='git ls-files --ignored --exclude-standart | xargs -0 git rm -r'
 alias gopen='open https://github.$(git config remote.origin.url | cut -f2 -d. | tr ':' /)'
 alias amend='git add . && git commit --amend --no-edit'
+# list currents repo PR's
+alias prs 'hub pr list -L 20 -b develop --format="%t%n - Branch: [%H]%n - %U%n - %l%n%n"' 
 
 # Python
 alias python="python3"
