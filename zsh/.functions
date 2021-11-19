@@ -246,22 +246,17 @@ function server() # Start an HTTP server from a directory
 	# And serve everything as UTF-8 (although not technically correct, this doesn’t break anything for binary files)
 	python -c $'import SimpleHTTPServer;\nmap = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map;\nmap[""] = "text/plain";\nfor key, value in map.items():\n\tmap[key] = value + ";charset=UTF-8";\nSimpleHTTPServer.test();' "$port";
 }
+
 function mkenv() # create python virtual environment
 {
-    if [ ! -d "pyenv" ]; then
-        mkdir ~/pyenv
-    fi
-
-    cd ~/pyenv
-    python3 -m venv "$1"
-    source "$1"/bin/activate
+    python3 -m venv .venv
+    source .venv/bin/activate
 
 		# install base packages
 		pip install \
 			black \
 			flake8 \
 			pylint
-
 }
 
 function json() # Usage: `json '{"foo":42}'` or `echo '{"foo":42}' | json`
@@ -329,7 +324,7 @@ function psql-create-db() # Create Postgres database
 function clone() # Clone repo and install dependencies
 {
 	git clone $1
-	cd $(basename $1)
+	cd "$(basename "$_" .git)"
 
 	if test -f "./package.json"; then
 		echo "Installing NPM dependencies"
