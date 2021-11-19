@@ -120,7 +120,6 @@ alias pip="pip3"
 alias pir="pip install -r requirements.txt"
 alias pfr="(pip freeze | grep -v "pkg-resources") > requirements.txt"
 
-
 # Django
 alias drs="python manage.py runserver"
 alias dm="python manage.py migrate"
@@ -147,6 +146,10 @@ alias y='yarn'
 alias yd='yarn dev'
 alias ya='yarn add'
 alias ys='yarn start'
+
+# Poetry
+# Check outdated Poetry packages
+alias rpo="poetry show --outdated | grep --file=<(poetry show --tree | grep '^\w' | cut -d' ' -f1)"
 
 # Clipboard
 alias pbcopy="xclip -selection clipboard"
