@@ -51,7 +51,8 @@ set hlsearch " Highlight searches
 set showmatch " Highlights matching brackets
 set foldenable " Use folding
 set ignorecase " Ignore case of searches
-set tabstop=2 " Default indentation is 2 spaces long and uses tabs, not spaces
+set tabstop=4 " Default indentation is 2 spaces long and uses tabs, not spaces
+set shiftwidth=4
 set history=1000 " Increase the undo limit.
 set nospell
 set wildignorecase
