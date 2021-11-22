@@ -149,7 +149,9 @@ alias ys='yarn start'
 
 # Poetry
 # Check outdated Poetry packages
-alias rpo="poetry show --outdated | grep --file=<(poetry show --tree | grep '^\w' | cut -d' ' -f1)"
+alias plo="poetry show --outdated | grep --file=<(poetry show --tree | grep '^\w' | cut -d' ' -f1)"
+# Install deps from requirements and skip commented
+alias pir="sed -e '/^#/d' requirements.txt | xargs poetry add"
 
 # Clipboard
 alias pbcopy="xclip -selection clipboard"
