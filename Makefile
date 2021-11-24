@@ -456,6 +456,15 @@ ohmyzsh: ## Install zsh,oh-my-zsh & plugins
 latex: ## Install Latex & Pandoc
 	sudo apt-get install -y texlive pandoc
 
+watchman: ## Install Watchman
+	cd ~
+	git clone https://github.com/facebook/watchman.git -b v4.9.0 --depth 1
+	cd watchman
+	./autogen.sh
+	./configure --enable-lenient
+	make
+	sudo make install
+
 test: ## Test Makefile with Docker
 	docker build -t dotfiles .
 	docker run -it --name dotfiles -d dotfiles /bin/bash; \
