@@ -167,12 +167,15 @@ mysql: ## Mysql
 
 postgresql: ## PosgreSQL
 	sudo apt-get update && sudo apt-get upgrade -y
-	sudo apt-get install postgresql postgresql-contrib
+	sudo apt-get install postgresql postgresql-contrib python3-psycopg2 libpq-dev
 	# Add the GPG key
 	wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
 	sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
 	sudo apt-get update -y
 
+	# Create base user
+	sudo -u postgres bash -c "psql -c \"CREATE USER ${USER} WITH PASSWORD '123456';\"" 
+	sudo -u postgres bash -c "psql -c \"GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO ${USER};\""
 
 mongodb: ## MongoDB
 	wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | sudo apt-key add -
