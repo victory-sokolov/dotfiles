@@ -118,8 +118,8 @@ alias encode='python -c "import urllib.parse, sys; print(urllib.parse.quote(sys.
 alias decode='python -c "import urllib.parse, sys; print(urllib.parse.unquote(sys.argv[1]))"'
 # find all virtual envs in system
 alias venvs="find -O3 $HOME -name '*activate' -type f"
-alias pip="pip3"
-alias pir="pip install -r requirements.txt"
+alias pip="python -m pip"
+alias pir="python -m pip install -r requirements.txt"
 alias pfr="(pip freeze | grep -v "pkg-resources") > requirements.txt"
 
 # Django
