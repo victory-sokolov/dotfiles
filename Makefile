@@ -211,7 +211,7 @@ tesseract: ## Install Tesseract binaries
 	make training-install
 
 haskell: ## Install Haskell
-  sudo apt-get install haskell-platform -y
+	sudo apt-get install -y haskell-platform
 
 ruby: ## Install ruby and gems
 	sudo apt-get install ruby-full -y
@@ -229,11 +229,10 @@ java: ## Java JDK8
 	sudo apt-get install maven -y
 
 
-dotnet ## C#, Net core
+dotnet: ## C#, Net core
 	sudo apt-get install -y \
 		dotnet-sdk-5.0 \
 		dotnet-runtime-5.0
-
 
 go: ## Go lang
 	sudo apt-get install golang-go
@@ -251,6 +250,9 @@ ghcli: ## GitHub CLI
 rust: ## Rust
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 	echo -e "source ${HOME}/.cargo/env" >> ${HOME}/.zshrc
+	
+	# cargo packages
+	cargo install watchexec-cli 
 
 php: ## PHP7.4/Symfony, Apache
 	sudo apt-get install apache2 -y
@@ -395,8 +397,8 @@ node: ## NodeJS & packages
 	mkdir ~/.npm-packages
 	npm config set prefix ~/.npm-packages
 
-  sudo chown -R $USER ~/.npm-packages
-  sudo chown -R $USER /usr/local/lib/node_modules
+	sudo chown -R $USER ~/.npm-packages
+	sudo chown -R $USER /usr/local/lib/node_modules
 
 	# symlink .npmrc
 	ln -vsf ${PWD}/.npmrc ${HOME}/.npmrc
