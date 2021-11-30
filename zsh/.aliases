@@ -50,6 +50,9 @@ alias week="date +%V"
 # Unix timestamp
 alias timestamp="date +%s"
 
+# preview files with syntax highlighting
+alias pf="fzf --preview='bat --color=always --style=numbers {}' --bind shift-up:preview-page-up,shift-down:preview-page-down"
+
 # Directory traversal
 alias ..="cd .."
 alias ...="cd ../.."
