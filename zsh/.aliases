@@ -50,6 +50,9 @@ alias week="date +%V"
 # Unix timestamp
 alias timestamp="date +%s"
 
+# Generate random passwor dusing pwgen
+alias pw="pwgen 16 -1 | xclip"
+
 # preview files with syntax highlighting
 alias pf="fzf --preview='bat --color=always --style=numbers {}' --bind shift-up:preview-page-up,shift-down:preview-page-down"
 
