@@ -89,6 +89,7 @@ clitools: ## Install cli tools
 		fonts-powerline \
 		ffmpeg \
 		fdupes \ # search dublicate files
+		fzf \ # cli fuzzy finder
 		silversearcher-ag \
 		shellcheck \
 		imagemagick \
@@ -107,7 +108,7 @@ clitools: ## Install cli tools
 		pwgen \
 		preload \
 		powerline \
-		ripgrep \
+		ripgrep \ # better grep alternative
 		openssh-server \
 		openssh-client \
 		subversion \
