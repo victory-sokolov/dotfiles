@@ -112,6 +112,10 @@ export NVM_DIR="$HOME/.nvm"
 zstyle ':completion:*:*:docker:*' option-stacking yes
 zstyle ':completion:*:*:docker-*:*' option-stacking yes
 
+# fzf
+export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
+export FZF_DEFAULT_OPTS="--color=dark"
+
 source $ZSH/oh-my-zsh.sh
 source $ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $ZSH/custom/plugins/zsh-completions/zsh-completions.plugin.zsh
@@ -126,5 +130,7 @@ source $HOME/.poetry/env
 . $HOME/.asdf/asdf.sh
 . $HOME/.asdf/completions/asdf.bash
 
-eval "$(pyenv init -)"
+# eval "$(pyenv init -)"
 export PATH="$HOME/.poetry/bin:$PATH"
+
+source /home/viktor/.cargo/env
