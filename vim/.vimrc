@@ -8,7 +8,6 @@ endif
 call plug#begin('~/.vim/autoload')
 Plug 'mattn/emmet-vim'
 Plug 'scrooloose/nerdtree'
-Plug 'mattn/emmet-vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
@@ -28,6 +27,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'ap/vim-css-color'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'tpope/vim-fugitive'
 call plug#end()
 
 colorscheme palenight
@@ -61,10 +61,14 @@ set nobackup
 set magic " Enable extended regexes
 set noerrorbells " Disable error bells
 
-set t_Co=256	"Set number of colors.
-set showmatch "highlights matching brackets
-set incsearch "search as characters are entered
-set nohlsearch "remove highlight
+set t_Co=256   " Set number of colors.
+set showmatch  " highlights matching brackets
+set incsearch  " search as characters are entered
+set nohlsearch " remove highlight
+
+set mouse=a  " enable mouse
+set undofile " save undo history  
+set termguicolors " better gui colors  
 
 " disable bell
 set visualbell
@@ -109,6 +113,8 @@ let g:ycm_python_binary_path = '/usr/bin/python3'
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+set guifont=DroidSansMono\ Nerd\ Font\ 11
 
 " VIM Diff
 highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=11 gui=none guifg=bg guibg=Red
