@@ -27,7 +27,9 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'ap/vim-css-color'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive' " Git
+Plug 'dense-analysis/ale' " Linting
+Plug 'ctrlpvim/ctrlp.vim'
 call plug#end()
 
 colorscheme palenight
@@ -67,8 +69,8 @@ set incsearch  " search as characters are entered
 set nohlsearch " remove highlight
 
 set mouse=a  " enable mouse
-set undofile " save undo history  
-set termguicolors " better gui colors  
+set undofile " save undo history
+set termguicolors " better gui colors
 
 " disable bell
 set visualbell
@@ -92,7 +94,7 @@ set showtabline=2 " Always display tabline even if there is only one tab
 set laststatus=2 " Show the status line all the time
 
 " http://vim.wikia.com/wiki/Toggle_auto-indenting_for_code_paste
-set pastetoggle=<F2>
+set pastetoggle=<F1>
 
 set autoread " auto-reload files when changed
 
@@ -116,12 +118,23 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 set guifont=DroidSansMono\ Nerd\ Font\ 11
 
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+
 " VIM Diff
 highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=11 gui=none guifg=bg guibg=Red
 highlight DiffDelete cterm=bold ctermfg=10 ctermbg=11 gui=none guifg=bg guibg=Red
 highlight DiffChange cterm=bold ctermfg=10 ctermbg=11 gui=none guifg=bg guibg=Red
 highlight DiffText   cterm=bold ctermfg=10 ctermbg=88 gui=none guifg=bg guibg=Red
 
+" Ale linter configs
+let g:ale_linters= {'javascript' : ['prettier'], 'python': ['flake8']}
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['eslint'],
+\}
+
+let g:ale_fix_on_save = 1
 " Autocommands
 " autocmd BufRead,BufNewFile * start "Switch to Insert mode when open a file
 
@@ -152,6 +165,8 @@ nmap <CR> o<Esc>
 "nmap <DOWN> <NOP> - press down key no operation
 map <F5> :NERDTreeToggle<CR>
 map <C-a> <esc>ggVG<CR> #select all
+
+nnoremap <leader>. :CtrlPTag<cr>
 
 " Move lines up and down
 nnoremap <C-Down> :m .+1<CR>==
