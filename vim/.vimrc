@@ -62,16 +62,19 @@ set noswapfile
 set nobackup
 set magic " Enable extended regexes
 set noerrorbells " Disable error bells
-
+setlocal spell
 set t_Co=256   " Set number of colors.
 set showmatch  " highlights matching brackets
 set incsearch  " search as characters are entered
 set nohlsearch " remove highlight
-
 set mouse=a  " enable mouse
 set undofile " save undo history
 set termguicolors " better gui colors
 
+" Spelling
+set spelllang=en
+setlocal spell
+inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 " disable bell
 set visualbell
 set t_vb=
