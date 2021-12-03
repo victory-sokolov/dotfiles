@@ -118,6 +118,7 @@ alias prs 'hub pr list -L 20 -b develop --format="%t%n - Branch: [%H]%n - %U%n -
 
 # Python
 alias python="python3"
+alias py="bpython"
 alias jn="jupyter notebook"
 alias server="python -m http.server"
 alias encode='python -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))"'
