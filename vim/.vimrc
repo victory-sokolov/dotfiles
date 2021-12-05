@@ -30,6 +30,7 @@ Plug 'honza/vim-snippets'
 Plug 'tpope/vim-fugitive' " Git
 Plug 'dense-analysis/ale' " Linting
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'easymotion/vim-easymotion'
 call plug#end()
 
 colorscheme palenight
