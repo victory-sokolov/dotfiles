@@ -74,6 +74,7 @@ plugins=(
 	extract
 	sudo
 	docker
+	per-directory-history
 	react-native
 	kubectl
 	#zsh-nvm
