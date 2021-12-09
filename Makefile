@@ -88,8 +88,8 @@ clitools: ## Install cli tools
 		dos2unix \
 		fonts-powerline \
 		ffmpeg \
-		fdupes \ # search dublicate files
-		fzf \ # cli fuzzy finder
+		fdupes \
+		fzf \
 		silversearcher-ag \
 		shellcheck \
 		imagemagick \
@@ -102,13 +102,13 @@ clitools: ## Install cli tools
 		neovim \
 		neofetch \
 		net-tools \
-		ncdu \ # navigatable overview of file space
+		ncdu \
 		pkg-config \
 		pdftk \
 		pwgen \
 		preload \
 		powerline \
-		ripgrep \ # better grep alternative
+		ripgrep \
 		openssh-server \
 		openssh-client \
 		subversion \
@@ -121,7 +121,7 @@ clitools: ## Install cli tools
 		xbindkeys \
 		xclip
 
-	# install bat cat replacment with syntax hightlight
+	# install bat cat replacement with syntax highlight
 	wget https://github.com/sharkdp/bat/releases/download/v0.18.2/bat-musl_0.18.2_amd64.deb
 	sudo dpkg -i bat-musl_0.18.2_amd64.deb
 
@@ -175,7 +175,7 @@ postgresql: ## PosgreSQL
 	sudo apt-get update -y
 
 	# Create base user
-	sudo -u postgres bash -c "psql -c \"CREATE USER ${USER} WITH PASSWORD '123456';\"" 
+	sudo -u postgres bash -c "psql -c \"CREATE USER ${USER} WITH PASSWORD '123456';\""
 	sudo -u postgres bash -c "psql -c \"GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO ${USER};\""
 
 mongodb: ## MongoDB
@@ -241,7 +241,7 @@ elastic: ## ElastiSearch
 	sudo apt update -y
 	sudo apt install elasticsearch -y
 	sudo systemctl enable elasticsearch.service --now
-	
+
 
 go: ## Go lang
 	sudo apt-get install golang-go
@@ -259,9 +259,9 @@ ghcli: ## GitHub CLI
 rust: ## Rust
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 	echo -e "source ${HOME}/.cargo/env" >> ${HOME}/.zshrc
-	
+
 	# cargo packages
-	cargo install watchexec-cli 
+	cargo install watchexec-cli
 
 php: ## PHP7.4/Symfony, Apache
 	sudo apt-get install apache2 -y
