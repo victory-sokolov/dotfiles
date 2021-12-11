@@ -15,6 +15,7 @@ alias top="htop"
 alias cls="clear"
 alias chmod="chmod +x"
 alias grep="grep --color=auto "
+alias fgrep="fgrep --color=auto"
 alias q="exit"
 alias ctrash="sudo rm -rf ~/.local/share/Trash/files/*"
 alias cp="cp -i" # copy file interactive
@@ -49,6 +50,8 @@ alias uuid="uuidgen | pbcopy && pbpaste && echo"
 alias week="date +%V"
 # Unix timestamp
 alias timestamp="date +%s"
+# UTC Date
+alias dateutc='date -u +"%Y-%m-%dT%H:%M:%S" | pbcopy'
 
 # Generate random passwor dusing pwgen
 alias pw="pwgen 16 -1 | xclip"
@@ -114,7 +117,7 @@ alias gri='git ls-files --ignored --exclude-standart | xargs -0 git rm -r'
 alias gopen='open https://github.$(git config remote.origin.url | cut -f2 -d. | tr ':' /)'
 alias amend='git add . && git commit --amend --no-edit'
 # list currents repo PR's
-alias prs 'hub pr list -L 20 -b develop --format="%t%n - Branch: [%H]%n - %U%n - %l%n%n"' 
+alias prs 'hub pr list -L 20 -b develop --format="%t%n - Branch: [%H]%n - %U%n - %l%n%n"'
 
 # Python
 alias python="python3"
