@@ -164,6 +164,7 @@ alias ys='yarn start'
 alias plo="poetry show --outdated | grep --file=<(poetry show --tree | grep '^\w' | cut -d' ' -f1)"
 # Install deps from requirements and skip commented
 alias pir="sed -e '/^#/d' requirements.txt | xargs poetry add"
+alias pshell="poetry shell"
 
 # Clipboard
 alias pbcopy="xclip -selection clipboard"
