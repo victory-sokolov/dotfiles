@@ -117,7 +117,6 @@ clitools: ## Install cli tools
 		tmux \
 		tree \
 		traceroute \
-		vim \
 		xbindkeys \
 		xclip
 
@@ -128,6 +127,12 @@ clitools: ## Install cli tools
 	# Better Git diff tool
 	wget https://github.com/dandavison/delta/releases/download/0.9.1/delta-0.9.1-aarch64-unknown-linux-gnu.tar.gz
 	sudo tar -tvf delta-0.9.1-aarch64-unknown-linux-gnu.tar.gz
+
+	# Install VIM 8.2
+	sudo add-apt-repository ppa:jonathonf/vim -y
+	sudo apt install vim -y
+	sudo apt install vim-gtk3 vim-nox -y
+	
 
 docker: ## Docker
 	sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
