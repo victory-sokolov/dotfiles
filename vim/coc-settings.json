@@ -1,0 +1,22 @@
+{
+	"suggest.noselect": false,
+	"coc.preferences.formatOnSaveFiletypes": [
+		"javascript",
+		"typescript",
+		"typescriptreact",
+		"json",
+		"javascriptreact",
+		"typescript.tsx",
+		"python",
+		"graphql",
+		"css",
+		"markdown",
+		"html",
+		"json",
+		"yaml"
+	],
+
+	// python config
+	"python.linting.enabled": true,
+	"python.linting.pylintEnabled": true
+}

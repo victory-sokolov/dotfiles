@@ -6,30 +6,31 @@ endif
 
 " Plugins
 call plug#begin('~/.vim/autoload')
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mattn/emmet-vim'
-Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'		" File explorer
+Plug 'scrooloose/nerdcommenter'	" Comment stuff
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
-Plug 'HerringtonDarkholme/yats.vim' " TypeScript syntax
+Plug 'HerringtonDarkholme/yats.vim' " TypeScript syntax highlight
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'zchee/deoplete-jedi'
+" " Plug 'zchee/deoplete-jedi'
 Plug 'FootSoft/vim-argwrap' " breaks func arguments each on new line
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
-Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'drewtempelmeyer/palenight.vim'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+" Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'			" Fuzzy search
 Plug 'vim-syntastic/syntastic'
-Plug 'ryanoasis/vim-devicons'
+Plug 'ryanoasis/vim-devicons'	" DevIcons in NerdTree
 Plug 'jiangmiao/auto-pairs'
-Plug 'ap/vim-css-color'
-Plug 'SirVer/ultisnips'
+Plug 'ap/vim-css-color'			" CSS color highlight
+Plug 'SirVer/ultisnips'			" Snippets
 Plug 'honza/vim-snippets'
-Plug 'tpope/vim-fugitive' " Git
-Plug 'dense-analysis/ale' " Linting
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tpope/vim-fugitive' 		" Git
+" Plug 'dense-analysis/ale' 		" Linting
+" Plug 'ctrlpvim/ctrlp.vim'
 Plug 'easymotion/vim-easymotion'
 call plug#end()
 
@@ -85,6 +86,7 @@ set vb t_vb=
 
 " display all matching files when we tab complete
 set wildmenu
+set updatetime=300
 
 " Invisible character colors
 hi NonText ctermfg=238
@@ -108,9 +110,41 @@ set wildignore+=*/smarty/*,*/vendor/*,*/.git/*,*/.hg/*,*/.svn/*,*/.sass-cache/*,
 
 " NerdTree
 let NERDTreeShowHidden=1 " Show hidden files
+let NERDTreeQuitOnOpen=1   " Hide NerdTree when file is opened 
+let g:NERDTreeGitStatusWithFlags=1
+let g:NERDTreeMinimalUI=1
+
+" Open NerdTree when file not specified
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" Create default mappings
+let g:NERDCreateDefaultMappings = 1
+
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
+" Nerdcommenter
+nmap <C-_> <Plug>NERDCommenterToggle
+vmap <C-_> <Plug>NERDCommenterToggle<CR>gv
 
 " Emmet trigger
 let g:user_emmet_leader_key=','
+
+" coc config
+let g:coc_global_extensions = [
+  \ 'coc-snippets',
+  \ 'coc-pairs',
+  \ 'coc-tsserver',
+  \ 'coc-eslint',
+  \ 'coc-prettier',
+  \ 'coc-json',
+  \ 'coc-pyright',
+  \ 'coc-css'
+  \ ]
+
+" prettier command for coc
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 " Autocomletion
 let g:ycm_python_binary_path = '/usr/bin/python3'
@@ -122,8 +156,14 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 set guifont=DroidSansMono\ Nerd\ Font\ 11
 
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
+" let g:ctrlp_map = '<c-p>'
+" let g:ctrlp_cmd = 'CtrlP'
+
+" FZF settings
+let g:fzf_preview_window = ['right:50%', 'ctrl-/']
+" Border color
+let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'highlight': 'Todo', 'border': 'sharp' } }
+
 
 " VIM Diff
 highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=11 gui=none guifg=bg guibg=Red
@@ -145,6 +185,9 @@ let g:ale_fix_on_save = 1
 " format JSON =j
 nmap =j :%!python3 -m json.tool
 
+" Nerd commenter
+map <Leader>c <Plug>NERDCommenterComment
+
 " Markdown
 nmap <C-s> <Plug>MarkdownPreview
 nmap <M-s> <Plug>MarkdownPreviewStop
@@ -155,9 +198,6 @@ python3 from powerline.vim import setup as powerline_setup
 python3 powerline_setup()
 python3 del powerline_setup
 
-" Open NerdTree when file not specified
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " Highlight .dotfiles
 autocmd BufNewFile,BufRead *.aliases,*.functions set syntax=sh
@@ -169,6 +209,15 @@ nmap <CR> o<Esc>
 "nmap <DOWN> <NOP> - press down key no operation
 map <F5> :NERDTreeToggle<CR>
 map <C-a> <esc>ggVG<CR> #select all
+
+" Remap for rename current word
+nmap <F2> <Plug>(coc-rename)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
 nnoremap <leader>. :CtrlPTag<cr>
 
