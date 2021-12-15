@@ -56,12 +56,14 @@ set showmatch " Highlights matching brackets
 set foldenable " Use folding
 set ignorecase " Ignore case of searches
 set tabstop=4 " Default indentation is 2 spaces long and uses tabs, not spaces
+set softtabstop=4
 set shiftwidth=4
 set history=1000 " Increase the undo limit.
 set nospell
 set wildignorecase
 set noswapfile
 set nobackup
+set noundofile
 set magic " Enable extended regexes
 set noerrorbells " Disable error bells
 setlocal spell
@@ -160,10 +162,19 @@ set guifont=DroidSansMono\ Nerd\ Font\ 11
 " let g:ctrlp_cmd = 'CtrlP'
 
 " FZF settings
-let g:fzf_preview_window = ['right:50%', 'ctrl-/']
+let g:fzf_preview_window = ['right:50%', 'ctrl-t']
 " Border color
 let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'highlight': 'Todo', 'border': 'sharp' } }
 
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
+nmap <C-p> :GFiles<CR>
+
+" RIPGrep
+nnoremap <C-g> :Ag<Cr>
 
 " VIM Diff
 highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=11 gui=none guifg=bg guibg=Red
@@ -191,7 +202,7 @@ map <Leader>c <Plug>NERDCommenterComment
 " Markdown
 nmap <C-s> <Plug>MarkdownPreview
 nmap <M-s> <Plug>MarkdownPreviewStop
-nmap <C-p> <Plug>MarkdownPreviewToggle
+" nmap <C-p> <Plug>MarkdownPreviewToggle
 
 " Powerline
 python3 from powerline.vim import setup as powerline_setup
