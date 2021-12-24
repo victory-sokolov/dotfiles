@@ -106,6 +106,9 @@ alias mysqldump="mysqldump -u [uname] -p[pass] [dbname] | gzip -9 > [db.sql.gz]"
 alias undump="gunzip < db.sql.gz | mysql -u [uname] -p[pass] db" # Restore db dump from archive
 alias msql="sudo /etc/init.d/mysql" # path to mysql executable
 
+# PostgreSQL
+alias psqls="sudo service postgresql"
+
 # Network
 alias my-ip="curl https://ipinfo.io/ip"
 alias localip="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
