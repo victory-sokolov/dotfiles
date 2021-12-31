@@ -151,6 +151,10 @@ command! -nargs=0 Prettier :CocCommand prettier.formatFile
 " Autocomletion
 let g:ycm_python_binary_path = '/usr/bin/python3'
 
+" Cursor
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[2 q"
+
 " Trigger snippets
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
