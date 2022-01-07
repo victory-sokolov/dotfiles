@@ -4,7 +4,7 @@
 
 [core]
 	editor = vim
-  excludesfile = ~/.gitignore
+  	excludesfile = ~/.gitignore
 
 [help]
   autocorrect = 20
@@ -19,7 +19,7 @@
   diffFilter = delta --color-only --features=interactive
 
 [delta]
-	max-line-length = 700
+  max-line-length = 700
   syntax-theme = base16
   file-decoration-style = yellow ol ul
   file-style = bold yellow ul
@@ -63,6 +63,7 @@
 		apply = stash apply
 		sl = stash list --pretty=format:\"%C(bold red)%gd%C(dim yellow)%C(reset) %<(70,trunc)%s %C(green)(%ad)\"
 		last = log -1 HEAD --stat
+
 [url "ssh://git@github.com/"]
     insteadOf = "gh:"
     pushInsteadOf = "github:"
@@ -70,6 +71,10 @@
     insteadOf = "https://github.com/"
     # Show the diff between the latest commit and the current state
 	  d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
+
+
+[url "git@github.com:"]
+    insteadOf = https://github.com/
 
 [url "https://gist.github.com/"]
     insteadOf = gist:
