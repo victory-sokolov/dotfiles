@@ -24,7 +24,18 @@ function drmnone() # remove untagged images
 }
 
 
+function docker-compose-watch() # watch and reload docker 
+{
+  local args;
+  if [[ $1 == "help" ]] || [[ $1 = "--help" ]]; then
+    watchexec --help | grep -A 3 "OPTIONS:";
+    return;
+  else
+    args='--filter "*/docker-compose.yml"' && [[ $1 ]] && args=$@;
+  fi
+  eval watchexec --restart $args -w $(pwd) "docker-compose up"
+}
+
 # Docker containers aliases and functions
-
-
 alias splash="docker run --rm --name scrapy-splash -d -p 8050:8050 scrapinghub/splash"
+alias docker-compose-reload=docker-compose-watch;
