@@ -183,6 +183,9 @@ postgresql: ## PosgreSQL
 	sudo -u postgres bash -c "psql -c \"CREATE USER ${USER} WITH PASSWORD '123456';\""
 	sudo -u postgres bash -c "psql -c \"GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO ${USER};\""
 
+	# pgcli client
+	sudo apt-get install pgcli
+
 mongodb: ## MongoDB
 	wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | sudo apt-key add -
 	echo "deb https://repo.mongodb.org/apt/ubuntu $(lsb_release -sc)/mongodb-org/5.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-5.0.list
