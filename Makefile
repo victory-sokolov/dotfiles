@@ -132,7 +132,7 @@ clitools: ## Install cli tools
 	sudo add-apt-repository ppa:jonathonf/vim -y
 	sudo apt install vim -y
 	sudo apt install vim-gtk3 vim-nox -y
-	
+
 
 docker: ## Docker
 	sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
@@ -230,7 +230,7 @@ ruby: ## Install ruby and gems
 	)
 
 	for gems in {gem[@]}; do
-		sudo gem install ${gem} -y
+		gem install ${gem} -y
 	done
 
 java: ## Java JDK8
