@@ -53,7 +53,7 @@ function backup() # Backup files and folders
 }
 
 # Example linecount js
-function linecount() # Count lines of a filw with specific extension
+function linecount() # Count lines of a file with specific extension
 {
     find . -name "*.$1" | xargs wc -l
 }
@@ -140,12 +140,12 @@ function kport() # Kill port
 	kill $(lsof -t -i:$1)
 }
 
-function lowerDir # Lower case every file in current directory
+function lowerDir() # Lower case every file in current directory
 {
 	for i in *; do mv $i ${(L)i}; done
 }
 
-function findEmpty # Find empty files and directories in current directory
+function findEmpty() # Find empty files and directories in current directory
 {
 	find . -type f -exec bash -c 'if [ `cat "{}" |wc -w` -eq 0 ]; then echo "file - {}";fi' \; -or -empty -exec bash -c "echo dir - {}" \;
 }
@@ -176,7 +176,7 @@ function ghexport() # Download single folder from github
 	svn export ${link}
 }
 
-function clean_merged_branches()  # Delete all merged branches
+function clean-merged-branches() # Delete all merged branches
 {
     git branch --merged | grep -v "\*" | xargs -n 1 git branch -d
 }
@@ -195,12 +195,12 @@ function ggs() # push & commit with message `update`
     git push
 }
 
-function git-https # Git: Http to Https
+function git-https() # Git: Http to Https
 {
 	git remote set-url origin https://github.com/$(git remote get-url origin | sed 's/https:\/\/github.com\///' | sed 's/git@github.com://')
 }
 
-function git-ssh # Git: Https to SSH
+function git-ssh() # Git: Https to SSH
 {
 	git remote set-url origin git@github.com:$(git remote get-url origin | sed 's/https:\/\/github.com\///' | sed 's/git@github.com://')
 }
@@ -211,7 +211,7 @@ function gitignore() # Get .gitignore file for specific lang
 	curl -sL "https://www.gitignore.io/api/$@" >> .gitignore
 }
 
-isup() # Check if URL is up
+function isup() # Check if URL is up
 {
 	local uri=$1
 
@@ -222,7 +222,7 @@ isup() # Check if URL is up
 	fi
 }
 
-function clean_comments # remove comments (#, //) and empty lines
+function clean-comments() # remove comments (#, //) and empty lines
 {
 	sed -i.tmp "/^s*[#;//]/d;/^$/d" $1
 }
@@ -251,7 +251,7 @@ function mkenv() # create python virtual environment
 {
     python3 -m venv .venv
     source .venv/bin/activate
-    
+
     # if requirements.txt exists, install dependencies
 		if [ -f "requirements.txt"];then
 				pip install -r requirements.txt
@@ -264,16 +264,16 @@ function mkenv() # create python virtual environment
 			pylint
 }
 
-function json() # Usage: `json '{"foo":42}'` or `echo '{"foo":42}' | json`
+function json() # Usage: json '{"foo":42}'` or `echo '{"foo":42}' | json
 {
 	if [ -t 0 ]; then # argument
 		python -mjson.tool <<< "$*" | pygmentize -l javascript;
-	else # pipe
+	else
 		python -mjson.tool | pygmentize -l javascript;
-	fi;
+	fi
 }
 
-function token # generate secret, token
+function token() # generate secret, token
 {
 	python -c 'import secrets; print(secrets.token_urlsafe(16))'
 }
@@ -334,20 +334,20 @@ function clone() # Clone repo and install dependencies
 	if test -f "./package.json"; then
 		echo "Installing NPM dependencies"
 		npm install
-		exit 0
+		return 0
 	elif test -f "./pyproject.toml"; then
 		echo "Installing Poetry dependencies"
 		poetry install
-		exit 0
+		return 0
 	elif test -f "./requirements.txt"; then
-		python3 -m venv .
+		python3 -m venv ./venv
 		source venv/bin/activate
 		pip install -r requirements.txt
-		exit 0
+		return 0
 	elif test -f "./composer.json"; then
 		echo "Installing composer dependencies"
 		composer install
-		exit 0
+		return 0
 	fi
 
 }
@@ -388,7 +388,7 @@ function repl() # Launch Repl for specified language
 
 }
 
-function lorem () # Generate Loremipsum text
+function lorem() # Generate Loremipsum text
 {
 
 	if [ "${1}" = "" ] || [ "${2}" = "" ]; then
@@ -423,7 +423,7 @@ function pngtojpg() # Bulk convert png to jpg
 	for i in *.png ; do convert "$i" "${i%.*}.jpg" ; done
 }
 
-function dockerlint # Lint Dockerfile with Hadolint
+function dockerlint() # Lint Dockerfile with Hadolint
 {
   docker container run --rm -i \
     hadolint/hadolint hadolint --ignore DL3008 "${@}" - < Dockerfile
@@ -437,4 +437,15 @@ function cpp-run() # compile and run executable
     echo "Compiling file..."
     g++ -o "$1" "$1.cpp"
     ./$1.cpp
+}
+
+
+function spy() # Watch file
+{
+    file=$1
+    echo "watching file ${file}\n👀..."
+    while [ $(watch -n 1 -g -x cat ${file} > /dev/null 2>&1) ]; do
+
+    done
+    echo 'file changed'
 }
