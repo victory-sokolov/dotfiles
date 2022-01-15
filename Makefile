@@ -180,8 +180,7 @@ postgresql: ## PosgreSQL
 	sudo apt-get update -y
 
 	# Create base user
-	sudo -u postgres bash -c "psql -c \"CREATE USER ${USER} WITH PASSWORD '123456';\""
-	sudo -u postgres bash -c "psql -c \"GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO ${USER};\""
+	sudo -u postgres bash -c "psql -c \"CREATE ROLE ${USER} LOGIN SUPERUSER PASSWORD '123456';\""
 
 	# pgcli client
 	sudo apt-get install pgcli
