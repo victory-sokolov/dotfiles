@@ -230,7 +230,7 @@ ruby: ## Install ruby and gems
 	)
 
 	for gems in {gem[@]}; do
-		gem install ${gem} -y
+		sgem install ${gem} -y
 	done
 
 java: ## Java JDK8
@@ -294,7 +294,7 @@ php: ## PHP7.4/Symfony, Apache
 		php7.4-mbstring \
 		php7.4-intl \
 		php7.4-odbc \
-
+		php-pgsql
 	# PHP Unit testing
 	wget -O home/phpunit https://phar.phpunit.de/phpunit-8.phar
 	chmod +x phpunit
