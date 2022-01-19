@@ -326,6 +326,19 @@ function psql-create-db() # Create Postgres database
     echo "Database $db_name successfully created!"
 }
 
+function db() # MYSQL base commands (refresh, create, drop, list)
+{
+    if [ "$1" = "refresh" ]; then
+        mysql -uroot -e "drop database $2; create database $2"
+    elif [ "$1" = "create" ]; then
+        mysql -uroot -e "create database $2"
+    elif [ "$1" = "drop" ]; then
+        mysql -uroot -e "drop database $2"
+    elif [ "$1" = "list" ]; then
+        mysql -uroot -e "show databases" | perl -p -e's/\|| *//g'
+    fi
+}
+
 function clone() # Clone repo and install dependencies
 {
 	git clone $1
