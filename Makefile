@@ -292,8 +292,9 @@ php: ## PHP7.4/Symfony, Apache
 		php7.4-xml \
 		php7.4-mbstring \
 		php7.4-intl \
-		php7.4-odbc \
+		php-odbc \
 		php-pgsql
+		php-zip
 	# PHP Unit testing
 	wget -O home/phpunit https://phar.phpunit.de/phpunit-8.phar
 	chmod +x phpunit
