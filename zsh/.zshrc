@@ -126,12 +126,27 @@ source $HOME/dotfiles/zsh/.functions
 source $HOME/dotfiles/zsh/.aliases
 source $HOME/dotfiles/zsh/.exports
 source $HOME/dotfiles/zsh/.dockerfunc
-source $HOME/.poetry/env
+source /home/viktor/.cargo/env
+#source $HOME/.poetry/env
 
 . $HOME/.asdf/asdf.sh
 . $HOME/.asdf/completions/asdf.bash
 
-# eval "$(pyenv init -)"
-export PATH="$HOME/.poetry/bin:$PATH"
+# Custom settings depending on OS
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  local DISTRIB=$(awk -F= '/^NAME/{print $2}' /etc/os-release)
+  if [[ ${DISTRIB} = "Ubuntu"* ]]; then
+    if uname -a | grep -q '^Linux.*Microsoft'; then
+      # ubuntu via WSL Windows Subsystem for Linux
+      # Set symlink for vscode
+      ln -s '/mnt/c/Program Files/Microsoft VS Code/bin/code' /usr/local/bin/code
+    else
+      # native ubuntu
+    fi
+  elif [[ ${DISTRIB} = "Debian"* ]]; then
+    # debian
+  fi
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+  # macOS OSX
+fi
 
-source /home/viktor/.cargo/env
