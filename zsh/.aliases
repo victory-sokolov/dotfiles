@@ -123,6 +123,8 @@ alias amend='git add . && git commit --amend --no-edit'
 alias prs 'hub pr list -L 20 -b develop --format="%t%n - Branch: [%H]%n - %U%n - %l%n%n"'
 # Delete all merged git branches
 alias gclean="git branch --merged | grep -v "\*" | grep -v master | grep -v develop | xargs -n 1 git branch -d"
+# Git worktree
+alias wt="git worktree"
 
 # Python
 alias python="python3"
