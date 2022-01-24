@@ -176,3 +176,6 @@ alias pshell="poetry shell"
 # Clipboard
 alias pbcopy="xclip -selection clipboard"
 alias pbpaste="xclip -selection clipboard -o"
+
+# Suffix Aliases
+alias -s {py,go,js,ts}="vim"
