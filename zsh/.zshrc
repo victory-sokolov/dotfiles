@@ -78,6 +78,7 @@ plugins=(
 	react-native
 	kubectl
 	#zsh-nvm
+	fzf
 	web-search
 	you-should-use
 	zsh-syntax-highlighting
