@@ -151,3 +151,13 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   # macOS OSX
 fi
 
+# Auto change node version with .nvm
+function change_node_version {
+	nvmrc="./.nvmrc"
+	if [ -f "$nvmrc" ]; then
+		version="$(cat "$nvmrc")"
+		nvm use $version
+	fi
+}
+
+chpwd_functions=(change_node_version)
