@@ -36,6 +36,17 @@ function docker-compose-watch() # watch and reload docker
   eval watchexec --restart $args -w $(pwd) "docker-compose up"
 }
 
+
+function di() # Get container id by name
+{
+	docker ps -aqf "name=$1"
+}
+
+function dcs() # Stop container by name
+{
+	docker container stop $(docker container ls -q --filter name=$1*)
+}
+
 # Docker containers aliases and functions
 alias splash="docker run --rm --name scrapy-splash -d -p 8050:8050 scrapinghub/splash"
 alias docker-compose-reload=docker-compose-watch;
