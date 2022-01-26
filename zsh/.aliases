@@ -83,7 +83,6 @@ alias v="vim"
 # media
 alias ytmp3="youtube-dl --extract-audio --audio-format mp3" # youtube video to mp3
 
-#alias code="/mnt/c/Users/Viktor/AppData/Local/Programs/'Microsoft VS Code'/bin/code"
 
 # PHP
 alias hosts="sudo vim /etc/hosts" # vhosts
