@@ -264,6 +264,12 @@ function mkenv() # create python virtual environment
 			pylint
 }
 
+function prd() # Poetry reinstall package as dev dependencie
+{
+	poetry remove $1
+	poetry add --dev $1
+}
+
 function json() # Usage: json '{"foo":42}'` or `echo '{"foo":42}' | json
 {
 	if [ -t 0 ]; then # argument
