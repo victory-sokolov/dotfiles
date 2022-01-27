@@ -197,6 +197,7 @@ mongodb: ## MongoDB
 
 tesseract: ## Install Tesseract binaries
 	# installation: https://github.com/tesseract-ocr/tesseract/wiki/Compiling-%E2%80%93-GitInstallation
+	sudo add-apt-repository ppa:alex-p/tesseract-ocr-devel -y
 	sudo apt-get update -y
 	sudo apt-get install tesseract-ocr
 	sudo apt install libtesseract-dev
