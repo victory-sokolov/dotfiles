@@ -433,6 +433,7 @@ node: ## NodeJS & packages
 
 	# Node packages
 	npm_scripts=(
+		"autocannon"
 		"trash-cli"
 		"electron"
 		"eslint"
