@@ -53,7 +53,7 @@ alias timestamp="date +%s"
 # UTC Date
 alias dateutc='date -u +"%Y-%m-%dT%H:%M:%S" | pbcopy'
 
-# Generate random passwor dusing pwgen
+# Generate random passwor using pwgen
 alias pw="pwgen 16 -1 | xclip"
 
 # preview files with syntax highlighting
@@ -68,8 +68,6 @@ alias -- -="cd -"
 alias dotfiles="cd ~/dotfiles"
 alias db="cd ~/Dropbox"
 alias dev="cd ~/Dropbox/Code/"
-alias kn="cd ~/Dropbox/Knowledge/"
-alias cw="cd ~/Dropbox/Code/Python/Projects/Client\ Work/"
 alias dirs="dirs -v"
 
 # quick edit
@@ -117,7 +115,7 @@ alias ports='sudo lsof -i -P -n | grep LISTEN'
 # remove the file from git and from the history
 alias gri='git ls-files --ignored --exclude-standart | xargs -0 git rm -r'
 alias gopen='open https://github.$(git config remote.origin.url | cut -f2 -d. | tr ':' /)'
-alias amend='git add . && git commit --amend --no-edit'
+alias amend='git commit --amend --no-edit'
 # list currents repo PR's
 alias prs 'hub pr list -L 20 -b develop --format="%t%n - Branch: [%H]%n - %U%n - %l%n%n"'
 # Delete all merged git branches
@@ -158,6 +156,8 @@ alias dclean='dstop && docker rm -f $(docker ps -q -a)'
 # NPM
 alias npm-flush="sudo rm -rf node_modules/ package.lock && npm i && npm start"
 alias npm-globals='npm list -g --depth=0'
+alias nrd="npm run dev"
+alias nrt="npm run test"
 
 # Yarn
 alias y='yarn'
