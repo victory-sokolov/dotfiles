@@ -76,6 +76,10 @@ linux: ## Install Ubuntu programms: flameshot, albert, spotify, dropbox, vlc, ch
 	# Snap packages
 	sudo snap install spotify postman slack --classic
 
+	# Video recorder
+	sudo add-apt-repository ppa:sylvain-pineau/kazam -y
+	sudo apt-get update -y 
+	sudo apt install kazam -y
 
 clitools: ## Install cli tools
 	sudo apt-get install -y \
