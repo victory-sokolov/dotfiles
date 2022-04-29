@@ -1,4 +1,5 @@
-# General
+#
+ General
 alias install="sudo apt-get install"
 alias remove="sudo apt-get remove"
 alias reboot="sudo reboot"
@@ -84,7 +85,7 @@ alias ytmp3="youtube-dl --extract-audio --audio-format mp3" # youtube video to m
 
 # PHP
 alias hosts="sudo vim /etc/hosts" # vhosts
-alias php-server="php -S localhost:8000 && xdg-open http://localhost:8000" # build in php server
+alias php-server="php -S localhost:8000" # build in php server
 alias run-apache="sudo service mysql start && sudo service apache2 start"
 # Switch PHP version
 alias php74="sudo update-alternatives --set php /usr/bin/php7.4"
