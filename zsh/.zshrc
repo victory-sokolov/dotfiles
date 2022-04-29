@@ -79,7 +79,7 @@ plugins=(
 	kubectl
 	#zsh-nvm
 	fzf
-	copydir
+	copypath
 	web-search
 	you-should-use
 	zsh-syntax-highlighting
