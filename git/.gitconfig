@@ -43,10 +43,10 @@
 	showPatch = true
 
 [alias]
-		a = add
-		amend = commit --amend -m
-		br = branch
-		gc = 'commit -m'
+	a = add
+	amend = commit --amend -m
+	br = branch
+	gc = 'commit -m'
     gca = 'commit -a'
     co = 'checkout'
     gcb = 'copy-branch-name'
@@ -56,13 +56,14 @@
     ge = 'git-edit-new'
     gpom = 'git push origin master'
     lg = log --color --graph --stat --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-		current = rev-parse --abbrev-ref HEAD
-		branchcleanup = !git remote prune origin
-		undo = reset HEAD~1
-		pop = stash pop
-		apply = stash apply
-		sl = stash list --pretty=format:\"%C(bold red)%gd%C(dim yellow)%C(reset) %<(70,trunc)%s %C(green)(%ad)\"
-		last = log -1 HEAD --stat
+	current = rev-parse --abbrev-ref HEAD
+	branchcleanup = !git remote prune origin
+	undo = reset HEAD~1
+	pop = stash pop
+	apply = stash apply
+	sl = stash list --pretty=format:\"%C(bold red)%gd%C(dim yellow)%C(reset) %<(70,trunc)%s %C(green)(%ad)\"
+	last = log -1 HEAD --stat
+	recent = branch --sort=committerdate
 
 [url "ssh://git@github.com/"]
     insteadOf = "gh:"
