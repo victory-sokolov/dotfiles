@@ -9,26 +9,26 @@ call plug#begin('~/.vim/autoload')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mattn/emmet-vim'
 Plug 'scrooloose/nerdtree'		" File explorer
-Plug 'scrooloose/nerdcommenter'	" Comment stuff
+Plug 'scrooloose/nerdcommenter'		" Comment stuff
 Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
+Plug 'mxw/vim-jsx'					" JSX support
 Plug 'HerringtonDarkholme/yats.vim' " TypeScript syntax highlight
 Plug 'christoomey/vim-tmux-navigator'
 " " Plug 'zchee/deoplete-jedi'
-Plug 'FootSoft/vim-argwrap' " breaks func arguments each on new line
-Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'FootSoft/vim-argwrap'			" breaks func arguments each on new line
+Plug 'prettier/vim-prettier', {'do': 'yarn install' }
+Plug 'iamcco/markdown-preview.nvim',{'do': { -> mkdp#util#install() },'for': ['markdown', 'vim-plug']}
 Plug 'drewtempelmeyer/palenight.vim'
 " Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'			" Fuzzy search
+Plug 'junegunn/fzf', {'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'				" Fuzzy search
 Plug 'vim-syntastic/syntastic'
-Plug 'ryanoasis/vim-devicons'	" DevIcons in NerdTree
+Plug 'ryanoasis/vim-devicons'		" DevIcons in NerdTree
 Plug 'jiangmiao/auto-pairs'
-Plug 'ap/vim-css-color'			" CSS color highlight
-Plug 'SirVer/ultisnips'			" Snippets
+Plug 'ap/vim-css-color'				" CSS color highlight
+Plug 'SirVer/ultisnips'				" Snippets
 Plug 'honza/vim-snippets'
-Plug 'tpope/vim-fugitive' 		" Git
+Plug 'tpope/vim-fugitive'			" Git
 " Plug 'dense-analysis/ale' 		" Linting
 " Plug 'ctrlpvim/ctrlp.vim'
 Plug 'easymotion/vim-easymotion'
@@ -88,6 +88,7 @@ set vb t_vb=
 
 " display all matching files when we tab complete
 set wildmenu
+set wildmode=longest:full,full
 set updatetime=300
 
 " Invisible character colors

@@ -35,8 +35,8 @@ export PATH="$PATH:$HOME/npm/bin"
 export PATH="$HOME/.symfony/bin:$PATH"
 
 # Java
-export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
-export PATH=$PATH:/usr/lib/jvm/java-8-openjdk/bin
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+export PATH=$PATH:/usr/lib/jvm/java-11-openjdk/bin
 
 # Maven
 export M2_HOME=/usr/local/apache-maven/apache-maven-3.6.3
@@ -44,7 +44,7 @@ export M2=$M2_HOME/bin
 export PATH=$M2:$PATH
 
 # Tesseract
-export TESSDATA_PREFIX="/usr/share/tesseract-ocr/4.00/tessdata"
+export TESSDATA_PREFIX="/usr/share/tesseract-ocr/5.00/tessdata"
 export TESSERACT="/usr/share/tesseract-ocr"
 
 # Python
@@ -55,8 +55,10 @@ export PYTHONIOENCODING='UTF-8';
 export PYTHONPATH="/usr/bin/python3.8"
 # Prevents Python from writing pyc files to disc
 export PYTHONDONTWRITEBYTECODE=1
-export PYTHONSTARTU=P~/.pythonrc
+export PYTHONSTARTUP=~/.pythonrc
 export PATH="$HOME/.local/bin:$PATH"
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="PYENV_ROOT/bin:$PATH"
 
 # GO
 export GOPATH=$HOME/go
@@ -69,7 +71,11 @@ export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
+export PATH=$PATH:$HOME/.dotnet/tools
 export REMOVEBG_KEY='465DzK63ECKbU6r1uNKJa9V3'
+
+# FZF 
+# export FZF_DEFAULT_COMMAND="fd --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build} --type f"
 
 export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0 # in WSL 2
 export LIBGL_ALWAYS_INDIRECT=1
