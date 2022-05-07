@@ -11,6 +11,13 @@ init: ## Symlink files
 	ln -vsf ${PWD}/git/.gitignore_global ${HOME}/.gitignore_global
 	ln -vsf ${PWD}/.sqliterc ${HOME}/.sqliterc
 	ln -vsg ${PWD}/.ignore ${HOME}/.ignore
+	# Formatter
+	ln -vsf ${PWD}/formatting/.prettierrc ${HOME}/.prettierc
+	ln -vsf ${PWD}/formatting/.eslintrc ${HOME}/.eslintrc
+	ln -vsf ${PWD}/formatting/.prettierignore ${HOME}/.prettierignore 
+	ln -vsf ${PWD}/formatting/.eslintignore ${HOME}/.eslintignore
+	ln -vsf ${PWD}/formatting/.editorconfig ${HOME}/.editorconfig
+	
 
 install: clitools docker mysql nginx node php python ruby code zsh init
 
