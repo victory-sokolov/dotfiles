@@ -335,7 +335,8 @@ python3: ## Python,Poetry & Dependencies
 		icecream \
 		httpie \
 		faker \
-    	litecli
+    	litecli \ 
+		python3-pydrive \
 	--upgrade setuptools
 
 	python3 -m pip install --user pipx pylint black pipenv bandit mypy flake8
