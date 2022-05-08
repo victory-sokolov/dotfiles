@@ -64,4 +64,40 @@
     {
         "key": "ctrl+k ctrl+x",
         "command": "workbench.extensions.action.showInstalledExtensions"
-    ]
+    },
+    {
+        "key": "ctrl+k ctrl+s",
+        "command": "extension.multiCommand.execute",
+        "args": {
+            "sequence": [
+                {
+                    "command": "editor.action.insertSnippet",
+                    "args": {
+                        "snippet": "${TM_SELECTED_TEXT/([A-Z]{2,})(?=[A-Z][a-z]+[0-9]*|$)|([A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+)([- _])?/${1:/downcase}${2:/downcase}_/gm}"
+                    }
+                },
+                "deleteLeft"
+            ]
+        },
+        "when": "editorTextFocus && editorHasSelection"
+    },
+    {
+        "key": "ctrl+k ctrl+a",
+        "command": "extension.multiCommand.execute",
+        "args": {
+            "sequence": [
+                {
+                    "command": "editor.action.insertSnippet",
+                    "args": {
+                        "snippet": "${TM_SELECTED_TEXT/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+)/${1:/downcase}${2:/downcase}${2:+_}/gm}"
+                    }
+                }
+            ]
+        },
+        "when": "editorTextFocus && editorHasSelection"
+    },
+    {
+        "key": "ctrl+o ctrl+k",
+        "command": "workbench.files.action.collapseExplorerFolders"
+    }
+]

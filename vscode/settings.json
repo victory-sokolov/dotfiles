@@ -10,22 +10,73 @@
     "files.insertFinalNewline": true,
     "editor.fontSize": 15,
     "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false,
     "editor.showDeprecated": true,
     "editor.suggest.showDeprecated": false,
-    "workbench.editor.enablePreview": false,
+    "editor.quickSuggestionsDelay": 0,
+    "editor.formatOnPaste": true,
+    "editor.folding": true,
+    "editor.glyphMargin": true,
+    "editor.fontFamily": "Fira Code",
+    "editor.fontLigatures": true,
+    "editor.lineHeight": 30,
+    "editor.suggestSelection": "first",
+    "editor.acceptSuggestionOnEnter": "smart",
+    "editor.parameterHints.enabled": true,
+    "editor.wrappingIndent": "indent",
+    "editor.find.autoFindInSelection": "multiline",
+    // can specify multiple eg [100, 120]
+    "editor.rulers": [
+        100
+    ],
+    // Autorenames selected tag
+    "editor.linkedEditing": true,
+    "editor.codeActionsOnSave": {
+        // "source.organizeImports": true,
+        "source.fixAll": true,
+        "source.fixAll.eslint": true,
+        "source.addMissingImports": true
+    },
+    "editor.autoClosingBrackets": "always",
+    "editor.letterSpacing": 0.5,
+    "editor.fontWeight": "400",
+    "editor.cursorStyle": "line",
+    "editor.cursorWidth": 4,
+    "editor.formatOnSave": true,
+    "editor.cursorBlinking": "solid",
+    "editor.renderWhitespace": "all",
+    "editor.quickSuggestions": {
+        "comments": true,
+        "other": true
+    },
+    "editor.suggestOnTriggerCharacters": true,
+    "editor.largeFileOptimizations": false,
+    "editor.colorDecorators": true,
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs": true,
+    "editor.guides.highlightActiveBracketPair": true,
+    "editor.guides.highlightActiveIndentation": true,
+    "editor.guides.bracketPairsHorizontal": true,
+    "editor.guides.indentation": true,
+    "workbench.editor.enablePreviewFromQuickOpen": false,
     "workbench.startupEditor": "newUntitledFile",
     "workbench.settings.editor": "json",
     "workbench.editor.highlightModifiedTabs": true,
-    "editor.formatOnPaste": true,
-    "editor.largeFileOptimizations": false,
-    "editor.colorDecorators": false,
-    "editor.bracketPairColorization.enabled": true,
+    "explorer.fileNesting.enabled": true,
     // "editor.snippetSuggestions": "top",
+    "diffEditor.codeLens": true,
+    "diffEditor.ignoreTrimWhitespace": false,
     "window.menuBarVisibility": "visible",
-    "editor.glyphMargin": true,
     "files.associations": {
-        "*.twig": "php",
-        "*.html": "html"
+        "*.twig": "html",
+        "*.toml": "ini",
+        ".vuerc": "json",
+        "*.jsx": "javascript",
+        "**/*.html": "html",
+        "**/templates/*/*.html": "django-html",
+        "**/templates/*": "django-txt",
+        "**/requirements{/**,*}.{txt,in}": "pip-requirements"
     },
     //extensions
     "extensions.ignoreRecommendations": true,
@@ -34,12 +85,29 @@
     "html.autoClosingTags": true,
     "html.format.enable": true,
     "html.format.endWithNewline": false,
+    "html.format.templating": true,
     "html.suggest.html5": true,
     "html.validate.styles": true,
+    "html-css-class-completion.enableEmmetSupport": true,
+    "html.format.indentInnerHtml": true,
+    "html.format.indentHandlebars": true,
+    "html.format.wrapLineLength": 100,
     "html-css-class-completion.CSSLanguages": [
         "css",
         "sass",
-        "scss"
+        "scss",
+        "html",
+        "vue",
+        "razor",
+        "blade",
+        "handlebars",
+        "twig",
+        "django-html",
+        "php",
+        "markdown",
+        "erb",
+        "ejs",
+        "svelte"
     ],
     // CSS
     "css.completion.completePropertyWithSemicolon": true,
@@ -63,6 +131,7 @@
     "scss.lint.unknownProperties": "error",
     // Javascript
     "javascript.format.enable": true,
+    "javascript.validate.enable": false,
     "javascript.updateImportsOnFileMove.enabled": "always",
     "javascript.autoClosingTags": true,
     "javascript.suggest.autoImports": true,
@@ -77,6 +146,7 @@
     "typescript.suggest.autoImports": true,
     "typescript.autoClosingTags": true,
     "typescript.format.enable": true,
+    "typescript.suggest.completeFunctionCalls": true,
     "typescript.format.semicolons": "insert",
     "typescript.preferences.quoteStyle": "single",
     "typescript.validate.enable": true,
@@ -91,21 +161,52 @@
     },
     "jest.debugMode": false,
     "jest.showCoverageOnLoad": false,
+    // Beautify
+    "beautify.language": {
+        "js": {
+            "type": [
+                "javascript",
+                "json",
+                "jsonc"
+            ],
+            "filename": [
+                ".jshintrc",
+                ".jsbeautifyrc"
+            ]
+        },
+        "css": [
+            "css",
+            "less",
+            "scss"
+        ],
+        "html": [
+            "htm",
+            "html",
+            "django-html"
+        ]
+    },
     // Prettier & eslint
-    "prettier.useTabs": true,
+    "prettier.useTabs": false,
     "prettier.trailingComma": "none",
-    "prettier.tabWidth": 2,
+    "prettier.tabWidth": 4,
     "prettier.bracketSpacing": true,
     "prettier.singleQuote": true,
+    "prettier.withNodeModules": true,
     "[javascript]": {
-        "editor.formatOnSave": false,
+        "editor.formatOnSave": true,
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "[typescriptreact]": {
-        "editor.formatOnSave": false,
+        "editor.formatOnSave": true,
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "[scss]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[django-html]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "[json]": {
@@ -123,31 +224,37 @@
     "csharp.format.enable": true,
     "csharpextensions.privateMemberPrefix": "_",
     "csharpextensions.useThisForCtorAssignments": true,
+    // Java
+    "java.home": "/usr/lib/jvm/java-11-openjdk-amd64",
     // Python
     "python.linting.pycodestyleEnabled": true,
     "python.analysis.autoImportCompletions": true,
     "python.analysis.autoSearchPaths": true,
-    // "python.analysis.typeCheckingMode": "strict",
+    "python.analysis.typeCheckingMode": "basic",
     "python.analysis.useLibraryCodeForTypes": true,
-    "python.autoUpdateLanguageServer": true,
-    "python.autoComplete.showAdvancedMembers": true,
     "python.diagnostics.sourceMapsEnabled": true,
-    "python.experiments.enabled": true,
-    "vsintellicode.python.completionsEnabled": true,
     "python.defaultInterpreterPath": "/usr/bin/python3",
     "python.pythonPath": "/usr/bin/python3",
     "python.terminal.activateEnvInCurrentTerminal": true,
     "python.linting.enabled": true,
     "python.linting.pylintEnabled": true,
     "python.linting.pydocstyleEnabled": false,
-    "python.linting.pylintPath": "/usr/bin/pylint",
-    "python.linting.pylintUseMinimalCheckers": true,
     "python.linting.flake8Enabled": false,
+    "python.linting.banditEnabled": true,
     "python.linting.lintOnSave": true,
+    "python.pipenvPath": "${env:HOME}/.local/bin/pipenv",
+    "python.poetryPath": "${env:HOME}/.local/bin/poetry",
+    "python.condaPath": "${env:HOME}/.local/bin/conda",
+    "python.linting.banditPath": "${env:HOME}/.local/bin/bandit",
+    "python.linting.pylintPath": "${env:HOME}/.local/bin/pylint",
+    "python.linting.mypyPath": "${env:HOME}/.local/bin/mypy",
+    "python.linting.flake8Path": "${env:HOME}/.local/bin/flake8",
+    "python.formatting.blackPath": "${env:HOME}/.local/bin/black",
     "[python]": {
         "editor.defaultFormatter": "ms-python.python"
     },
     "python.languageServer": "Pylance",
+    "pylance.insidersChannel": "daily",
     "python.linting.flake8Args": [
         //"--ignore=E303"
         "--max-line-length=90",
@@ -161,55 +268,59 @@
         "extension-pkg-whitelist=cv2",
         "--load-plugins=pylint-flask",
         "--load-plugin=pylint_django",
-        "pylint_flask",
+        "pylint_flask"
     ],
     "python.linting.ignorePatterns": [
         ".vscode/*.py",
         "**/site-packages/**/*.py"
     ],
     "python.formatting.provider": "autopep8",
-    "python.autoComplete.addBrackets": true,
+    "python.envFile": "${workspaceFolder}/.env",
     "python.terminal.activateEnvironment": true,
     "python.analysis.completeFunctionParens": true,
-    "python.testing.pytestEnabled": true,
+    "pythonTestExplorer.testFramework": "unittest",
+    "python.testing.pytestEnabled": false,
+    "python.testing.pytestArgs": [
+        "*test_*.py"
+    ],
+    "python.testing.autoTestDiscoverOnSaveEnabled": true,
+    "python.testing.unittestEnabled": true,
+    "python.testing.unittestArgs": [
+        "-v",
+        "-s",
+        ".",
+        "-p",
+        "*test_*.py"
+    ],
+    "testExplorer.codeLens": true,
     "workbench.colorCustomizations": {
         "[Cobalt2]": {
             "tab.activeBackground": "#077bf73e"
+        },
+        "[Default Dark+]": {
+            "titleBar.activeBackground": "#3954ee",
+            "titleBar.activeForeground": "#fff",
+            "statusBar.background": "#3954ee",
+            "statusBar.foreground": "#fff",
+            "tab.activeBorderTop": "#fbff00"
         }
     },
-    "editor.fontFamily": "Fira Code",
-    "editor.fontLigatures": true,
-    "editor.lineHeight": 30,
-    // Autorenames selected tag
-    "editor.linkedEditing": true,
-    "editor.codeActionsOnSave": {
-        // "source.organizeImports": true,
-        "source.fixAll": true,
-        "source.fixAll.eslint": true
-    },
-    "editor.letterSpacing": 0.5,
-    "editor.fontWeight": "400",
-    "editor.cursorStyle": "line",
-    "editor.cursorWidth": 4,
-    "editor.formatOnSave": true,
-    "editor.cursorBlinking": "solid",
-    "editor.renderWhitespace": "all",
-    "editor.quickSuggestions": {
-        "comments": true,
-        "other": true
-    },
-    "editor.suggestOnTriggerCharacters": true,
+    "window.titleBarStyle": "custom",
     "liveServer.settings.donotShowInfoMsg": true,
     "files.eol": "\n",
     // PHP config
     "php.suggest.basic": false,
+    "php.validate.enable": true,
+    "emmet.excludeLanguages": [],
     "emmet.includeLanguages": {
         "javascript": "javascriptreact",
         "vue-html": "html",
         "php": "html",
         "*.twig": "html",
         "django-html": "html",
-        "jinja-html": "html"
+        "jinja-html": "html",
+        "markdown": "html",
+        "razor": "html"
     },
     "highlight-matching-tag.highlightSelfClosing": true,
     "highlight-matching-tag.styles": {
@@ -229,11 +340,13 @@
     "[markdown]": {
         "editor.formatOnSave": false,
         "editor.quickSuggestions": true,
-        "editor.tabSize": 2,
+        "editor.tabSize": 4,
         "files.trimTrailingWhitespace": true
     },
-    "editor.wrappingIndent": "indent",
     "breadcrumbs.enabled": true,
+    "breadcrumbs.icons": true,
+    "breadcrumbs.showClasses": true,
+    "breadcrumbs.filePath": "on",
     //code runner
     "code-runner.saveAllFilesBeforeRun": true,
     "code-runner.clearPreviousOutput": true,
@@ -252,30 +365,47 @@
         "rust": "cd $dir && rustc $fileName && $dir$fileNameWithoutExt"
     },
     "code-runner.saveFileBeforeRun": true,
-    "editor.suggestSelection": "first",
-    "editor.acceptSuggestionOnEnter": "smart",
-    "editor.parameterHints.enabled": true,
     "files.exclude": {
         "**/.classpath": true,
         "**/.project": true,
         "**/.git": true,
         "**/.settings": true,
         "**/.factorypath": true,
-        "**/node_modules": true,
+        "**/node_modules": false,
         "**/.idea": true,
         "**/target": true,
         "**/.DS_Store": true,
         "**/__pycache__": true,
         "**/.scrapy": true,
         "**/vendor/**/{Test,test,Tests,tests}/**/*Test.php": true,
-        "**/.pytest_cache": true
+        "**/.pytest_cache": true,
+        "**/.pants.d": true,
+        "**/.pids": true,
+        "**/.venv": true,
+        "**coverage": true,
+        "**/CVS": true,
+        "**/dist": true,
     },
     "terminal.integrated.defaultProfile.windows": "Ubuntu-20.04 (WSL)",
     // exclude folders from search results
     "search.exclude": {
         "**/build": true,
         "**/coverage": true,
-        "**/dist": true
+        "**/dist": true,
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "**/vendor/": true,
+        "**/venv/": true,
+        "**/env/": true
+    },
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/node_modules/*/**": true,
+        "**/.hg/store/**": true,
+        "**/node_modules": true,
+        "**/venv/": true,
+        "**/env/": true
     },
     "workbench.iconTheme": "material-icon-theme",
     "zenMode.hideActivityBar": true,
@@ -288,16 +418,12 @@
     "emmet.preferences": {
         "css.color.short": true
     },
-    "vsintellicode.modify.editor.suggestSelection": "choseToUpdateConfiguration",
+    "vsintellicode.modify.editor.suggestSelection": "enabled",
+    "vsintellicode.python.completionsEnabled": true,
     "sync.forceUpload": true,
-    "angular.experimental-ivy": true,
     "template-string-converter.enabled": true,
-    "docker.showStartPage": false,
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter-notebook"
-    },
-    "[html]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "files.autoSave": "afterDelay",
     "redhat.telemetry.enabled": false,
@@ -314,7 +440,6 @@
     ],
     "sqltools.showStatusbar": true,
     "vsintellicode.sql.completionsEnabled": true,
-    "vscode-edge-devtools.mirrorEdits": true,
     // Sreencast mode
     "screencastMode.fontSize": 56,
     "screencastMode.keyboardOverlayTimeout": 800,
@@ -322,4 +447,17 @@
     "screencastMode.mouseIndicatorSize": 20,
     "screencastMode.onlyKeyboardShortcuts": false,
     "screencastMode.verticalOffset": 20,
+    "tabnine.experimentalAutoImports": true,
+    "[dockercompose]": {
+        "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "database-client.highlightSQLBlock": true,
+    "database-client.showUser": true,
+    "sonarlint.ls.javaHome": "/usr/lib/jvm/java-11-openjdk-amd64",
+    "database-client.showTrigger": true,
+    "database-client.showQuery": true,
+    "database-client.showFilter": true
 }
