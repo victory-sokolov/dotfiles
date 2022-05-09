@@ -14,10 +14,10 @@ init: ## Symlink files
 	# Formatter
 	ln -vsf ${PWD}/formatting/.prettierrc ${HOME}/.prettierc
 	ln -vsf ${PWD}/formatting/.eslintrc ${HOME}/.eslintrc
-	ln -vsf ${PWD}/formatting/.prettierignore ${HOME}/.prettierignore 
+	ln -vsf ${PWD}/formatting/.prettierignore ${HOME}/.prettierignore
 	ln -vsf ${PWD}/formatting/.eslintignore ${HOME}/.eslintignore
 	ln -vsf ${PWD}/formatting/.editorconfig ${HOME}/.editorconfig
-	
+
 
 install: clitools docker mysql nginx node php python ruby code zsh init
 
@@ -51,6 +51,8 @@ linux: ## Install Ubuntu programms: flameshot, albert, spotify, dropbox, vlc, ch
 	gsettings set org.gnome.desktop.interface show-battery-percentage true
 	# ALT + SHIFT change language
     gsettings set org.gnome.desktop.input-sources xkb-options "['grp:alt_shift_toggle']"
+	# Enable minimize dock
+	gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize'
 
 	# Remove default apps
 	sudo apt purge -y thunderbird gnome-screenshot
@@ -85,7 +87,7 @@ linux: ## Install Ubuntu programms: flameshot, albert, spotify, dropbox, vlc, ch
 
 	# Video recorder
 	sudo add-apt-repository ppa:sylvain-pineau/kazam -y
-	sudo apt-get update -y 
+	sudo apt-get update -y
 	sudo apt install kazam -y
 
 clitools: ## Install cli tools
@@ -342,7 +344,7 @@ python3: ## Python,Poetry & Dependencies
 		icecream \
 		httpie \
 		faker \
-    	litecli \ 
+    	litecli \
 		python3-pydrive \
 	--upgrade setuptools
 
@@ -454,8 +456,9 @@ node: ## NodeJS & packages
 		"localtunnel"
 		"typescript"
 		"ts-node"
+		"esno", 	# node-runtime builder using for compiling TS files
 		"webpack"
-		"-pm2"
+		"pm2"
 		"nodemon"
 		"node-inspector"
 		"terminalizer"
