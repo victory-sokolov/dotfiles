@@ -75,10 +75,10 @@ linux: ## Install Ubuntu programms: flameshot, albert, spotify, dropbox, vlc, ch
 	wget https://download.opensuse.org/repositories/home:/manuelschneid3r/xUbuntu_19.04/amd64/albert_0.16.1_amd64.deb -O albert.deb
 	sudo dpkg -i albert.deb
 	rm albert.deb
+
 	# Stacer
-	wget https://github.com/oguzhaninan/Stacer/releases/download/v1.1.0/stacer_1.1.0_amd64.deb -O stacer.deb
-	sudo dpkg --install stacer.deb
-	rm stacer.deb
+	sudo apt install stacer -y
+
 	# Youtube DLL
 	sudo wget http://yt-dl.org/downloads/latest/youtube-dl -O /usr/local/bin/youtube-dl
 	sudo chmod a+rx /usr/local/bin/youtube-dl
