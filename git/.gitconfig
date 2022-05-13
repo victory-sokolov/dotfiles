@@ -71,8 +71,8 @@
     pushInsteadOf = "git://github.com/"
     insteadOf = "https://github.com/"
     # Show the diff between the latest commit and the current state
-	  d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
-
+	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
+	recent = "{ count=$1; git for-each-ref --sort=-committerdate refs/heads --format='%(HEAD)%(color:yellow)%(refname:short)|%(color:bold green)%(committerdate:relative)|%(color:blue)%(subject)|%(color:magenta)%(authorname)%(color:reset)' --color=always --count=${count:=10} | column -ts'|'}; r"
 
 [url "git@github.com:"]
     insteadOf = https://github.com/
