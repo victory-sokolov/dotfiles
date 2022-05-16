@@ -68,6 +68,7 @@ alias -- -="cd -"
 alias dotfiles="cd ~/dotfiles"
 alias db="cd ~/Dropbox"
 alias dev="cd ~/Dropbox/Code/"
+alias blog="~/dev/victory-sokolov && code . && npm start"
 alias dirs="dirs -v"
 
 # quick edit
