@@ -1,0 +1,78 @@
+{
+    "Parser starter": {
+        "prefix": "pyscrapper",
+        "body": [
+            "import requests",
+            "from bs4 import BeautifulSoup",
+            "import csv",
+            "\n",
+            "url = 'your_url'",
+            "req = requests.get(url)",
+            "soup = BeautifulSoup(req.content, 'html.parser')"
+        ],
+        "description": "basic scrapper starter functions"
+    },
+    "Delay between": {
+        "prefix": "rnddelay",
+        "body": [
+            "wait_seconds = random.randint(15,31)",
+            "time.sleep(wait_seconds)"
+        ],
+        "description": "random delay"
+    },
+    "Project directory": {
+        "prefix": "project-dir",
+        "body": [
+            "os.path.dirname(os.path.abspath(__file__))"
+        ],
+        "description": "project full path"
+    },
+    "save page content to html": {
+        "prefix": "content-to-html",
+        "body": [
+            "with open('index.html', 'wb') as file:",
+            "  file.write(response.body)"
+        ],
+        "description": "save page content to html"
+    },
+    "Time measure": {
+        "prefix": "time-measure",
+        "body": [
+            "import time",
+            "start = time.time()",
+            "end = time.time()",
+            "total_time = end - start",
+            "print(total_time)"
+        ],
+        "description": "time measure"
+    },
+    "Write data to csv file": {
+        "prefix": "write-to-csv",
+        "body": [
+            "with open(filename, 'a', newline='') as file:",
+            "   for line in data:",
+            "       writer = csv.writer(file)",
+            "       writer.writerow([line])"
+        ],
+        "description": "Write data to csv file"
+    },
+    "Pretty print": {
+        "prefix": "pp",
+        "body": [
+            "from pprint import pprint",
+            "pprint($1)"
+        ],
+        "description": "Pretty print"
+    },
+    "Typehint for circular imports": {
+        "prefix": "pycircular",
+        "body": [
+            "from __future__ import annotations",
+            "from typing import TYPE_CHECKING",
+            "",
+            "if TYPE_CHECKING:",
+            "    from $1 import $2"
+        ],
+        "description": "Typehint for circular imports"
+    }
+}
