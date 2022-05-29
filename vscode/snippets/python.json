@@ -74,5 +74,40 @@
             "    from $1 import $2"
         ],
         "description": "Typehint for circular imports"
+    },
+    "Logger initializer": {
+        "prefix": "logger",
+        "body": [
+            "logger = logging.getLogger(__name__)"
+        ],
+        "description": "Logger initializer"
+    },
+    "PDB debugger": {
+        "prefix": "pdb",
+        "body": [
+            "# Start debugging here",
+            "import pdb; pdb.set_trace()"
+        ],
+        "description": "PDB debugger"
+    },
+    // Django
+    "SetUpTestData": {
+        "prefix": "setUpTestData",
+        "body": [
+            "@classmethod",
+            "def setUpTestData(cls):",
+            "  $1"
+        ],
+        "description": "SetUpTestData"
+    },
+    "Test render template": {
+        "prefix": "testTemplate",
+        "body": [
+            "def test_render_template(self):",
+            "  response = self.client.get(reverse(\"$1\"), follow=True)",
+            "  self.assertEqual(response.status_code, 200)",
+            "  self.assertTemplateUsed(response, \"$2.html\")"
+        ],
+        "description": "Test render template"
     }
 }
