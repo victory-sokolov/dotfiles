@@ -147,7 +147,6 @@ clitools: ## Install cli tools
 	sudo apt install vim -y
 	sudo apt install vim-gtk3 vim-nox -y
 
-
 docker: ## Docker
 	sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
 	curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -185,6 +184,12 @@ mysql: ## Mysql
 	sudo mysql -e "FLUSH PRIVILEGES";
 	sudo /etc/init.d/mysql stop
 
+remove-mysql: ## Remove MySQL
+	sudo apt-get purge mysql mysql-server mysql-common mysql-client -y
+	# back up old databases
+	mv /var/lib/mysql /var/lib/mysql-bak
+
+
 postgresql: ## PosgreSQL
 	sudo apt-get update && sudo apt-get upgrade -y
 	sudo apt-get install postgresql postgresql-contrib python3-psycopg2 libpq-dev
@@ -198,6 +203,17 @@ postgresql: ## PosgreSQL
 
 	# pgcli client
 	sudo apt-get install pgcli
+
+remove-postgres: ## Completely deletes PostgreSQL
+	sudo apt-get --purge remove postgresql -y
+	sudo apt-get --purge remove postgresql-client-14 -y
+	sudo apt-get --purge remove postgresql-client-common -y
+
+	# remove remaining files
+	rm -rf /var/lib/postgresql/
+	rm -rf /var/log/postgresql/
+	rm -rf /etc/postgresql/
+	userdel -f postgres
 
 mongodb: ## MongoDB
 	wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | sudo apt-key add -
@@ -516,6 +532,5 @@ help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
 	| sort \
 	| awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
-
 
 .DEFAULT_GOAL := help
