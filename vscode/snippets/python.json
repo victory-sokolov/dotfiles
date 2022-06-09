@@ -90,6 +90,13 @@
         ],
         "description": "PDB debugger"
     },
+    "Celery Remote debugger": {
+        "prefix": "rdb",
+        "body": [
+            "from celery.contrib import rdb; rdb.set_trace()"
+        ],
+        "description": "Celery Remote debugger"
+    },
     // Django
     "SetUpTestData": {
         "prefix": "setUpTestData",
