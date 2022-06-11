@@ -147,6 +147,14 @@ clitools: ## Install cli tools
 	sudo apt install vim -y
 	sudo apt install vim-gtk3 vim-nox -y
 
+<<<<<<< Updated upstream
+=======
+	# Fira code font
+	sudo apt install fonts-firacode
+	sudo fc-cache -fv
+
+
+>>>>>>> Stashed changes
 docker: ## Docker
 	sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
 	curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -260,7 +268,7 @@ ruby: ## Install ruby and gems
 	)
 
 	for gems in {gem[@]}; do
-		sgem install ${gem} -y
+		gem install ${gem} -y
 	done
 
 java: ## Java JDK8
@@ -439,11 +447,11 @@ nginx: ## Nginx
 	sudo apt-get install nginx -y
 
 node: ## NodeJS & packages
-	curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+	curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
 	sudo apt-get install -y nodejs
 
 	# NPM
-	npm install npm@latest -g
+	npm install -g npm@latest
 	mkdir ~/.npm-packages
 	npm config set prefix ~/.npm-packages
 
