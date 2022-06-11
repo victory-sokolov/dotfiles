@@ -54,6 +54,9 @@ linux: ## Install Ubuntu programms: flameshot, albert, spotify, dropbox, vlc, ch
 	# Enable minimize dock
 	gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize'
 
+	# enable numlock on startup
+	gsettings set org.gnome.desktop.peripherals.keyboard numlock-state true
+
 	# Remove default apps
 	sudo apt purge -y thunderbird gnome-screenshot
 
@@ -147,14 +150,11 @@ clitools: ## Install cli tools
 	sudo apt install vim -y
 	sudo apt install vim-gtk3 vim-nox -y
 
-<<<<<<< Updated upstream
-=======
 	# Fira code font
 	sudo apt install fonts-firacode
 	sudo fc-cache -fv
 
 
->>>>>>> Stashed changes
 docker: ## Docker
 	sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
 	curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
