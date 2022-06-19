@@ -109,6 +109,7 @@ clitools: ## Install cli tools
 		fzf \
 		silversearcher-ag \
 		shellcheck \
+		sshpass \
 		imagemagick \
 		jq \
 		libtool \
