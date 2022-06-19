@@ -57,6 +57,9 @@ linux: ## Install Ubuntu programms: flameshot, albert, spotify, dropbox, vlc, ch
 	# enable numlock on startup
 	gsettings set org.gnome.desktop.peripherals.keyboard numlock-state true
 
+	# enable switch language with ALT + SHIFT
+	gsettings set org.gnome.desktop.input-sources xkb-options "['grp:alt_shift_toggle']" 
+
 	# Remove default apps
 	sudo apt purge -y thunderbird gnome-screenshot
 
