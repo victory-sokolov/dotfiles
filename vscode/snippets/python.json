@@ -90,6 +90,13 @@
         ],
         "description": "PDB debugger"
     },
+    "IPDB debugger": {
+        "prefix": "ipdb",
+        "body": [
+            "import ipdb; ipdb.set_trace()"
+        ],
+        "description": "IPDB debugger"
+    },
     "Celery Remote debugger": {
         "prefix": "rdb",
         "body": [
