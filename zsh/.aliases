@@ -145,6 +145,7 @@ alias ds="python manage.py shell"
 alias dt="python manage.py test"
 alias su="python manage.py createsuperuser"
 alias djs="django-admin startproject"
+alias django-reset-db="python manage.py reset_db --noinput --close-sessions"
 
 # Docker
 alias dc='docker-compose'
