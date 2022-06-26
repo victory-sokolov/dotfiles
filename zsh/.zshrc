@@ -7,7 +7,7 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 set -m
 #$unsetopt PROMPT_SP
 ZSH_DISABLE_COMPFIX=true
-ZSH_THEME="powerlevel9k/powerlevel9k"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 #POWERLEVEL9K_MODE="nerdfont-complete"
 
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
@@ -128,7 +128,7 @@ source $HOME/dotfiles/zsh/.functions
 source $HOME/dotfiles/zsh/.aliases
 source $HOME/dotfiles/zsh/.exports
 source $HOME/dotfiles/zsh/.dockerfunc
-source /home/viktor/.cargo/env
+source $HOME/.cargo/env
 #source $HOME/.poetry/env
 
 . $HOME/.asdf/asdf.sh
