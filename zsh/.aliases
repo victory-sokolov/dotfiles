@@ -91,6 +91,10 @@ alias run-apache="sudo service mysql start && sudo service apache2 start"
 alias php74="sudo update-alternatives --set php /usr/bin/php7.4"
 alias php80="sudo update-alternatives --set php /usr/bin/php8.0"
 
+# Symfony
+alias sf='php bin/console'
+alias sfs="symfony server:start"
+
 # Composer
 alias cr="composer require"
 alias cu="composer update"
