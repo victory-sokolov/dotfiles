@@ -93,7 +93,7 @@ alias php80="sudo update-alternatives --set php /usr/bin/php8.0"
 
 # Symfony
 alias sf='php bin/console'
-alias sfs="symfony server:start"
+alias sfs="symfony server:start --port=8082"
 
 # Composer
 alias cr="composer require"
