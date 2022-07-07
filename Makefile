@@ -19,7 +19,9 @@ init: ## Symlink files
 	ln -vsf ${PWD}/formatting/.editorconfig ${HOME}/.editorconfig
 
 
-install: clitools docker mysql nginx node php python ruby code zsh init
+install:
+	set -e
+	clitools docker postgresql nginx node php python ruby code zsh init
 
 android: ## Android sdk and tools
 	SDK_VERSION=29
@@ -58,7 +60,7 @@ linux: ## Install Ubuntu programms: flameshot, albert, spotify, dropbox, vlc, ch
 	gsettings set org.gnome.desktop.peripherals.keyboard numlock-state true
 
 	# enable switch language with ALT + SHIFT
-	gsettings set org.gnome.desktop.input-sources xkb-options "['grp:alt_shift_toggle']" 
+	gsettings set org.gnome.desktop.input-sources xkb-options "['grp:alt_shift_toggle']"
 
 	# Remove default apps
 	sudo apt purge -y thunderbird gnome-screenshot
@@ -182,6 +184,12 @@ docker: ## Docker
 	sudo mv /tmp/docker-machine /usr/local/bin/docker-machine
 	sudo chmod +x /usr/local/bin/docker-machine
 
+kubernetes: ## Kubernetes
+	curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+	curl -LO "https://dl.k8s.io/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
+	
+	# install kubectl
+	sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl -y
 
 mysql: ## Mysql
 	sudo apt-get update -y
@@ -202,7 +210,7 @@ remove-mysql: ## Remove MySQL
 	mv /var/lib/mysql /var/lib/mysql-bak
 
 
-postgresql: ## PosgreSQL
+postgresql: ## PostgreSQL
 	sudo apt-get update && sudo apt-get upgrade -y
 	sudo apt-get install postgresql postgresql-contrib python3-psycopg2 libpq-dev
 	# Add the GPG key
@@ -276,7 +284,7 @@ ruby: ## Install ruby and gems
 	done
 
 java: ## Java JDK8
-	sudo apt-get update && apt-get install openjdk-8-jdk -y
+	sudo apt-get update && sudo apt-get install openjdk-8-jdk -y
 	sudo apt-get install maven -y
 
 
@@ -369,6 +377,7 @@ python3: ## Python,Poetry & Dependencies
 		powerline-status \
 		virtualenv \
 		bpython \
+		ipdb \
 		icecream \
 		httpie \
 		faker \
@@ -455,9 +464,9 @@ node: ## NodeJS & packages
 	sudo apt-get install -y nodejs
 
 	# NPM
-	npm install -g npm@latest
 	mkdir ~/.npm-packages
 	npm config set prefix ~/.npm-packages
+	npm install -g npm@latest
 
 	sudo chown -R $USER ~/.npm-packages
 	sudo chown -R $USER /usr/local/lib/node_modules
@@ -538,7 +547,7 @@ watchman: ## Install Watchman
 test: ## Test Makefile with Docker
 	docker build -t dotfiles .
 	docker run -it --name dotfiles -d dotfiles /bin/bash; \
-	docker exec -it dotfiles sh -c "cd dotfiles; make python3"
+	docker exec -it dotfiles sh -c "cd dotfiles; make install"
 	docker rm -f dotfiles
 
 help:
