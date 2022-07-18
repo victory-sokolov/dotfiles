@@ -202,13 +202,17 @@ let g:ale_fixers = {
 \}
 
 
-# Autosave configs
+" Autosave configs
+
+lua << EOF
 local autosave = require("autosave")
 
 autosave.setup({
 	enabled = true,
-	events = {"InsertLeave", "TextChanged"}
+	events = { 'InsertLeave', 'TextChanged' }
 })
+EOF
+
 
 let g:ale_fix_on_save = 1
 " Autocommands
