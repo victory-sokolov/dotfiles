@@ -24,7 +24,7 @@ function drmnone() # remove untagged images
 }
 
 
-function docker-compose-watch() # watch and reload docker 
+function docker-compose-watch() # watch and reload docker
 {
   local args;
   if [[ $1 == "help" ]] || [[ $1 = "--help" ]]; then
@@ -46,6 +46,12 @@ function dcs() # Stop container by name
 {
 	docker container stop $(docker container ls -q --filter name=$1*)
 }
+
+function docker-stop # Stop all containers
+{
+    docker stop $(docker container ls -q)
+}
+
 
 # Docker containers aliases and functions
 alias splash="docker run --rm --name scrapy-splash -d -p 8050:8050 scrapinghub/splash"
