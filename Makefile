@@ -21,7 +21,7 @@ init: ## Symlink files
 
 install:
 	set -e
-	clitools docker postgresql nginx node php python ruby code zsh init
+	clitools docker postgresql nginx node php python ruby vscode zsh init
 
 android: ## Android sdk and tools
 	SDK_VERSION=29
@@ -187,7 +187,7 @@ docker: ## Docker
 kubernetes: ## Kubernetes
 	curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 	curl -LO "https://dl.k8s.io/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
-	
+
 	# install kubectl
 	sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl -y
 
@@ -451,9 +451,15 @@ opencv: ## Build OpenCV from source
 	 sudo cp /usr/local/lib/pkgconfig/opencv4.pc  /usr/lib/x86_64-linux-gnu/pkgconfig/opencv.pc
 
 
-code: ## VS Code
+vscode: ## VS Code
 	sudo snap install code --classic
 	code --install-extension shan.code-settings-sync
+
+vscode-install-php: ## Install PHP extensions
+	cat vscode/php.txt | xargs code --install-extension
+
+vscode-uninstall-php: ## Uninstall PHP extensions
+	cat vscode/php.txt | xargs code --uninstall
 
 nginx: ## Nginx
 	sudo add-apt-repository ppa:nginx/stable -y

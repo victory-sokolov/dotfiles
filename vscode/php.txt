@@ -1,0 +1,5 @@
+bmewburn.vscode-intelephense-client
+xdebug.php-debug
+neilbrayfield.php-docblocker
+junstyle.php-cs-fixer
+phproberto.vscode-php-getters-setters
