@@ -289,9 +289,16 @@ java: ## Java JDK8
 
 
 dotnet: ## C#, Net core
-	sudo apt-get install -y \
-		dotnet-sdk-5.0 \
-		dotnet-runtime-5.0
+	wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+	sudo dpkg -i packages-microsoft-prod.deb
+	rm packages-microsoft-prod.deb
+
+	sudo apt-get update && sudo apt-get install -y dotnet-sdk-6.0
+	# Runtime
+	sudo apt-get update && sudo apt-get install -y aspnetcore-runtime-6.0
+
+	# Azure CLI
+	sudo curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 
 elastic: ## ElastiSearch
 	wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
