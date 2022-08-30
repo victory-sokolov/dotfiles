@@ -250,7 +250,7 @@ tesseract: ## Install Tesseract binaries
 	sudo apt-get update -y
 	sudo apt-get install tesseract-ocr
 	sudo apt install libtesseract-dev
-	sudo apt-get install libpango1.0-dev
+	sudo apt-get install libpango1.0-dev libcurl4-gnutls-dev
 	# Languages
 	sudo apt-get install tesseract-ocr-eng
 	sudo apt-get install imagemagick make
