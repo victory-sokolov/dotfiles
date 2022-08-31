@@ -269,6 +269,18 @@ tesseract: ## Install Tesseract binaries
 	make training
 	make training-install
 
+paddle-annotator: ## Paddle image annotation tool
+	# If you have cuda9 or cuda10 installed on your machine, please run the following command to install
+	# python3 -m pip install paddlepaddle-gpu -i https://mirror.baidu.com/pypi/simple
+
+	# If you only have cpu on your machine, please run the following command to install
+	python3 -m pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple
+	pip3 install PPOCRLabel
+
+	# Select label mode and run
+	# PPOCRLabel  # [Normal mode] for [detection + recognition] labeling
+	# PPOCRLabel --kie True # [KIE mode] for [detection + recognition + keyword extraction] labeling
+
 haskell: ## Install Haskell
 	sudo apt-get install -y haskell-platform
 
