@@ -126,6 +126,7 @@ clitools: ## Install cli tools
 		neofetch \
 		net-tools \
 		ncdu \
+		mc \
 		pkg-config \
 		pdftk \
 		pwgen \
