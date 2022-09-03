@@ -126,7 +126,6 @@ clitools: ## Install cli tools
 		neofetch \
 		net-tools \
 		ncdu \
-		mc \
 		pkg-config \
 		pdftk \
 		pwgen \
@@ -204,6 +203,19 @@ mysql: ## Mysql
 	sudo mysql -e "GRANT ALL PRIVILEGES ON * . * TO '${USER}'@'localhost'";
 	sudo mysql -e "FLUSH PRIVILEGES";
 	sudo /etc/init.d/mysql stop
+
+mc ## Midnight commander ( File manager in CLI )
+	sudo apt-get install mc -y
+	# Install dracula theme
+	mkdir ~/dracula-theme && cd ~/dracula-theme
+	git clone https://github.com/dracula/midnight-commander.git
+
+	mkdir -p ~/.local/share/mc/skins && cd ~/.local/share/mc/skins
+	ln -s ~/dracula-theme/midnight-commander/skins/dracula.ini
+	ln -s ~/dracula-theme/midnight-commander/skins/dracula256.ini
+
+	#  edit ~/.config/mc/ini and add skin=dracula to the [Midnight-Commander] section..
+	# skin=dracula256
 
 remove-mysql: ## Remove MySQL
 	sudo apt-get purge mysql mysql-server mysql-common mysql-client -y
