@@ -148,8 +148,9 @@ clitools: ## Install cli tools
 	sudo dpkg -i bat-musl_0.18.2_amd64.deb
 
 	# Better Git diff tool
-	wget https://github.com/dandavison/delta/releases/download/0.9.1/delta-0.9.1-aarch64-unknown-linux-gnu.tar.gz
-	sudo tar -tvf delta-0.9.1-aarch64-unknown-linux-gnu.tar.gz
+	wget https://github.com/dandavison/delta/releases/download/0.14.0/git-delta_0.14.0_amd64.deb
+	sudo dpkg -i git-delta_0.14.0_amd64.deb
+	rm git-delta_0.14.0_amd64.deb
 
 	# Install VIM 8.2
 	sudo add-apt-repository ppa:jonathonf/vim -y
