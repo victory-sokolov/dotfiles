@@ -17,7 +17,7 @@ function calc() # Simple calculator
 }
 
 
-function mk() # Create a new directory and enter it
+function mkcd() # Create a new directory and enter it
 {
   mkdir -p "$@"
   cd "$@"
@@ -52,7 +52,7 @@ function backup() # Backup files and folders
 	fi
 }
 
-# Example linecount js
+# Example: linecount js
 function linecount() # Count lines of a file with specific extension
 {
     find . -name "*.$1" | xargs wc -l
@@ -72,7 +72,7 @@ function man() # Shows pretty man page
 }
 
 
-function targz() # Create a new directory and enter it
+function targz() # Targz a file
 {
 	local tmpFile="${@%/}.tar";
 	tar -cvf "${tmpFile}" --exclude=".DS_Store" "${@}" || return 1;
@@ -150,8 +150,8 @@ function findEmpty() # Find empty files and directories in current directory
 	find . -type f -exec bash -c 'if [ `cat "{}" |wc -w` -eq 0 ]; then echo "file - {}";fi' \; -or -empty -exec bash -c "echo dir - {}" \;
 }
 
-# from alex sexton   gist.github.com/SlexAxton/4989674
-function gifify() # Create a new directory and enter it
+# from alex sexton:  gist.github.com/SlexAxton/4989674
+function gifify() #
 {
   if [[ -n "$1" ]]; then
 	if [[ $2 == '--good' ]]; then
@@ -167,6 +167,34 @@ function gifify() # Create a new directory and enter it
 }
 
 # Git functions
+
+function clone() # Clone repo and install dependencies
+{
+	git clone $1
+	cd "$(basename "$_" .git)"
+
+	if test -f "./package.json"; then
+		echo "Installing NPM dependencies.."
+		npm install
+		return 0
+	elif test -f "./pyproject.toml"; then
+		echo "Installing Poetry dependencies..."
+        poetry init
+		poetry install
+		return 0
+	elif test -f "./requirements.txt"; then
+		python3 -m venv ./venv
+		source venv/bin/activate
+		pip install -r requirements.txt
+		echo "Installing dependenciesfrom requirements.txt..."
+		return 0
+	elif test -f "./composer.json"; then
+		echo "Installing composer dependencies..."
+		composer install
+		return 0
+	fi
+
+}
 
 function ghexport() # Download single folder from github
 {
@@ -205,11 +233,16 @@ function git-ssh() # Git: Https to SSH
 	git remote set-url origin git@github.com:$(git remote get-url origin | sed 's/https:\/\/github.com\///' | sed 's/git@github.com://')
 }
 
+function gitFind() # Search for a string in git log
+{
+    git log --all -S "$1"
+}
 
 function gitignore() # Get .gitignore file for specific lang
 {
 	curl -sL "https://www.gitignore.io/api/$@" >> .gitignore
 }
+
 
 function isup() # Check if URL is up
 {
@@ -253,15 +286,16 @@ function mkenv() # create python virtual environment
     source .venv/bin/activate
 
     # if requirements.txt exists, install dependencies
-		if [ -f "requirements.txt"];then
-				pip install -r requirements.txt
+	if [ -f "requirements.txt"];then
+		pip install -r requirements.txt
     fi
 
-		# install base packages
-		pip install \
-			black \
-			flake8 \
-			pylint
+    # install base packages
+    pip install \
+        black \
+        flake8 \
+        isort \
+        pylint
 }
 
 function prd() # Poetry reinstall package as dev dependencie
@@ -274,7 +308,7 @@ function json() # Usage: json '{"foo":42}'` or `echo '{"foo":42}' | json
 {
 	if [ -t 0 ]; then # argument
 		python -mjson.tool <<< "$*" | pygmentize -l javascript;
-	else
+	else
 		python -mjson.tool | pygmentize -l javascript;
 	fi
 }
@@ -332,7 +366,7 @@ function psql-create-db() # Create Postgres database
     echo "Database $db_name successfully created!"
 }
 
-function db() # MYSQL base commands (refresh, create, drop, list)
+function mysqldb() # MYSQL base commands (refresh, create, drop, list)
 {
     if [ "$1" = "refresh" ]; then
         mysql -uroot -e "drop database $2; create database $2"
@@ -345,31 +379,6 @@ function db() # MYSQL base commands (refresh, create, drop, list)
     fi
 }
 
-function clone() # Clone repo and install dependencies
-{
-	git clone $1
-	cd "$(basename "$_" .git)"
-
-	if test -f "./package.json"; then
-		echo "Installing NPM dependencies"
-		npm install
-		return 0
-	elif test -f "./pyproject.toml"; then
-		echo "Installing Poetry dependencies"
-		poetry install
-		return 0
-	elif test -f "./requirements.txt"; then
-		python3 -m venv ./venv
-		source venv/bin/activate
-		pip install -r requirements.txt
-		return 0
-	elif test -f "./composer.json"; then
-		echo "Installing composer dependencies"
-		composer install
-		return 0
-	fi
-
-}
 
 function removebg() # Remove background from the image
 {
@@ -409,11 +418,10 @@ function repl() # Launch Repl for specified language
 
 function lorem() # Generate Loremipsum text
 {
-
 	if [ "${1}" = "" ] || [ "${2}" = "" ]; then
 		echo "Usage: loremipsum [paragraphs, sentences] [integer]"
 	else
-		curl -s http://metaphorpsum.com/"${1}"/"${2}" && printf "\n"
+		curl -s "http://metaphorpsum.com/paragraphs/${1}/${2}" && printf "\n"
 	fi
 }
 
@@ -450,7 +458,6 @@ function dockerlint() # Lint Dockerfile with Hadolint
 
 
 # C++ snippets
-
 function cpp-run() # compile and run executable
 {
     echo "Compiling file..."
