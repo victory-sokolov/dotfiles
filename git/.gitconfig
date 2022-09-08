@@ -4,7 +4,9 @@
 
 [core]
 	editor = vim
-  	excludesfile = ~/.gitignore
+  	excludesfile = ~/.gitignore_global
+    # Path to githooks
+    hookspath="~/.githooks"
 
 [help]
   autocorrect = 20
@@ -18,6 +20,9 @@
 [interactive]
   diffFilter = delta --color-only --features=interactive
 
+[add.interactive]
+    useBuiltin = false # required for git 2.37.0
+
 [delta]
   max-line-length = 700
   syntax-theme = base16
@@ -25,6 +30,7 @@
   file-style = bold yellow ul
   hunk-header-decoration-style = blue
   hunk-header-line-number-style = purple bold
+  side-by-side = true
 
 [color]
 	ui = auto
