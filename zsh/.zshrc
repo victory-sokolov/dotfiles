@@ -72,7 +72,7 @@ plugins=(
 	git
 	npm
 	extract
-    globalias
+    #globalias
 	sudo
 	docker
 	per-directory-history
