@@ -1,17 +1,44 @@
-
-
-# ----------------------------------------------------------------------
-# | Node.js & NPM                                                       |
-# ----------------------------------------------------------------------
-
+# Node
 node_modules
 npm-debug.log
+bower_components
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.eslintcache
+.next
 
+# Python
+*.pyc
+__pycache__/
+htmlcov/
+cover/
+env/
+venv/
+ENV/
 
-# ----------------------------------------------------------------------
-# | Windows                                                             |
-# ----------------------------------------------------------------------
+# PHP
+/var/
+/vendor/
+.phpunit.result.cache
+/phpunit.xml
 
+# Editor
+.vscode/*
+*.code-workspace
+.history/
+.idea/
+.vs/
+
+# OS
 Desktop.ini
 ehthumbs.db
 Thumbs.db
+*.swp
+.DS_Store
+
+# Other
+coverage/
+dist/
+build/
+.cache/
