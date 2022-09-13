@@ -15,13 +15,17 @@ htmlcov/
 cover/
 env/
 venv/
+.venv/
+.env/
 ENV/
+.mypy_cache/
+.pants.d/
 
 # PHP
-/var/
-/vendor/
+var/
+vendor/
 .phpunit.result.cache
-/phpunit.xml
+phpunit.xml
 
 # Editor
 .vscode/*
