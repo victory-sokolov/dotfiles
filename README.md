@@ -3,34 +3,34 @@
 
 ![](https://i.imgur.com/yuX27Pt.png)
 
-This is my personalised Linux/WSL2 dotfiles.
-Configurations includes predefined aliases, functions, vim settings, script for installation various CLI utilities and software.
+This is my personalized Linux/WSL2 dotfiles.
+Configurations include predefined aliases, functions, vim settings, scripts for the installation of various CLI utilities and software.
 
-Currently using **Windows 10 + WSL2**
+Currently using **Windows 11 + WSL2**
 
 ### Contents
 
 * [Installation](#installation)
 * [Aliases and functions](#aliases-and-functions)
-* [ZSH](#zsh-settings) 
+* [ZSH](#zsh-settings)
 * [VIM](#vim)
 * [VSCode](#vs-code)
 ## Installation
 
-1. Clone repo `git clone https://github.com/victory-sokolov/dotfiles` 
+1. Clone repo `git clone https://github.com/victory-sokolov/dotfiles`
 2. Installation of environment is defined in Makefile, execute `make` to see available commands. Check `make install` command which will set-up base development environment and soft link `dotfiles` like `aliases`, `function` and etc.
 
 ![](https://i.imgur.com/pwsL7mm.png)
 
 ## Aliases and functions
 
-You can list all available custom aliases and functions.
+You can list all available custom aliases and functions via the following commands:
 * aliases - `lalias`
 * functions - `fhelp`
 
 ## ZSH
 
-List of ZSH plugins i use
+List of ZSH plugins I use
 
 * [git](https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/git) - Git aliases
 * [extract](https://github.com/thetic/extract) - extracts all types of archives
@@ -49,10 +49,14 @@ List of ZSH plugins i use
 
 NeoVim + NerdTree
 
-![](https://i.imgur.com/E5QxMMf.png)
+![](https://i.imgur.com/x6Vy2Qx.png)
+
+### Plugins
+
+
 
 ## VS Code
 
-I'm using default VS code Theme as well i like [Cobalt2](https://marketplace.visualstudio.com/items?itemName=wesbos.theme-cobalt2) theme
+I'm using the default VS code Theme as well I like [Cobalt2](https://marketplace.visualstudio.com/items?itemName=wesbos.theme-cobalt2itemName=wesbos.theme-cobalt2) theme
 
-[Extensions](vscode/vscode-extensions.txt) that i'm using
+List of [Extensions](vscode/vscode-extensions.txt) that I'm using
