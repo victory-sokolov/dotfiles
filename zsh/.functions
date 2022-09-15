@@ -243,7 +243,6 @@ function gitignore() # Get .gitignore file for specific lang
 	curl -sL "https://www.gitignore.io/api/$@" >> .gitignore
 }
 
-
 function isup() # Check if URL is up
 {
 	local uri=$1
@@ -379,7 +378,6 @@ function mysqldb() # MYSQL base commands (refresh, create, drop, list)
     fi
 }
 
-
 function removebg() # Remove background from the image
 {
 	curl -H "X-API-Key: $REMOVEBG_KEY" \
@@ -387,7 +385,6 @@ function removebg() # Remove background from the image
        -F "size=auto" \
        -f https://api.remove.bg/v1.0/removebg -o no-bg.png
 }
-
 
 function bash-file() # Create new shell file
 {
@@ -456,7 +453,6 @@ function dockerlint() # Lint Dockerfile with Hadolint
     hadolint/hadolint hadolint --ignore DL3008 "${@}" - < Dockerfile
 }
 
-
 # C++ snippets
 function cpp-run() # compile and run executable
 {
@@ -464,7 +460,6 @@ function cpp-run() # compile and run executable
     g++ -o "$1" "$1.cpp"
     ./$1.cpp
 }
-
 
 function spy() # Watch file
 {
@@ -474,4 +469,23 @@ function spy() # Watch file
 
     done
     echo 'file changed'
+}
+
+function clean_deps # Remove node, python, php dependencies
+{
+    folders=("node_modules" "venv" ".env" "vendor")
+    days=${1:-90}
+
+    for folder in "${folders[@]}"
+    do
+         find ~/dev -name $folder -type d -maxdepth 4 -mtime +$days -exec rm -rf {} \;
+    done
+}
+
+function clean_containers # Remove containers that were used N month ago
+{
+    days=${1:-90}
+    hours=$((24 * days))
+    echo $hours
+    docker image prune --all --filter "until=4320h"
 }
