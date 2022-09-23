@@ -2,3 +2,10 @@
 memory=5GB
 swap=0
 processors=2
+
+[boot]
+systemd=true
+
+[automount]
+enabled = true
+options = "metadata"
