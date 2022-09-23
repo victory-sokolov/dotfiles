@@ -22,7 +22,7 @@ alias cp="cp -rv" # copy file recursively and explain
 alias mv="mv -v" # move file and explain
 alias mkdir="mkdir -pv"
 alias rm="trash"
-# linux version
+# linux os version
 alias version="lsb_release -r -s"
 alias now="date '+%Y-%m-%d'"
 alias untar="tar xvf"
@@ -127,8 +127,6 @@ alias gopen='open https://github.$(git config remote.origin.url | cut -f2 -d. | 
 alias amend='git commit --amend --no-edit'
 # list currents repo PR's
 alias prs 'hub pr list -L 20 -b develop --format="%t%n - Branch: [%H]%n - %U%n - %l%n%n"'
-# Delete all merged git branches
-alias gclean="git branch --merged | grep -v "\*" | grep -v master | grep -v develop | xargs -n 1 git branch -d"
 # Git worktree
 alias wt="git worktree"
 # Delete all merged branches
