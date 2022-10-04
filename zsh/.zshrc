@@ -1,5 +1,6 @@
 export ZSH=$HOME/.oh-my-zsh
 export TERM="xterm-256color"
+export NVM_LAZY=1
 
 # zstyle
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
@@ -71,14 +72,12 @@ ENABLE_CORRECTION="true"
 plugins=(
 	git
 	npm
+    nvm
 	extract
-    #globalias
 	sudo
 	docker
 	per-directory-history
 	react-native
-	kubectl
-	#zsh-nvm
 	fzf
 	copypath
 	web-search
@@ -88,6 +87,8 @@ plugins=(
 	zsh-completions
 	z
 )
+
+skip_global_compinit=1
 
 # Tell ZSH not to nice background process
 unsetopt BG_NICE
@@ -105,16 +106,16 @@ fi
 NPM_PACKAGES="${HOME}/.npm-packages"
 export PATH="$PATH:$NPM_PACKAGES/bin"
 
-# nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-
 . /usr/share/autojump/autojump.sh
 
 # docker
 zstyle ':completion:*:*:docker:*' option-stacking yes
 zstyle ':completion:*:*:docker-*:*' option-stacking yes
+zstyle ':completion:*' accept-exact '*(N)'
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
+# how often to update omz
+zstyle ':omz:update' frequency 7
 
 # fzf
 export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
