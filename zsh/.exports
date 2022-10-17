@@ -28,8 +28,7 @@ export LC_ALL='en_US.UTF-8';
 export CHROME="google-chrome"
 
 # NPM
-export PATH="$PATH:$HOME/npm/bin"
-
+export PATH="$PATH:$HOME/usr/local/bin"
 
 # PHP
 export PATH="$HOME/.symfony/bin:$PATH"
@@ -74,7 +73,7 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:$HOME/.dotnet/tools
 export REMOVEBG_KEY='465DzK63ECKbU6r1uNKJa9V3'
 
-# FZF 
+# FZF
 # export FZF_DEFAULT_COMMAND="fd --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build} --type f"
 
 export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0 # in WSL 2

@@ -547,7 +547,8 @@ node: ## NodeJS & packages
 		"depcheck"
 		"faker-cli"
 		"npm-check-updates"
-		"loadtest"
+		"loadtest",
+		"browser-sync"
 	)
 
 	for element in "${npm_scripts[@]}"
