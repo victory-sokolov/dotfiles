@@ -8,12 +8,6 @@ export LSCOLORS=gxfxcxdxbxegedabagacad
 export GREP='grep -n --color'
 export LESS="--ignore-case --LONG-PROMPT --QUIET --chop-long-lines -Sm --RAW-CONTROL-CHARS --quit-if-one-screen --no-init"
 
-# Case-insensitive globbing (used in pathname expansion)
-shopt -s nocaseglob
-
-# Autocorrect typos in path names when using `cd`
-shopt -s cdspell
-
 # Increase Bash history size. Allow 32³ entries; the default is 500.
 export HISTSIZE='32768';
 export HISTFILESIZE="${HISTSIZE}";
