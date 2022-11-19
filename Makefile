@@ -122,7 +122,6 @@ clitools: ## Install cli tools
 		libssl-dev \
 		inotify-tools \
 		nghttp2-client \
-		neovim \
 		neofetch \
 		net-tools \
 		ncdu \
@@ -161,6 +160,13 @@ clitools: ## Install cli tools
 	sudo apt install fonts-firacode
 	sudo fc-cache -fv
 
+nvim: ## Neovim + Astrovim
+	cd ~
+	curl -LO https://github.com/neovim/neovim/releases/download/v0.8.1/nvim-linux64.deb
+	curl -LO https://github.com/neovim/neovim/releases/download/v0.8.1/nvim.appimage
+	sudo apt install ./nvim-linux64.deb
+	git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim
+	nvim +PackerSync
 
 docker: ## Docker
 	sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
@@ -549,6 +555,7 @@ node: ## NodeJS & packages
 		"npm-check-updates"
 		"loadtest",
 		"browser-sync"
+		"pnpm"
 	)
 
 	for element in "${npm_scripts[@]}"
