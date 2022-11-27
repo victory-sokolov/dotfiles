@@ -1,7 +1,5 @@
 export ZSH=$HOME/.oh-my-zsh
 export TERM="xterm-256color"
-export NVM_LAZY=1
-
 
 set -m
 #$unsetopt PROMPT_SP
@@ -116,6 +114,7 @@ zstyle ':completion:*' cache-path ~/.zsh/cache
 # how often to update omz
 zstyle ':omz:update' frequency 7
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':omz:plugins:nvm' lazy true
 
 # fzf
 export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
