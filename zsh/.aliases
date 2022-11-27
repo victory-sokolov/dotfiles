@@ -38,6 +38,9 @@ alias chrome="google-chrome $1" # open url in chrome
 alias yt-mp3="youtube-dl -x --audio-format mp3 '$1'"
 alias weather="curl -s 'wttr.in/$1?m1ī'"
 alias fontlist="fc-list | cut -d: -f1 | less"
+# Allow for pasting lines of code that start with a dollar sign. 
+alias \$='' 
+ 
 
 alias wget="wget -c"
 
