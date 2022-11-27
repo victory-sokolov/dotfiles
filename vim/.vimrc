@@ -14,7 +14,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'					" JSX support
 Plug 'HerringtonDarkholme/yats.vim' " TypeScript syntax highlight
 Plug 'christoomey/vim-tmux-navigator'
-" " Plug 'zchee/deoplete-jedi'
+"Plug 'zchee/deoplete-jedi'
 Plug 'FootSoft/vim-argwrap'			" breaks func arguments each on new line
 Plug 'prettier/vim-prettier', {'do': 'yarn install' }
 Plug 'iamcco/markdown-preview.nvim',{'do': { -> mkdp#util#install() },'for': ['markdown', 'vim-plug']}
@@ -203,10 +203,8 @@ let g:ale_fixers = {
 
 
 " Autosave configs
-
 lua << EOF
 local autosave = require("autosave")
-
 autosave.setup({
 	enabled = true,
 	events = { 'InsertLeave', 'TextChanged' }

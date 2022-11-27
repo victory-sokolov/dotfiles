@@ -50,6 +50,9 @@
 [stash]
 	showPatch = true
 
+[branch "master"]
+    mergeoptions = --no-edit
+
 [alias]
 	a = add
 	amend = commit --amend -m
@@ -72,6 +75,7 @@
 	sl = stash list --pretty=format:\"%C(bold red)%gd%C(dim yellow)%C(reset) %<(70,trunc)%s %C(green)(%ad)\"
 	last = log -1 HEAD --stat
 	recent = branch --sort=committerdate
+    month = log --since='last month' --author="$(git config user.name)" --oneline
 
 [url "ssh://git@github.com/"]
     insteadOf = "gh:"
