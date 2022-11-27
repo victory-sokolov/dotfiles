@@ -133,6 +133,13 @@ source $HOME/dotfiles/zsh/.dockerfunc
 source $HOME/.cargo/env
 #source $HOME/.poetry/env
 
+# Privat env variables
+PRIVATE_EXPORT_PATH="$HOME/dotfiles/zsh/.exports-private"
+if test -f "$PRIVATE_EXPORT_PATH"; then
+    source $PRIVATE_EXPORT_PATH 
+fi
+
+
 . $HOME/.asdf/asdf.sh
 . $HOME/.asdf/completions/asdf.bash
 
