@@ -58,6 +58,31 @@ function linecount() # Count lines of a file with specific extension
     find . -name "*.$1" | xargs wc -l
 }
 
+function sort_remove() # Sort and remove dublicates lines
+{
+    vi +'%!sort | uniq' +wq $1
+}
+
+function file_tolower() # Rename all items in a directory to lower case
+{
+    for i in *; do mv "$i" "${i,,}"; done
+}
+
+function file_toupper() # Rename all files in a directory to upper case
+{
+    for i in *; do mv "$i" "${i^^}"; done
+}
+
+function convert_datetime() # Convert DD/MM/YY date format to YYYY-MM-DD
+{
+    sed 's_\([0-9]\{1,2\}\)/\([0-9])'
+}
+
+function remove_newlines() # Remove new lines from files and folder
+{
+    rename 's/[\r\n]//g' *
+}
+
 function man() # Shows pretty man page
 {
   env \
