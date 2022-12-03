@@ -366,28 +366,27 @@ rust: ## Rust
 	# cargo packages
 	cargo install watchexec-cli
 
-php: ## PHP7.4/Symfony, Apache
+php: ## PHP8/Symfony, Apache
 	sudo apt-get install apache2 -y
 
-	# PHP7 Install
-	sudo add-apt-repository ppa:ondrej/php -y
+	# PHP8 Install
 	sudo apt-get update -y
-	sudo apt-get install -y php7.4
+	sudo apt-get install -y php
 
 	# Extension
 	sudo apt-get install -y \
-		php7.4-mysql \
-		php7.4-curl \
-		php7.4-json \
-		php7.4-cgi \
-		php7.4-xsl \
-		php7.4-apcu \
-		php7.4-zip \
-		php7.4-gd \
-		php7.4-bcmath \
-		php7.4-xml \
-		php7.4-mbstring \
-		php7.4-intl \
+		php8.1-mysql \
+		php8.1-curl \
+		php8.1-json \
+		php8.1-cgi \
+		php8.1-xsl \
+		php8.1-apcu \
+		php8.1-zip \
+		php8.1-gd \
+		php8.1-bcmath \
+		php8.1-xml \
+		php8.1-mbstring \
+		php8.1-intl \
 		php-odbc \
 		php-pgsql
 		php-zip
@@ -403,7 +402,7 @@ php: ## PHP7.4/Symfony, Apache
 	curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer -y
 
 	# XDEBUG
-	sudo apt-get install php7.4-xdebug -y
+	sudo apt-get install php8-xdebug -y
 
 	# Symfony
 	wget https://get.symfony.com/cli/installer -O - | bash
