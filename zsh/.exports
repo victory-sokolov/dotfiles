@@ -49,7 +49,7 @@ export PYTHONIOENCODING='UTF-8';
 export PYTHONPATH="/usr/bin/python3.8"
 # Prevents Python from writing pyc files to disc
 export PYTHONDONTWRITEBYTECODE=1
-export PYTHONSTARTUP=~/.pythonrc
+export PYTHONSTARTUP=~/.pythonrc.py
 export PATH="$HOME/.local/bin:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="PYENV_ROOT/bin:$PATH"

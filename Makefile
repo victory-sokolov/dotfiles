@@ -41,6 +41,15 @@ macinstall: # macOS setup
 	brew bundle --file $HOME/.dotfiles/Brewfile
 
 
+clone: # Clone private & public repositories from GitHub
+	echo "Cloning repositories..."
+
+	SITES=$HOME/dev
+
+	# Private
+	
+
+
 android: ## Android sdk and tools
 	SDK_VERSION=29
 
@@ -261,6 +270,9 @@ postgresql: ## PostgreSQL
 
 	# pgcli client
 	sudo apt-get install pgcli
+
+	# Symlink .pythonrc file
+	ln -vsf ${PWD}/.pythonrc.py ${HOME}/.pythonrc.py
 
 remove-postgres: ## Completely deletes PostgreSQL
 	sudo apt-get --purge remove postgresql -y
