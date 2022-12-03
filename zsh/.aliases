@@ -3,12 +3,15 @@ alias install="sudo apt-get install"
 alias remove="sudo apt-get remove"
 alias reboot="sudo reboot"
 alias update="sudo apt-get update --fix-missing && sudo apt-get upgrade && sudo apt autoremove -y"
+
 # show installed packages
 alias show-installed="comm -23 <(apt-mark showmanual | sort -u) <(gzip -dc /var/log/installer/initial-status.gz | sed -n 's/^Package: //p' | sort -u)"
+
 # print each PATH entry on a separate line
 alias path="echo -e ${PATH//:/\\n}"
 alias ls='colorls --group-directories-first'
 alias ll='colorls -lA --sd --group-directories-first'
+
 # tree with ignoring specific directories
 alias t="tree -I 'node_modules|cache|test_*|__pycache__'"
 alias top="htop"
@@ -22,22 +25,28 @@ alias cp="cp -rv" # copy file recursively and explain
 alias mv="mv -v" # move file and explain
 alias mkdir="mkdir -pv"
 alias rm="trash"
+
 # linux os version
 alias version="lsb_release -r -s"
 alias now="date '+%Y-%m-%d'"
 alias untar="tar xvf"
 alias crypto="curl rate.sx" # crypto prices
+
 # copy public ssh key to clipboard
 alias pubkey="pbcopy < ~/.ssh/id_rsa.pub | echo 'public key copied to clipboard'"
+
 # custom available functions
 alias fhelp="grep "^function" ~/dotfiles/zsh/.functions | sed 's/function/+/g' | column -t | sed 's/() #/ - /g'"
 alias ahelp="grep "^alias" ~/dotfiles/zsh/.aliases | sed 's/alias/+/g'"
+
 # howdoi colorised output
 alias how="howdoi $* -c"
+
 alias chrome="google-chrome $1" # open url in chrome
 alias yt-mp3="youtube-dl -x --audio-format mp3 '$1'"
 alias weather="curl -s 'wttr.in/$1?m1ī'"
 alias fontlist="fc-list | cut -d: -f1 | less"
+
 # Allow for pasting lines of code that start with a dollar sign. 
 alias \$='' 
 
