@@ -24,7 +24,7 @@ alias ctrash="sudo rm -rf ~/.local/share/Trash/files/*"
 alias cp="cp -rv" # copy file recursively and explain
 alias mv="mv -v" # move file and explain
 alias mkdir="mkdir -pv"
-alias rm="trash"
+alias rm="trash-put"
 
 # linux os version
 alias version="lsb_release -r -s"

@@ -162,6 +162,7 @@ clitools: ## Install cli tools
 		software-properties-common \
 		sqlite3 libsqlite3-dev \
 		tmux \
+		trash-cli \
 		tree \
 		traceroute \
 		xbindkeys \
@@ -576,7 +577,6 @@ node: ## NodeJS & packages
 		"typescript"
 		"ts-node"
 		"esno", 	# node-runtime builder using for compiling TS files
-		"webpack"
 		"pm2"
 		"nodemon"
 		"node-inspector"
