@@ -179,6 +179,8 @@ alias dc='docker-compose'
 alias dm='docker-machine'
 alias dcup='docker-compose up -d'
 alias dstop='docker stop $(docker ps -q)'
+# Get container IP address by container ID
+alias dip="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
 # Stop and remove all containers
 alias dclean='dstop && docker rm -f $(docker ps -q -a)'
 
