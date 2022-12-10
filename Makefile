@@ -49,7 +49,6 @@ clone: # Clone private & public repositories from GitHub
 	# Private
 	
 
-
 android: ## Android sdk and tools
 	SDK_VERSION=29
 
@@ -129,7 +128,6 @@ clitools: ## Install cli tools
 	sudo apt-get install -y \
 		at \
 		aptitude \
-		autojump \
 		build-essential \
 		cmake \
 		csvtool \
@@ -182,6 +180,9 @@ clitools: ## Install cli tools
 	sudo add-apt-repository ppa:jonathonf/vim -y
 	sudo apt install vim -y
 	sudo apt install vim-gtk3 vim-nox -y
+
+	# Smarter cd command, inspired by z and autojump
+	curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
 
 	# Fira code font
 	sudo apt install fonts-firacode
@@ -460,6 +461,7 @@ python3: ## Python,Poetry & Dependencies
 	--upgrade setuptools
 
 	python3 -m pip install --user pipx pylint black pipenv bandit mypy flake8
+	sudo apt install python-is-python3
 
 	# Poetry dependency managment
 	curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3
