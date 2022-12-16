@@ -77,6 +77,8 @@ zstyle ':completion:*' cache-path ~/.zsh/cache
 zstyle ':omz:update' frequency 7
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':omz:plugins:nvm' lazy true
+# Ignore useless files, like .pyc.
+zstyle ':completion:*:(all-|)files' ignored-patterns '(|*/).pyc'
 
 # fzf
 export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
@@ -93,6 +95,8 @@ source $HOME/dotfiles/zsh/.exports
 source $HOME/dotfiles/zsh/.dockerfunc
 source $HOME/.cargo/env
 #source $HOME/.poetry/env
+
+source '/home/viktor/.nvm/versions/node/v18.6.0/lib/node_modules/@hyperupcall/autoenv/activate.sh'
 
 # Privat env variables
 PRIVATE_EXPORT_PATH="$HOME/dotfiles/zsh/.exports-private"
