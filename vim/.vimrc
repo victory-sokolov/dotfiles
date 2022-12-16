@@ -32,7 +32,6 @@ Plug 'tpope/vim-fugitive'			" Git
 " Plug 'dense-analysis/ale' 		" Linting
 " Plug 'ctrlpvim/ctrlp.vim'
 Plug 'easymotion/vim-easymotion'
-Plug 'Pocco81/AutoSave.nvim'		" Autosave files
 call plug#end()
 
 colorscheme palenight
@@ -200,16 +199,6 @@ let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['eslint'],
 \}
-
-
-" Autosave configs
-lua << EOF
-local autosave = require("autosave")
-autosave.setup({
-	enabled = true,
-	events = { 'InsertLeave', 'TextChanged' }
-})
-EOF
 
 
 let g:ale_fix_on_save = 1
