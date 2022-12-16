@@ -1,0 +1,29 @@
+.git
+.gitignore
+.cache
+
+# Logs
+logs/
+
+# Ignore all markdown and class files
+*.md
+**/*.class
+LICENSE
+
+# Dockerfiles
+*Dockerfile*
+*docker-compose*
+
+# JavaScript related
+node_modules
+
+# Python related
+.venv
+.env
+.coveragerc
+
+# PHP
+vendor/
+
+# ENV
+.env.test
