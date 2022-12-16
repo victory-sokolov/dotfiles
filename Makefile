@@ -17,6 +17,7 @@ init: ## Symlink files
 	ln -vsf ${PWD}/formatting/.prettierignore ${HOME}/.prettierignore
 	ln -vsf ${PWD}/formatting/.eslintignore ${HOME}/.eslintignore
 	ln -vsf ${PWD}/formatting/.editorconfig ${HOME}/.editorconfig
+	ln -vsf ${PWD}/formatting/.editorconfig ${HOME}/.dockerignore
 
 
 install:
@@ -166,21 +167,20 @@ clitools: ## Install cli tools
 		tree \
 		traceroute \
 		xbindkeys \
-		xclip
+		xclip \ 
+		vim
 
 	# install bat cat replacement with syntax highlight
 	wget https://github.com/sharkdp/bat/releases/download/v0.18.2/bat-musl_0.18.2_amd64.deb
 	sudo dpkg -i bat-musl_0.18.2_amd64.deb
 
+	# install autoenv. Load automatically .env files
+	wget --show-progress -o /dev/null -O- 'https://raw.githubusercontent.com/hyperupcall/autoenv/master/scripts/install.sh' | sh
+
 	# Better Git diff tool
 	wget https://github.com/dandavison/delta/releases/download/0.14.0/git-delta_0.14.0_amd64.deb
 	sudo dpkg -i git-delta_0.14.0_amd64.deb
 	rm git-delta_0.14.0_amd64.deb
-
-	# Install VIM 8.2
-	sudo add-apt-repository ppa:jonathonf/vim -y
-	sudo apt install vim -y
-	sudo apt install vim-gtk3 vim-nox -y
 
 	# Smarter cd command, inspired by z and autojump
 	curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
@@ -474,61 +474,7 @@ python3: ## Python,Poetry & Dependencies
 	echo '. ${HOME}/.asdf/asdf.sh' >> ~/.zshrc
 	echo '. ${HOME}/.asdf/completions/asdf.bash' >> ~/.zshrc
 
-opencv: ## Build OpenCV from source
-	sudo apt-get update && sudo apt-get upgrade
-
-	sudo apt-get install \
-		build-essential \
-		cmake \
-		git \
-		libgtk2.0-dev \
-		pkg-config \
-		libavcodec-dev l \
-		libjpeg-dev \
-		libpng-dev \
-		libtiff5-dev \
-		libjasper-dev \
-		libdc1394-22-dev \
-		libeigen3-dev li
-
-	# Download OpenCV source
-	cd opt/
-	git clone https://github.com/Itseez/opencv.git
-	git clone https://github.com/Itseez/opencv_contrib.git
-
-	# Build & Install OpenCV
-	cd opencv
-	mkdir release
-	cd release
-
-	cmake \
-		-D BUILD_TIFF=ON \
-		-D WITH_CUDA=OFF \
-		-D ENABLE_AVX=OFF \
-		-D WITH_OPENGL=OFF \
-		-D WITH_OPENCL=OFF \
-		-D WITH_IPP=OFF \
-		-D WITH_TBB=ON \
-		-D BUILD_TBB=ON \
-		-D WITH_EIGEN=OFF \
-		-D WITH_V4L=OFF \
-		-D WITH_VTK=OFF \
-		-D BUILD_TESTS=OFF \
-		-D BUILD_PERF_TESTS=OFF \
-		-D OPENCV_GENERATE_PKGCONFIG=ON \
-		-D CMAKE_BUILD_TYPE=RELEASE \
-		-D CMAKE_INSTALL_PREFIX=/usr/local \
-		-D OPENCV_EXTRA_MODULES_PATH=/opt/opencv_contrib/modules /opt/opencv/
-
-	 make -j4
-	 make install
-	 ldconfig
-
-	 # Set OpenCV file path
-	 sudo cp /usr/local/lib/pkgconfig/opencv4.pc  /usr/lib/x86_64-linux-gnu/pkgconfig/opencv.pc
-
-
-vscode: ## VS Code
+vscode: ## VS Code - Linux
 	sudo snap install code --classic
 	code --install-extension shan.code-settings-sync
 
