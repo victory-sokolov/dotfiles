@@ -59,4 +59,4 @@ NeoVim + NerdTree
 
 I'm using the default VS code Theme as well I like [Cobalt2](https://marketplace.visualstudio.com/items?itemName=wesbos.theme-cobalt2itemName=wesbos.theme-cobalt2) theme
 
-List of [Extensions](vscode/vscode-extensions.txt) that I'm using
+List of [Extensions](vscode/extensions.md) that I use
