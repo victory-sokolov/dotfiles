@@ -532,3 +532,25 @@ function clean_containers # Remove containers that were used N month ago
     echo $hours
     docker image prune --all --filter "until=4320h"
 }
+
+# Source: https://kittygiraudel.com/snippets/groom-dead-code/
+function groom_dead_code # Check whether files & folders in a given directory are imported in JavaScript files
+{
+  root="${2:-.}"
+  for entry in "$1"/*
+  do
+    name=$(basename $entry)
+    if [[ -z "$(grep -r "/$name'" $root)" ]]; then
+      echo "$entry is unused"
+    fi
+  done
+}
+
+# Source: https://kittygiraudel.com/snippets/groom-dependencies/
+function groom_dependencies # Check for unused dependencies
+{
+  key=${1:-dependencies}
+  for dep in $(cat package.json | jq -cr ".$key|keys|.[]");
+  do [[ -z "$(grep -r  --exclude-dir=node_modules "'${dep}" .)" ]] && echo "$dep appears unused";
+  done
+}
