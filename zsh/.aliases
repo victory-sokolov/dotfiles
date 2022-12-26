@@ -14,7 +14,6 @@ alias ll='colorls -lA --sd --group-directories-first'
 
 # tree with ignoring specific directories
 alias t="tree -I 'node_modules|cache|test_*|__pycache__'"
-alias top="htop"
 alias cls="clear"
 alias chmod="chmod +x"
 alias grep="grep --color=auto "
@@ -24,6 +23,14 @@ alias ctrash="sudo rm -rf ~/.local/share/Trash/files/*"
 alias cp="cp -rv" # copy file recursively and explain
 alias mv="mv -v" # move file and explain
 alias mkdir="mkdir -pv"
+
+if has htop; then
+    alias top="htop"
+fi
+
+if has bat; then
+    alias cat="bat"
+fi
 
 if has trash-put; then
     alias rm="trash-put"
@@ -100,7 +107,6 @@ alias ytmp3="youtube-dl --extract-audio --audio-format mp3" # youtube video to m
 # Image Optimizer
 alias iow="npx @squoosh/cli --webp auto" # <file-name>
 alias ioa="npx @squoosh/cli --avif auto" # <file-name>
-
 
 # PHP
 alias hosts="sudo vim /etc/hosts" # vhosts
