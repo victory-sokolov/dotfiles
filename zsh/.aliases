@@ -197,6 +197,7 @@ alias npm-flush="sudo rm -rf node_modules/ build package.lock && npm i && npm st
 alias nlg='npm list -g --depth=0'
 alias nrd="npm run dev"
 alias nrt="npm run test"
+alias nbs="npm run build && npm start"
 alias npk="npx npkill" #clean unused node_modules
 
 # Yarn
