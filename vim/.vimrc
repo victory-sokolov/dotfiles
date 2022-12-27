@@ -216,6 +216,18 @@ nmap <C-s> <Plug>MarkdownPreview
 nmap <M-s> <Plug>MarkdownPreviewStop
 " nmap <C-p> <Plug>MarkdownPreviewToggle
 
+
+" Disable arrows keys for navigation
+noremap <up> :echoerr "Use k instead"<CR>
+noremap <down> :echoerr "Use j instead"<CR>
+noremap <left> :echoerr "Use h instead"<CR>
+noremap <right> :echoerr "Use l instead"<CR>
+inoremap <up> <NOP>
+inoremap <down> <NOP>
+inoremap <left> <NOP>
+inoremap <right> <NOP>
+
+
 " Powerline
 python3 from powerline.vim import setup as powerline_setup
 python3 powerline_setup()
