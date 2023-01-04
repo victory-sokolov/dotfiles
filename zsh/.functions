@@ -277,6 +277,11 @@ function gitignore() # Get .gitignore file for specific lang
 	curl -sL "https://www.gitignore.io/api/$@" >> .gitignore
 }
 
+# Source: https://github.com/wesbos/dotfiles/blob/master/.zshrc#L28
+function touchh() { # Create file in a nested directory
+  mkdir -p "$(dirname "$1")" && touch "$1"
+}
+
 function isup() # Check if URL is up
 {
 	local uri=$1
