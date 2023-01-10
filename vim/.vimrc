@@ -215,7 +215,7 @@ map <Leader>c <Plug>NERDCommenterComment
 nmap <C-s> <Plug>MarkdownPreview
 nmap <M-s> <Plug>MarkdownPreviewStop
 " nmap <C-p> <Plug>MarkdownPreviewToggle
-
+let g:markdown_fenced_languages = ['html', 'python', 'ruby', 'vim', 'css', 'javascript']
 
 " Disable arrows keys for navigation
 noremap <up> :echoerr "Use k instead"<CR>
