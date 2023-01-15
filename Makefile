@@ -150,7 +150,8 @@ clitools: ## Install cli tools
 		nghttp2-client \
 		neofetch \
 		net-tools \
-		ncdu \
+		ncdu \ 
+		nvtop \
 		pkg-config \
 		pdftk \
 		pwgen \
