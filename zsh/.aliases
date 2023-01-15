@@ -13,9 +13,9 @@ alias ls='colorls --group-directories-first'
 alias ll='colorls -lA --sd --group-directories-first'
 
 # tree with ignoring specific directories
-alias t="tree -I 'node_modules|cache|test_*|__pycache__'"
+alias t="tree -CL 2 -I 'node_modules|cache|test_*|__pycache__'"
+alias lt="lsd --tree -I 'node_modules|cache|test_*|__pycache__'"
 alias cls="clear"
-alias chmod="chmod +x"
 alias grep="grep --color=auto "
 alias fgrep="fgrep --color=auto"
 alias q="exit"
