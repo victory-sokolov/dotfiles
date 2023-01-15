@@ -1,7 +1,8 @@
 [wsl2]
-memory=5GB
+memory=8GB
 swap=0
 processors=2
+swap=8GB
 
 [boot]
 systemd=true
