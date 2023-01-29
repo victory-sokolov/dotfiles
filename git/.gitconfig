@@ -44,6 +44,10 @@
 	tool = opendiff
 	renameLimit = 0
 
+[rerere]
+    autoupdate = true
+    enabled = true
+
 [checkout]
 	defaultRemote = origin
 
