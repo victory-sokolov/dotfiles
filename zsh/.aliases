@@ -2,7 +2,13 @@
 alias install="sudo apt-get install"
 alias remove="sudo apt-get remove"
 alias reboot="sudo reboot"
-alias update="sudo apt-get update --fix-missing && sudo apt-get upgrade && sudo apt autoremove -y"
+
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    alias update="sudo apt-get update --fix-missing && sudo apt-get upgrade && sudo apt autoremove -y"
+# Mac OSX
+else
+    alias update="sudo softwareupdate -i -a; brew update; brew upgrade";
+fi
 
 # show installed packages
 alias show-installed="comm -23 <(apt-mark showmanual | sort -u) <(gzip -dc /var/log/installer/initial-status.gz | sed -n 's/^Package: //p' | sort -u)"
@@ -36,8 +42,13 @@ if has trash-put; then
     alias rm="trash-put"
 fi 
 
-# linux os version
-alias version="lsb_release -r -s"
+# Get os with version
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    alias version="{ uname & lsb_release -r -s; } | paste -d ' ' -s"
+else
+    alias version="sw_vers"
+fi
+
 alias now="date '+%Y-%m-%d'"
 alias untar="tar xvf"
 alias crypto="curl rate.sx" # crypto prices
