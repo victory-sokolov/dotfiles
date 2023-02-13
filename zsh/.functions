@@ -559,3 +559,19 @@ function groom_dependencies # Check for unused dependencies
   do [[ -z "$(grep -r  --exclude-dir=node_modules "'${dep}" .)" ]] && echo "$dep appears unused";
   done
 }
+
+function install_latest_release # Download and install latest release from Github
+{
+    repo=$1
+    url=https://api.github.com/repos/$repo/releases/latest
+    download_url=$(curl -s $url \
+        | grep "browser_download_url.*deb\"" \
+        | cut -d : -f 2,3 \
+        | tr -d \" \
+        | xargs)
+    filename=$(basename $download_url)
+    echo "Downloading file: $download_url"
+    wget -q $download_url
+    sudo dpkg -i $filename
+    rm $filename
+}
