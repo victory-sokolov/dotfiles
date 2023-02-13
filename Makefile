@@ -190,6 +190,9 @@ clitools: ## Install cli tools
 	sudo apt install fonts-firacode
 	sudo fc-cache -fv
 
+	# Tidy-HTML5 format html in CLI
+	install_latest_release htacg/tidy-html5
+
 nvim: ## Neovim + Astrovim
 	cd ~
 	curl -LO https://github.com/neovim/neovim/releases/download/v0.8.1/nvim-linux64.deb
