@@ -42,14 +42,6 @@ macinstall: # macOS setup
 	brew bundle --file $HOME/.dotfiles/Brewfile
 
 
-clone: # Clone private & public repositories from GitHub
-	echo "Cloning repositories..."
-
-	SITES=$HOME/dev
-
-	# Private
-	
-
 android: ## Android sdk and tools
 	SDK_VERSION=29
 
@@ -172,16 +164,13 @@ clitools: ## Install cli tools
 		vim
 
 	# install bat cat replacement with syntax highlight
-	wget https://github.com/sharkdp/bat/releases/download/v0.18.2/bat-musl_0.18.2_amd64.deb
-	sudo dpkg -i bat-musl_0.18.2_amd64.deb
+	install_latest_release sharkdp/bat
 
 	# install autoenv. Load automatically .env files
 	wget --show-progress -o /dev/null -O- 'https://raw.githubusercontent.com/hyperupcall/autoenv/master/scripts/install.sh' | sh
 
 	# Better Git diff tool
-	wget https://github.com/dandavison/delta/releases/download/0.14.0/git-delta_0.14.0_amd64.deb
-	sudo dpkg -i git-delta_0.14.0_amd64.deb
-	rm git-delta_0.14.0_amd64.deb
+	install_latest_release dandavison/delta
 
 	# Smarter cd command, inspired by z and autojump
 	curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
@@ -215,14 +204,9 @@ docker: ## Docker
 	sudo service docker restart
 
 	# Docker compose
-	sudo curl -L "https://github.com/docker/compose/releases/download/1.29.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+	sudo curl -L "https://github.com/docker/compose/releases/download/2.16.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 	sudo chmod +x /usr/local/bin/docker-compose
 
-	# Docker Machine
-	base=https://github.com/docker/machine/releases/download/v0.16.0
-	curl -L $base/docker-machine-$(uname -s)-$(uname -m) >/tmp/docker-machine
-	sudo mv /tmp/docker-machine /usr/local/bin/docker-machine
-	sudo chmod +x /usr/local/bin/docker-machine
 
 kubernetes: ## Kubernetes
 	curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
@@ -357,7 +341,7 @@ java: ## Java JDK8
 
 
 dotnet: ## C#, Net core
-	wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+	wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
 	sudo dpkg -i packages-microsoft-prod.deb
 	rm packages-microsoft-prod.deb
 
@@ -466,7 +450,6 @@ python3: ## Python,Poetry & Dependencies
 	--upgrade setuptools
 
 	python3 -m pip install --user pipx pylint black pipenv bandit mypy flake8
-	sudo apt install python-is-python3
 
 	# Poetry dependency managment
 	curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3
@@ -493,7 +476,7 @@ nginx: ## Nginx
 	sudo apt-get install nginx -y
 
 node: ## NodeJS & packages
-	curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+	curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
 	sudo apt-get install -y nodejs
 
 	# NPM
