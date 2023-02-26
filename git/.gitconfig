@@ -8,6 +8,9 @@
     # Path to githooks
     hookspath="~/.githooks"
 
+[sequence]
+    editor = code --wait
+
 [help]
   autocorrect = 20
   autocorrect = prompt
