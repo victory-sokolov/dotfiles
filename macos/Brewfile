@@ -36,6 +36,8 @@ cask 'firefox'
 cask 'insomnia'
 cask 'rectangle'
 cask 'dropbox'
+# Checks battery health
+cask 'coconutbattery'
 
 # Fonts
 cask 'font-fira-code'
