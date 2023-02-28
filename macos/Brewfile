@@ -38,6 +38,7 @@ cask 'rectangle'
 cask 'dropbox'
 # Checks battery health
 cask 'coconutbattery'
+cask 'warp'
 
 # Fonts
 cask 'font-fira-code'
