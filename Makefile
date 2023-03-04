@@ -502,8 +502,6 @@ node: ## NodeJS & packages
 	npm_scripts=(
 		"autocannon"
 		"trash-cli"
-		"electron"
-		"eslint"
 		"uncss"
 		"vtop"
 		"localtunnel"
@@ -511,7 +509,6 @@ node: ## NodeJS & packages
 		"ts-node"
 		"esno", 	# node-runtime builder using for compiling TS files
 		"pm2"
-		"nodemon"
 		"node-inspector"
 		"terminalizer"
 		"depcheck"
