@@ -24,7 +24,7 @@ install:
 	set -e
 	clitools docker postgresql nginx node php python ruby vscode zsh init
 
-macinstall: # macOS setup
+macinstall: ## macOS setup
 	# Check for Homebrew and install if we don't have it	
 	if test ! $(which brew); then	
 		/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
@@ -39,7 +39,7 @@ macinstall: # macOS setup
 	# Install all the dependencies with bundle (See Brewfile)
 	brew tap homebrew/bundle
 	brew tap homebrew/cask-drivers
-	brew bundle --file $HOME/.dotfiles/Brewfile
+	brew bundle --file macos/Brewfile
 
 android: ## Android sdk and tools
 	SDK_VERSION=29
