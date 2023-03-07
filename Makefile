@@ -41,7 +41,6 @@ macinstall: # macOS setup
 	brew tap homebrew/cask-drivers
 	brew bundle --file $HOME/.dotfiles/Brewfile
 
-
 android: ## Android sdk and tools
 	SDK_VERSION=29
 
@@ -71,7 +70,7 @@ linux: ## Install Ubuntu programms: flameshot, albert, spotify, dropbox, vlc, ch
 	# Show battery percentage
 	gsettings set org.gnome.desktop.interface show-battery-percentage true
 	# ALT + SHIFT change language
-    gsettings set org.gnome.desktop.input-sources xkb-options "['grp:alt_shift_toggle']"
+	gsettings set org.gnome.desktop.input-sources xkb-options "['grp:alt_shift_toggle']"
 	# Enable minimize dock
 	gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize'
 
@@ -228,7 +227,7 @@ mysql: ## Mysql
 	sudo mysql -e "FLUSH PRIVILEGES";
 	sudo /etc/init.d/mysql stop
 
-mc ## Midnight commander ( File manager in CLI )
+mc: ## Midnight commander ( File manager in CLI )
 	sudo apt-get install mc -y
 	# Install dracula theme
 	mkdir ~/dracula-theme && cd ~/dracula-theme
@@ -445,7 +444,7 @@ python3: ## Python,Poetry & Dependencies
 		icecream \
 		httpie \
 		faker \
-    	litecli \
+		litecli \
 		python3-pydrive \
 	--upgrade setuptools
 
