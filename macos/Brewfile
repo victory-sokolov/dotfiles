@@ -6,7 +6,6 @@ tap 'homebrew/bundle'
 tap 'nicoverbruggen/homebrew-cask'
 
 # Install Binaries
-brew 'bash'
 brew 'bat'
 brew 'coreutils'
 brew 'git'
