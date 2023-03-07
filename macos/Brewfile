@@ -17,6 +17,7 @@ brew 'mas'
 brew 'pkg-config' # https://github.com/driesvints/dotfiles/issues/20
 brew 'trash'
 brew 'tree'
+brew 'wget'
 brew 'neovim'
 brew 'zsh-completions'
 
@@ -27,6 +28,8 @@ brew 'nginx'
 brew 'node'
 brew 'redis'
 brew 'yarn'
+brew 'nvm'
+brew 'pnpm'
 
 # Apps
 cask 'google-chrome'
@@ -38,7 +41,12 @@ cask 'dropbox'
 # Checks battery health
 cask 'coconutbattery'
 cask 'warp'
+cask 'visual-studio-code'
+cask 'slack'
+cask 'discord'
+cask 'figma'
 
 # Fonts
 cask 'font-fira-code'
 cask 'font-lato'
+cask 'font-hack-nerd-font'
