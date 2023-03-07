@@ -10,7 +10,7 @@ init: ## Symlink files
 	ln -vsf ${PWD}/git/.gitconfig ${HOME}/.gitconfig
 	ln -vsf ${PWD}/git/.gitignore_global ${HOME}/.gitignore_global
 	ln -vsf ${PWD}/.sqliterc ${HOME}/.sqliterc
-	ln -vsg ${PWD}/.ignore ${HOME}/.ignore
+	ln -vsf ${PWD}/.ignore ${HOME}/.ignore
 	# Formatter
 	ln -vsf ${PWD}/formatting/.prettierrc ${HOME}/.prettierc
 	ln -vsf ${PWD}/formatting/.eslintrc ${HOME}/.eslintrc
@@ -20,20 +20,26 @@ init: ## Symlink files
 	ln -vsf ${PWD}/formatting/.editorconfig ${HOME}/.dockerignore
 
 
+testt:
+	if [ -z "$(which python3)" ]; then \
+		echo 'Python exists' \
+	fi
+
+
 install:
 	set -e
 	clitools docker postgresql nginx node php python ruby vscode zsh init
 
 macinstall: ## macOS setup
-	# Check for Homebrew and install if we don't have it	
-	if test ! $(which brew); then	
+	# Check for Homebrew and install if we don't have it
+	if test ! $(which brew); then
 		/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
 		echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> $HOME/.zprofile
 		eval "$(/opt/homebrew/bin/brew shellenv)"
 	fi
 
-	# Update Homebrew	
+	# Update Homebrew
 	brew update
 
 	# Install all the dependencies with bundle (See Brewfile)
@@ -141,7 +147,7 @@ clitools: ## Install cli tools
 		nghttp2-client \
 		neofetch \
 		net-tools \
-		ncdu \ 
+		ncdu \
 		nvtop \
 		pkg-config \
 		pdftk \
@@ -159,7 +165,7 @@ clitools: ## Install cli tools
 		tree \
 		traceroute \
 		xbindkeys \
-		xclip \ 
+		xclip \
 		vim
 
 	# install bat cat replacement with syntax highlight
