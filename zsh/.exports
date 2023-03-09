@@ -28,6 +28,8 @@ export PATH="$PATH:$HOME/usr/local/bin"
 # PHP
 export PATH="$HOME/.symfony/bin:$PATH"
 
+export PATH=$PATH:/opt/homebrew/bin
+
 # Java
 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 export PATH=$PATH:/usr/lib/jvm/java-11-openjdk/bin
@@ -78,3 +80,4 @@ export LIBGL_ALWAYS_INDIRECT=1
 export CUDA_HOME=/usr/local/cuda
 export LD_LIBRARY_PATH=/usr/lib/wsl/lib:$LD_LIBRARY_PATH
 export PATH=$PATH:$CUDA_HOME/bin
+export PATH="${HOME}/.poetry/bin:${PATH}"
