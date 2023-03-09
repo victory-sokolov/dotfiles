@@ -6,8 +6,8 @@ eval "$(starship init zsh)"
 set -m
 #$unsetopt PROMPT_SP
 ZSH_DISABLE_COMPFIX=true
-# ZSH_THEME="powerlevel10k/powerlevel10k"
-#POWERLEVEL9K_MODE="nerdfont-complete"
+ZSH_THEME="powerlevel10k/powerlevel10k"
+# POWERLEVEL10K_MODE="nerdfont-complete"
 
 # History
 HISTSIZE=10000 # Lines of history to keep in memory for current session
@@ -52,7 +52,9 @@ skip_global_compinit=1
 # Tell ZSH not to nice background process
 unsetopt BG_NICE
 
-eval $(thefuck --alias)
+if [ -f thefuck ]; then
+    eval $(thefuck --alias)
+fi
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
@@ -64,8 +66,6 @@ fi
 # NPM
 NPM_PACKAGES="${HOME}/.npm-packages"
 export PATH="$PATH:$NPM_PACKAGES/bin"
-
-. /usr/share/autojump/autojump.sh
 
 # docker
 zstyle ':completion:*:*:docker:*' option-stacking yes
@@ -93,8 +93,10 @@ source $HOME/dotfiles/zsh/.functions
 source $HOME/dotfiles/zsh/.aliases
 source $HOME/dotfiles/zsh/.exports
 source $HOME/dotfiles/zsh/.dockerfunc
-source $HOME/.cargo/env
-#source $HOME/.poetry/env
+
+if [ -f $HOME/.cargo/env ]; then
+    source $HOME/.cargo/env
+fi
 
 source '/home/viktor/.nvm/versions/node/v18.6.0/lib/node_modules/@hyperupcall/autoenv/activate.sh'
 
@@ -104,9 +106,10 @@ if test -f "$PRIVATE_EXPORT_PATH"; then
     source $PRIVATE_EXPORT_PATH 
 fi
 
-
-. $HOME/.asdf/asdf.sh
-. $HOME/.asdf/completions/asdf.bash
+if [ -f $HOME/.asdf/asdf.sh ]; then
+    . $HOME/.asdf/asdf.sh
+    . $HOME/.asdf/completions/asdf.bash
+fi
 
 # Custom settings depending on OS
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
