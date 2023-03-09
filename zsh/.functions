@@ -18,7 +18,7 @@ function calc() # Simple calculator
 
 function has() # Check whether executable exists
 {
-  return $( whence $1 &>/dev/null )
+    command -v "$1" >/dev/null 2>&1
 }
 
 function mkcd() # Create a new directory and enter it
