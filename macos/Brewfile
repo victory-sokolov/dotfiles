@@ -19,7 +19,10 @@ brew 'trash'
 brew 'tree'
 brew 'wget'
 brew 'neovim'
-brew 'zsh-completions'
+brew 'ripgrep'
+brew 'tmux'
+brew 'neofetch'
+brew 'exa'
 
 # Development
 brew 'postgresql'
@@ -30,6 +33,10 @@ brew 'redis'
 brew 'yarn'
 brew 'nvm'
 brew 'pnpm'
+
+# ZSH, OH-MY-ZSH plugins
+brew 'autojump'
+brew 'zsh-completions'
 
 # Apps
 cask 'google-chrome'
