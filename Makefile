@@ -1,3 +1,5 @@
+ZSH_PLUGINS := $(shell cat install/ohmyzshfile)
+
 init: ## Symlink files
 	ln -vsf ${PWD}/zsh/.zshrc ${HOME}/.zshrc
 	ln -vsf ${PWD}/zsh/.aliases ${HOME}/.aliases
@@ -19,24 +21,17 @@ init: ## Symlink files
 	ln -vsf ${PWD}/formatting/.editorconfig ${HOME}/.editorconfig
 	ln -vsf ${PWD}/formatting/.editorconfig ${HOME}/.dockerignore
 
-
-testt:
-	if [ -z "$(which python3)" ]; then \
-		echo 'Python exists' \
-	fi
-
-
 install:
 	set -e
 	clitools docker postgresql nginx node php python ruby vscode zsh init
 
 macinstall: ## macOS setup
 	# Check for Homebrew and install if we don't have it
-	if test ! $(which brew); then
-		/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+	@if test ! $(which brew); then \
+		/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" \
 
-		echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> $HOME/.zprofile
-		eval "$(/opt/homebrew/bin/brew shellenv)"
+		echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> $HOME/.zprofile \
+		eval "$(/opt/homebrew/bin/brew shellenv)" \
 	fi
 
 	# Update Homebrew
@@ -212,7 +207,6 @@ docker: ## Docker
 	sudo curl -L "https://github.com/docker/compose/releases/download/2.16.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 	sudo chmod +x /usr/local/bin/docker-compose
 
-
 kubernetes: ## Kubernetes
 	curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 	curl -LO "https://dl.k8s.io/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
@@ -250,7 +244,6 @@ remove-mysql: ## Remove MySQL
 	sudo apt-get purge mysql mysql-server mysql-common mysql-client -y
 	# back up old databases
 	mv /var/lib/mysql /var/lib/mysql-bak
-
 
 postgresql: ## PostgreSQL
 	sudo apt-get update && sudo apt-get upgrade -y
@@ -373,7 +366,6 @@ elastic: ## ElastiSearch
 
 go: ## Go lang
 	sudo apt-get install golang-go
-
 	export GOPATH="$HOME/Go"
 	export PATH="$PATH:/usr/local/go/bin:$GOPATH/bin"
 
@@ -457,7 +449,7 @@ python3: ## Python,Poetry & Dependencies
 	python3 -m pip install --user pipx pylint black pipenv bandit mypy flake8
 
 	# Poetry dependency managment
-	curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3
+	curl -sSL https://install.python-poetry.org | python3 -
 	echo 'export PATH="${HOME}/.poetry/bin:${PATH}"' >> ~/.exports
 
 	# Python version manager
@@ -468,13 +460,6 @@ python3: ## Python,Poetry & Dependencies
 
 vscode: ## VS Code - Linux
 	sudo snap install code --classic
-	code --install-extension shan.code-settings-sync
-
-vscode-install-php: ## Install PHP extensions
-	cat vscode/php.txt | xargs code --install-extension
-
-vscode-uninstall-php: ## Uninstall PHP extensions
-	cat vscode/php.txt | xargs code --uninstall
 
 nginx: ## Nginx
 	sudo add-apt-repository ppa:nginx/stable -y
@@ -504,51 +489,23 @@ node: ## NodeJS & packages
 	curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
 
 	# Node packages
-	npm_scripts=(
-		"autocannon"
-		"trash-cli"
-		"uncss"
-		"vtop"
-		"localtunnel"
-		"typescript"
-		"ts-node"
-		"esno", 	# node-runtime builder using for compiling TS files
-		"pm2"
-		"node-inspector"
-		"terminalizer"
-		"depcheck"
-		"faker-cli"
-		"npm-check-updates"
-		"loadtest",
-		"browser-sync"
-		"pnpm"
-	)
+	npm install -g $(shell cat install/npmfile)
 
-	for element in "${npm_scripts[@]}"
-	do
-		npm install -g ${element}
-	done
+ohmyzsh: ## Install zsh, oh-my-zsh & plugins
+	@if [ ! -z "$(which zsh --version)" ]; then \
+		echo 'Installing zsh'; \
+		sudo apt-get install -y zsh \
+		sudo chsh -s $(which zsh); \
+	fi
 
-ohmyzsh: ## Install zsh,oh-my-zsh & plugins
-	sudo apt-get install -y zsh
-	sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-	sudo chsh -s $(which zsh)
-
-	# Install plugins
-	zsh_plugins=(
-		https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-		https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-		https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
-		https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm
-		https://github.com/bhilburn/powerlevel9k.git ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/themes/powerlevel9k
-		https://github.com/MichaelAquilina/zsh-you-should-use.git $ZSH_CUSTOM/plugins/you-should-use
-		https://github.com/paulirish/git-open.git $ZSH_CUSTOM/plugins/git-open
-		# https://github.com/MichaelAquilina/zsh-autoswitch-virtualenv.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/autoswitch_virtualenv
-		# https://github.com/Tarrasch/zsh-autoenv ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-autoenv
-	)
-
-	for plug in "${zsh_plugins[@]}"; do
-		git clone ${plug}
+	sh -c "$$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+	
+	@for file in $(ZSH_PLUGINS); do \
+		repo=$$(basename $$file); \
+		dir=~/.oh-my-zsh/custom/plugins/$$repo; \
+		if [ ! -d $$dir ]; then \
+			git clone $$file $$dir; \
+		fi; \
 	done
 
 
