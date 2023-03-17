@@ -3,6 +3,9 @@ SCREENSHOTS_FOLDER="${HOME}/Screenshots"
 # Move a window by clicking on any part of it 
 defaults write -g NSWindowShouldDragOnGesture -bool true
 
+# Speed up dock show/hide
+defaults write com.apple.dock autohide-delay -float 0
+defaults write com.apple.dock autohide-time-modifier -int 0
 
 # System Preferences > Trackpad > Tap to click
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
