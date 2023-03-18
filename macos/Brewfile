@@ -23,6 +23,7 @@ brew 'ripgrep'
 brew 'tmux'
 brew 'neofetch'
 brew 'exa'
+brew 'openssl'
 
 # Development
 brew 'postgresql'
