@@ -575,3 +575,10 @@ function install_latest_release # Download and install latest release from Githu
     sudo dpkg -i $filename
     rm $filename
 }
+
+function upgrade-deps # Upgrade global dependencies
+{
+    npx npm-check --global --update-all
+    pip3 install --upgrade pip
+    pip3 freeze | grep -v "^\-e" | grep -v "@" | cut -d = -f 1 | xargs pip3 install -U
+}
