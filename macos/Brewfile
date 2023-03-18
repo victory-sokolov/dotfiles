@@ -33,6 +33,7 @@ brew 'redis'
 brew 'yarn'
 brew 'nvm'
 brew 'pnpm'
+brew 'jupyterlab'
 
 # ZSH, OH-MY-ZSH plugins
 brew 'autojump'
