@@ -29,12 +29,18 @@ brew 'openssl'
 brew 'postgresql'
 brew 'mysql'
 brew 'nginx'
-brew 'node'
 brew 'redis'
+
+# Node
+brew 'node'
 brew 'yarn'
 brew 'nvm'
 brew 'pnpm'
+
+# Python
 brew 'jupyterlab'
+brew 'pipx'
+
 
 # ZSH, OH-MY-ZSH plugins
 brew 'autojump'
