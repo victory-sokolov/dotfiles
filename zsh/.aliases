@@ -25,6 +25,7 @@ alias ctrash="sudo rm -rf ~/.local/share/Trash/files/*"
 alias cp="cp -rv" # copy file recursively and explain
 alias mv="mv -v" # move file and explain
 alias mkdir="mkdir -pv"
+alias fs="stat -f \"%z bytes\"" # File size
 
 if has colorls; then
     alias ls='colorls --group-directories-first'
