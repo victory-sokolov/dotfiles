@@ -45,6 +45,7 @@ plugins=(
 	zsh-autosuggestions
 	zsh-completions
 	z
+    tmux
 )
 
 skip_global_compinit=1
