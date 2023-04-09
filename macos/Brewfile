@@ -24,6 +24,7 @@ brew 'tmux'
 brew 'neofetch'
 brew 'exa'
 brew 'openssl'
+brew 'fzf'
 
 # Development
 brew 'postgresql'
