@@ -66,3 +66,7 @@ cask 'figma'
 cask 'font-fira-code'
 cask 'font-lato'
 cask 'font-hack-nerd-font'
+
+
+# Create NVM directory
+mkdir ~/.nvm
