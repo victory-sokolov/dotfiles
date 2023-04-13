@@ -1,5 +1,5 @@
 
-# My DotFiles for Linux
+# My DotFiles for Linux/Windows/MacOS
 
 ![](https://i.imgur.com/yuX27Pt.png)
 
