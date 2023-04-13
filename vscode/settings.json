@@ -1,37 +1,37 @@
 {
-    "sync.gist": "cb7ddbf5763682a431246ada8ffb9396",
-    "sync.quietSync": true,
-    "sync.removeExtensions": true,
-    "sync.syncExtensions": true,
-    "sync.autoDownload": false,
-    "sync.autoUpload": true,
-    "sync.forceDownload": false,
-    "files.trimTrailingWhitespace": true,
+    "window.restoreFullscreen": true,
     "files.insertFinalNewline": true,
     "editor.fontSize": 15,
     "editor.tabSize": 4,
     "editor.insertSpaces": true,
     "editor.detectIndentation": false,
     "editor.showDeprecated": true,
-    "editor.suggest.showDeprecated": false,
+    "editor.suggest.showDeprecated": true,
+    "editor.suggestLineHeight": 28,
     "editor.quickSuggestionsDelay": 0,
     "editor.formatOnPaste": true,
     "editor.folding": true,
     "editor.glyphMargin": true,
     "editor.fontFamily": "Fira Code",
     "editor.fontLigatures": true,
-    "editor.lineHeight": 30,
+    "editor.lineHeight": 36,
     "editor.suggestSelection": "first",
     "editor.acceptSuggestionOnEnter": "smart",
     "editor.parameterHints.enabled": true,
     "editor.wrappingIndent": "indent",
     "editor.find.autoFindInSelection": "multiline",
+    "editor.codeLens": true,
+    "editor.unicodeHighlight.invisibleCharacters": true,
+    "editor.unicodeHighlight.ambiguousCharacters": true,
+    // Collapseed imports
+    "editor.foldingImportsByDefault": false,
     // can specify multiple eg [100, 120]
     "editor.rulers": [
         100
     ],
     // Autorenames selected tag
     "editor.linkedEditing": true,
+    "editor.suggest.preview": true,
     "editor.codeActionsOnSave": {
         // "source.organizeImports": true,
         "source.fixAll": true,
@@ -59,24 +59,35 @@
     "editor.guides.highlightActiveIndentation": true,
     "editor.guides.bracketPairsHorizontal": true,
     "editor.guides.indentation": true,
+    // Peek previews
+    "editor.gotoLocation.multipleReferences": "goto",
+    "editor.gotoLocation.multipleDefinitions": "goto",
+    "editor.gotoLocation.multipleDeclarations": "goto",
+    "editor.gotoLocation.multipleImplementations": "goto",
+    "editor.gotoLocation.multipleTypeDefinitions": "goto",
     "workbench.editor.enablePreviewFromQuickOpen": false,
     "workbench.startupEditor": "newUntitledFile",
     "workbench.settings.editor": "json",
     "workbench.editor.highlightModifiedTabs": true,
-    "explorer.fileNesting.enabled": true,
-    // "editor.snippetSuggestions": "top",
+    // "explorer.fileNesting.enabled": true,
+    "explorer.excludeGitIgnore": false,
+    "editor.snippetSuggestions": "bottom",
     "diffEditor.codeLens": true,
     "diffEditor.ignoreTrimWhitespace": false,
-    "window.menuBarVisibility": "visible",
     "files.associations": {
         "*.twig": "html",
         "*.toml": "ini",
         ".vuerc": "json",
         "*.jsx": "javascript",
+        "*.js": "javascriptreact",
+        "*.mdx": "markdown",
+        "*.json": "jsonc",
         "**/*.html": "html",
         "**/templates/*/*.html": "django-html",
         "**/templates/*": "django-txt",
-        "**/requirements{/**,*}.{txt,in}": "pip-requirements"
+        "**/requirements{/**,*}.{txt,in}": "pip-requirements",
+        ".env.*": "dotenv",
+        "*.tsx": "typescriptreact"
     },
     //extensions
     "extensions.ignoreRecommendations": true,
@@ -84,7 +95,6 @@
     // HTML
     "html.autoClosingTags": true,
     "html.format.enable": true,
-    "html.format.endWithNewline": false,
     "html.format.templating": true,
     "html.suggest.html5": true,
     "html.validate.styles": true,
@@ -107,7 +117,9 @@
         "markdown",
         "erb",
         "ejs",
-        "svelte"
+        "svelte",
+        "tsx",
+        "ts"
     ],
     // CSS
     "css.completion.completePropertyWithSemicolon": true,
@@ -140,6 +152,16 @@
     "javascript.suggest.paths": true,
     "javascript.suggestionActions.enabled": true,
     "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
+    "javascript.preferences.jsxAttributeCompletionStyle": "auto",
+    // types
+    "javascript.inlayHints.enumMemberValues.enabled": false,
+    "javascript.inlayHints.functionLikeReturnTypes.enabled": false,
+    // "javascript.inlayHints.parameterNames.enabled": "literals",
+    "javascript.inlayHints.parameterTypes.enabled": false,
+    "javascript.inlayHints.propertyDeclarationTypes.enabled": false,
+    "javascript.inlayHints.variableTypes.enabled": false,
+    // typings errors
+    "js/ts.implicitProjectConfig.checkJs": true,
     "js/ts.implicitProjectConfig.experimentalDecorators": true,
     // TypeScript
     "typescript.updateImportsOnFileMove.enabled": "always",
@@ -154,37 +176,12 @@
     "typescript.suggest.enabled": true,
     "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
     "debug.javascript.autoAttachFilter": "disabled",
+    "debug.inlineValues": "on",
+    "debug.enableStatusBarColor": true,
     "typescript.implementationsCodeLens.enabled": true,
     "typescript.format.insertSpaceAfterTypeAssertion": true,
-    "[typescript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
     "jest.debugMode": false,
     "jest.showCoverageOnLoad": false,
-    // Beautify
-    "beautify.language": {
-        "js": {
-            "type": [
-                "javascript",
-                "json",
-                "jsonc"
-            ],
-            "filename": [
-                ".jshintrc",
-                ".jsbeautifyrc"
-            ]
-        },
-        "css": [
-            "css",
-            "less",
-            "scss"
-        ],
-        "html": [
-            "htm",
-            "html",
-            "django-html"
-        ]
-    },
     // Prettier & eslint
     "prettier.useTabs": false,
     "prettier.trailingComma": "none",
@@ -197,8 +194,11 @@
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "[typescriptreact]": {
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        },
         "editor.formatOnSave": true,
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
     },
     "[scss]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -212,7 +212,22 @@
     "[json]": {
         "editor.defaultFormatter": "vscode.json-language-features"
     },
-    "eslint.alwaysShowStatus": true,
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[sql]": {
+        "editor.formatOnPaste": true,
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "adpyke.vscode-sql-formatter"
+    },
+    "[prisma]": {
+        "editor.formatOnPaste": true,
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "Prisma.prisma"
+    },
     "eslint.codeActionsOnSave.mode": "all",
     "eslint.format.enable": true,
     "eslint.validate": [
@@ -220,21 +235,14 @@
         "javascriptreact",
         "typescript"
     ],
-    // C#
-    "csharp.format.enable": true,
-    "csharpextensions.privateMemberPrefix": "_",
-    "csharpextensions.useThisForCtorAssignments": true,
-    // Java
-    "java.home": "/usr/lib/jvm/java-11-openjdk-amd64",
     // Python
-    "python.linting.pycodestyleEnabled": true,
+    "python.linting.pycodestyleEnabled": false,
     "python.analysis.autoImportCompletions": true,
     "python.analysis.autoSearchPaths": true,
     "python.analysis.typeCheckingMode": "basic",
     "python.analysis.useLibraryCodeForTypes": true,
     "python.diagnostics.sourceMapsEnabled": true,
     "python.defaultInterpreterPath": "/usr/bin/python3",
-    "python.pythonPath": "/usr/bin/python3",
     "python.terminal.activateEnvInCurrentTerminal": true,
     "python.linting.enabled": true,
     "python.linting.pylintEnabled": true,
@@ -251,30 +259,24 @@
     "python.linting.flake8Path": "${env:HOME}/.local/bin/flake8",
     "python.formatting.blackPath": "${env:HOME}/.local/bin/black",
     "[python]": {
-        "editor.defaultFormatter": "ms-python.python"
+        "editor.defaultFormatter": "ms-python.python",
+        "editor.formatOnType": true
     },
     "python.languageServer": "Pylance",
-    "pylance.insidersChannel": "daily",
     "python.linting.flake8Args": [
         //"--ignore=E303"
         "--max-line-length=90",
-        "--indent-size=2"
     ],
     "python.linting.pylintArgs": [
         "--generate-members",
         "--disable=C0111",
-        // remove unused imports
-        "--enable=W0614",
         "extension-pkg-whitelist=cv2",
-        "--load-plugins=pylint-flask",
-        "--load-plugin=pylint_django",
-        "pylint_flask"
+        "--load-plugins=pylint-flask,pylint-django,pylint_celery",
     ],
     "python.linting.ignorePatterns": [
         ".vscode/*.py",
         "**/site-packages/**/*.py"
     ],
-    "python.formatting.provider": "autopep8",
     "python.envFile": "${workspaceFolder}/.env",
     "python.terminal.activateEnvironment": true,
     "python.analysis.completeFunctionParens": true,
@@ -290,7 +292,14 @@
         "-s",
         ".",
         "-p",
-        "*test_*.py"
+        "test_*.py",
+        "/tests"
+    ],
+    // Pylint
+    "pylint.args": [
+        "--disable",
+        "logging.fstring-interpolation",
+        "no-member",
     ],
     "testExplorer.codeLens": true,
     "workbench.colorCustomizations": {
@@ -306,6 +315,7 @@
         }
     },
     "window.titleBarStyle": "custom",
+    "window.title": "${folderName}",
     "liveServer.settings.donotShowInfoMsg": true,
     "files.eol": "\n",
     // PHP config
@@ -314,9 +324,13 @@
     "emmet.excludeLanguages": [],
     "emmet.includeLanguages": {
         "javascript": "javascriptreact",
+        "typescriptreact": "html",
+        "typescript": "html",
         "vue-html": "html",
+        "vue": "html",
         "php": "html",
         "*.twig": "html",
+        "blade.php": "html",
         "django-html": "html",
         "jinja-html": "html",
         "markdown": "html",
@@ -332,16 +346,27 @@
     },
     // Terminal
     "terminal.integrated.copyOnSelection": true,
-    "terminal.integrated.fontSize": 17,
+    "terminal.integrated.fontSize": 15,
+    "terminal.integrated.allowChords": true,
+    "terminal.integrated.drawBoldTextInBrightColors": true,
+    "terminal.integrated.tabs.enableAnimation": true,
     "terminal.integrated.fontFamily": "DejaVuSansMono Nerd Font",
+    "terminal.integrated.tabs.title": "${process}",
     // Markdown
     "markdown.extension.tableFormatter.normalizeIndentation": true,
     "markdown.extension.toc.updateOnSave": false,
+    "markdown.validate.enabled": true,
     "[markdown]": {
-        "editor.formatOnSave": false,
-        "editor.quickSuggestions": true,
+        "editor.formatOnSave": true,
+        "editor.formatOnPaste": true,
+        "editor.quickSuggestions": {
+            "comments": "on",
+            "strings": "on",
+            "other": "on"
+        },
         "editor.tabSize": 4,
-        "files.trimTrailingWhitespace": true
+        "files.trimTrailingWhitespace": true,
+        "editor.defaultFormatter": "yzhang.markdown-all-in-one"
     },
     "breadcrumbs.enabled": true,
     "breadcrumbs.icons": true,
@@ -371,7 +396,9 @@
         "**/.git": true,
         "**/.settings": true,
         "**/.factorypath": true,
-        "**/node_modules": false,
+        "**/node_modules": true,
+        "**/.husky": true,
+        "**/.cache": true,
         "**/.idea": true,
         "**/target": true,
         "**/.DS_Store": true,
@@ -382,9 +409,15 @@
         "**/.pants.d": true,
         "**/.pids": true,
         "**/.venv": true,
+        "**/venv": true,
         "**coverage": true,
         "**/CVS": true,
-        "**/dist": true,
+        "**/dist": false,
+        "**/.google-chrome": true,
+        "**/.history": true,
+        "**/.ebextensions": true,
+        "**/.platform": true,
+        "**/.ipynb_checkpoint": true,
     },
     "terminal.integrated.defaultProfile.windows": "Ubuntu-20.04 (WSL)",
     // exclude folders from search results
@@ -396,7 +429,16 @@
         "**/bower_components": true,
         "**/vendor/": true,
         "**/venv/": true,
-        "**/env/": true
+        "**/.git": true,
+        "**/.pnpm": true,
+        "**/.yarn": true,
+        "**/.vscode": true,
+        "**/logs": true,
+        "**/out": true,
+        "**/package-lock.json": true,
+        "**/pnpm-lock.yaml": true,
+        "**/yarn.lock": true,
+        "**/env/": false,
     },
     "files.watcherExclude": {
         "**/.git/objects/**": true,
@@ -405,9 +447,12 @@
         "**/.hg/store/**": true,
         "**/node_modules": true,
         "**/venv/": true,
-        "**/env/": true
+        "**/env/": true,
+        "**/.env/": true,
     },
     "workbench.iconTheme": "material-icon-theme",
+    "workbench.editor.labelFormat": "short",
+    "workbench.editor.closeOnFileDelete": true,
     "zenMode.hideActivityBar": true,
     "zenMode.fullScreen": true,
     "zenMode.hideLineNumbers": false,
@@ -418,12 +463,10 @@
     "emmet.preferences": {
         "css.color.short": true
     },
-    "vsintellicode.modify.editor.suggestSelection": "enabled",
-    "vsintellicode.python.completionsEnabled": true,
-    "sync.forceUpload": true,
     "template-string-converter.enabled": true,
     "workbench.editorAssociations": {
-        "*.ipynb": "jupyter-notebook"
+        "*.ipynb": "jupyter-notebook",
+        "git-rebase-todo": "gitlens.rebase"
     },
     "files.autoSave": "afterDelay",
     "redhat.telemetry.enabled": false,
@@ -435,8 +478,9 @@
     },
     "workbench.sideBar.location": "right",
     "sqltools.useNodeRuntime": true,
+    "sqltools.disableNodeDetectNotifications": true,
     "sqltools.completionLanguages": [
-        "sql"
+        "sql",
     ],
     "sqltools.showStatusbar": true,
     "vsintellicode.sql.completionsEnabled": true,
@@ -451,13 +495,89 @@
     "[dockercompose]": {
         "editor.defaultFormatter": "ms-azuretools.vscode-docker"
     },
-    "[jsonc]": {
-        "editor.defaultFormatter": "vscode.json-language-features"
-    },
     "database-client.highlightSQLBlock": true,
     "database-client.showUser": true,
-    "sonarlint.ls.javaHome": "/usr/lib/jvm/java-11-openjdk-amd64",
     "database-client.showTrigger": true,
     "database-client.showQuery": true,
-    "database-client.showFilter": true
+    "database-client.showFilter": true,
+    "vs-kubernetes": {
+        "vscode-kubernetes.minikube-path.linux": "/home/viktor/.vs-kubernetes/tools/minikube/linux-amd64/minikube",
+        "vscode-kubernetes.helm-path.linux": "/home/viktor/.vs-kubernetes/tools/helm/linux-amd64/helm"
+    },
+    "thunder-client.saveToWorkspace": true,
+    "editor.minimap.enabled": false,
+    "gitlens.menus": false,
+    "npm.keybindingsChangedWarningShown": true,
+    "editor.stickyScroll.enabled": true,
+    "cssvar.enableColors": true,
+    "files.defaultLanguage": "${activeEditorLanguage}",
+    // Vim
+    "vim.easymotion": true,
+    "vim.incsearch": true,
+    "vim.useSystemClipboard": true,
+    "vim.useCtrlKeys": true,
+    "vim.hlsearch": true,
+    "vim.insertModeKeyBindings": [
+        {
+            "before": [
+                "j",
+                "j"
+            ],
+            "after": [
+                "<Esc>"
+            ]
+        }
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "<leader>",
+                "d"
+            ],
+            "after": [
+                "d",
+                "d"
+            ]
+        },
+        {
+            "before": [
+                "<C-n>"
+            ],
+            "commands": [
+                ":nohl"
+            ]
+        },
+        {
+            "before": [
+                "K"
+            ],
+            "commands": [
+                "lineBreakInsert"
+            ],
+            "silent": true
+        },
+    ],
+    "vim.leader": "<space>",
+    "vim.handleKeys": {
+        "<C-a>": false,
+        "<C-f>": false
+    },
+    "editor.accessibilitySupport": "off",
+    "window.zoomLevel": 1,
+    "grammarly.files.include": [
+        "**/README.md",
+        "**/readme.md",
+        "**/*.txt",
+        "**/*.md",
+        "**/*.mdx",
+    ],
+    "totalTypeScript.hideAllTips": false,
+    "totalTypeScript.hideBasicTips": true,
+    "totalTypeScript.hiddenTips": [
+        "passing-generics-to-types"
+    ],
+    "errorLens.excludeBySource": [
+        "eslint(no-console)",
+        "ts(2304)"
+    ],
 }
