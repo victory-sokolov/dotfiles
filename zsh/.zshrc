@@ -147,3 +147,4 @@ autoload -U add-zsh-hook
 autoload -Uz compinit && compinit
 
 chpwd_functions=(change_node_version, python_venv)
+eval "$(pyenv init --path)"

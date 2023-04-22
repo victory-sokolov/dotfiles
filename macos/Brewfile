@@ -41,7 +41,7 @@ brew 'pnpm'
 # Python
 brew 'jupyterlab'
 brew 'pipx'
-
+brew 'pyenv'
 
 # ZSH, OH-MY-ZSH plugins
 brew 'autojump'
