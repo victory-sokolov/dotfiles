@@ -67,6 +67,8 @@ cask 'font-fira-code'
 cask 'font-lato'
 cask 'font-hack-nerd-font'
 
+# Misc
+brew 'tesseract' # Text recognition engine
 
 # Create NVM directory
 mkdir ~/.nvm
