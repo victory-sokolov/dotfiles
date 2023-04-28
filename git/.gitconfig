@@ -6,7 +6,7 @@
 	editor = vim
   	excludesfile = ~/.gitignore_global
     # Path to githooks
-    hookspath="~/.githooks"
+    # hookspath="~/.githooks"
 
 [sequence]
     editor = code --wait
