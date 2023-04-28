@@ -1,0 +1,63 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debugpy attach",
+            "type": "python",
+            "request": "attach",
+            "connect": {
+                "host": "0.0.0.0",
+                "port": 5678
+            }
+        },
+        {
+            "name": "Python: Django",
+            "type": "python",
+            "request": "launch",
+            "stopOnEntry": false,
+            "program": "${workspaceFolder}/manage.py",
+            "args": [
+                "runsslserver", // for https
+                //"runserver",  // for http
+                "0.0.0.0:8000",
+                "--no-color",
+                "--noreload"
+            ],
+            "env": {
+                "DJANGO_ENV": "local",
+                "DJANGO_SETTINGS_MODULE": "djangoapp.settings"
+            },
+            "debugOptions": [
+                "WaitOnAbnormalExit",
+                "WaitOnNormalExit",
+                "RedirectOutput",
+                "DjangoDebugging"
+            ],
+            "autoReload": {
+                "enable": true
+            },
+            "django": true,
+            "justMyCode": true,
+            "jinja": true
+        },
+        {
+            "name": "Python: Celery",
+            "type": "python",
+            "request": "launch",
+            "module": "celery",
+            "console": "integratedTerminal",
+            "args": [
+                "-A",
+                "app_name",
+                "worker",
+                "-l",
+                "info",
+                "-P",
+                "solo"
+            ],
+            "env": {
+                "DJANGO_ENV": "local"
+            }
+        }
+    ]
+}
