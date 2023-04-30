@@ -62,6 +62,7 @@ set history=1000 " Increase the undo limit.
 set nospell
 set wildignorecase
 set noswapfile
+set lazyredraw
 set nobackup
 set noundofile
 set magic " Enable extended regexes
