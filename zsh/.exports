@@ -40,8 +40,8 @@ export M2=$M2_HOME/bin
 export PATH=$M2:$PATH
 
 # Tesseract
-export TESSDATA_PREFIX="/usr/share/tesseract-ocr/5.00/tessdata"
-export TESSERACT="/usr/share/tesseract-ocr"
+export TESSDATA_PREFIX="/usr/local/tesseract-ocr/tesseract/tessdata"
+export TESSERACT="/usr/local/tesseract-ocr/tesseract"
 
 # Python
 export AUTOSWITCH_DEFAULTENV="default"
@@ -55,6 +55,9 @@ export PYTHONSTARTUP=~/.pythonrc.py
 export PATH="$HOME/.local/bin:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="PYENV_ROOT/bin:$PATH"
+export PIPENV_PYTHON="$PYENV_ROOT/shims/python"
+# Prevent installing Pip packages globally
+export PIP_REQUIRE_VIRTUALENV=true
 
 # GO
 export GOPATH=$HOME/go
