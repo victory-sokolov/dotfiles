@@ -327,6 +327,11 @@ function python_venv() # Auto active virtual environment
   [[ ! -d $ENV ]] && deactivate > /dev/null 2>&1
 }
 
+function gpip() # Global PIP instllation
+{
+    PIP_REQUIRE_VIRTUALENV=false pip "$@"
+}
+
 function mkenv() # create python virtual environment
 {
     python3 -m venv .venv
