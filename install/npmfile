@@ -13,3 +13,4 @@ npm-check-updates
 loadtest
 browser-sync
 pnpm
+@antfu/ni
