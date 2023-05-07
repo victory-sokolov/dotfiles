@@ -43,6 +43,9 @@ brew 'jupyterlab'
 brew 'pipx'
 brew 'pyenv'
 
+# DevOps
+brew 'ansible'
+
 # ZSH, OH-MY-ZSH plugins
 brew 'autojump'
 brew 'zsh-completions'
