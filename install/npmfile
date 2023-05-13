@@ -14,3 +14,4 @@ loadtest
 browser-sync
 pnpm
 @antfu/ni
+git-open
