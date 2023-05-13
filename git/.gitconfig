@@ -3,45 +3,47 @@
     email = viktorsokolov.and@gmail.com
 
 [core]
-	editor = vim
-  	excludesfile = ~/.gitignore_global
+    editor = vim
+    excludesfile = ~/.gitignore_global
     # Path to githooks
     # hookspath="~/.githooks"
+    pager = delta
 
 [sequence]
     editor = code --wait
 
 [help]
-  autocorrect = 20
-  autocorrect = prompt
+    autocorrect = 20
+    autocorrect = prompt
 
 [pager]
-  diff = delta
-  log = delta
-  reflog = delta
-  show = delta
+    diff = delta
+    log = delta
+    reflog = delta
+    show = delta
 
 [interactive]
-  diffFilter = delta --color-only --features=interactive
+    diffFilter = delta --color-only --features=interactive
 
 [add.interactive]
     useBuiltin = false # required for git 2.37.0
 
 [delta]
-  max-line-length = 700
-  syntax-theme = base16
-  file-decoration-style = yellow ol ul
-  file-style = bold yellow ul
-  hunk-header-decoration-style = blue
-  hunk-header-line-number-style = purple bold
-  side-by-side = true
+    max-line-length = 700
+    syntax-theme = base16
+    file-decoration-style = yellow ol ul
+    file-style = bold yellow ul
+    hunk-header-decoration-style = blue
+    hunk-header-line-number-style = purple bold
+    side-by-side = true
+    navigate = true
 
 [color]
-	ui = auto
+    ui = auto
 
 [push]
-  default = current
-  autoSetupRemote = true
+    default = current
+    autoSetupRemote = true
 
 [merge]
 	tool = opendiff
@@ -52,7 +54,7 @@
     enabled = true
 
 [checkout]
-	defaultRemote = origin
+    defaultRemote = origin
 
 [stash]
 	showPatch = true
@@ -74,7 +76,9 @@
     ge = 'git-edit-new'
     gpom = 'git push origin master'
     lg = log --color --graph --stat --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-	current = rev-parse --abbrev-ref HEAD
+    # Show latest used branches based on the time of the most recent commit
+    lb = for-each-ref --sort='-authordate:iso8601' --format='%(authordate:relative)%09%(refname:short)' refs/heads
+    current = rev-parse --abbrev-ref HEAD
 	branchcleanup = !git remote prune origin
 	undo = reset HEAD~1
 	pop = stash pop
