@@ -25,6 +25,7 @@ brew 'neofetch'
 brew 'exa'
 brew 'openssl'
 brew 'fzf'
+brew 'git-delta'
 
 # Development
 brew 'postgresql'
