@@ -53,6 +53,9 @@
     autoupdate = true
     enabled = true
 
+[rebase]
+    autoSquash = true
+
 [checkout]
     defaultRemote = origin
 
