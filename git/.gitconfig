@@ -8,6 +8,8 @@
     # Path to githooks
     # hookspath="~/.githooks"
     pager = delta
+    # Turn page off
+    # pager = ''
 
 [sequence]
     editor = code --wait
@@ -48,6 +50,11 @@
 [merge]
 	tool = opendiff
 	renameLimit = 0
+    prompt = false
+
+[commit]
+    verbose = true
+    # template = 
 
 [rerere]
     autoupdate = true
