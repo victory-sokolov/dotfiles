@@ -214,10 +214,13 @@ alias nbs="npm run build && npm start"
 alias npk="npx npkill" #clean unused node_modules
 
 # Yarn
-alias y='yarn'
-alias yd='yarn dev'
-alias ya='yarn add'
-alias ys='yarn start'
+alias y="yarn"
+alias yd="yarn dev"
+alias ya="yarn add"
+alias ys="yarn start"
+
+# PNPM
+alias pn="pnpm"
 
 # Poetry
 # Check outdated Poetry packages
