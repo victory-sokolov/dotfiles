@@ -9,7 +9,7 @@
     # hookspath="~/.githooks"
     pager = delta
     # Turn page off
-    # pager = ''
+    # pager = cat
 
 [sequence]
     editor = code --wait
