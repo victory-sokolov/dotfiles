@@ -1,4 +1,4 @@
-SCREENSHOTS_FOLDER="${HOME}/Screenshots"
+SCREENSHOTS_FOLDER="${HOME}/screenshots"
 
 # Move a window by clicking on any part of it 
 defaults write -g NSWindowShouldDragOnGesture -bool true
