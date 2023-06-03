@@ -184,6 +184,8 @@ alias venvs="find -O3 $HOME -name '*activate' -type f"
 alias pip="python -m pip"
 alias pir="python -m pip install -r requirements.txt"
 alias pfr="(pip freeze | grep -v 'pkg-resources') > requirements.txt"
+# debugpy manage.py path.to.file.py
+alias debugpy="python -m debugpy --listen 0.0.0.0:5678"
 
 # Django
 alias drs="python manage.py runserver"
