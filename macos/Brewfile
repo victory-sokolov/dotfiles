@@ -51,6 +51,8 @@ brew 'ansible'
 brew 'autojump'
 brew 'zsh-completions'
 
+brew 'stats'
+
 # Apps
 cask 'google-chrome'
 cask 'docker'
@@ -66,12 +68,14 @@ cask 'slack'
 cask 'discord'
 cask 'figma'
 
-brew 'stats'
+
+
 
 # Fonts
 cask 'font-fira-code'
 cask 'font-lato'
 cask 'font-hack-nerd-font'
+cask 'karabiner-elements'
 
 # Misc
 brew 'tesseract' # Text recognition engine
