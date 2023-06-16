@@ -48,7 +48,6 @@ export AUTOSWITCH_DEFAULTENV="default"
 export AUTOSWITCH_DEFAULT_PYTHON="/usr/bin/python3"
 # Make Python use UTF-8 encoding for output to stdin, stdout, and stderr.
 export PYTHONIOENCODING='UTF-8';
-export PYTHONPATH="/usr/bin/python3.8"
 # Prevents Python from writing pyc files to disc
 export PYTHONDONTWRITEBYTECODE=1
 export PYTHONSTARTUP=~/.pythonrc.py
