@@ -81,10 +81,6 @@ zstyle ':omz:plugins:nvm' lazy true
 # Ignore useless files, like .pyc.
 zstyle ':completion:*:(all-|)files' ignored-patterns '(|*/).pyc'
 
-# fzf
-export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
-export FZF_DEFAULT_OPTS="--color=dark"
-
 source $ZSH/oh-my-zsh.sh
 source $ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $ZSH/custom/plugins/zsh-completions/zsh-completions.plugin.zsh
@@ -100,10 +96,6 @@ if [ -f $HOME/.cargo/env ]; then
 fi
 
 #source '/home/viktor/.nvm/versions/node/v18.6.0/lib/node_modules/@hyperupcall/autoenv/activate.sh'
-
-# NVM
-export NVM_DIR=~/.nvm
-source $(brew --prefix nvm)/nvm.sh
 
 # Privat env variables
 PRIVATE_EXPORT_PATH="$HOME/dotfiles/zsh/.exports-private"
@@ -132,6 +124,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   fi
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   # macOS OSX
+  source $(brew --prefix nvm)/nvm.sh
 fi
 
 # Auto change node version with .nvm

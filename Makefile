@@ -266,9 +266,6 @@ postgresql: ## PostgreSQL
 	# pgcli client
 	sudo apt-get install pgcli
 
-	# Symlink .pythonrc file
-	ln -vsf ${PWD}/.pythonrc.py ${HOME}/.pythonrc.py
-
 remove-postgres: ## Completely deletes PostgreSQL
 	sudo apt-get --purge remove postgresql -y
 	sudo apt-get --purge remove postgresql-client-14 -y
@@ -462,6 +459,7 @@ python3: ## Python,Poetry & Dependencies
 
 	# Python version manager
 	git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.0
+	git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 
 	echo '. ${HOME}/.asdf/asdf.sh' >> ~/.zshrc
 	echo '. ${HOME}/.asdf/completions/asdf.bash' >> ~/.zshrc
