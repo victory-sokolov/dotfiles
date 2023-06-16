@@ -7,19 +7,26 @@ init: ## Symlink files
 	ln -vsf ${PWD}/zsh/.exports ${HOME}/.exports
 	ln -vsf ${PWD}/zsh/.inputrc ${HOME}/.inputrc
 	ln -vsf ${PWD}/vim/.vimrc ${HOME}/.vimrc
+	ln -vsf ${PWD}/vim/init.vim ${HOME}/init.vim
 	ln -vsf ${PWD}/.tmux.conf ${HOME}/.tmux.conf
+	ln -vsf ${PWD}/.sqliterc ${HOME}/.sqliterc
+	ln -vsf ${PWD}/.psqlrc ${HOME}/.psqlrc
+	ln -vsf ${PWD}/.pdbrc ${HOME}/.pdbrc
+	ln -vsf ${PWD}/.pythonrc.py ${HOME}/.pythonrc.py
+	
 	# Git
 	ln -vsf ${PWD}/git/.gitconfig ${HOME}/.gitconfig
 	ln -vsf ${PWD}/git/.gitignore_global ${HOME}/.gitignore_global
-	ln -vsf ${PWD}/.sqliterc ${HOME}/.sqliterc
 	ln -vsf ${PWD}/.ignore ${HOME}/.ignore
+	ln -vsf ${PWD}/.nvmrc ${HOME}/.nvmrc
+	ln -vsf ${PWD}/.npmrc ${HOME}/.npmrc
 	# Formatter
 	ln -vsf ${PWD}/formatting/.prettierrc ${HOME}/.prettierc
 	ln -vsf ${PWD}/formatting/.eslintrc ${HOME}/.eslintrc
 	ln -vsf ${PWD}/formatting/.prettierignore ${HOME}/.prettierignore
 	ln -vsf ${PWD}/formatting/.eslintignore ${HOME}/.eslintignore
 	ln -vsf ${PWD}/formatting/.editorconfig ${HOME}/.editorconfig
-	ln -vsf ${PWD}/formatting/.editorconfig ${HOME}/.dockerignore
+	ln -vsf ${PWD}/formatting/.dockerignore ${HOME}/.dockerignore
 
 install:
 	set -e
@@ -294,7 +301,8 @@ tesseract: ## Install Tesseract binaries
 	sudo apt-get install imagemagick make
 	# Libs
 	sudo apt-get install libicu-dev libpango1.0-dev libcairo2-dev
-	cd /usr/share/tesseract-ocr
+	cd /usr/local/
+	mkdir tesseract-ocr && cd tesseract-ocr
 	git clone https://github.com/tesseract-ocr/tesseract
 	git clone https://github.com/tesseract-ocr/langdata_lstm
 	cd tesseract
