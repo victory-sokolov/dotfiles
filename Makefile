@@ -7,7 +7,7 @@ init: ## Symlink files
 	ln -vsf ${PWD}/zsh/.exports ${HOME}/.exports
 	ln -vsf ${PWD}/zsh/.inputrc ${HOME}/.inputrc
 	ln -vsf ${PWD}/vim/.vimrc ${HOME}/.vimrc
-	ln -vsf ${PWD}/vim/init.vim ${HOME}/init.vim
+	ln -vsf ${PWD}/vim/init.vim ${HOME}/.config/nvim/init.vim
 	ln -vsf ${PWD}/.tmux.conf ${HOME}/.tmux.conf
 	ln -vsf ${PWD}/.sqliterc ${HOME}/.sqliterc
 	ln -vsf ${PWD}/.psqlrc ${HOME}/.psqlrc
@@ -191,8 +191,8 @@ clitools: ## Install cli tools
 
 nvim: ## Neovim + Astrovim
 	cd ~
-	curl -LO https://github.com/neovim/neovim/releases/download/v0.8.1/nvim-linux64.deb
-	curl -LO https://github.com/neovim/neovim/releases/download/v0.8.1/nvim.appimage
+	curl -LO https://github.com/neovim/neovim/releases/download/v0.9.1/nvim-linux64.deb
+	curl -LO https://github.com/neovim/neovim/releases/download/v0.9.1/nvim.appimage
 	sudo apt install ./nvim-linux64.deb
 	git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim
 	nvim +PackerSync
