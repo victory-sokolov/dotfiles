@@ -1,35 +1,38 @@
-# ~/.config/starship.toml
-
 # Inserts a blank line between shell prompts
 add_newline = true
-
+# Change command timeout from 500 to 1000 ms
+command_timeout = 1000
 # Change the default prompt format
-format = """\
-[╭╴](238)$env_var\
-$all[╰─](238)$character"""
+format = """$env_var $all"""
 
 # Change the default prompt characters
 [character]
-success_symbol = "[](238)"
-error_symbol = "[](238)"
+success_symbol = ""
+error_symbol = ""
 
 # Shows an icon that should be included by zshrc script based on the distribution or os
 [env_var.STARSHIP_DISTRO]
-format = '[$env_value](bold white)'  # removed space between distro and rest for pwsh
+format = '[$env_value](white)'
 variable = "STARSHIP_DISTRO"
 disabled = false
 
+
 # Shows the username
 [username]
-style_user = "white bold"
-style_root = "black bold"
+style_user = "green"
+style_root = "red"
 format = "[$user]($style) "
-disabled = true  # disable in powershell
-show_always = false
+disabled = false
+show_always = true
+
+[hostname]
+ssh_only = false
+format = "on [$hostname](blue) "
+disabled = false
 
 [directory]
-truncation_length = 3
-truncation_symbol = "…/"
+truncation_length = 1
+truncation_symbol = "../"
 home_symbol = " ~"
 read_only_style = "197"
 read_only = "  "
@@ -37,8 +40,8 @@ format = "at [$path]($style)[$read_only]($read_only_style) "
 
 [git_branch]
 symbol = " "
-format = "on [$symbol$branch]($style) "
-truncation_length = 4
+format = "[$symbol$branch]($style) "
+# truncation_length = 4
 truncation_symbol = "…/"
 style = "bold green"
 
@@ -57,21 +60,31 @@ staged = '[++\($count\)](green)'
 renamed = "襁 "
 deleted = " "
 
+[kubernetes]
+format = 'via [ﴱ $context\($namespace\)](bold purple) '
+disabled = false
+
+# (deactivated because of no space left)
 [terraform]
 format = "via [ terraform $version]($style) 壟 [$workspace]($style) "
+disabled = true
 
 [vagrant]
 format = "via [ vagrant $version]($style) "
+disabled = true
 
 [docker_context]
 format = "via [ $context](bold blue) "
+disabled = true
 
 [helm]
 format = "via [ $version](bold purple) "
+disabled = true
 
 [python]
 symbol = " "
 python_binary = "python3"
+disabled = true
 
 [nodejs]
 format = "via [ $version](bold green) "
@@ -79,44 +92,4 @@ disabled = true
 
 [ruby]
 format = "via [ $version]($style) "
-
-[kubernetes]
-format = 'on [ $context\($namespace\)](bold purple) '
-disabled = false
-[kubernetes.context_aliases]
-"clcreative-k8s-staging" = "cl-k8s-staging"
-"clcreative-k8s-production" = "cl-k8s-prod"
-
-if [[ -f $LFILE ]]; then
-  _distro=$(awk '/^ID=/' /etc/*-release | awk -F'=' '{ print tolower($2) }')
-elif [[ -f $MFILE ]]; then
-  _distro="macos"
-fi
-
-case $_distro in
-    *kali*)                  ICON="ﴣ";;
-    *arch*)                  ICON="";;
-    *debian*)                ICON="";;
-    *raspbian*)              ICON="";;
-    *ubuntu*)                ICON="";;
-    *elementary*)            ICON="";;
-    *fedora*)                ICON="";;
-    *coreos*)                ICON="";;
-    *gentoo*)                ICON="";;
-    *mageia*)                ICON="";;
-    *centos*)                ICON="";;
-    *opensuse*|*tumbleweed*) ICON="";;
-    *sabayon*)               ICON="";;
-    *slackware*)             ICON="";;
-    *linuxmint*)             ICON="";;
-    *alpine*)                ICON="";;
-    *aosc*)                  ICON="";;
-    *nixos*)                 ICON="";;
-    *devuan*)                ICON="";;
-    *manjaro*)               ICON="";;
-    *rhel*)                  ICON="";;
-    *macos*)                 ICON="";;
-    *)                       ICON="";;
-esac
-
-export STARSHIP_DISTRO="$ICON"
+disabled = true

@@ -1,12 +1,10 @@
 export ZSH=$HOME/.oh-my-zsh
 export TERM="xterm-256color"
 
-eval "$(starship init zsh)"
-
 set -m
 #$unsetopt PROMPT_SP
 ZSH_DISABLE_COMPFIX=true
-ZSH_THEME="powerlevel10k/powerlevel10k"
+# ZSH_THEME="powerlevel10k/powerlevel10k"
 # POWERLEVEL10K_MODE="nerdfont-complete"
 
 # History
@@ -141,3 +139,6 @@ autoload -Uz compinit && compinit
 
 chpwd_functions=(change_node_version, python_venv)
 eval "$(pyenv init --path)"
+
+[[ -f ~/dotfiles/starship/starship.zsh ]] && source ~/dotfiles/starship/starship.zsh
+eval "$(starship init zsh)"
