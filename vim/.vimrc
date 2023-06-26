@@ -246,6 +246,9 @@ nmap <CR> o<Esc>
 map <F5> :NERDTreeToggle<CR>
 map <C-a> <esc>ggVG<CR> #select all
 
+" Remap ESC to jk
+inoremap jk <ESC>
+
 " Remap for rename current word
 nmap <F2> <Plug>(coc-rename)
 
