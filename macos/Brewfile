@@ -52,6 +52,7 @@ brew 'autojump'
 brew 'zsh-completions'
 
 brew 'stats'
+brew 'youtube-dl'
 
 # Apps
 cask 'google-chrome'
