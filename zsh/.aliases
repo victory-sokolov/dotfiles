@@ -96,6 +96,10 @@ alias pw="pwgen 16 -1 | xclip"
 # preview files with syntax highlighting
 alias pf="fzf --preview='bat --color=always --style=numbers {}' --bind shift-up:preview-page-up,shift-down:preview-page-down"
 
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    alias act="act --container-architecture linux/amd64"
+fi
+
 # Directory traversal
 alias ..="cd .."
 alias ...="cd ../.."
@@ -118,7 +122,7 @@ if has nvim; then
     alias vim="nvim"
 fi
 
-# media
+# Media
 alias ytmp3="youtube-dl --extract-audio --audio-format mp3" # youtube video to mp3
 
 # Image Optimizer
