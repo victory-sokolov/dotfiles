@@ -13,4 +13,3 @@ jobs:
         uses: ludeeus/action-shellcheck@master
         with:
           check_together: 'yes'
-          additional_files: 'Makefile'
