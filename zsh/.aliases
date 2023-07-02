@@ -65,7 +65,7 @@ alias ahelp="grep "^alias" ~/dotfiles/zsh/.aliases | sed 's/alias/+/g'"
 # howdoi colorised output
 alias how="howdoi $* -c"
 
-alias chrome="google-chrome $1" # open url in chrome
+alias chrome="google-chrome" # open url in chrome
 alias yt-mp3="youtube-dl -x --audio-format mp3 '$1'"
 alias weather="curl -s 'wttr.in/$1?m1ī'"
 alias fontlist="fc-list | cut -d: -f1 | less"
@@ -105,7 +105,7 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias ~="cd ~"
-alias -- -="cd -"
+alias -="cd -"
 alias dotfiles="cd ~/dotfiles"
 alias blog="~/dev/victory-sokolov && code . && npm run dev"
 alias dirs="dirs -v"
