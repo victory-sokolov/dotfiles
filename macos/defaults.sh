@@ -1,3 +1,6 @@
+#!/bin/zsh
+# shellcheck shell=bash
+
 SCREENSHOTS_FOLDER="${HOME}/screenshots"
 
 # Move a window by clicking on any part of it 

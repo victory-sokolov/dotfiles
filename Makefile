@@ -1,4 +1,6 @@
-ZSH_PLUGINS := $(shell cat install/ohmyzshfile)
+# shellcheck disable=SC2086
+
+ZSH_PLUGINS := "$(shell cat install/ohmyzshfile)""
 
 init: ## Symlink files
 	ln -vsf ${PWD}/zsh/.zshrc ${HOME}/.zshrc
@@ -36,7 +38,6 @@ macinstall: ## macOS setup
 	# Check for Homebrew and install if we don't have it
 	@if test ! $(which brew); then \
 		/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" \
-
 		echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> $HOME/.zprofile \
 		eval "$(/opt/homebrew/bin/brew shellenv)" \
 	fi
@@ -499,7 +500,7 @@ node: ## NodeJS & packages
 
 ohmyzsh: ## Install zsh, oh-my-zsh & plugins
 	@if [ ! -z "$(which zsh --version)" ]; then \
-		echo 'Installing zsh'; \
+		echo "Installing zsh"; \
 		sudo apt-get install -y zsh \
 		sudo chsh -s $(which zsh); \
 	fi

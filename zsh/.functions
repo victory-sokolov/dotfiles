@@ -1,3 +1,8 @@
+#!/bin/zsh
+# shellcheck shell=bash
+
+set -o nounset
+
 function calc() # Simple calculator
 {
 	local result="";
@@ -6,14 +11,14 @@ function calc() # Simple calculator
 	#
 	if [[ "$result" == *.* ]]; then
 		# improve the output for decimal numbers
-		printf "$result" |
+		echo "$result" |
 		sed -e 's/^\./0./'        `# add "0" for cases like ".5"` \
 		    -e 's/^-\./-0./'      `# add "0" for cases like "-.5"`\
 		    -e 's/0*$//;s/\.$//';  # remove trailing zeros
 	else
-		printf "$result";
+		echo "$result";
 	fi;
-	printf "\n";
+	ech0 "\n";
 }
 
 function has() # Check whether executable exists
@@ -24,33 +29,33 @@ function has() # Check whether executable exists
 function mkcd() # Create a new directory and enter it
 {
   mkdir -p "$@"
-  cd "$@"
+  cd "$@" || exit
 }
 
 function cdls() # Show contents of the directory after changing to it
 {
-    builtin cd "$1"
+    builtin cd "$1" || exit
     ls -ACF
 }
 
 function backup() # Backup files and folders
 {
 	FILE=$1
-	BACKUP_NAME="$FILE-["`date +"%Y-%m-%d-%H:%M:%S"`"]"
+	BACKUP_NAME="$FILE-[\"$(date + '%Y-%m-%d-%H:%M:%S')\"]"
 	DIRECTORY="$HOME/backups"
 
 	# Check if backup folder exists
 	if [ ! -d "$DIRECTORY" ]; then
-		mkdir $DIRECTORY
+		mkdir "$DIRECTORY"
 	fi
 
   	# check if passed argument is file or directory
 	if [[ -d $FILE ]]; then
 		echo "Creating backup of the directory: $FILE"
-    	tar -czf "$DIRECTORY/$BACKUP_NAME.tar.gz" --exclude={$FILE/.venv,$FILE/node_modules} $FILE
+    	tar -czf "$DIRECTORY/$BACKUP_NAME.tar.gz" --exclude={"$FILE"/.venv,"$FILE"/node_modules} "$FILE"
 	elif [[ -f $FILE ]]; then
 		echo "Creating backup of the file: $FILE"
-		cp -a $FILE $DIRECTORY
+		cp -a "$FILE" "$DIRECTORY"
 	else
 		echo "$FILE is not valid format"
 	fi
@@ -64,7 +69,7 @@ function linecount() # Count lines of a file with specific extension
 
 function sort_remove() # Sort and remove dublicates lines
 {
-    vi +'%!sort | uniq' +wq $1
+    vi +'%!sort | uniq' +wq "$1"
 }
 
 function file_tolower() # Rename all items in a directory to lower case
@@ -95,13 +100,13 @@ function colormap() # Colormap
 function man() # Shows pretty man page
 {
   env \
-    LESS_TERMCAP_mb=$(printf "\e[1;31m") \
-    LESS_TERMCAP_md=$(printf "\e[1;31m") \
-    LESS_TERMCAP_me=$(printf "\e[0m") \
-    LESS_TERMCAP_se=$(printf "\e[0m") \
-    LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
-    LESS_TERMCAP_ue=$(printf "\e[0m") \
-    LESS_TERMCAP_us=$(printf "\e[1;32m") \
+    LESS_TERMCAP_mb="$(printf '\e[1;31m')" \
+    LESS_TERMCAP_md="$(printf '\e[1;31m')" \
+    LESS_TERMCAP_me="$(printf '\e[0m')" \
+    LESS_TERMCAP_se="$(printf '\e[0m')" \
+    LESS_TERMCAP_so="$(printf '\e[1;44;33m')" \
+    LESS_TERMCAP_ue="$(printf '\e[0m')" \
+    LESS_TERMCAP_us="$(printf '\e[1;32m')" \
       man "$@"
 }
 
@@ -142,7 +147,7 @@ function targz() # Targz a file
 
 # Normalize `open` across Linux, macOS, and Windows.
 # This is needed to make the `o` function (see below) cross-platform.
-if [ ! $(uname -s) = 'Darwin' ]; then
+if [ ! "$(uname -s)" = 'Darwin' ]; then
 	if grep -q Microsoft /proc/version; then
 		# Ubuntu on Windows using the Linux subsystem
 		alias open='explorer.exe';
@@ -166,17 +171,17 @@ function cview() # Read csv file
 function short() # Shorten url
 {
    url=$1
-   curl http://tinyurl.com/api-create.php\?url\=$url
+   curl http://tinyurl.com/api-create.php\?url\="$url"
 }
 
 function kport() # Kill port
 {
-	kill $(lsof -t -i:$1)
+	kill "$(lsof -t -i:"$1")"
 }
 
 function lowerDir() # Lower case every file in current directory
 {
-	for i in *; do mv $i ${(L)i}; done
+	for i in *; do mv "$i" "${(L)i}"; done
 }
 
 function findEmpty() # Find empty files and directories in current directory
@@ -204,8 +209,8 @@ function gifify() #
 
 function clone() # Clone repo and install dependencies
 {
-	git clone $1
-	cd "$(basename "$_" .git)"
+	git clone "$1"
+	cd "$(basename "$_" .git)" || exit
 
 	if test -f "./package.json"; then
 		echo "Installing NPM dependencies.."
@@ -235,7 +240,7 @@ function ghexport() # Download single folder from github
 	github_link=$1
 	remove_path="/tree/master"
   	link="${github_link/$remove_path/trunk/}"
-	svn export ${link}
+	svn export "${link}"
 }
 
 function clean-merged-branches() # Delete all merged branches
@@ -295,16 +300,16 @@ function isup() # Check if URL is up
 
 function clean-comments() # remove comments (#, //) and empty lines
 {
-	sed -i.tmp "/^s*[#;//]/d;/^$/d" $1
+	sed -i.tmp "/^s*[#;//]/d;/^$/d" "$1"
 }
 
 function ssh-key() # generate ssh key with specific name
 {
     name="$@"
-    ssh-keygen -f ~/.ssh/$name -q -N ""
+    ssh-keygen -f ~/.ssh/"$name" -q -N ""
     eval "$(ssh-agent -s)"
-    ssh-add ~/.ssh/$name
-    xclip -selection clipboard < ~/.ssh/$name.pub
+    ssh-add ~/.ssh/"$name"
+    xclip -selection clipboard < ~/.ssh/"$name".pub
     echo "public key copied to clipboard"
 }
 
@@ -338,7 +343,7 @@ function mkenv() # create python virtual environment
     source .venv/bin/activate
 
     # if requirements.txt exists, install dependencies
-	if [ -f "requirements.txt"];then
+	if [[ -f "requirements.txt" ]]; then
 		pip install -r requirements.txt
     fi
 
@@ -352,11 +357,12 @@ function mkenv() # create python virtual environment
 
 function prd() # Poetry reinstall package as dev dependencie
 {
-	poetry remove $1
-	poetry add --dev $1
+	poetry remove "$1"
+	poetry add --dev "$1"
 }
 
-function json() # Usage: json '{"foo":42}'` or `echo '{"foo":42}' | json
+# Usage: json '{"foo":42}' or echo '{"foo":42}' | json
+function json() # Format json string
 {
 	if [ -t 0 ]; then # argument
 		python3 -mjson.tool <<< "$*" | pygmentize -l javascript;
@@ -413,7 +419,7 @@ function rna() # clean cache & run react-native android simulator
 function psql-create-db() # Create Postgres database
 {
     db_name="$@"
-    sudo -u postgres createdb $db_name
+    sudo -u postgres createdb "$db_name"
     sudo -u postgres psql -c "grant all privileges on database $db_name to $USER;" > /dev/null 2>&1
     echo "Database $db_name successfully created!"
 }
@@ -442,7 +448,7 @@ function removebg() # Remove background from the image
 function bash-file() # Create new shell file
 {
   FILE_PATH=$1
-  mkdir -p -- $(dirname "$FILE_PATH") && touch -- "$FILE_PATH"
+  mkdir -p -- "$(dirname "$FILE_PATH")" && touch -- "$FILE_PATH"
   echo '#!/usr/bin/env bash' >> "$FILE_PATH"
   echo '' >> "$FILE_PATH"
   chmod +x "$FILE_PATH"
@@ -452,13 +458,13 @@ function repl() # Launch Repl for specified language
 {
 	lang=$1
 
-	if [ $lang = "python" ]; then
+	if [ "$lang" = "python" ]; then
 		lang="python3"
-	elif [ $lang = "node" ]; then
+	elif [ "$lang" = "node" ]; then
 		lang="nodejs"
-	elif [ $lang = "java" ]; then
+	elif [ "$lang" = "java" ]; then
 		lang="java10"
-	elif [ $lang = "c#" ]; then
+	elif [ "$lang" = "c#" ]; then
 		lang="csharp"
 	fi
 
@@ -477,7 +483,8 @@ function lorem() # Generate Loremipsum text
 
 function dataurl() # Create a data URL from a file
 {
-	local mimeType=$(file -b --mime-type "$1");
+    local mimeType
+	mimeType=$(file -b --mime-type "$1");
 	if [[ $mimeType == text/* ]]; then
 		mimeType="${mimeType};charset=utf-8";
 	fi
@@ -511,17 +518,17 @@ function cpp-run() # compile and run executable
 {
     echo "Compiling file..."
     g++ -o "$1" "$1.cpp"
-    ./$1.cpp
+    ./"$1".cpp
 }
 
-function spy() # Watch file
+function spy # Watch file
 {
     file=$1
-    echo "watching file ${file}\n👀..."
-    while [ $(watch -n 1 -g -x cat ${file} > /dev/null 2>&1) ]; do
-
+    echo "Watching file ${file} 👀..."
+    while true; do
+        watch -n 1 -g -x cat "${file}" > /dev/null 2>&1
+        echo "File ${file} changed"
     done
-    echo 'file changed'
 }
 
 function clean_deps # Remove node, python, php dependencies
@@ -531,7 +538,7 @@ function clean_deps # Remove node, python, php dependencies
 
     for folder in "${folders[@]}"
     do
-         find ~/dev -name $folder -type d -maxdepth 4 -mtime +$days -exec rm -rf {} \;
+         find ~/dev -name "$folder" -type d -maxdepth 4 -mtime +"$days" -exec rm -rf {} \;
     done
 }
 
@@ -549,8 +556,8 @@ function groom_dead_code # Check whether files & folders in a given directory ar
   root="${2:-.}"
   for entry in "$1"/*
   do
-    name=$(basename $entry)
-    if [[ -z "$(grep -r "/$name'" $root)" ]]; then
+    name=$(basename "$entry")
+    if [[ -z "$(grep -r "/$name'" "$root")" ]]; then
       echo "$entry is unused"
     fi
   done
@@ -569,16 +576,16 @@ function install_latest_release # Download and install latest release from Githu
 {
     repo=$1
     url=https://api.github.com/repos/$repo/releases/latest
-    download_url=$(curl -s $url \
+    download_url="$(curl -s "$url" \
         | grep "browser_download_url.*deb\"" \
-        | cut -d : -f 2,3 \
+        | cut -d : -f 2,"3 \"
         | tr -d \" \
-        | xargs)
-    filename=$(basename $download_url)
+        | xa"rgs)"
+    filename=$(basename "$download_url")
     echo "Downloading file: $download_url"
-    wget -q $download_url
-    sudo dpkg -i $filename
-    rm $filename
+    wget -q "$download_url"
+    sudo dpkg -i "$filename"
+    rm "$filename"
 }
 
 function upgrade-deps # Upgrade global dependencies

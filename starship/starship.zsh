@@ -1,7 +1,8 @@
+#!/bin/zsh
+# shellcheck shell=bash
+
 # find out which distribution we are running on
-
 LFILE="/etc/*-release"
-
 MFILE="/System/Library/CoreServices/SystemVersion.plist"
 
 if [[ -f $LFILE ]]; then
@@ -14,12 +15,8 @@ elif [[ -f $MFILE ]]; then
 
 fi
 
-
-
 # set an icon based on the distro
-
 # make sure your font is compatible with https://github.com/lukas-w/font-logos
-
 case $_distro in
     *kali*)                  ICON="ﴣ";;
     *arch*)                  ICON="";;

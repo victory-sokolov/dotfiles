@@ -1,4 +1,6 @@
 #!/bin/zsh
+# shellcheck shell=bash
+
 # Build OpenCV from source
 sudo apt-get update && sudo apt-get upgrade -y
 
@@ -17,12 +19,12 @@ sudo apt-get update && sudo apt-get upgrade -y
 		libeigen3-dev li
 
 	# Download OpenCV source
-	mkdir opencv && cd opencv
+	mkdir opencv && cd opencv || exit
 	git clone https://github.com/Itseez/opencv.git
 	git clone https://github.com/Itseez/opencv_contrib.git
 
 	# Build & Install OpenCV
-	mkdir release && cd release
+	mkdir release && cd release || exit
 
 	cmake \
 		-D BUILD_TIFF=ON \
