@@ -1,8 +1,11 @@
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$DOTFILES_DIR/bin"
 export EDITOR="code"
 export SHELL="/bin/zsh"
 export CLICOLOR=1
 export LSCOLORS=gxfxcxdxbxegedabagacad
+
+# Homebrew
+export PATH="/opt/homebrew/bin:$PATH"
+export PATH="/opt/homebrew/sbin:$PATH"
 
 # Tell grep to highlight matches
 export GREP='grep -n --color'
@@ -29,7 +32,6 @@ export NVM_DIR=~/.nvm
 # PHP
 export PATH="$HOME/.symfony/bin:$PATH"
 
-export PATH=$PATH:/opt/homebrew/bin
 
 # Java
 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
