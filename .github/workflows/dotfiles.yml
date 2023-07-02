@@ -12,10 +12,5 @@ jobs:
       - name: Run ShellCheck
         uses: ludeeus/action-shellcheck@master
         with:
-          exclude: |
-            */.git/*
-          path: |
-            scripts/
-            zsh/.functions
-            zsh/.zshrc
-            Makefile
+          check_together: 'yes'
+          additional_files: 'Makefile'
