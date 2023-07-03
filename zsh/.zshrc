@@ -1,17 +1,16 @@
 #!/bin/zsh
 # shellcheck shell=bash
-# shellcheck disable=SC1091,SC1090,SC2034
+# shellcheck disable=SC1091,SC1090,SC2034`
 
 set -m
 
 export ZSH=$HOME/.oh-my-zsh
-
 #$unsetopt PROMPT_SP
 export ZSH_DISABLE_COMPFIX=true
 # ZSH_THEME="powerlevel10k/powerlevel10k"
 # POWERLEVEL10K_MODE="nerdfont-complete"
 
-# Setopts autocorrections 
+# Setopts autocorrections
 setopt correct
 setopt correct_all
 setopt autocd
@@ -20,7 +19,7 @@ setopt hist_ignore_dups # Ignore duplicates
 cdpath="($HOME/dev $HOME/dotfiles)"
 skip_global_compinit=1
 
-export DISABLE_UPDATE_PROMPT=true
+export DISABLE_UPDATE_PROMPT="true"
 export ENABLE_CORRECTION="true"
 
 # Plugins
@@ -90,7 +89,6 @@ if [ -f "$HOME/.cargo/env" ]; then
     source "$HOME/.cargo/env"
 fi
 
-#source '/home/viktor/.nvm/versions/node/v18.6.0/lib/node_modules/@hyperupcall/autoenv/activate.sh'
 
 # Privat env variables
 PRIVATE_EXPORT_PATH="$HOME/dotfiles/zsh/.exports-private"
