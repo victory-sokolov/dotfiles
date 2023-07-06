@@ -24,6 +24,11 @@ function has() # Check whether executable exists
     command -v "$1" >/dev/null 2>&1
 }
 
+function latest() # Show latest created file
+{
+    ls -lt -d "$1"/*/ | head -n1 | awk '{print $NF}'
+}
+
 function mkcd() # Create a new directory and enter it
 {
   mkdir -p "$@"
