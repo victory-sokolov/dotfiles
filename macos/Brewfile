@@ -27,6 +27,7 @@ brew 'openssl'
 brew 'fzf'
 brew 'git-delta'
 brew 'shellcheck'
+brew 'tldr'
 
 # Development
 brew 'postgresql'
