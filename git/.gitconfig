@@ -62,6 +62,7 @@
 
 [rebase]
     autoSquash = true
+    preserve = true
 
 [checkout]
     defaultRemote = origin
