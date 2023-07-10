@@ -24,6 +24,9 @@
     reflog = delta
     show = delta
 
+[init]
+    defaultBranch = main
+
 [interactive]
     diffFilter = delta --color-only --features=interactive
 
