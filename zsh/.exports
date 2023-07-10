@@ -78,6 +78,7 @@ export PATH=$PATH:$HOME/.dotnet/tools
 # Custom environment
 export DOTFILES="$HOME/dotfiles"
 export PATH="$DOTFILES/scripts/git:$PATH"
+export PATH="$DOTFILES/scripts:$PATH"
 
 # FZF
 # export FZF_DEFAULT_COMMAND="fd --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build} --type f"

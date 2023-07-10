@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+# This script helps ignore unnecessary dir paths while using find
+# Taken from https://github.com/Bhupesh-V/.Varshney/blob/master/scripts/xfi
+
+EXCLUDE_DIRS=(
+    "! -path /*.git/*"
+    "! -path /*go/*"
+    "! -path /*.bundle/*"
+    "! -path /*.cache/*"
+    "! -path /*.local/*"
+    "! -path /*.themes/*"
+    "! -path /*.config/*"
+    "! -path /*.codeintel/*"
+    "! -path /*.mozilla/*"
+    "! -path /*python2.7/*"
+    "! -path /*python3.6/*"
+    "! -path /*python3.8/*"
+    "! -path /*__pycache__/*"
+    "! -path /*.vscode/*"
+    "! -path /*.themes/*"
+    "! -path /*.icons/*"
+    "! -path /*.dartServer/*"
+    "! -path /*.gradle/*"
+    "! -path /*.pub-cache/*"
+    "! -path /*flutter/*"
+    "! -path /*node_modules/*"
+    "! -path /*Android/*"
+    "! -path /*.android/*"
+    "! -path /*.java/*"
+    "! -path /*styles/*"
+    "! -path /*.vscode-oss/*"
+    "! -path /*.jekyll-cache/*"
+    "! -path /*.emacs.d/*"
+    "! -path /*android-studio/*"
+    "! -path /*python-wheels/*"
+)
+# additionally ignore snap/ cuz its getting expanded
+find "$HOME" ${EXCLUDE_DIRS[@]} ! -path "/*snap/*" ! -path "/*Library/*"
