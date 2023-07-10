@@ -73,9 +73,11 @@ export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
-
 export PATH=$PATH:$HOME/.dotnet/tools
-export REMOVEBG_KEY='465DzK63ECKbU6r1uNKJa9V3'
+
+# Custom environment
+export DOTFILES="$HOME/dotfiles"
+export PATH="$DOTFILES/scripts/git:$PATH"
 
 # FZF
 # export FZF_DEFAULT_COMMAND="fd --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build} --type f"
