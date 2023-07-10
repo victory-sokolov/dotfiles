@@ -94,7 +94,7 @@ alias dateutc='date -u +"%Y-%m-%dT%H:%M:%S" | pbcopy'
 alias pw="pwgen 16 -1 | xclip"
 
 # preview files with syntax highlighting
-alias pf="fzf --preview='bat --color=always --style=numbers {}' --bind shift-up:preview-page-up,shift-down:preview-page-down"
+alias fz="fzf --preview='bat --color=always --style=numbers {}' --bind shift-up:preview-page-up,shift-down:preview-page-down"
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
     alias act="act --container-architecture linux/amd64"

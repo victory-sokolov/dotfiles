@@ -88,3 +88,6 @@ brew 'tesseract-lang'
 
 # Create NVM directory
 mkdir ~/.nvm
+
+# Install FZF autocomplete
+$(brew --prefix)/opt/fzf/install
