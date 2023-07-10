@@ -114,6 +114,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   # macOS OSX
   source "$(brew --prefix nvm)/nvm.sh"
+  $(brew --prefix)/opt/fzf/install
 fi
 #   elif [[ ${DISTRIB} = "Debian"* ]]; then
 #   fi
@@ -138,3 +139,5 @@ if [[ -f ~/dotfiles/starship/starship.zsh ]]; then
     source ~/dotfiles/starship/starship.zsh
     eval "$(starship init zsh)"
 fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
