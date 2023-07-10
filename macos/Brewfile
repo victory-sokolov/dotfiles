@@ -28,6 +28,7 @@ brew 'fzf'
 brew 'git-delta'
 brew 'shellcheck'
 brew 'tldr'
+brew 'entr' # Run arbitrary commands when files change
 
 # Development
 brew 'postgresql'
