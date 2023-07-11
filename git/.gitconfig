@@ -102,6 +102,9 @@
 	last = log -1 HEAD --stat
 	recent = branch --sort=committerdate
     month = log --since='last month' --author="$(git config user.name)" --oneline
+    # Check latest changes for specific file, requires single argument file path and --since argument
+    latest-changes = "!read -p 'Enter the --since value (e.g., 2 weeks ago): ' since; git log --since=\"$since\" --follow --oneline -- \"$1\" | awk '{print $1}' | xargs -I{} git diff {}^..{} -- \"$1\""
+
 
 [url "ssh://git@github.com/"]
     insteadOf = "gh:"
