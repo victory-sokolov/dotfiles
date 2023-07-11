@@ -77,10 +77,11 @@
     mergeoptions = --no-edit
 
 [alias]
-	a = add
-	amend = commit --amend -m
-	br = branch
-	gc = 'commit -m'
+	alias = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
+    a = add
+    amend = commit --amend -m
+    br = branch
+    gc = 'commit -m'
     gca = 'commit -a'
     co = 'checkout'
     gcb = 'copy-branch-name'
