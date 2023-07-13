@@ -7,7 +7,10 @@ set -m
 export ZSH=$HOME/.oh-my-zsh
 #$unsetopt PROMPT_SP
 export ZSH_DISABLE_COMPFIX=true
-# ZSH_THEME="powerlevel10k/powerlevel10k"
+if [ "$TERM_PROGRAM" != "WarpTerminal" ]; then
+    ZSH_THEME="powerlevel10k/powerlevel10k"
+fi
+
 # POWERLEVEL10K_MODE="nerdfont-complete"
 
 # Setopts autocorrections
