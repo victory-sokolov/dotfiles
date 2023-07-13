@@ -53,6 +53,7 @@ brew 'ansible'
 # ZSH, OH-MY-ZSH plugins
 brew 'autojump'
 brew 'zsh-completions'
+brew 'bash-completion'
 
 brew 'stats'
 brew 'youtube-dl'
