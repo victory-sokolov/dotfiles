@@ -71,20 +71,19 @@ cask 'visual-studio-code'
 cask 'slack'
 cask 'discord'
 cask 'figma'
-
-
-
+cask 'karabiner-elements'
 
 # Fonts
+brew tap homebrew/cask-fonts
 cask 'font-fira-code'
 cask 'font-lato'
 cask 'font-hack-nerd-font'
-cask 'karabiner-elements'
+cask 'font-meslo-lg-nerd-font'
+cask 'font-meslo-lg-nerd-font'
 
 # Misc
 brew 'tesseract' # Text recognition engine
 brew 'tesseract-lang'
-
 
 # Create NVM directory
 mkdir ~/.nvm
