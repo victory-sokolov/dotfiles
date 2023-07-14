@@ -206,22 +206,24 @@ alias djs="django-admin startproject"
 alias django-reset-db="python manage.py reset_db --noinput --close-sessions"
 
 # Docker
-alias dc='docker-compose'
-alias dm='docker-machine'
-alias dcup='docker-compose up -d'
-alias dstop='docker stop $(docker ps -q)'
+alias dc="docker-compose"
+alias dps="docker ps --format 'table 👾 {{.Names}} \t {{.Status}} \t {{.Image}}'"
+
+alias dm="docker-machine"
+alias dcup="docker-compose up -d"
+alias dstop="docker stop $(docker ps -q)"
 # Get container IP address by container ID
 alias dip="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
 # Stop and remove all containers
-alias dclean='dstop && docker rm -f $(docker ps -q -a)'
+alias dclean="dstop && docker rm -f $(docker ps -q -a)"
 
 # NPM
 alias npm-flush="sudo rm -rf node_modules/ build package.lock && npm i && npm start"
-alias nlg='npm list -g --depth=0'
+alias nlg="npm list -g --depth=0"
 alias nrd="npm run dev"
 alias nrt="npm run test"
 alias nbs="npm run build && npm start"
-alias npk="npx npkill" #clean unused node_modules
+alias npk="npx npkill" # clean unused node_modules
 
 # Yarn
 alias y="yarn"
