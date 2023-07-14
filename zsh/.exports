@@ -84,6 +84,8 @@ export PATH="$DOTFILES/scripts:$PATH"
 # export FZF_DEFAULT_COMMAND="fd --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build} --type f"
 export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
 export FZF_DEFAULT_OPTS="--color=dark"
+export FZF_COMPLETION_TRIGGER='~~'
+export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -50'"
 
 export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0 # in WSL 2
 export LIBGL_ALWAYS_INDIRECT=1
