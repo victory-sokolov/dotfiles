@@ -207,7 +207,7 @@ alias django-reset-db="python manage.py reset_db --noinput --close-sessions"
 
 # Docker
 alias dc="docker-compose"
-alias dps="docker ps --format 'table 👾 {{.Names}} \t {{.Status}} \t {{.Image}}'"
+alias dps="docker ps --format 'table 👾 {{.ID}} \t {{.Names}} \t {{.Status}} \t {{.Image}}'"
 
 alias dm="docker-machine"
 alias dcup="docker-compose up -d"
