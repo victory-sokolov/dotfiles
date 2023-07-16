@@ -47,6 +47,7 @@ macinstall: ## macOS setup
 
 	# Install all the dependencies with bundle (See Brewfile)
 	brew tap homebrew/bundle
+	brew tap homebrew/cask
 	brew tap homebrew/cask-drivers
 	brew bundle --file macos/Brewfile
 

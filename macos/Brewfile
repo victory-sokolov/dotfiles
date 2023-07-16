@@ -29,6 +29,9 @@ brew 'git-delta'
 brew 'shellcheck'
 brew 'tldr'
 brew 'entr' # Run arbitrary commands when files change
+brew 'jq'
+brew 'imagemagick'
+brew 'ngrok'
 
 # Development
 brew 'postgresql'
@@ -55,16 +58,18 @@ brew 'autojump'
 brew 'zsh-completions'
 brew 'bash-completion'
 
+# Apps
 brew 'stats'
 brew 'youtube-dl'
+brew 'iterm2'
 
-# Apps
 cask 'google-chrome'
 cask 'docker'
 cask 'firefox'
 cask 'insomnia'
 cask 'rectangle'
 cask 'dropbox'
+cask 'google-drive'
 # Checks battery health
 cask 'coconutbattery'
 cask 'warp'
@@ -73,6 +78,7 @@ cask 'slack'
 cask 'discord'
 cask 'figma'
 cask 'karabiner-elements'
+cask 'kap' # Screen recorder
 
 # Fonts
 brew tap homebrew/cask-fonts
