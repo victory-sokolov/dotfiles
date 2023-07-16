@@ -66,8 +66,11 @@ alias ahelp="grep "^alias" ~/dotfiles/zsh/.aliases | sed 's/alias/+/g'"
 # howdoi colorised output
 alias how="howdoi $* -c"
 
-alias chrome="google-chrome" # open url in chrome
+# YouTube DLL
 alias yt-mp3="youtube-dl -x --audio-format mp3 '$1'"
+alias yt-mp4=" youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' $1"
+
+alias chrome="google-chrome" # open url in chrome
 alias weather="curl -s 'wttr.in/$1?m1ī'"
 alias fontlist="fc-list | cut -d: -f1 | less"
 
