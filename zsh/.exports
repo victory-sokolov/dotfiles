@@ -87,6 +87,15 @@ export FZF_DEFAULT_OPTS="--color=dark"
 export FZF_COMPLETION_TRIGGER='~~'
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -50'"
 
+# Node.js
+# Enable persistent REPL history for `node`.
+export NODE_REPL_HISTORY=~/.node_history
+# Allow 32³ entries; the default is 1000.
+export NODE_REPL_HISTORY_SIZE='32768'
+# Use sloppy mode by default, matching web browsers.
+export NODE_REPL_MODE='sloppy'
+
+
 export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0 # in WSL 2
 export LIBGL_ALWAYS_INDIRECT=1
 
