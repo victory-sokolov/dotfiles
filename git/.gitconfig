@@ -90,6 +90,7 @@
     gac = 'git add -A && git commit -m'
     ge = 'git-edit-new'
     gpom = 'git push origin master'
+    gpf = 'git pusg --force-with-lease'
     lg = log --color --graph --stat --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     # Show latest used branches based on the time of the most recent commit
     lb = for-each-ref --sort='-authordate:iso8601' --format='%(authordate:relative)%09%(refname:short)' refs/heads
