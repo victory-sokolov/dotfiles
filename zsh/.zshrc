@@ -7,6 +7,7 @@ set -m
 export ZSH=$HOME/.oh-my-zsh
 #$unsetopt PROMPT_SP
 export ZSH_DISABLE_COMPFIX=true
+
 if [ "$TERM_PROGRAM" != "WarpTerminal" ]; then
     ZSH_THEME="powerlevel10k/powerlevel10k"
 fi
