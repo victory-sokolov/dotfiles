@@ -4,12 +4,23 @@
 
 [core]
     editor = vim
+    
+    # Use custom .gitignore and .gitattribute files
     excludesfile = ~/.gitignore_global
+    attributesfile = ~/.gitattributes
     # Path to githooks
     # hookspath="~/.githooks"
+
     pager = delta
     # Turn page off
     # pager = cat
+    
+    # Make `git rebase` safer on macOS
+    # More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
+    trustctime = false
+
+    # Speed up commands involving untracked files such as `git status`.
+    untrackedCache = true
 
 [sequence]
     editor = code --wait
@@ -23,6 +34,10 @@
     log = delta
     reflog = delta
     show = delta
+
+[diff]
+    # Detect copies as well as renames
+    renames = copies
 
 [init]
     defaultBranch = main
@@ -46,15 +61,25 @@
 [color]
     ui = auto
 
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold # line info
+    old = red # deletions
+    new = green # additions
+
 [push]
     default = current
     autoSetupRemote = true
+    default = simple
+    # Make `git push` push relevant annotated tags when pushing branches out.
+    followTags = true
 
 [merge]
-	tool = opendiff
-	renameLimit = 0
+    tool = opendiff
+    renameLimit = 0
     prompt = false
-
+    log = true
+    
 [commit]
     verbose = true
     # template = 
@@ -71,13 +96,13 @@
     defaultRemote = origin
 
 [stash]
-	showPatch = true
+    showPatch = true
 
 [branch "master"]
     mergeoptions = --no-edit
 
 [alias]
-	alias = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
+    alias = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
     a = add
     amend = commit --amend -m
     br = branch
@@ -90,18 +115,20 @@
     gac = 'git add -A && git commit -m'
     ge = 'git-edit-new'
     gpom = 'git push origin master'
-    gpf = 'git pusg --force-with-lease'
+    gpf = 'git push --force-with-lease'
     lg = log --color --graph --stat --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     # Show latest used branches based on the time of the most recent commit
     lb = for-each-ref --sort='-authordate:iso8601' --format='%(authordate:relative)%09%(refname:short)' refs/heads
     current = rev-parse --abbrev-ref HEAD
-	branchcleanup = !git remote prune origin
-	undo = reset HEAD~1
-	pop = stash pop
-	apply = stash apply
-	sl = stash list --pretty=format:\"%C(bold red)%gd%C(dim yellow)%C(reset) %<(70,trunc)%s %C(green)(%ad)\"
-	last = log -1 HEAD --stat
-	recent = branch --sort=committerdate
+    branchcleanup = !git remote prune origin
+    # Remove all merge branches with master
+    dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+    undo = reset HEAD~1
+    pop = stash pop
+    apply = stash apply
+    sl = stash list --pretty=format:\"%C(bold red)%gd%C(dim yellow)%C(reset) %<(70,trunc)%s %C(green)(%ad)\"
+    last = log -1 HEAD --stat
+    recent = branch --sort=committerdate
     month = log --since='last month' --author="$(git config user.name)" --oneline
     # Check latest changes for specific file, requires single argument file path and --since argument
     latest-changes = "!read -p 'Enter the --since value (e.g., 2 weeks ago): ' since; git log --since=\"$since\" --follow --oneline -- \"$1\" | awk '{print $1}' | xargs -I{} git diff {}^..{} -- \"$1\""
@@ -110,16 +137,19 @@
     ra = rebase --abort
     rc = rebase --continue
 
+# URL shorthands
+
 [url "ssh://git@github.com/"]
     insteadOf = "gh:"
     pushInsteadOf = "github:"
     pushInsteadOf = "git://github.com/"
     insteadOf = "https://github.com/"
     # Show the diff between the latest commit and the current state
-	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
-	recent = "{ count=$1; git for-each-ref --sort=-committerdate refs/heads --format='%(HEAD)%(color:yellow)%(refname:short)|%(color:bold green)%(committerdate:relative)|%(color:blue)%(subject)|%(color:magenta)%(authorname)%(color:reset)' --color=always --count=${count:=10} | column -ts'|'}; r"
+    d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
+    recent = "{ count=$1; git for-each-ref --sort=-committerdate refs/heads --format='%(HEAD)%(color:yellow)%(refname:short)|%(color:bold green)%(committerdate:relative)|%(color:blue)%(subject)|%(color:magenta)%(authorname)%(color:reset)' --color=always --count=${count:=10} | column -ts'|'}; r"
 
 [url "git@github.com:"]
+    insteadOf = "gh:"
     insteadOf = https://github.com/
 
 [url "https://gist.github.com/"]
