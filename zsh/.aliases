@@ -27,6 +27,7 @@ alias mv="mv -v" # move file and explain
 alias mkdir="mkdir -pv"
 alias fs="stat -f \"%z bytes\"" # File size
 alias curl="curl --compressed"
+alias dif="delta --pager 0 --diff-so-fancy" # Pretty diff command
 
 if has colorls; then
     alias ls='colorls --group-directories-first'
