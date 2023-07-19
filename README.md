@@ -38,7 +38,7 @@ List of ZSH plugins I use
 * [npm](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/npm) - npm aliases
 * [react-native](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/react-native) ReactNative aliases
 * [web-search](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/web-search)  - aliases for searching with Google, Wiki, Bing, YouTube
-* [you-should-use](https://github.com/MichaelAquilina/zsh-you-should-use) - reminds you to use defined alises
+* [you-should-use](https://github.com/MichaelAquilina/zsh-you-should-use) - reminds you to use defined aliases
 * [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) - suggests commands as you type
 *  [zsh-completions](https://github.com/zsh-users/zsh-completions) - zsh autocomplete
 *  [z](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/z) -  tracks your most visited directories and allows you to access them with few keystrokes
