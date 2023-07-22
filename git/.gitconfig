@@ -67,6 +67,10 @@
     old = red # deletions
     new = green # additions
 
+[color "status"]
+    added = yellow
+    changed = green
+
 [push]
     default = current
     autoSetupRemote = true
@@ -103,14 +107,19 @@
 
 [alias]
     alias = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
+    # Ignore repeated git command
+    git = !exec git
     a = add
     amend = commit --amend -m
-    br = branch
     gc = 'commit -m'
     gca = 'commit -a'
     co = 'checkout'
     gcb = 'copy-branch-name'
     br = 'branch'
+    
+    # Switch to a branch, creating it if necessary
+	go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
+
     st = 'status'
     gac = 'git add -A && git commit -m'
     ge = 'git-edit-new'
@@ -124,7 +133,7 @@
     current = rev-parse --abbrev-ref HEAD
     branchcleanup = !git remote prune origin
     # Remove all merge branches with master
-    dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+    bclean = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
     undo = reset HEAD~1
     pop = stash pop
     apply = stash apply
@@ -135,9 +144,25 @@
     # Check latest changes for specific file, requires single argument file path and --since argument
     latest-changes = "!read -p 'Enter the --since value (e.g., 2 weeks ago): ' since; git log --since=\"$since\" --follow --oneline -- \"$1\" | awk '{print $1}' | xargs -I{} git diff {}^..{} -- \"$1\""
     pf = push --force-with-lease
+
+    # Squash latest n commits. git squash 5
+    squash = "!f(){ git reset --soft HEAD~${1} && git commit --edit -m\"$(git log --format=%B --reverse HEAD..HEAD@{1})\"; };f"
+
+
+    # Rebasing stuff
     pr = pull --rebase
     ra = rebase --abort
     rc = rebase --continue
+
+    # Checkout pull-request from github
+    # Usage: git copr 123 - where 123 is pr number
+    copr = "!f() { git fetch -fu ${2:-origin} refs/pull/$1/head:pr/$1 && \
+               git checkout pr/$1; }; f"
+
+    # Ignoring file temporarily
+    ignore = update-index --assume-unchanged
+    unignore = update-index --no-assume-unchanged
+    ignored = !git ls-files -v | grep "^[[:lower:]]"
 
 # URL shorthands
 
