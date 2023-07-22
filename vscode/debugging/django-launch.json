@@ -36,6 +36,7 @@
             "autoReload": {
                 "enable": true
             },
+            "redirectOutput": true,
             "django": true,
             "justMyCode": true,
             "jinja": true
