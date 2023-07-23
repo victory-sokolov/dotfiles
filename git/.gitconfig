@@ -110,16 +110,18 @@
     # Ignore repeated git command
     git = !exec git
     a = add
-    amend = commit --amend -m
+    amend = 'commit --amend -m --no-edit'
     gc = 'commit -m'
     gca = 'commit -a'
     co = 'checkout'
     gcb = 'copy-branch-name'
     br = 'branch'
-    
+    wt = 'git worktree'
     # Switch to a branch, creating it if necessary
 	go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
 
+    # check current Github PR's
+    prs='hub pr list -L 20 -b develop --format="%t%n - Branch: [%H]%n - %U%n - %l%n%n"'
     st = 'status'
     gac = 'git add -A && git commit -m'
     ge = 'git-edit-new'
@@ -134,6 +136,8 @@
     branchcleanup = !git remote prune origin
     # Remove all merge branches with master
     bclean = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+   # remove the file from git and from the history
+    remove='git ls-files --ignored --exclude-standart | xargs -0 git rm -r'
     undo = reset HEAD~1
     pop = stash pop
     apply = stash apply

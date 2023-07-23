@@ -136,17 +136,7 @@ alias iow="npx @squoosh/cli --webp auto " # +file-name
 alias ioa="npx @squoosh/cli --avif auto " # +file-name
 alias iop="npx @squoosh/cli --oxipng auto " # +file-name
 
-# Git
-# remove the file from git and from the history
-alias gri='git ls-files --ignored --exclude-standart | xargs -0 git rm -r'
-alias gopen='open https://github.$(git config remote.origin.url | cut -f2 -d. | tr ':' /)'
-alias amend='git commit --amend --no-edit'
-# list currents repo PR's
-alias prs='hub pr list -L 20 -b develop --format="%t%n - Branch: [%H]%n - %U%n - %l%n%n"'
-# Git worktree
-alias wt="git worktree"
-# Delete all merged branches
-alias gcl='git pull -q && git branch --merged | grep -Ev "(^\*|master|main)" | xargs git branch -d'
+alias gopen="open https://github.$(git config remote.origin.url | cut -f2 -d. | tr ':' /)"
 
 # Python
 alias python="python3"
