@@ -16,8 +16,9 @@ alias curl="curl --compressed"
 alias dif="delta --pager 0 --diff-so-fancy" # Pretty diff command
 
 if has colorls; then
-    alias ls='colorls --group-directories-first'
-    alias ll='colorls -lA --sd --group-directories-first'
+    alias ls="colorls --group-directories-first"
+    alias ll="colorls -lA --sd --group-directories-first"
+    alias la="colorls -a --group-directories-first"
 fi
 
 if has htop; then
