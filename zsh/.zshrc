@@ -19,6 +19,7 @@ setopt correct
 setopt correct_all
 setopt autocd
 setopt hist_ignore_dups # Ignore duplicates
+setopt HIST_IGNORE_SPACE
 
 cdpath="($HOME/dev $HOME/dotfiles)"
 skip_global_compinit=1
