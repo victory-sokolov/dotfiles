@@ -93,7 +93,6 @@ if [ -f "$HOME/.cargo/env" ]; then
     source "$HOME/.cargo/env"
 fi
 
-
 # Privat env variables
 PRIVATE_EXPORT_PATH="$HOME/dotfiles/zsh/.exports-private"
 if test -f "$PRIVATE_EXPORT_PATH"; then
@@ -109,6 +108,7 @@ fi
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   DISTRIB=$(awk -F= "/^NAME/{print $2}" /etc/os-release)
   if [[ ${DISTRIB} = "Ubuntu"* ]]; then
+    source "$HOME/dotfiles/linux/.linux-aliases"
     if uname -a | grep -q "^Linux.*Microsoft"; then
       # ubuntu via WSL Windows Subsystem for Linux
       # Set symlink for vscode
@@ -118,6 +118,8 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   # macOS OSX
   source "$(brew --prefix nvm)/nvm.sh"
+  source "$HOME/dotfiles/macos/.macos-aliases"
+  source "$HOME/dotfiles/macos/.macos-exports"
 fi
 #   elif [[ ${DISTRIB} = "Debian"* ]]; then
 #   fi

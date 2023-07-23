@@ -4,10 +4,6 @@ export CLICOLOR=1
 export LSCOLORS=gxfxcxdxbxegedabagacad
 export TERM="xterm-256color"
 
-# Homebrew
-export PATH="/opt/homebrew/bin:$PATH"
-export PATH="/opt/homebrew/sbin:$PATH"
-
 # Tell grep to highlight matches
 export GREP='grep -n --color'
 export LESS="-iXFR --ignore-case --LONG-PROMPT --QUIET --chop-long-lines -Sm --RAW-CONTROL-CHARS --quit-if-one-screen --no-init"
@@ -33,7 +29,6 @@ export NVM_DIR=~/.nvm
 
 # PHP
 export PATH="$HOME/.symfony/bin:$PATH"
-
 
 # Java
 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
@@ -98,9 +93,6 @@ export NODE_REPL_MODE='sloppy'
 
 export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0 # in WSL 2
 export LIBGL_ALWAYS_INDIRECT=1
-
-export LDFLAGS="-L/usr/local/opt/openssl/lib"
-export CPPFLAGS="-I/usr/local/opt/openssl/include"
 
 # Cuda
 export CUDA_HOME=/usr/local/cuda
