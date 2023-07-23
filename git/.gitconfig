@@ -69,7 +69,7 @@
 
 [color "status"]
     added = yellow
-    changed = green
+    changed = red
 
 [push]
     default = current
