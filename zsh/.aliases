@@ -50,7 +50,9 @@ alias how="howdoi $* -c"
 alias yt-mp3="youtube-dl --extract-audio --audio-format mp3"
 alias yt-mp4=" youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' $1"
 
-alias chrome="google-chrome" # open url in chrome
+# Generate random password using pwgen
+alias pw="pwgen 16 -1 | pbcopy"
+
 alias weather="curl -s 'wttr.in/$1?m1ī'"
 alias fontlist="fc-list | cut -d: -f1 | less"
 
@@ -62,8 +64,6 @@ alias wget="wget -c"
 # Local server with reload
 alias serve="browser-sync start -s -f . --no-notify --host 0.0.0.0 --port 9000"
 
-# copy working directory to clipboard
-alias cwd="pwd | tr -d '\r\n' | xclip -selection clipboard"
 # Generate uuid
 alias uuid="uuidgen | pbcopy && pbpaste && echo"
 
@@ -73,9 +73,6 @@ alias week="date +%V"
 alias timestamp="date +%s"
 # UTC Date
 alias dateutc='date -u +"%Y-%m-%dT%H:%M:%S" | pbcopy'
-
-# Generate random password using pwgen
-alias pw="pwgen 16 -1 | xclip"
 
 # preview files with syntax highlighting
 alias fz="fzf --preview='bat --color=always --style=numbers {}' --bind shift-up:preview-page-up,shift-down:preview-page-down"
@@ -108,7 +105,6 @@ alias ioa="npx @squoosh/cli --avif auto" # <file-name>
 # PHP
 alias hosts="sudo vim /etc/hosts" # vhosts
 alias php-server="php -S localhost:8000" # built in php server
-alias run-apache="sudo service mysql start && sudo service apache2 start"
 # Switch PHP version
 alias php74="sudo update-alternatives --set php /usr/bin/php7.4"
 alias php80="sudo update-alternatives --set php /usr/bin/php8.0"
@@ -133,7 +129,7 @@ alias msql="sudo /etc/init.d/mysql" # path to mysql executable
 # Network
 alias my-ip="curl https://ipinfo.io/ip"
 alias localip="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
-alias ports='sudo lsof -i -P -n | grep LISTEN'
+alias ports="sudo lsof -i -P -n | grep LISTEN"
 
 # Image optimizer
 alias iow="npx @squoosh/cli --webp auto " # +file-name

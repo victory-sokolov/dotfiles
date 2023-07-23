@@ -12,3 +12,17 @@ alias psqls="sudo service postgresql"
 # Clipboard
 alias pbcopy="xclip -selection clipboard"
 alias pbpaste="xclip -selection clipboard -o"
+
+# Generate random password using pwgen
+alias pw="pwgen 16 -1 | xclip"
+
+ # open url in chrome
+alias chrome="google-chrome"
+
+# Generate random password using pwgen
+alias pw="pwgen 16 -1 | xclip"
+
+# copy working directory to clipboard
+alias cwd="pwd | tr -d '\r\n' | xclip -selection clipboard"
+
+alias run-apache="sudo service mysql start && sudo service apache2 start"
