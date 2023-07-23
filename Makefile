@@ -1,8 +1,19 @@
 # shellcheck disable=SC2086
+SHELL := /bin/zsh
 
-ZSH_PLUGINS := "$(shell cat install/ohmyzshfile)""
+ZSH_PLUGINS := "$(shell cat install/ohmyzshfile)"
+OS := $(shell ./scripts/detect_os.sh)
 
-init: ## Symlink files
+.SILENT: symlinks
+
+symlinks: ## Symlink files
+	for f in \.[^.]*; do \
+		FILE="$$(basename $$f)"; \
+		ln -vsf "$$PWD/$$FILE" "$$HOME"; \
+	done; \
+
+
+init: symlinks ## Symlink files
 	ln -vsf ${PWD}/zsh/.zshrc ${HOME}/.zshrc
 	ln -vsf ${PWD}/zsh/.aliases ${HOME}/.aliases
 	ln -vsf ${PWD}/zsh/.functions ${HOME}/.functions
@@ -10,25 +21,18 @@ init: ## Symlink files
 	ln -vsf ${PWD}/zsh/.inputrc ${HOME}/.inputrc
 	ln -vsf ${PWD}/vim/.vimrc ${HOME}/.vimrc
 	ln -vsf ${PWD}/vim/init.vim ${HOME}/.config/nvim/init.vim
-	ln -vsf ${PWD}/.tmux.conf ${HOME}/.tmux.conf
-	ln -vsf ${PWD}/.sqliterc ${HOME}/.sqliterc
-	ln -vsf ${PWD}/.psqlrc ${HOME}/.psqlrc
-	ln -vsf ${PWD}/.pdbrc ${HOME}/.pdbrc
-	ln -vsf ${PWD}/.pythonrc.py ${HOME}/.pythonrc.py
 	
 	# Git
 	ln -vsf ${PWD}/git/.gitconfig ${HOME}/.gitconfig
 	ln -vsf ${PWD}/git/.gitignore_global ${HOME}/.gitignore_global
-	ln -vsf ${PWD}/.ignore ${HOME}/.ignore
-	ln -vsf ${PWD}/.nvmrc ${HOME}/.nvmrc
-	ln -vsf ${PWD}/.npmrc ${HOME}/.npmrc
+
 	# Formatter
 	ln -vsf ${PWD}/formatting/.prettierrc ${HOME}/.prettierc
 	ln -vsf ${PWD}/formatting/.eslintrc ${HOME}/.eslintrc
 	ln -vsf ${PWD}/formatting/.prettierignore ${HOME}/.prettierignore
 	ln -vsf ${PWD}/formatting/.eslintignore ${HOME}/.eslintignore
 	ln -vsf ${PWD}/formatting/.editorconfig ${HOME}/.editorconfig
-	ln -vsf ${PWD}/formatting/.dockerignore ${HOME}/.dockerignore
+	ln -vsf ${PWD}/formatting/.stylelintrc ${HOME}/.stylelintrc
 
 install:
 	set -e
