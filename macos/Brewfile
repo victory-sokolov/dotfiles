@@ -32,6 +32,7 @@ brew 'entr' # Run arbitrary commands when files change
 brew 'jq'
 brew 'imagemagick'
 brew 'ngrok'
+brew 'pwgen'
 
 # Development
 brew 'postgresql'
