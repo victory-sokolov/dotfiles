@@ -223,6 +223,18 @@ function fshow() # git commit browser
 FZF-EOF"
 }
 
+function worktree() # Worktree fzf
+{
+    worktree=$(
+        git worktree list | fzf \
+            --prompt="Switch Worktree: " \
+            --height 40% --reverse |
+            awk '{print $1}'
+    )
+
+    cd "$worktree" || return
+}
+
 function clone() # Clone repo and install dependencies
 {
 	git clone "$1"
