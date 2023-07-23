@@ -86,7 +86,7 @@
     
 [commit]
     verbose = true
-    # template = 
+	template = ~/.gitmessage
 
 [rerere]
     autoupdate = true

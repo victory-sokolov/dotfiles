@@ -1,0 +1,32 @@
+# <type>:(<ref number>) <short summary>
+#   |           |               |
+#   |           |               +-> Summary in present tense
+#   |           +-> Refers to story/card/issue #
+#   +-> Type: feat|bug|chore|fix|refactor|style|test
+# Commit subject line should not exceed 50 characters.
+# Remainder of gitmessage should wrap at 72 characters.
+# Use github-flavored markdown for formatting and links
+# (links should not be line-wrapped)
+#
+# __ISSUE:__
+# _<type>_ - *<issue name>*
+# \[[#<issue number](<issue url)\]
+#
+# __DESCRIPTION:__
+# Why do we need this commit?
+#
+# ___STEPS TO TEST:__
+# Step-by-step instructions for practical testing
+#
+# __REFERENCES:__ # (optional)
+# Links to reference materials that may provide context
+# ie:
+# 1. [Better commit messages with a gitmessage template](https://thoughtbot.com/blog/better-commit-messages-with-a-gitmessage-template) - Matt Sumner
+# 2. [5 useful tips for a better commit message](https://thoughtbot.com/blog/5-useful-tips-for-a-better-commit-message) - Caleb Hearth
+# 3. [A note about commit messages](https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html) - Tim Pope
+# 4. [Linus' thoughts on commit messages](https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html) - Linus Torvalds
+# 5. [Semantic commit messages](https://seesparkbox.com/foundry/semantic_commit_messages) - Jeremy Mack
+# 6. [Github Flavored Markdown Spec](https://github.github.com/gfm/)
+#
+# __CHANGELIST:__
+# Files Changed
