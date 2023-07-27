@@ -21,3 +21,9 @@ alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && kil
 
 # Lock the screen (when going AFK)
 alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+
+# Postgresql
+alias psqlstatus="brew services info postgresql"
+alias psqlstart="brew services start postgresql"
+alias psqlrestart="brew services restart postgresql"
+alias psqlstop="brew services stop postgresql"

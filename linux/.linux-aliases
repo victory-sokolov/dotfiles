@@ -7,7 +7,10 @@ alias show-installed="comm -23 <(apt-mark showmanual | sort -u) <(gzip -dc /var/
 alias version="{ uname & lsb_release -r -s; } | paste -d ' ' -s"
 
 # PostgreSQL
-alias psqls="sudo service postgresql"
+alias psqlstatus="sudo service postgresql status"
+alias psqlstart="sudo service postgresql start"
+alias psqlrestart="sudo service postgresql restart"
+alias psqlstop="sudo service postgresql stop"
 
 # Clipboard
 alias pbcopy="xclip -selection clipboard"
