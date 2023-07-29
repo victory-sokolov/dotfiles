@@ -13,9 +13,9 @@ function docker-clean() # stops and cleans all docker containers & images
 function dms() # docker-machine start
 {
     machine_name="$@"
-    docker-machine start $machine_name
-    docker-machine env $machine_name
-    eval "$(docker-machine env $machine_name)"
+    docker-machine start "$machine_name"
+    docker-machine env "$machine_name"
+    eval "$(docker-machine env "$machine_name")"
 }
 
 function drmnone() # remove untagged images
@@ -33,7 +33,7 @@ function docker-compose-watch() # watch and reload docker
   else
     args='--filter "*/docker-compose.yml"' && [[ $1 ]] && args=$@;
   fi
-  eval watchexec --restart $args -w $(pwd) "docker-compose up"
+  eval watchexec --restart "$args" -w $(pwd) "docker-compose up"
 }
 
 
@@ -44,7 +44,7 @@ function di() # Get container id by name
 
 function dcs() # Stop container by name
 {
-	docker container stop $(docker container ls -q --filter name=$1*)
+	docker container stop $(docker container ls -q --filter name="$1"*)
 }
 
 function docker-stop # Stop all containers
@@ -53,6 +53,12 @@ function docker-stop # Stop all containers
 }
 
 
+function drmprefix() # Remove all containers named with the given prefix
+{ 
+    docker ps -aq --filter name="${1}*" | xargs docker stop | xargs docker rm 
+}
+
 # Docker containers aliases and functions
+# Scrapy splash container for data scrapping
 alias splash="docker run --rm --name scrapy-splash -d -p 8050:8050 scrapinghub/splash"
 alias docker-compose-reload=docker-compose-watch;
