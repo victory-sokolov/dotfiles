@@ -21,6 +21,11 @@ init: symlinks ## Symlink files
 	ln -vsf ${PWD}/zsh/.inputrc ${HOME}/.inputrc
 	ln -vsf ${PWD}/vim/.vimrc ${HOME}/.vimrc
 	ln -vsf ${PWD}/vim/init.vim ${HOME}/.config/nvim/init.vim
+	ln -vsf ${PWD}/.ignore ${HOME}/.ignore
+	ln -vsf ${PWD}/.curlrc ${HOME}/.curlrc
+	ln -vsf ${PWD}/.psqlrc ${HOME}/.psqlrc
+	ln -vsf ${PWD}/.sqliterc ${HOME}/.sqliterc
+	ln -vsf ${PWD}/.pythonrc.py ${HOME}/.pythonrc.py
 	
 	# Git
 	ln -vsf ${PWD}/git/.gitconfig ${HOME}/.gitconfig
@@ -35,6 +40,10 @@ init: symlinks ## Symlink files
 	ln -vsf ${PWD}/formatting/.eslintignore ${HOME}/.eslintignore
 	ln -vsf ${PWD}/formatting/.editorconfig ${HOME}/.editorconfig
 	ln -vsf ${PWD}/formatting/.stylelintrc ${HOME}/.stylelintrc
+
+	# Node
+	ln -vsf ${PWD}/.npmrc ${HOME}/.npmrc
+	ln -vsf ${PWD}/.nvmrc ${HOME}/.nvmrc
 
 install:
 	set -e
@@ -490,9 +499,6 @@ node: ## NodeJS & packages
 
 	sudo chown -R $USER ~/.npm-packages
 	sudo chown -R $USER /usr/local/lib/node_modules
-
-	# symlink .npmrc
-	ln -vsf ${PWD}/.npmrc ${HOME}/.npmrc
 
 	# Yarn
 	curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
