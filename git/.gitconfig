@@ -25,6 +25,10 @@
 [sequence]
     editor = code --wait
 
+[apply]
+    # Detect whitespace errors when applying a patch
+    whitespace = fix
+
 [help]
     autocorrect = 20
     autocorrect = prompt

@@ -24,6 +24,7 @@ init: symlinks ## Symlink files
 	
 	# Git
 	ln -vsf ${PWD}/git/.gitconfig ${HOME}/.gitconfig
+	ln -vsf ${PWD}/git/.gitattributes ${HOME}/.gitattributes
 	ln -vsf ${PWD}/git/.gitmessage ${HOME}/.gitmessage
 	ln -vsf ${PWD}/git/.gitignore_global ${HOME}/.gitignore_global
 
