@@ -117,10 +117,13 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     fi
   fi
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-  # macOS OSX
-  source "$(brew --prefix nvm)/nvm.sh"
-  source "$HOME/dotfiles/macos/.macos-aliases"
-  source "$HOME/dotfiles/macos/.macos-exports"
+    # macOS OSX
+    source "$(brew --prefix nvm)/nvm.sh"
+    source "$HOME/dotfiles/macos/.macos-aliases"
+    source "$HOME/dotfiles/macos/.macos-exports"
+
+    # Disable fork security feature for python multiprocessing
+    export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 fi
 #   elif [[ ${DISTRIB} = "Debian"* ]]; then
 #   fi
