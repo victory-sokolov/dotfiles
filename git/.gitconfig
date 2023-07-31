@@ -113,6 +113,8 @@
     alias = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
     # Ignore repeated git command
     git = !exec git
+    # Pull from main branch and remove merge branches
+    sync = "!git switch main && git pull --prune && git rm-merged"
     a = add
     amend = 'commit --amend -m --no-edit'
     gc = 'commit -m'
