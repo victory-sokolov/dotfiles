@@ -58,6 +58,18 @@ function drmprefix() # Remove all containers named with the given prefix
     docker ps -aq --filter name="${1}*" | xargs docker stop | xargs docker rm 
 }
 
+function cto() # Containers resource usage overview
+{
+    # https://github.com/bcicen/ctop
+    docker run --rm -ti \
+    --name=ctop \
+    --volume /var/run/docker.sock:/var/run/docker.sock:ro \
+    quay.io/vektorlab/ctop:latest
+}
+export -f ctop
+
+
+
 # Docker containers aliases and functions
 # Scrapy splash container for data scrapping
 alias splash="docker run --rm --name scrapy-splash -d -p 8050:8050 scrapinghub/splash"
