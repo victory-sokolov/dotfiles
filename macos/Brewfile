@@ -80,6 +80,8 @@ cask 'discord'
 cask 'figma'
 cask 'karabiner-elements'
 cask 'kap' # Screen recorder
+cask 'alt-tab'
+
 
 # Fonts
 brew tap homebrew/cask-fonts
