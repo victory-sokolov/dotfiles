@@ -128,3 +128,5 @@ defaults write com.apple.finder _FXSortFoldersFirst -bool true
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 
+# Disable power chime
+defaults write com.apple.PowerChime ChimeOnAllHardware -bool false;killall PowerChime
