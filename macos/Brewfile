@@ -63,6 +63,7 @@ brew 'bash-completion'
 brew 'stats'
 brew 'youtube-dl'
 brew 'iterm2'
+brew 'espanso' # text expander
 
 cask 'google-chrome'
 cask 'docker'
