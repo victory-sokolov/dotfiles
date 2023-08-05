@@ -33,6 +33,8 @@ brew 'jq'
 brew 'imagemagick'
 brew 'ngrok'
 brew 'pwgen'
+brew 'ugit'
+
 
 # Development
 brew 'postgresql'
