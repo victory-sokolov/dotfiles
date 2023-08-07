@@ -9,6 +9,7 @@ defaults write -g NSWindowShouldDragOnGesture -bool true
 # Speed up dock show/hide
 defaults write com.apple.dock autohide-delay -float 0
 defaults write com.apple.dock autohide-time-modifier -int 0
+defaults write com.apple.dock autohide -bool true
 
 # System Preferences > Trackpad > Tap to click
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
@@ -24,11 +25,14 @@ defaults write com.apple.LaunchServices LSQuarantine -bool false
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 
 # Set a blazingly fast keyboard repeat rate
-defaults write NSGlobalDomain KeyRepeat -int 1
-defaults write NSGlobalDomain InitialKeyRepeat -int 10
+defaults write NSGlobalDomain KeyRepeat -int 0.02
+defaults write NSGlobalDomain InitialKeyRepeat -int 12
 
 # Disable machine sleep while charging
 sudo pmset -c sleep 0
+
+# UTF-8 Terminal happiness
+defaults write com.apple.terminal StringEncodings -array 4
 
 # Don’t show recent applications in Dock
 defaults write com.apple.dock show-recents -bool false
