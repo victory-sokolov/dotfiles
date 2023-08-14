@@ -9,6 +9,7 @@ tap 'nicoverbruggen/homebrew-cask'
 brew 'bat'
 brew 'coreutils'
 brew 'git'
+brew 'git-lfs' # Git large files storage
 brew 'gh'
 brew 'grep'
 brew 'httpie'
