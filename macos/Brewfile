@@ -4,6 +4,7 @@ tap 'homebrew/cask-fonts'
 tap 'homebrew/cask-versions'
 tap 'homebrew/bundle'
 tap 'nicoverbruggen/homebrew-cask'
+tap 'nvie/tap' # git toolbelt
 
 # Install Binaries
 brew 'bat'
@@ -35,7 +36,7 @@ brew 'imagemagick'
 brew 'ngrok'
 brew 'pwgen'
 brew 'ugit'
-
+brew 'nvie/tap/git-toolbelt'
 
 # Development
 brew 'postgresql'
