@@ -27,6 +27,7 @@ export CHROME="google-chrome"
 # NPM
 export PATH="$PATH:$HOME/usr/local/bin"
 export NVM_DIR=~/.nvm
+export NVM_SYMLINK_CURRENT=true
 
 # PHP
 export PATH="$HOME/.symfony/bin:$PATH"
