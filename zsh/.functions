@@ -600,6 +600,21 @@ function groom_dependencies # Check for unused dependencies
   done
 }
 
+function p() # Determine package manager and run command with it
+{
+  if [[ -f bun.lockb ]]; then
+    command bun "$@"
+  elif [[ -f pnpm-lock.yaml ]]; then
+    command pnpm "$@"
+  elif [[ -f yarn.lock ]]; then
+    command yarn "$@"
+  elif [[ -f package-lock.json ]]; then
+    command npm "$@"
+  else
+    command pnpm "$@"
+  fi
+}
+
 function install_latest_release # Download and install latest release from Github
 {
     repo=$1
