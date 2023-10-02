@@ -170,7 +170,7 @@ alias dps="docker ps --format 'table 👾 {{.ID}} \t {{.Names}} \t {{.Status}} \
 
 alias dm="docker-machine"
 alias dcup="docker-compose up -d"
-alias dstop="docker stop $(docker ps -q)"
+alias dstop="docker stop $(docker ps -a -q)"
 # Get container IP address by container ID
 alias dip="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
 # Stop and remove all containers
@@ -192,7 +192,8 @@ alias ya="yarn add"
 alias ys="yarn start"
 
 # PNPM
-alias pn="pnpm"
+alias p="pnpm"
+alias pad="pnpm add --save-dev"
 
 # Poetry
 # Check outdated Poetry packages
