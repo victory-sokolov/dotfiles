@@ -24,7 +24,7 @@ defaults write com.apple.LaunchServices LSQuarantine -bool false
 # (e.g. enable Tab in modal dialogs)
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 
-# Enable keyboard repeaat
+# Enable keyboard repeat
 defaults write -g ApplePressAndHoldEnabled -bool false
 
 # Set a blazingly fast keyboard repeat rate

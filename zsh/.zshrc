@@ -143,6 +143,7 @@ autoload -Uz compinit && compinit
 
 chpwd_functions=(change_node_version python_venv)
 eval "$(pyenv init --path)"
+eval "$(rbenv init -)"
 
 if [[ -f ~/dotfiles/starship/starship.zsh ]]; then
     source ~/dotfiles/starship/starship.zsh

@@ -55,6 +55,10 @@ brew 'jupyterlab'
 brew 'pipx'
 brew 'pyenv'
 
+# Ruby
+brew 'rbenv'
+brew 'ruby-build'
+
 # DevOps
 brew 'ansible'
 
