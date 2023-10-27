@@ -37,6 +37,8 @@ brew 'ngrok'
 brew 'pwgen'
 brew 'ugit'
 brew 'nvie/tap/git-toolbelt'
+brew 'watchman'
+brew 'cmake'
 
 # Development
 brew 'postgresql'
@@ -90,7 +92,7 @@ cask 'figma'
 cask 'karabiner-elements'
 cask 'kap' # Screen recorder
 cask 'alt-tab'
-
+cask 'android-studio'
 
 # Fonts
 brew tap homebrew/cask-fonts
