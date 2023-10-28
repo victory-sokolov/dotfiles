@@ -4,6 +4,9 @@
 
 set -m
 
+# Enable VIM mode
+bindkey -v
+
 export ZSH=$HOME/.oh-my-zsh
 #$unsetopt PROMPT_SP
 export ZSH_DISABLE_COMPFIX=true
