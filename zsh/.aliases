@@ -2,7 +2,7 @@
 alias path="echo -e ${PATH//:/\\n}"
 # tree with ignoring specific directories
 alias t="tree -CL 2 -I 'node_modules|cache|test_*|__pycache__'"
-alias lt="lsd --tree -I 'node_modules|cache|test_*|__pycache__'"
+alias lt="exa --tree --level=2 --long --icons --git -I 'node_modules|cache|test_*|__pycache__'"
 alias cls="clear"
 alias grep="grep --color=auto "
 alias fgrep="fgrep --color=auto"
