@@ -637,3 +637,9 @@ function upgrade-deps # Upgrade global dependencies
     pip3 install --upgrade pip
     pip3 freeze | grep -v "^\-e" | grep -v "@" | cut -d = -f 1 | xargs pip3 install -U
 }
+
+function timezsh() # Time ZSH load time
+{
+  shell=${1-$SHELL}
+  for i in $(seq 1 10); do /usr/bin/time "$shell" -i -c exit; done
+}
