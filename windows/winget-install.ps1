@@ -24,3 +24,4 @@ winget install Microsoft.VisualStudioCode
 
 # Miscellaneous
 winget install 7zip.7zip
+winget install --id=PDFLabs.PDFtk.Free  -e
