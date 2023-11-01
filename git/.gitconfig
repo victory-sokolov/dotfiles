@@ -79,6 +79,10 @@
     added = yellow
     changed = red
 
+[pull]
+    rebase = true
+    ff = only
+
 [push]
     default = current
     autoSetupRemote = true
@@ -123,9 +127,13 @@
     # Pull from main branch and remove merge branches
     sync = "!git switch main && git pull --prune && git rm-merged"
     a = add
+
+    # Commit
     amend = 'commit --amend -m --no-edit'
     gc = 'commit -m'
     gca = 'commit -a'
+    gcc = 'rev-list HEAD --count' # count amount of commits in the branch
+
     co = 'checkout'
     gcb = 'copy-branch-name'
     br = 'branch'
@@ -135,7 +143,6 @@
 
     # check current Github PR's
     prs='hub pr list -L 20 -b develop --format="%t%n - Branch: [%H]%n - %U%n - %l%n%n"'
-    st = 'status'
     gac = 'git add -A && git commit -m'
     ge = 'git-edit-new'
     gpom = 'git push origin master'
