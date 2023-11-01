@@ -3,6 +3,8 @@ tap 'homebrew/cask'
 tap 'homebrew/cask-fonts'
 tap 'homebrew/cask-versions'
 tap 'homebrew/bundle'
+tap 'homebrew/aliases'
+tap "homebrew/core"
 tap 'nicoverbruggen/homebrew-cask'
 tap 'nvie/tap' # git toolbelt
 
@@ -39,6 +41,8 @@ brew 'ugit'
 brew 'nvie/tap/git-toolbelt'
 brew 'watchman'
 brew 'cmake'
+brew 'starship'
+breew 'lazydocker'
 
 # Development
 brew 'postgresql'
@@ -67,7 +71,7 @@ brew 'ansible'
 # ZSH, OH-MY-ZSH plugins
 brew 'autojump'
 brew 'zsh-completions'
-brew 'bash-completion'
+
 
 # Apps
 brew 'stats'
@@ -95,7 +99,6 @@ cask 'alt-tab'
 cask 'android-studio'
 
 # Fonts
-brew tap homebrew/cask-fonts
 cask 'font-fira-code'
 cask 'font-lato'
 cask 'font-hack-nerd-font'
