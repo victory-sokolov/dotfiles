@@ -102,6 +102,7 @@ fi
 # Image Optimizer
 alias iow="npx @squoosh/cli --webp auto" # <file-name>
 alias ioa="npx @squoosh/cli --avif auto" # <file-name>
+alias iop="npx @squoosh/cli --oxipng auto " # +file-name
 
 # PHP
 alias hosts="sudo vim /etc/hosts" # vhosts
@@ -131,11 +132,6 @@ alias msql="sudo /etc/init.d/mysql" # path to mysql executable
 alias my-ip="curl https://ipinfo.io/ip"
 alias localip="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
 alias ports="sudo lsof -i -P -n | grep LISTEN"
-
-# Image optimizer
-alias iow="npx @squoosh/cli --webp auto " # +file-name
-alias ioa="npx @squoosh/cli --avif auto " # +file-name
-alias iop="npx @squoosh/cli --oxipng auto " # +file-name
 
 alias gopen="open https://github.$(git config remote.origin.url | cut -f2 -d. | tr ':' /)"
 
@@ -201,6 +197,9 @@ alias plo="poetry show --outdated | grep --file=<(poetry show --tree | grep '^\w
 # Install deps from requirements and skip commented
 alias pir="sed -e '/^#/d' requirements.txt | xargs poetry add"
 alias pshell="poetry shell"
+
+# JS & Node
+alias remove_console_log="sed -i '' '/console.log(.*)/d' */**.{ts,js,tsx,jsx}"
 
 # Suffix Aliases
 alias -s {py,go,js,ts}="vim"
