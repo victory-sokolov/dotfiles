@@ -112,3 +112,8 @@ export CUDA_HOME=/usr/local/cuda
 export LD_LIBRARY_PATH=/usr/lib/wsl/lib:$LD_LIBRARY_PATH
 export PATH=$PATH:$CUDA_HOME/bin
 export PATH="${HOME}/.poetry/bin:${PATH}"
+
+setopt EXTENDED_HISTORY          # write the history file in the ":start:elapsed;command" format.
+setopt HIST_REDUCE_BLANKS        # remove superfluous blanks before recording entry.
+setopt HIST_IGNORE_ALL_DUPS      # delete old recorded entry if new entry is a duplicate.
+setopt SHARE_HISTORY             # share history between all sessions.
