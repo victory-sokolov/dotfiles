@@ -2,13 +2,21 @@
 # shellcheck shell=bash
 # shellcheck disable=SC1091,SC1090,SC2034`
 
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+
 set -m
 
 # Enable VIM mode
 bindkey -v
 
 export ZSH=$HOME/.oh-my-zsh
-#$unsetopt PROMPT_SP
+export PROMPT_SP=
 export ZSH_DISABLE_COMPFIX=true
 
 if [ "$TERM_PROGRAM" != "WarpTerminal" ]; then
@@ -32,6 +40,7 @@ export ENABLE_CORRECTION="true"
 
 # Plugins
 plugins=(
+    evalcache
 	git
     git-open
 	npm
@@ -56,7 +65,7 @@ plugins=(
 unsetopt BG_NICE
 
 if [ -f thefuck ]; then
-    eval "$(thefuck --alias)"
+    eval thefuck --alias
 fi
 
 # Preferred editor for local and remote sessions
@@ -65,10 +74,6 @@ if [[ -n $SSH_CONNECTION ]]; then
 else
 	export EDITOR="code"
 fi
-
-# NPM
-NPM_PACKAGES="${HOME}/.npm-packages"
-export PATH="$PATH:$NPM_PACKAGES/bin"
 
 # docker
 zstyle ":completion:*:*:docker:*" option-stacking yes
@@ -80,6 +85,8 @@ zstyle ":completion:*" cache-path ~/.zsh/cache
 zstyle ":omz:update" frequency 7
 zstyle ":completion:*:options" list-colors "=^(-- *)=34"
 zstyle ":omz:plugins:nvm" lazy true
+zstyle ":omz:plugins:rbenv" lazy true
+zstyle ":omz:plugins:pyenv" lazy true
 # Ignore useless files, like .pyc.
 zstyle ":completion:*:(all-|)files" ignored-patterns "(|*/).pyc"
 
@@ -121,7 +128,6 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   fi
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     # macOS OSX
-    source "$(brew --prefix nvm)/nvm.sh"
     source "$HOME/dotfiles/macos/.macos-aliases"
     source "$HOME/dotfiles/macos/.macos-exports"
 
@@ -142,15 +148,42 @@ function change_node_version {
 }
 
 autoload -U add-zsh-hook
-autoload -Uz compinit && compinit
+
+autoload -Uz compinit
+if [ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
+  compinit
+else
+  compinit -C
+fi
 
 chpwd_functions=(change_node_version python_venv)
-eval "$(pyenv init --path)"
-eval "$(rbenv init -)"
+
+pyenv() {
+    export PYENV_ROOT="$HOME/.pyenv"
+    export PATH="$PYENV_ROOT/bin:$PATH"
+    export PIPENV_PYTHON="$PYENV_ROOT/shims/python"
+    _evalcache pyenv init --path
+}
+
+rbenv() {
+    export PATH="$HOME/.rbenv/bin:$PATH"
+    _evalcache rbenv init - --no-rehash
+    rbenv "$@"
+}
+
+nvm() {
+  unset -f nvm
+  export NVM_PREFIX=$(brew --prefix nvm)
+  [ -s "$NVM_PREFIX/nvm.sh" ] && . "$NVM_PREFIX/nvm.sh"
+  nvm "$@"
+}
 
 if [[ -f ~/dotfiles/starship/starship.zsh ]]; then
     source ~/dotfiles/starship/starship.zsh
-    eval "$(starship init zsh)"
+    _evalcache starship init zsh
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
