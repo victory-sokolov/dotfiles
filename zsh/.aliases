@@ -94,6 +94,7 @@ alias vimrc="vim ~/.vimrc"
 alias valias="vim ~/dotfiles/zsh/.aliases"
 alias reload="source ~/.zshrc"
 alias v="vim"
+alias vo="fd --type f --hidden --exclude .git | fzf-tmux -p --reverse | xargs nvim"
 
 if has nvim; then
     alias vim="nvim"
