@@ -42,7 +42,8 @@ brew 'nvie/tap/git-toolbelt'
 brew 'watchman'
 brew 'cmake'
 brew 'starship'
-breew 'lazydocker'
+brew 'lazydocker'
+brew 'fd' 
 
 # Development
 brew 'postgresql'
