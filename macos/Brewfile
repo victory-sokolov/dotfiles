@@ -94,10 +94,11 @@ cask 'visual-studio-code'
 cask 'slack'
 cask 'discord'
 cask 'figma'
-cask 'karabiner-elements'
+# cask 'karabiner-elements' # Using raycast
 cask 'kap' # Screen recorder
 cask 'alt-tab'
 cask 'android-studio'
+cask 'raycast'
 
 # Fonts
 cask 'font-fira-code'
