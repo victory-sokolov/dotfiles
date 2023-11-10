@@ -160,6 +160,8 @@ alias dt="python manage.py test"
 alias su="python manage.py createsuperuser"
 alias djs="django-admin startproject"
 alias django-reset-db="python manage.py reset_db --noinput --close-sessions"
+# Watch for test changes and re-run tests. Provide test file
+alias dj-watch="rg --files --type-add 'python3:*.py' --type python3 | entr python3 ./manage.py test"
 
 # Docker
 alias dc="docker-compose"
