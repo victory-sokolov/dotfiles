@@ -61,6 +61,7 @@ brew 'pnpm'
 brew 'jupyterlab'
 brew 'pipx'
 brew 'pyenv'
+brew 'ruff'
 
 # Ruby
 brew 'rbenv'
