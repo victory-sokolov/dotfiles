@@ -73,7 +73,10 @@ brew 'ansible'
 # ZSH, OH-MY-ZSH plugins
 brew 'autojump'
 brew 'zsh-completions'
-
+brew 'zsh-syntax-highlighting'
+brew 'zsh-autosuggestions'
+brew 'zsh-you-should-use'
+brew 'git-open'
 
 # Apps
 brew 'stats'
@@ -81,6 +84,7 @@ brew 'youtube-dl'
 brew 'iterm2'
 brew 'espanso' # text expander
 
+cask 'anki'
 cask 'google-chrome'
 cask 'docker'
 cask 'firefox'
