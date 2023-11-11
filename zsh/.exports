@@ -70,6 +70,8 @@ export PYTHONSTARTUP=~/.pythonrc.py
 export PATH="$HOME/.local/bin:$PATH"
 # Prevent installing Pip packages globally
 export PIP_REQUIRE_VIRTUALENV=true
+# Allow Python multiprocessing fork mode
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
 # GO
 export GOPATH=$HOME/go
