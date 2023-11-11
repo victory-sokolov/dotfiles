@@ -63,6 +63,9 @@ plugins=(
 
 # Tell ZSH not to nice background process
 unsetopt BG_NICE
+unsetopt CORRECT_ALL
+unsetopt share_history  # prevent sharing between running shells
+
 
 if [ -f thefuck ]; then
     eval thefuck --alias
