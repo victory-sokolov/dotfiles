@@ -443,10 +443,12 @@ function prd() # Poetry reinstall package as dev dependencie
 
 function dj-watch-coverage() # Watch for Django test changes and run coverage
 {
-    rg --files --type-add 'python3:*.py' --type python3 | entr DJANGO_ENV=test poetry run python manage.py test
-    DJANGO_ENV=test poetry run coverage combine
+    rg --files --type-add 'python3:*.py' --type python3 | entr -s "
+    poetry run python manage.py test
+    poetry run coverage combine
     poetry run coverage html --skip-covered
     poetry run coverage report --fail-under 100
+    "
 }
 
 # Usage: json '{"foo":42}' or echo '{"foo":42}' | json
