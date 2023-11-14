@@ -1,5 +1,10 @@
-// Place your key bindings in this file to overwrite the defaults
+// Place your key bindings in this file to override the defaults
 [
+    {
+        "key": "shift+cmd+b",
+        "command": "-workbench.action.tasks.build",
+        "when": "taskCommandsRegistered"
+    },
     {
         "key": "ctrl+k",
         "command": "editor.action.defineKeybinding",
@@ -50,22 +55,6 @@
         "command": "workbench.action.toggleScreencastMode"
     },
     {
-        "key": "ctrl+k ctrl+e",
-        "command": "workbench.view.explorer"
-    },
-    {
-        "key": "ctrl+k ctrl+g",
-        "command": "workbench.view.scm"
-    },
-    {
-        "key": "ctrl+k ctrl+d",
-        "command": "workbench.view.debug"
-    },
-    {
-        "key": "ctrl+k ctrl+x",
-        "command": "workbench.extensions.action.showInstalledExtensions"
-    },
-    {
         "key": "ctrl+k ctrl+s",
         "command": "extension.multiCommand.execute",
         "args": {
@@ -96,8 +85,19 @@
         },
         "when": "editorTextFocus && editorHasSelection"
     },
+    // Hides explorer bar
+    {
+        "key": "shift+cmd+b",
+        "command": "workbench.action.toggleActivityBarVisibility"
+    },
+    // Collapse all opened folders
     {
         "key": "ctrl+o ctrl+k",
         "command": "workbench.files.action.collapseExplorerFolders"
+    },
+    // Maximize terminal to full screen
+    {
+        "key": "ctrl+shift+enter",
+        "command": "workbench.action.toggleMaximizedPanel"
     }
 ]
