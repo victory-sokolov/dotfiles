@@ -9,11 +9,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-
 set -m
-
-# Enable VIM mode
-bindkey -v
 
 export ZSH=$HOME/.oh-my-zsh
 export PROMPT_SP=
@@ -57,6 +53,7 @@ plugins=(
 	zsh-syntax-highlighting
 	zsh-autosuggestions
 	zsh-completions
+    zsh-vi-mode
 	z
     tmux
 )
@@ -153,7 +150,7 @@ function change_node_version {
 autoload -U add-zsh-hook
 
 autoload -Uz compinit
-if [ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
+if [ "(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump)" ]; then
   compinit
 else
   compinit -C
