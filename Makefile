@@ -19,8 +19,7 @@ init: symlinks ## Symlink files
 	ln -vsf ${PWD}/zsh/.functions ${HOME}/.functions
 	ln -vsf ${PWD}/zsh/.exports ${HOME}/.exports
 	ln -vsf ${PWD}/zsh/.inputrc ${HOME}/.inputrc
-	ln -vsf ${PWD}/vim/.vimrc ${HOME}/.vimrc
-	ln -vsf ${PWD}/vim/init.vim ${HOME}/.config/nvim/init.vim
+	ln -vsf ${PWD}/nvm ${HOME}/.config/
 	ln -vsf ${PWD}/.ignore ${HOME}/.ignore
 	ln -vsf ${PWD}/.curlrc ${HOME}/.curlrc
 	ln -vsf ${PWD}/.psqlrc ${HOME}/.psqlrc
