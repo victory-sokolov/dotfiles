@@ -44,6 +44,9 @@ brew 'cmake'
 brew 'starship'
 brew 'lazydocker'
 brew 'fd' 
+brew 'hyperfine' # Benchmarking tool
+brew 'jesseduffield/lazydocker/lazydocker'
+brew 'navi' # Execute one-liners from cheatsheet
 
 # Development
 brew 'postgresql'
