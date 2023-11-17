@@ -716,3 +716,12 @@ function nuke() # fzf kill process
     echo "$pid" | xargs kill -"${1:-9}"
   fi
 }
+
+function djtest() # Run Django tests interactively with fzf
+{
+    test_path=$1
+    test_file=$(echo "$test_path" | tr '/' '.' | sed 's/\.py$//')
+    python "$DOTFILES/scripts/python/get_class_methods.py" "$test_path" \
+        | fzf \
+        | xargs -I {} poetry run python manage.py test "$test_file".{}
+}
