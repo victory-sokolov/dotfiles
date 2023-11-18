@@ -6,72 +6,81 @@ tap 'homebrew/bundle'
 tap 'homebrew/aliases'
 tap "homebrew/core"
 tap 'nicoverbruggen/homebrew-cask'
-tap 'nvie/tap' # git toolbelt
 
 # Install Binaries
-brew 'bat'
-brew 'coreutils'
-brew 'git'
-brew 'git-lfs' # Git large files storage
-brew 'gh'
-brew 'grep'
-brew 'httpie'
-brew 'mackup'
-brew 'mas'
-brew 'pkg-config' # https://github.com/driesvints/dotfiles/issues/20
-brew 'trash'
-brew 'tree'
-brew 'wget'
-brew 'neovim'
-brew 'ripgrep'
-brew 'tmux'
-brew 'neofetch'
-brew 'exa'
-brew 'openssl'
-brew 'fzf'
-brew 'git-delta'
-brew 'shellcheck'
-brew 'tldr'
-brew 'entr' # Run arbitrary commands when files change
-brew 'jq'
-brew 'imagemagick'
-brew 'ngrok'
-brew 'pwgen'
-brew 'ugit'
-brew 'nvie/tap/git-toolbelt'
-brew 'watchman'
-brew 'cmake'
-brew 'starship'
-brew 'lazydocker'
-brew 'fd' 
-brew 'hyperfine' # Benchmarking tool
-brew 'jesseduffield/lazydocker/lazydocker'
-brew 'navi' # Execute one-liners from cheatsheet
+brew 'bat'                      # Output highlighting (better cat)
+brew 'coreutils'                # Core Mac utils
+brew 'httpie'                   # HTTP / API testing testing client
+brew 'mackup'                   # Keep your application settings in sync
+brew 'mas'                      # Command line interface for the Mac App Store
+brew 'pkg-config'               # https://github.com/driesvints/dotfiles/issues/20
+brew 'trash'                    # Record and restore removed files
+brew 'tree'                     # Directory listings as tree structure
+brew 'wget'                     # Download tool
+brew 'ripgrep'                  # Searching within files (better grep)
+brew 'tmux'                     # Terminal multiplexer
+brew 'neofetch'                 # Show system data and ditstro info
+brew 'exa'                      # Listing files with info (better ls)
+brew 'openssl'                  # Cryptography and SSL/TLS Toolkit
+brew 'fzf'                      # Fuzzy file finder and filtering
+brew 'shellcheck'               # Shell script linter
+brew 'tldr'                     # Community-maintained docs (better man)
+brew 'entr'                     # Run arbitrary commands when files change
+brew 'jq'                       # JSON parser, output and query files
+brew 'imagemagick'              # Editor and image manipulator
+brew 'ngrok'                    # Reverse proxy for sharing localhost
+brew 'pwgen'                    # Password generator
+brew 'watchman'                 # Watch for changes and reload dev server
+brew 'cmake'                    # Software build tool
+brew 'starship'                 # Customizable  Terminal prompt 
+brew 'fd'                       # Find alternative
+brew 'hyperfine'                # Benchmarking tool
+brew 'navi'                     # Execute one-liners from cheatsheet
+brew 'nginx'                    # HTTP server, Reverse proxy 
+brew 'jdupes'                   # Duplicate file finder
+brew 'sd'                       # RegEx find and replace (better sed)
+brew 'tokei'                    # Count lines of code (better cloc)
+brew 'rsync'                    # Fast incremental file transfer
+brew 'aspell'                   # Spell check
 
-# Development
-brew 'postgresql'
-brew 'mysql'
-brew 'nginx'
-brew 'redis'
+# Git
+brew 'git'                      # Git Code versioning
+brew 'git-lfs'                  # Git large files storage
+brew 'gh'                       # Interact with GitHub PRs, issues, repos
+brew 'git-delta'                # Extra git commands for common tasks
+brew 'nvie/tap/git-toolbelt'    # Suite of useful Git commands
+brew 'lazygit'                  # Full Git management app
+
+# Editors
+brew 'neovim'                   # VIM Text editor
+cask 'visual-studio-code'       # Visual Studio Code
 
 # Node
-brew 'node'
-brew 'yarn'
-brew 'nvm'
-brew 'pnpm'
+brew 'node'                     # NodeJs
+brew 'yarn'                     # Yarn package manager
+brew 'nvm'                      # Yarn node version manager
+brew 'pnpm'                     # PNPM package manager
 
 # Python
-brew 'jupyterlab'
-brew 'pipx'
-brew 'pyenv'
-brew 'ruff'
+brew 'jupyterlab'               # Python integractive development environment           
+brew 'pipx'                     # Use Python library without installing it
+brew 'pyenv'                    # Python env managment
+brew 'ruff'                     # Python prettier
 
 # Ruby
-brew 'rbenv'
-brew 'ruby-build'
+brew 'rbenv'                    # Ruby package manager
+brew 'ruby-build'               # Ruby language
+
+# Database
+brew 'postgresql'               # Postgresql Databaae
+brew 'mysql'                    # MySQL Database
+brew 'redis'                    # Redis key/value storage
 
 # DevOps
-brew 'ansible'
+brew 'ansible'                  # DevOps automation tools
+brew 'docker'                   # Docker container managment
+brew 'lazydocker'               # Lazydocker manage Docker containers
+brew 'ctop'                     # Container metrics and monitoring
 
 # ZSH, OH-MY-ZSH plugins
 brew 'autojump'
@@ -82,31 +91,46 @@ brew 'zsh-you-should-use'
 brew 'git-open'
 
 # Apps
-brew 'stats'
-brew 'youtube-dl'
-brew 'iterm2'
-brew 'espanso' # text expander
+brew 'statsi'                   # System resource usage in menubar
+brew 'youtube-dl'               # YouTube API integration
+brew 'espanso'                  # Text expander
 
-cask 'anki'
-cask 'google-chrome'
-cask 'docker'
-cask 'firefox'
-cask 'insomnia'
-cask 'rectangle'
-cask 'dropbox'
-cask 'google-drive'
-# Checks battery health
-cask 'coconutbattery'
-cask 'warp'
-cask 'visual-studio-code'
-cask 'slack'
-cask 'discord'
-cask 'figma'
-# cask 'karabiner-elements' # Using raycast
-cask 'kap' # Screen recorder
-cask 'alt-tab'
-cask 'android-studio'
-cask 'raycast'
+# Network and Security Testing
+brew 'bettercap'                # Network, scanning and monitoring
+brew 'nmap'                     # Port scanning
+brew 'wrk'                      # HTTP benchmarking
+cask 'burp-suite'               # Web security testing
+cask 'owasp-zap'                # Web app security scanner
+cask 'wireshark'                # Network analyzer + packet capture
+
+# Terminal
+brew 'iterm2'                   # Iterm Terminal           
+cask 'warp'                     # AI based Terminal
+
+# Browsers
+cask 'google-chrome'            # Google Chrome browser
+cask 'firefox'                  # Firefox browser
+
+# Cloud storage
+cask 'dropbox'                  # Dropbox cloud backup
+cask 'google-drive'             # GoogleDrive cloud backup
+
+# Design
+cask 'figma'                    # Figma design app
+
+# Messaging app
+cask 'slack'                    # Slack messaging app
+cask 'discord'                  # Discord messaging app
+
+cask 'anki'                     # Anki flashcard app
+cask 'insomnia'                 # API Testing tool
+cask 'rectangle'                # Move, resize window
+cask 'coconutbattery'           # Battely life checker
+cask 'karabiner-elements'       # Keyboard customizer
+cask 'kap'                      # Screen recorder
+cask 'alt-tab'                  # Alt tab to switch between app windows
+cask 'android-studio'           # Android Studio
+cask 'raycast'                  # Spotlight alternative
 
 # Fonts
 cask 'font-fira-code'
@@ -116,8 +140,8 @@ cask 'font-meslo-lg-nerd-font'
 cask 'font-meslo-lg-nerd-font'
 
 # Misc
-brew 'tesseract' # Text recognition engine
-brew 'tesseract-lang'
+brew 'tesseract'                    # Text recognition engine
+brew 'tesseract-lang'               # Tesseract languages
 
 # Create NVM directory
 mkdir ~/.nvm
