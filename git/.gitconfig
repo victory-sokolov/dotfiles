@@ -2,6 +2,9 @@
     name = Viktor Sokolov
     email = viktorsokolov.and@gmail.com
 
+[include]
+    path = ~/.gitconfig-local
+
 [core]
     editor = vim
     
@@ -119,6 +122,13 @@
 
 [branch "master"]
     mergeoptions = --no-edit
+
+[branch]
+    autosetuprebase = always
+
+[grep]
+    extendRegexp = true
+    lineNumber = true
 
 [alias]
     alias = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
