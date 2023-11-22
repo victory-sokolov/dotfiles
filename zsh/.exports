@@ -92,7 +92,7 @@ export PATH="$DOTFILES/scripts:$PATH"
 
 # FZF
 # export FZF_DEFAULT_COMMAND="fd --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build} --type f"
-export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
+export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --no-require-git"
 export FZF_DEFAULT_OPTS="--color=dark"
 export FZF_COMPLETION_TRIGGER='~~'
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -50'"
