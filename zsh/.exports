@@ -72,6 +72,7 @@ export PATH="$HOME/.local/bin:$PATH"
 export PIP_REQUIRE_VIRTUALENV=true
 # Allow Python multiprocessing fork mode
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+export PYTHONWARNINGS="ignore:Unverified HTTPS request"
 
 # GO
 export GOPATH=$HOME/go
