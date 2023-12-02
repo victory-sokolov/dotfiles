@@ -7,6 +7,10 @@ yarn-debug.log*
 yarn-error.log*
 .eslintcache
 .next
+/.pnp
+.swc/
+.vercel
+
 
 # Python
 *.pyc
@@ -20,6 +24,11 @@ venv/
 ENV/
 .mypy_cache/
 .pants.d/
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
 
 # PHP
 var/
@@ -46,3 +55,4 @@ coverage/
 dist/
 build/
 .cache/
+pgdata/
