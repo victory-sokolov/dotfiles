@@ -7,7 +7,8 @@
 
 [core]
     editor = vim
-    
+    logAllRefUpdates = true
+
     # Use custom .gitignore and .gitattribute files
     excludesfile = ~/.gitignore_global
     attributesfile = ~/.gitattributes
@@ -52,6 +53,7 @@
 
 [init]
     defaultBranch = main
+    templatedir = ${DOTFILES}/git/templates
 
 [interactive]
     diffFilter = delta --color-only --features=interactive
