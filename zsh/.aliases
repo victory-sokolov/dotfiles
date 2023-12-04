@@ -16,6 +16,8 @@ alias curl="curl --compressed"
 alias dif="delta --pager 0 --diff-so-fancy" # Pretty diff command
 # shortcut to open vim and immediately update vim-plug and all installed plugins
 alias vimu="nvim --headless \"+Lazy! sync\" +qa"
+# Copy previous command
+alias hy="fc -ln 0 | awk '!a[\$0]++' | fzf --tac | xclip -selection clipboard"
 
 if has colorls; then
     alias ls="colorls --group-directories-first"
