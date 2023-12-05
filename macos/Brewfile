@@ -82,6 +82,7 @@ brew 'ansible'                  # DevOps automation tools
 brew 'docker'                   # Docker container managment
 brew 'lazydocker'               # Lazydocker manage Docker containers
 brew 'ctop'                     # Container metrics and monitoring
+brew 'kubernetes-cli'           # Kubernetes CLI
 
 # ZSH, OH-MY-ZSH plugins
 brew 'autojump'
