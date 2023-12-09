@@ -1,4 +1,4 @@
-# print each PATH entry on a separate line
+t# print each PATH entry on a separate line
 alias path="echo -e ${PATH//:/\\n}"
 # tree with ignoring specific directories
 alias t="tree -CL 2 -I 'node_modules|cache|test_*|__pycache__'"
@@ -33,8 +33,8 @@ if has bat; then
     alias cat="bat"
 fi
 
-if has trash-put; then
-    alias rm="trash-put"
+if has rm-improved; then
+    alias rm="rip -s"
 fi 
 
 alias now="date '+%Y-%m-%d'"

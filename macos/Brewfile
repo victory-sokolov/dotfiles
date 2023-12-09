@@ -43,6 +43,7 @@ brew 'tokei'                    # Count lines of code (better cloc)
 brew 'rsync'                    # Fast incremental file transfer
 brew 'aspell'                   # Spell check
 brew 'gnupg'                    # GnuPG allows you to encrypt and sign your data and communications
+brew 'rm-improved'              # Improved rm command
 
 # Git
 brew 'git'                      # Git Code versioning
