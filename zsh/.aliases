@@ -1,4 +1,4 @@
-t# print each PATH entry on a separate line
+# print each PATH entry on a separate line
 alias path="echo -e ${PATH//:/\\n}"
 # tree with ignoring specific directories
 alias t="tree -CL 2 -I 'node_modules|cache|test_*|__pycache__'"
