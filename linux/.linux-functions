@@ -1,0 +1,22 @@
+#!/bin/zsh
+# shellcheck shell=bash
+
+function interactive_purge() {
+  # Get a list of installed CLI programs using the 'show-installed' alias
+  cli_programs=$(show-installed)
+
+  # Use fzf for interactive program selection
+  selected_programs=$(echo "$cli_programs" | fzf --multi --prompt="Select CLI programs for removal:")
+
+  # Check if any programs are selected
+  if [ -n "$selected_programs" ]; then
+    # Run the purge process for each selected program
+    for program in $selected_programs; do
+      program_name=$(echo "$program" | awk '{print $1}')
+      sudo apt-get remove --purge "$program_name"
+      echo "CLI program '$program_name' successfully purged."
+    done
+  else
+    echo "Operation canceled."
+  fi
+}
