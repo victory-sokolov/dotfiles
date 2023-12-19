@@ -1,9 +1,9 @@
+#!/bin/zsh
+# shellcheck shell=bash
 
 export DOCKER_REPO_PREFIX=victory-sokolov
 
-
 # Helper functions
-
 function docker-clean() # stops and cleans all docker containers & images
 {
         docker stop $(docker ps -a -q)
@@ -36,7 +36,6 @@ function docker-compose-watch() # watch and reload docker
   eval watchexec --restart "$args" -w $(pwd) "docker-compose up"
 }
 
-
 function di() # Get container id by name
 {
 	docker ps -aqf "name=$1"
@@ -67,8 +66,6 @@ function cto() # Containers resource usage overview
     quay.io/vektorlab/ctop:latest
 }
 export -f ctop
-
-
 
 # Docker containers aliases and functions
 # Scrapy splash container for data scrapping
