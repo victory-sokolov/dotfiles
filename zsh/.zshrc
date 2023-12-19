@@ -117,9 +117,11 @@ fi
 
 # Custom settings depending on OS
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-  DISTRIB=$(awk -F= "/^NAME/{print $2}" /etc/os-release)
+  DISTRIB=$(awk -F= '/^NAME/{gsub("\"", "", $2); print $2}' /etc/os-release)
+
   if [[ ${DISTRIB} = "Ubuntu"* ]]; then
     source "$HOME/dotfiles/linux/.linux-aliases"
+    source "$HOME/dotfiles/linux/.linux-functions"
     if uname -a | grep -q "^Linux.*Microsoft"; then
       # ubuntu via WSL Windows Subsystem for Linux
       # Set symlink for vscode
