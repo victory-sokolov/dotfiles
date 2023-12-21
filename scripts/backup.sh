@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Backup WSL2 ~/dev directory to Windows partition
 # Using ignore patterns from .gitignore_global file
