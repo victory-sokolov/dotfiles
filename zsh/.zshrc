@@ -130,8 +130,11 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   fi
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     # macOS OSX
+    export NVM_DIR=~/.nvm
+
     source "$HOME/dotfiles/macos/.macos-aliases"
     source "$HOME/dotfiles/macos/.macos-exports"
+    source $(brew --prefix nvm)/nvm.sh
 
     # Disable fork security feature for python multiprocessing
     export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
@@ -150,8 +153,8 @@ function change_node_version {
 }
 
 autoload -U add-zsh-hook
-
 autoload -Uz compinit
+
 if [ "(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump)" ]; then
   compinit
 else
