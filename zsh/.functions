@@ -662,6 +662,21 @@ function groom_dependencies # Check for unused dependencies
   done
 }
 
+function node-flush() # Reinstall node deps
+{
+    rm -rf node_modules/ build package.lock
+
+    if [ -f "package-lock.json" ]; then
+        npm i && npm start
+    elif [ -f "yarn.lock" ]; then
+        yarn install && yarn dev
+    elif [ -f "pnpm-lock.yaml" ]; then
+        pnpm install && pnpm start
+    elses
+        echo "Unable to determine the package manager"
+    fi
+}
+
 function p() # Determine package manager and run command with it
 {
   if [[ -f bun.lockb ]]; then
