@@ -195,6 +195,7 @@ alias y="yarn"
 alias yd="yarn dev"
 alias ya="yarn add"
 alias ys="yarn start"
+alias yout="yarn outdated"
 
 # PNPM
 alias p="pnpm"
