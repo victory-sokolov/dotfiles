@@ -44,6 +44,7 @@ brew 'rsync'                    # Fast incremental file transfer
 brew 'aspell'                   # Spell check
 brew 'gnupg'                    # GnuPG allows you to encrypt and sign your data and communications
 brew 'rm-improved'              # Improved rm command
+brew 'osv-scanner'              # Scan for packages vulnerabilities
 
 # Git
 brew 'git'                      # Git Code versioning
