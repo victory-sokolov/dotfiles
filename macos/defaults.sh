@@ -3,6 +3,9 @@
 
 SCREENSHOTS_FOLDER="${HOME}/screenshots"
 
+# Prevent Mac from going to sleep
+sudo pmset -a disablesleep 1
+
 # Move a window by clicking on any part of it 
 defaults write -g NSWindowShouldDragOnGesture -bool true
 
