@@ -51,6 +51,43 @@ function docker-stop # Stop all containers
     docker stop $(docker container ls -q)
 }
 
+function da() # Select a docker container to start and attach to
+{
+  local cid
+  cid=$(docker ps -a | sed 1d | fzf -1 -q "$1" | awk '{print $1}')
+
+  [ -n "$cid" ] && docker start "$cid" && docker attach "$cid"
+}
+
+dlogs() # Check logs of container 
+{
+  # Get a list of running Docker container names
+  local container_names=$(docker ps --format '{{.Names}}')
+
+  # Use fzf to interactively select a container
+  local selected_container=$(echo "$container_names" | fzf --prompt="Select a Docker container: ")
+
+  # Check if a container was selected
+  if [ -n "$selected_container" ]; then
+    # Show logs for the selected container
+    docker logs -f "$selected_container"
+  else
+    echo "No container selected."
+  fi
+}
+
+function drm() # Select a docker container to remove
+{
+  docker ps -a | sed 1d | fzf -q "$1" --no-sort -m --tac | awk '{ print $1 }' | xargs -r docker rm
+}
+
+function ds() # Select a running docker container to stop
+{
+  local cid
+  cid=$(docker ps | sed 1d | fzf -q "$1" | awk '{print $1}')
+
+  [ -n "$cid" ] && docker stop "$cid"
+}
 
 function drmprefix() # Remove all containers named with the given prefix
 { 
