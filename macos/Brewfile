@@ -137,6 +137,7 @@ cask 'kap'                      # Screen recorder
 cask 'alt-tab'                  # Alt tab to switch between app windows
 cask 'android-studio'           # Android Studio
 cask 'raycast'                  # Spotlight alternative
+cask --no-quarantine 'tomatobar'# Pomodor timer
 
 # Fonts
 cask 'font-fira-code'
