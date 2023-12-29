@@ -1,4 +1,4 @@
-alias update="sudo softwareupdate -i -a; brew update; brew upgrade; brew upgrade --cask; brew autoremove; brew cleanup; brew doctor; npm update -g";
+alias update="sudo softwareupdate -i -a; brew update; brew upgrade; brew upgrade --cask --greedy; brew autoremove; brew cleanup; brew doctor; npm update -g";
 alias version="sw_vers"
 alias act="act --container-architecture linux/amd64"
 
