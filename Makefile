@@ -46,7 +46,7 @@ init: symlinks ## Symlink files
 
 install:
 	set -e
-	clitools docker postgresql nginx node php python ruby vscode zsh init
+	clitools docker postgresql nginx node php python vscode zsh init
 
 macinstall: ## macOS setup
 	# Check for Homebrew and install if we don't have it
@@ -158,6 +158,7 @@ clitools: ## Install cli tools
 		sshpass \
 		imagemagick \
 		jq \
+		lsd \
 		libtool \
 		libbz2-dev \
 		libssl-dev \

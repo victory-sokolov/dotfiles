@@ -20,7 +20,7 @@ brew 'wget'                     # Download tool
 brew 'ripgrep'                  # Searching within files (better grep)
 brew 'tmux'                     # Terminal multiplexer
 brew 'neofetch'                 # Show system data and ditstro info
-brew 'eza'                      # Listing files with info (better ls)
+brew 'lsd'                      # Listing files with info (better ls)
 brew 'openssl'                  # Cryptography and SSL/TLS Toolkit
 brew 'fzf'                      # Fuzzy file finder and filtering
 brew 'shellcheck'               # Shell script linter

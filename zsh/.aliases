@@ -20,9 +20,11 @@ alias vimu="nvim --headless \"+Lazy! sync\" +qa"
 alias hy="fc -ln 0 | awk '!a[\$0]++' | fzf --tac | xclip -selection clipboard"
 
 if has colorls; then
-    alias ls="colorls --group-directories-first"
-    alias ll="colorls -lA --sd --group-directories-first"
-    alias la="colorls -a --group-directories-first"
+    alias ls="lsd -F --group-directories-first"
+    alias l="ls -l"
+    alias la="ls -a"
+    alias lla="ls -la"
+    alias lt="ls --tree"
 fi
 
 if has htop; then
@@ -101,6 +103,7 @@ alias valias="vim ~/dotfiles/zsh/.aliases"
 alias reload="source ~/.zshrc"
 alias v="vim"
 alias vo="fd --type f --hidden --exclude .git | fzf-tmux -p --reverse | xargs nvim"
+alias hosts="sudo vim /etc/hosts" # vhosts
 
 if has nvim; then
     alias vim="nvim"
@@ -112,7 +115,6 @@ alias ioa="npx @squoosh/cli --avif auto" # <file-name>
 alias iop="npx @squoosh/cli --oxipng auto " # +file-name
 
 # PHP
-alias hosts="sudo vim /etc/hosts" # vhosts
 alias php-server="php -S localhost:8000" # built in php server
 # Switch PHP version
 alias php74="sudo update-alternatives --set php /usr/bin/php7.4"
