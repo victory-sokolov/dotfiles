@@ -544,6 +544,40 @@ function bash-file() # Create new shell file
   chmod +x "$FILE_PATH"
 }
 
+function makerun() # Run makefile command
+{
+  local makefile_commands
+  makefile_commands=$(grep -E '^[a-zA-Z0-9_-]+:.*?## .*$$' Makefile | awk 'BEGIN {FS = ":.*?## "}{printf "%-30s %s\n", $1, $2}' | fzf --height 50% --ansi)
+
+  if [[ -n "$makefile_commands" ]]; then
+    local selected_command
+    selected_command=$(echo "$makefile_commands" | awk '{print $1}')
+    echo "Running 'make $selected_command'"
+    make "$selected_command"
+  else
+    echo "Exit: No command selected."
+  fi
+}
+
+function fnpm() # Run npm scripts interactively
+{
+    package_manager=$(_get_node_package_manager)  
+
+    if [ -f "package.json" ]; then
+        scripts=$(jq -r '.scripts | keys | .[]' package.json | fzf --height 50%)
+
+        if [[ -n "$scripts" ]]; then
+            script_name=$(echo "$scripts" | awk '{gsub(/"/, ""); print}')
+            echo "Running $package_manager run $script_name"
+            "$package_manager" run "$script_name"
+        else
+            echo "Exit: You haven't selected any script"
+        fi
+    else
+        echo "Exit: package.json not found"
+    fi
+}
+
 function repl() # Launch Repl for specified language
 {
 	lang=$1
@@ -674,6 +708,21 @@ function node-flush() # Reinstall node deps
         pnpm install && pnpm start
     elses
         echo "Unable to determine the package manager"
+    fi
+}
+
+# Get Node package manager
+function _get_node_package_manager() {
+    if [[ -f bun.lockb ]]; then
+        echo "bun"
+    elif [[ -f pnpm-lock.yaml ]]; then
+        echo "pnpm"
+    elif [[ -f yarn.lock ]]; then
+        echo "yarn"
+    elif [[ -f package-lock.json ]]; then
+        echo "npm"
+    else
+        echo "pnpm"
     fi
 }
 
