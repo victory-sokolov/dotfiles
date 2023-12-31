@@ -1,7 +1,8 @@
 [wsl2]
-memory=8GB
+nestedVirtualization=true
 swap=0
 processors=2
+memory=10GB
 swap=8GB
 
 [boot]
@@ -10,3 +11,6 @@ systemd=true
 [automount]
 enabled = true
 options = "metadata"
+
+[experimental]
+sparseVhd=true
