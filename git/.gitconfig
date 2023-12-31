@@ -1,6 +1,7 @@
 [user]
     name = Viktor Sokolov
     email = viktorsokolov.and@gmail.com
+	signingkey = FAB76AB59DE3D70D
 
 [include]
     path = ~/.gitconfig-local
@@ -107,6 +108,7 @@
 [commit]
     verbose = true
 	template = ~/.gitmessage
+	gpgsign = true
 
 [rerere]
     autoupdate = true

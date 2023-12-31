@@ -14,6 +14,7 @@ set -m
 export ZSH=$HOME/.oh-my-zsh
 export PROMPT_SP=
 export ZSH_DISABLE_COMPFIX=true
+export GPG_TTY=$(tty)
 
 if [ "$TERM_PROGRAM" != "WarpTerminal" ]; then
     ZSH_THEME="powerlevel10k/powerlevel10k"
@@ -89,6 +90,7 @@ zstyle ":omz:plugins:rbenv" lazy true
 zstyle ":omz:plugins:pyenv" lazy true
 # Ignore useless files, like .pyc.
 zstyle ":completion:*:(all-|)files" ignored-patterns "(|*/).pyc"
+zstyle ':autocomplete:*' default-context history-incremental-search-backward
 
 source "$ZSH/oh-my-zsh.sh"
 source "$ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
