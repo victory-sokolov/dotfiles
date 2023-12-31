@@ -149,6 +149,7 @@ clitools: ## Install cli tools
 		csvtool \
 		curl \
 		dos2unix \
+		duf \
 		fonts-powerline \
 		ffmpeg \
 		fdupes \
