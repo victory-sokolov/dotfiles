@@ -69,9 +69,12 @@ export PYTHONDONTWRITEBYTECODE=1
 export PYTHONSTARTUP=~/.pythonrc.py
 export PATH="$HOME/.local/bin:$PATH"
 # Prevent installing Pip packages globally
-export PIP_REQUIRE_VIRTUALENV=true
+# export PIP_REQUIRE_VIRTUALENV=true
+export PIP_REQUIRE_VIRTUALENV=false pipx list
 # Allow Python multiprocessing fork mode
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+# Cache deps to prevent having to reinstall deps that are used across multiple virtual environments 
+export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
 export PYTHONWARNINGS="ignore:Unverified HTTPS request"
 
 # GO
