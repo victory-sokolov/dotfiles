@@ -1,32 +1,27 @@
-# <type>:(<ref number>) <short summary>
-#   |           |               |
-#   |           |               +-> Summary in present tense
-#   |           +-> Refers to story/card/issue #
-#   +-> Type: feat|bug|chore|fix|refactor|style|test
-# Commit subject line should not exceed 50 characters.
-# Remainder of gitmessage should wrap at 72 characters.
-# Use github-flavored markdown for formatting and links
-# (links should not be line-wrapped)
+# <type>[optional scope]: <description: imperative mood>
 #
-# __ISSUE:__
-# _<type>_ - *<issue name>*
-# \[[#<issue number](<issue url)\]
+# TYPES:
+#    breaking: Changes that should result in a new major version release.
+#    build:    Changes that affect the build system or external dependencies
+#    ci:       Changes to our CI configuration files and scripts
+#    doc:      Documentation only changes
+#    feat:     A new feature
+#    fix:      A bug fix
+#    perf:     A code change that improves performance
+#    refactor: A code change that neither fixes a bug nor adds a feature
+#    remove:   A code change that removes a feature.
+#    style:    Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+#    test:     Adding missing tests or correcting existing tests
+#    todo:     Adding notes like FIXME: WARNING: NOTE:
 #
-# __DESCRIPTION:__
-# Why do we need this commit?
+#    Use plural if multiple items affected.
 #
-# ___STEPS TO TEST:__
-# Step-by-step instructions for practical testing
+# EXAMPLES:
+#   feat(net/http): support disabling built-in HTTP/2 with a new build tag
+#   fix(net/url, net/http): relax CTL-in-URL validation to only ASCII CTLs
+#   refactor(lsp): clean up neovim lsp implementation
 #
-# __REFERENCES:__ # (optional)
-# Links to reference materials that may provide context
-# ie:
-# 1. [Better commit messages with a gitmessage template](https://thoughtbot.com/blog/better-commit-messages-with-a-gitmessage-template) - Matt Sumner
-# 2. [5 useful tips for a better commit message](https://thoughtbot.com/blog/5-useful-tips-for-a-better-commit-message) - Caleb Hearth
-# 3. [A note about commit messages](https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html) - Tim Pope
-# 4. [Linus' thoughts on commit messages](https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html) - Linus Torvalds
-# 5. [Semantic commit messages](https://seesparkbox.com/foundry/semantic_commit_messages) - Jeremy Mack
-# 6. [Github Flavored Markdown Spec](https://github.github.com/gfm/)
-#
-# __CHANGELIST:__
-# Files Changed
+# REFERENCE:
+#   https://www.conventionalcommits.org/
+#   https://git.kernel.org/pub/scm/git/git.git/tree/Documentation/SubmittingPatches?h=v2.36.1#n181
+#   https://en.wikipedia.org/wiki/Imperative_mood
