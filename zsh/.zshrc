@@ -155,6 +155,9 @@ function change_node_version {
 }
 
 autoload -U add-zsh-hook
+
+# general autocomplete helpers
+autoload -U +X bashcompinit && bashcompinit
 autoload -Uz compinit
 
 if [ "(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump)" ]; then
@@ -162,6 +165,9 @@ if [ "(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump)" ]; then
 else
   compinit -C
 fi
+
+# increase number of file descriptors from default of 254
+ulimit -n 10240
 
 chpwd_functions=(change_node_version python_venv)
 
