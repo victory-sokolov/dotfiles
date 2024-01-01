@@ -6,7 +6,7 @@ function interactive_purge() {
   cli_programs=$(show-installed)
 
   # Use fzf for interactive program selection
-  selected_programs=$(echo "$cli_programs" | fzf --multi --prompt="Select CLI programs for removal:")
+  selected_programs=$(echo "$cli_programs" | fzf --multi --with-nth 1 --preview="apt show {} 2>/dev/null | grep -E 'Package|Description|Installed-Size|Depends|Recommends'")
 
   # Check if any programs are selected
   if [ -n "$selected_programs" ]; then
