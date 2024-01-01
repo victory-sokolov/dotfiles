@@ -15,6 +15,7 @@ export ZSH=$HOME/.oh-my-zsh
 export PROMPT_SP=
 export ZSH_DISABLE_COMPFIX=true
 export GPG_TTY=$(tty)
+export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 
 if [ "$TERM_PROGRAM" != "WarpTerminal" ]; then
     ZSH_THEME="powerlevel10k/powerlevel10k"
