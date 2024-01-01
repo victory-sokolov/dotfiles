@@ -48,6 +48,8 @@
     # Detect copies as well as renames
     renames = copies
     tool = vscode
+    indentHeuristic = true
+    compactionHeuristic = true
 
 [difftool "vscode"]
     cmd = code --wait --diff $LOCAL $REMOTE
@@ -129,6 +131,7 @@
 
 [branch]
     autosetuprebase = always
+    autosetupmerge  = always
 
 [grep]
     extendRegexp = true
