@@ -1,5 +1,5 @@
 alias install="sudo apt-get install"
-alias remove="sudo apt-get remove"
+alias remove="sudo apt-get purge --auto-remove"
 alias reboot="sudo reboot"
 alias update="sudo apt-get update --fix-missing && sudo apt-get upgrade && sudo apt autoremove -y && sudo apt-get clean && sudo apt autoclean"
 # show installed packages
