@@ -11,12 +11,6 @@ fi
 
 set -m
 
-export ZSH=$HOME/.oh-my-zsh
-export PROMPT_SP=
-export ZSH_DISABLE_COMPFIX=true
-export GPG_TTY=$(tty)
-export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
-
 if [ "$TERM_PROGRAM" != "WarpTerminal" ]; then
     ZSH_THEME="powerlevel10k/powerlevel10k"
 fi
@@ -33,7 +27,14 @@ setopt HIST_IGNORE_SPACE
 cdpath="($HOME/dev $HOME/dotfiles)"
 skip_global_compinit=1
 
+# Exports
+export ZSH=$HOME/.oh-my-zsh
+export PROMPT_SP=
+export ZSH_DISABLE_COMPFIX=true
+export GPG_TTY=$(tty)
+export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 export DISABLE_UPDATE_PROMPT="true"
+export DISABLE_AUTO_UPDATE="true"
 export ENABLE_CORRECTION="true"
 
 # Plugins
@@ -84,7 +85,7 @@ zstyle ":completion:*" accept-exact "*(N)"
 zstyle ":completion:*" use-cache on
 zstyle ":completion:*" cache-path ~/.zsh/cache
 # how often to update omz
-zstyle ":omz:update" frequency 7
+# zstyle ":omz:update" frequency 7
 zstyle ":completion:*:options" list-colors "=^(-- *)=34"
 zstyle ":omz:plugins:nvm" lazy true
 zstyle ":omz:plugins:rbenv" lazy true
