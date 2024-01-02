@@ -789,3 +789,25 @@ function djtest() # Run Django tests interactively with fzf
         | fzf \
         | xargs -I {} poetry run python manage.py test "$test_file".{}
 }
+
+function fuzzyFavoriteCommand() # List favorited commands
+{
+    bookmarkedCommands=$((cat "$HOME"/.bookmark) | sed '/^s*$/d' | uniq | fzf); 
+    echo "$bookmarkedCommands";
+    eval "$bookmarkedCommands";
+    history -s "$bookmarkedCommands"
+}
+
+function addCommandToBookmarks() # Add new item to bookmark
+{
+    command=$@
+    # description=$(grep "^function $command(" "$HOME/.functions" | sed 's/.*() # //g')
+
+    echo "$command" >> "$HOME"/.bookmark;
+    echo "Bookmarking '""$command""'";
+
+    # remove duplicate records in bookmark
+    perl -ne 'print unless $dup{$_}++;' ~/.bookmark > /tmp/syle-bookmark-temp;
+    cat /tmp/syle-bookmark-temp > ~/.bookmark;
+    rm /tmp/syle-bookmark-temp
+}
