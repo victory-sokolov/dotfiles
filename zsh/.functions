@@ -811,3 +811,21 @@ function addCommandToBookmarks() # Add new item to bookmark
     cat /tmp/syle-bookmark-temp > ~/.bookmark;
     rm /tmp/syle-bookmark-temp
 }
+
+function brewdp() # Delete (one or multiple) selected application(s)
+{
+    local uninst=$(brew leaves | fzf -m --reverse)
+
+    if [[ $uninst ]]; then
+        for prog in $(echo "$uninst"); do brew uninstall "$prog"; done
+    fi
+}
+
+function brewip() # Install (one or multiple) selected application(s)
+{
+    local inst=$(brew search $@ | fzf -m --reverse)
+
+    if [[ $inst ]]; then
+        for prog in $(echo "$inst"); do brew install "$prog"; done
+    fi
+}
