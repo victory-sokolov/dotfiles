@@ -275,7 +275,7 @@ function gstlf() # Git stash list with fzf
   done
 }
 
-function worktree() # Worktree fzf
+function worktree() # Git worktree with fzf
 {
     worktree=$(
         git worktree list | fzf \
@@ -285,6 +285,37 @@ function worktree() # Worktree fzf
     )
 
     cd "$worktree" || return
+}
+
+# Ref: https://gist.github.com/Bhupesh-V/43bc0f2d8b84ea6c2ce767de56260b34
+function commit() # Interactive git commit
+{
+    gitmoji_path="$DOTFILES/.config/gitmojis.csv"
+
+    emoji=$(cat "$gitmoji_path" | fzf --prompt="Choose gitmoji: " --height 40% --reverse | awk '{print $1}')
+    printf "Emoji: %s\n" "$emoji"
+
+    read -erp "Enter Commit Title: " title
+    echo -e "Enter Commit Message (Ctrl+d when done):"
+    msg=$(</dev/stdin)
+    echo
+    read -erp "Issue / PR ref #: " issue_ref
+    if [[ "$issue_ref" ]]; then
+        git commit -m "$emoji $title (#$issue_ref)" -m "$msg"
+    else
+        git commit -m "$emoji $title" -m "$msg"
+    fi
+}
+
+function stage() # Git interactive stage
+{
+    readarray -t choices < <(git ls-files --other --modified --exclude-standard | fzf \
+        --prompt="Stage Files: " \
+        --height 40% --reverse --multi \
+        --header="Choose files to stage (TAB to select multiple files)"
+    )
+
+    git add "${choices[@]}"
 }
 
 function clone() # Clone repo and install dependencies
@@ -645,7 +676,7 @@ function cpp-run() # compile and run executable
     ./"$1".cpp
 }
 
-function spy # Watch file
+function spy() # Watch file
 {
     file=$1
     echo "Watching file ${file} 👀..."
@@ -655,7 +686,7 @@ function spy # Watch file
     done
 }
 
-function clean_deps # Remove node, python, php dependencies
+function clean_deps() # Remove node, python, php dependencies
 {
     folders=("node_modules" "venv" ".env" "vendor")
     days=${1:-90}
