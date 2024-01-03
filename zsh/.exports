@@ -100,6 +100,7 @@ export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --no-require-git"
 export FZF_DEFAULT_OPTS="--color=dark"
 export FZF_COMPLETION_TRIGGER='~~'
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -50'"
+export PATH="$HOME/git-fuzzy/bin:$PATH"
 
 # Node.js
 # Enable persistent REPL history for `node`.
