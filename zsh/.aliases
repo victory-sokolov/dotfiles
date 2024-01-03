@@ -47,8 +47,8 @@ alias crypto="curl rate.sx" # crypto prices
 alias pubkey="pbcopy < ~/.ssh/id_rsa.pub | echo 'public key copied to clipboard'"
 
 # custom available functions
-alias fhelp="grep "^function" ~/dotfiles/zsh/.functions | sed 's/function/+/g' | column -t | sed 's/() #/ - /g'"
-alias ahelp="grep "^alias" ~/dotfiles/zsh/.aliases | sed 's/alias/+/g'"
+alias fhelp="grep "^function" $DOTFILES/zsh/.functions | sed 's/function/+/g' | column -t | sed 's/() #/ - /g'"
+alias ahelp="grep "^alias" $DOTFILES/zsh/.aliases | sed 's/alias/+/g'"
 
 # howdoi colorised output
 alias how="howdoi $* -c"
