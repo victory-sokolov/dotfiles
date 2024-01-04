@@ -162,6 +162,10 @@ autoload -U add-zsh-hook
 autoload -U +X bashcompinit && bashcompinit
 autoload -Uz compinit
 
+# Store history per tab
+setopt inc_append_history
+setopt share_history
+
 if [ "(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump)" ]; then
   compinit
 else
