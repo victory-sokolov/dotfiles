@@ -102,7 +102,7 @@ alias vimrc="vim ~/.vimrc"
 alias valias="vim ~/dotfiles/zsh/.aliases"
 alias reload="exec zsh"
 alias v="vim"
-alias vo="fd --type f --hidden --exclude .git | fzf-tmux -p --reverse | xargs nvim"
+alias vo="fd --type f --hidden --exclude .git | fzf-tmux -p | xargs nvim"
 alias hosts="sudo vim /etc/hosts" # vhosts
 
 if has nvim; then
