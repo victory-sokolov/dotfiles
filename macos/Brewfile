@@ -133,6 +133,7 @@ cask 'discord'                  # Discord messaging app
 cask 'anki'                     # Anki flashcard app
 cask 'insomnia'                 # API Testing tool
 cask 'rectangle'                # Move, resize window
+cask 'amethyst'                 # Window tiling manager
 cask 'coconutbattery'           # Battely life checker
 cask 'karabiner-elements'       # Keyboard customizer
 cask 'kap'                      # Screen recorder
