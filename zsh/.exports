@@ -102,7 +102,7 @@ export FZF_DEFAULT_COMMAND="rg \
     --follow \
     --no-require-git \
 "      
-export FZF_DEFAULT_OPTS="--color=dark --ansi --reverse --cycle"
+export FZF_DEFAULT_OPTS="--color=dark --reverse --cycle --border=rounded"
 export FZF_COMPLETION_TRIGGER='~~'
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -50'"
 export PATH="$HOME/git-fuzzy/bin:$PATH"
