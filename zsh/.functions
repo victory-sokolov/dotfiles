@@ -214,7 +214,10 @@ function fzf-down() {
 
 function fzf-cd() # FZF with cd command 
 {
-  local DIR=$(fd --type d | fzf +m --select-1 --preview 'lsd -F --tree {}')
+  local DIR=$(
+    fd --type d | fzf +m --select-1 --preview 'tree -C {} | head -n 50'
+
+  )
   if [ -n "$DIR" ]; then
     cd "$DIR" || exit
   fi
@@ -449,6 +452,36 @@ function python_venv() # Auto active virtual environment
   [[ -d $ENV ]] && source $ENV/bin/activate > /dev/null 2>&1
   # when you cd into a folder that doesn't
   [[ ! -d $ENV ]] && deactivate > /dev/null 2>&1
+}
+
+function pr-checkout() # Checkout to PR
+{
+  local jq_template pr_number
+
+  jq_template='"'\
+'#\(.number) - \(.title)'\
+'\t'\
+'Author: \(.user.login)\n'\
+'Created: \(.created_at)\n'\
+'Updated: \(.updated_at)\n\n'\
+'\(.body)'\
+'"'
+
+  pr_number=$(
+    gh api 'repos/:owner/:repo/pulls' |
+    jq ".[] | $jq_template" |
+    sed -e 's/"\(.*\)"/\1/' -e 's/\\t/\t/' |
+    fzf \
+      --with-nth=1 \
+      --delimiter='\t' \
+      --preview='echo -e {2}' \
+      --preview-window=top:wrap |
+    sed 's/^#\([0-9]\+\).*/\1/'
+  )
+
+  if [ -n "$pr_number" ]; then
+    gh pr checkout "$pr_number"
+  fi
 }
 
 function gpip() # Global PIP instllation
