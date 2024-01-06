@@ -65,6 +65,7 @@
     useBuiltin = false # required for git 2.37.0
 
 [delta]
+    features = unobtrusive-line-numbers decorations
     max-line-length = 700
     syntax-theme = base16
     file-decoration-style = yellow ol ul
@@ -73,6 +74,8 @@
     hunk-header-line-number-style = purple bold
     side-by-side = true
     navigate = true
+    inspect-raw-lines = true
+    true-color = always
 
 [color]
     ui = auto
@@ -164,8 +167,6 @@
     ge = 'git-edit-new'
     gpom = 'git push origin master'
     gpf = 'git push --force-with-lease'
-    # Git stash with --include-untracked
-    gs = 'git stash save --include-untracked'
     lg = log --color --graph --stat --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     # Show latest used branches based on the time of the most recent commit
     lb = !git reflog show --pretty=format:'%gs ~ %gd' --date=relative | grep 'checkout:' | grep -oE '[^ ]+ ~ .*' | awk -F~ '!seen[$1]++' | head -n 10 | awk -F' ~ HEAD@{' '{printf(\"  \\033[33m%s: \\033[37m %s\\033[0m\\n\", substr($2, 1, length($2)-1), $1)}'
@@ -178,20 +179,26 @@
     undo = reset HEAD~1
     # update all local branches. Sync with the target branch
     up = "!f() { git pull --all --rebase --autostash; git bclean; }; f"
+    
+    # Stash
     pop = stash pop
+    st = 'git stash save --include-untracked'
     apply = stash apply
     sl = stash list --pretty=format:\"%C(bold red)%gd%C(dim yellow)%C(reset) %<(70,trunc)%s %C(green)(%ad)\"
+    
+    # Logging
     last = log -1 HEAD --stat
     recent = branch --sort=committerdate
     month = log --since='last month' --author="$(git config user.name)" --oneline
     # Check latest changes for specific file, requires single argument file path and --since argument
     latest-changes = "!read -p 'Enter the --since value (e.g., 2 weeks ago): ' since; git log --since=\"$since\" --follow --oneline -- \"$1\" | awk '{print $1}' | xargs -I{} git diff {}^..{} -- \"$1\""
+    
     pf = "push --force-with-lease"
     # Fuzzy switch git branch
     fs = "!f() { git branch | grep $1 | xargs git switch; }; f"
 
     # Squash latest n commits. git squash 5
-    squash = "!f(){ git reset --soft HEAD~${1} && git commit --edit -m\"$(git log --format=%B --reverse HEAD..HEAD@{1})\"; };f"
+    squash = "!f(){ git reset --soft HEAD~${1} && git commit --edit -m\"$(git log --format=%B HEAD..HEAD@{1})\"; };f"
 
     # Rebasing stuff
     pr = pull --rebase
