@@ -212,6 +212,14 @@ function fzf-down() {
     fzf --height 50% "$@" --border
 }
 
+function fzf-cd() # FZF with cd command 
+{
+  local DIR=$(fd --type d | fzf +m --select-1 --preview 'lsd -F --tree {}')
+  if [ -n "$DIR" ]; then
+    cd "$DIR" || exit
+  fi
+}
+
 # Git functions
 
 # fshow_preview - git commit browser with previews
