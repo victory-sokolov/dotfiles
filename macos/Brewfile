@@ -141,6 +141,7 @@ cask 'alt-tab'                  # Alt tab to switch between app windows
 cask 'android-studio'           # Android Studio
 cask 'raycast'                  # Spotlight alternative
 cask --no-quarantine 'tomatobar'# Pomodor timer
+cask 'keycastr'                 # Visualize keystrokes while you type
 
 # Fonts
 cask 'font-fira-code'
