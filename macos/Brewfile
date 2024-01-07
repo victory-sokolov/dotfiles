@@ -46,6 +46,7 @@ brew 'gnupg'                    # GnuPG allows you to encrypt and sign your data
 brew 'rm-improved'              # Improved rm command
 brew 'osv-scanner'              # Scan for packages vulnerabilities
 brew 'duf'                      # Disk usage
+brew 'zoxide'                   # Smart cd command
 
 # Git
 brew 'git'                      # Git Code versioning
@@ -85,8 +86,10 @@ brew 'ansible'                  # DevOps automation tools
 brew 'docker'                   # Docker container managment
 brew 'lazydocker'               # Lazydocker manage Docker containers
 brew 'ctop'                     # Container metrics and monitoring
+brew 'hadolint'                 # Docker linter
 brew 'kubernetes-cli'           # Kubernetes CLI
 cask 'docker'                   # Docker desktop
+
 
 # ZSH, OH-MY-ZSH plugins
 brew 'autojump'
