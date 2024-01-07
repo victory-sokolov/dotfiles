@@ -1,7 +1,7 @@
 # print each PATH entry on a separate line
 alias path="echo -e ${PATH//:/\\n}"
 # tree with ignoring specific directories
-alias t="tree -CL 2 -I 'node_modules|cache|test_*|__pycache__'"
+alias tr"tree -CL 2 -I 'node_modules|cache|test_*|__pycache__'"
 alias lt="eza --tree --level=2 --long --icons --git -I 'node_modules|cache|test_*|__pycache__'"
 alias cls="clear"
 alias grep="grep --color=auto "
@@ -18,6 +18,7 @@ alias dif="delta --pager 0 --diff-so-fancy" # Pretty diff command
 alias vimu="nvim --headless \"+Lazy! sync\" +qa"
 # Copy previous command
 alias hy="fc -ln 0 | awk '!a[\$0]++' | fzf --tac | xclip -selection clipboard"
+alias rg="rg --smart-case --hidden --no-heading --column"
 
 if has colorls; then
     alias ls="lsd -F --group-directories-first"
@@ -170,6 +171,10 @@ alias djs="django-admin startproject"
 alias django-reset-db="python manage.py reset_db --noinput --close-sessions"
 # Watch for test changes and re-run tests. Provide test file
 alias dj-watch="rg --files --type-add 'python3:*.py' --type python3 | entr python3 ./manage.py test"
+
+# Tmux
+# Create tmux session with current dir name
+alias tm="tmux new -s (pwd | sed 's/.*\///g')" 
 
 # Docker
 alias dc="docker-compose"
