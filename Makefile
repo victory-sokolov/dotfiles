@@ -25,6 +25,7 @@ init: symlinks ## Symlink files
 	ln -vsf ${PWD}/.psqlrc ${HOME}/.psqlrc
 	ln -vsf ${PWD}/.sqliterc ${HOME}/.sqliterc
 	ln -vsf ${PWD}/.pythonrc.py ${HOME}/.pythonrc.py
+	ln -vsf ${PWD}/ripgreprc ${HOME}/ripgreprc
 	
 	# Git
 	ln -vsf ${PWD}/git/.gitconfig ${HOME}/.gitconfig
