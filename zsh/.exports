@@ -76,6 +76,7 @@ export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 # Cache deps to prevent having to reinstall deps that are used across multiple virtual environments 
 export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
 export PYTHONWARNINGS="ignore:Unverified HTTPS request"
+export PATH="${HOME}/.poetry/bin:${PATH}"
 
 # GO
 export GOPATH=$HOME/go
@@ -87,12 +88,14 @@ export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
-export PATH=$PATH:$HOME/.dotnet/tools
 
 # Custom environment
 export DOTFILES="$HOME/dotfiles"
 export PATH="$DOTFILES/scripts/git:$PATH"
 export PATH="$DOTFILES/scripts:$PATH"
+
+# RipGrep
+export RIPGREP_CONFIG_PATH="$HOME/ripgreprc"
 
 # FZF
 # export FZF_DEFAULT_COMMAND="fd --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build} --type f"
@@ -100,11 +103,11 @@ export FZF_DEFAULT_COMMAND="rg \
     --files \
     --hidden \
     --follow \
-    --no-require-git \
+    --no-ignore-vcs \
 "      
 export FZF_DEFAULT_OPTS="--color=dark --reverse --cycle --border=rounded"
 export FZF_COMPLETION_TRIGGER='~~'
-export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -50'"
+export FZF_CTRL_T_OPTS="$FZF_DEFAULT_OPTS --preview='bat --color=always --style=numbers {}'"
 export PATH="$HOME/git-fuzzy/bin:$PATH"
 
 # Node.js
@@ -115,15 +118,16 @@ export NODE_REPL_HISTORY_SIZE='32768'
 # Use sloppy mode by default, matching web browsers.
 export NODE_REPL_MODE='sloppy'
 
-
-export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0 # in WSL 2
-export LIBGL_ALWAYS_INDIRECT=1
-
 # Cuda
 export CUDA_HOME=/usr/local/cuda
 export LD_LIBRARY_PATH=/usr/lib/wsl/lib:$LD_LIBRARY_PATH
 export PATH=$PATH:$CUDA_HOME/bin
-export PATH="${HOME}/.poetry/bin:${PATH}"
+
+# TMux
+# ~/.tmux/plugins
+export PATH=$HOME/.tmux/plugins/t-smart-tmux-session-manager/bin:$PATH
+# ~/.config/tmux/plugins
+export PATH=$HOME/.config/tmux/plugins/t-smart-tmux-session-manager/bin:$PATH
 
 setopt EXTENDED_HISTORY          # write the history file in the ":start:elapsed;command" format.
 setopt HIST_REDUCE_BLANKS        # remove superfluous blanks before recording entry.
