@@ -49,6 +49,7 @@ plugins=(
 	docker
 	per-directory-history
 	react-native
+    fzf-tab
 	fzf
 	copypath
 	web-search
@@ -129,6 +130,8 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     if uname -a | grep -q "^Linux.*Microsoft"; then
       # ubuntu via WSL Windows Subsystem for Linux
       # Set symlink for vscode
+      export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
+      export LIBGL_ALWAYS_INDIRECT=1
       ln -s "/mnt/c/Program Files/Microsoft VS Code/bin/code" /usr/local/bin/code
     fi
   fi
@@ -176,6 +179,8 @@ fi
 ulimit -n 10240
 
 chpwd_functions=(change_node_version python_venv)
+
+eval "$(zoxide init zsh)"
 
 pyenv() {
     export PYENV_ROOT="$HOME/.pyenv"
