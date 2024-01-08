@@ -130,9 +130,10 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     if uname -a | grep -q "^Linux.*Microsoft"; then
       # ubuntu via WSL Windows Subsystem for Linux
       # Set symlink for vscode
+      ln -s "/mnt/c/Program Files/Microsoft VS Code/bin/code" /usr/local/bin/code
+
       export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
       export LIBGL_ALWAYS_INDIRECT=1
-      ln -s "/mnt/c/Program Files/Microsoft VS Code/bin/code" /usr/local/bin/code
     fi
   fi
 elif [[ "$OSTYPE" == "darwin"* ]]; then
@@ -145,6 +146,10 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 
     # Disable fork security feature for python multiprocessing
     export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+
+    # Use GNU version of sed, awk
+    export PATH="$(brew --prefix)/opt/gnu-sed/libexec/gnubin:$PATH"
+    export PATH="$(brew --prefix)/opt/gawk/libexec/gnubin:$PATH"
 fi
 #   elif [[ ${DISTRIB} = "Debian"* ]]; then
 #   fi
