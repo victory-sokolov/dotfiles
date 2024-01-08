@@ -10,6 +10,9 @@
 -- Show how long each query takes to execute
 \timing
 
+\pset pager off
+\pset null NULL
+
 -- Better formatted tables
 \pset format wrapped
 \pset border 2
