@@ -95,7 +95,7 @@ export PATH="$DOTFILES/scripts/git:$PATH"
 export PATH="$DOTFILES/scripts:$PATH"
 
 # RipGrep
-export RIPGREP_CONFIG_PATH="$HOME/ripgreprc"
+export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 
 # FZF
 # export FZF_DEFAULT_COMMAND="fd --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build} --type f"

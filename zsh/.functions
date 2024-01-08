@@ -177,11 +177,6 @@ function short() # Shorten url
    curl http://tinyurl.com/api-create.php\?url\="$url"
 }
 
-function kport() # Kill port
-{
-	kill "$(lsof -t -i:"$1")"
-}
-
 function lowerDir() # Lower case every file in current directory
 {
 	for i in *; do mv "$i" "${(L)i}"; done
@@ -209,7 +204,7 @@ function gifify() #
 }
 
 function fzf-down() {
-    fzf --height 50% "$@" --border
+    fzf --height 50% "$@"
 }
 
 function fzf-cd() # FZF with cd command 
@@ -405,7 +400,8 @@ function gitignore() # Get .gitignore file for specific lang
 }
 
 # Source: https://github.com/wesbos/dotfiles/blob/master/.zshrc#L28
-function touchh() { # Create file in a nested directory
+function touchh() # Create file in a nested directory
+{
   mkdir -p "$(dirname "$1")" && touch "$1"
 }
 
@@ -650,7 +646,7 @@ function fnpm() # Run npm scripts interactively
     fi
 }
 
-function repl() # Launch Repl for specified language
+function repl() # Launch Repl for specified language using replit
 {
 	lang=$1
 
@@ -665,7 +661,6 @@ function repl() # Launch Repl for specified language
 	fi
 
 	python3 -m webbrowser "https://replit.com/languages/$lang" &
-
 }
 
 function lorem() # Generate Loremipsum text
@@ -734,11 +729,11 @@ function clean_deps() # Remove node, python, php dependencies
 
     for folder in "${folders[@]}"
     do
-         find ~/dev -name "$folder" -type d -maxdepth 4 -mtime +"$days" -exec rm -rf {} \;
+        find ~/dev -name "$folder" -type d -maxdepth 4 -mtime +"$days" -exec rm -rf {} \;
     done
 }
 
-function clean_containers # Remove containers that were used N month ago
+function clean_containers() # Remove containers that were used N month ago
 {
     days=${1:-90}
     hours=$((24 * days))
@@ -747,7 +742,7 @@ function clean_containers # Remove containers that were used N month ago
 }
 
 # Source: https://kittygiraudel.com/snippets/groom-dead-code/
-function groom_dead_code # Check whether files & folders in a given directory are imported in JavaScript files
+function groom_dead_code() # Check whether files & folders in a given directory are imported in JavaScript files
 {
   root="${2:-.}"
   for entry in "$1"/*
@@ -760,7 +755,7 @@ function groom_dead_code # Check whether files & folders in a given directory ar
 }
 
 # Source: https://kittygiraudel.com/snippets/groom-dependencies/
-function groom_dependencies # Check for unused dependencies
+function groom_dependencies() # Check for unused dependencies
 {
   key=${1:-dependencies}
   for dep in $(cat package.json | jq -cr ".$key|keys|.[]");
@@ -842,15 +837,15 @@ function timezsh() # Time ZSH load time
   for i in $(seq 1 10); do /usr/bin/time "$shell" -i -c exit; done
 }
 
-function nuke() # fzf kill process
+function kport() # fzf kill process
 {
-  local pid
-  pid=$(ps -ef | grep -v ^root | sed 1d | fzf -m | awk '{print $2}')
+    local pid
+    pid=$(procs | grep -v ^root | sed 1d | fzf -m | awk '{print $3}')
 
-  if [ "x$pid" != "x" ]
-  then
-    echo "$pid" | xargs kill -"${1:-9}"
-  fi
+    if [ "x$pid" != "x" ]
+    then
+        echo "$pid" | xargs kill -"${1:-9}"
+    fi
 }
 
 function djtest() # Run Django tests interactively with fzf
@@ -901,4 +896,3 @@ function brewip() # Install (one or multiple) selected application(s)
         for prog in $(echo "$inst"); do brew install "$prog"; done
     fi
 }
-
