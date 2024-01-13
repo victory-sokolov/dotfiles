@@ -27,13 +27,6 @@ defaults write com.apple.LaunchServices LSQuarantine -bool false
 # (e.g. enable Tab in modal dialogs)
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 
-# Enable keyboard repeat
-defaults write -g ApplePressAndHoldEnabled -bool false
-
-# Set a blazingly fast keyboard repeat rate
-defaults write NSGlobalDomain KeyRepeat -int 1
-defaults write NSGlobalDomain InitialKeyRepeat -int 10
-
 # Disable machine sleep while charging
 sudo pmset -c sleep 0
 
@@ -97,6 +90,13 @@ defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 ###############################################################################
 # Keyboard & Input                                                            #
 ###############################################################################
+
+# Enable keyboard repeat
+defaults write -g ApplePressAndHoldEnabled -bool true 
+
+# Set a blazingly fast keyboard repeat rate
+defaults write NSGlobalDomain KeyRepeat -int 1
+defaults write NSGlobalDomain InitialKeyRepeat -int 10
 
 # Disable smart quotes and dashes as they’re annoying when typing code
 defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
