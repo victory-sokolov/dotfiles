@@ -50,6 +50,7 @@ brew 'rm-improved'              # Improved rm command
 brew 'osv-scanner'              # Scan for packages vulnerabilities
 brew 'duf'                      # Disk usage
 brew 'zoxide'                   # Smart cd command
+brew 'htop'                     # top alternative to see running processes  
 
 # Git
 brew 'git'                      # Git Code versioning
