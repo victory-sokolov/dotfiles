@@ -1,13 +1,13 @@
 #!/bin/zsh
 # shellcheck shell=bash
 
-export DOCKER_REPO_PREFIX=victory-sokolov
+export DOCKER_REPO_PREFIX="victory-sokolov"
 
 # Helper functions
 function docker-clean() # stops and cleans all docker containers & images
 {
-        docker stop $(docker ps -a -q)
-        docker rm $(docker ps -a -q)
+    docker stop $(docker ps -a -q)
+    docker rm $(docker ps -a -q)
 }
 
 function dms() # docker-machine start
@@ -46,7 +46,7 @@ function dcs() # Stop container by name
 	docker container stop $(docker container ls -q --filter name="$1"*)
 }
 
-function docker-stop # Stop all containers
+function docker-stop() # Stop all containers
 {
     docker stop $(docker container ls -q)
 }
@@ -59,7 +59,7 @@ function da() # Select a docker container to start and attach to
   [ -n "$cid" ] && docker start "$cid" && docker attach "$cid"
 }
 
-dlogs() # Check logs of container 
+function dlogs() # Check logs of container 
 {
   # Get a list of running Docker container names
   local container_names=$(docker ps --format '{{.Names}}')
@@ -102,9 +102,8 @@ function cto() # Containers resource usage overview
     --volume /var/run/docker.sock:/var/run/docker.sock:ro \
     quay.io/vektorlab/ctop:latest
 }
-export -f ctop
 
 # Docker containers aliases and functions
 # Scrapy splash container for data scrapping
 alias splash="docker run --rm --name scrapy-splash -d -p 8050:8050 scrapinghub/splash"
-alias docker-compose-reload=docker-compose-watch;
+alias docker-compose-reload="docker-compose-watch"
