@@ -574,12 +574,12 @@ function rna() # clean cache & run react-native android simulator
 # Database related functions
 
 # Postgres
-function psql-create-db() # Create Postgres database
+function psql-recreate-db() # Drop and Create db
 {
-    db_name="$@"
-    sudo -u postgres createdb "$db_name"
-    sudo -u postgres psql -c "grant all privileges on database $db_name to $USER;" > /dev/null 2>&1
-    echo "Database $db_name successfully created!"
+   db_name="$@"
+   dropdb "$db_name"
+   createdb "$db_name" 
+   echo "Database $db_name successfully re-created!"
 }
 
 function mysqldb() # MYSQL base commands (refresh, create, drop, list)
@@ -840,11 +840,12 @@ function timezsh() # Time ZSH load time
 function kport() # fzf kill process
 {
     local pid
-    pid=$(procs | grep -v ^root | sed 1d | fzf -m | awk '{print $3}')
+    pid=$(ps auxr | awk '{print $2,$3,$4,$11}' | column -t | fzf -m | awk '{print $1}')
 
     if [ "x$pid" != "x" ]
     then
         echo "$pid" | xargs kill -"${1:-9}"
+        echo "Killed process $pid"
     fi
 }
 
