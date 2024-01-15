@@ -92,8 +92,6 @@ brew 'lazydocker'               # Lazydocker manage Docker containers
 brew 'ctop'                     # Container metrics and monitoring
 brew 'hadolint'                 # Docker linter
 brew 'kubernetes-cli'           # Kubernetes CLI
-cask 'docker'                   # Docker desktop
-
 
 # ZSH, OH-MY-ZSH plugins
 brew 'autojump'
