@@ -1,8 +1,7 @@
 # print each PATH entry on a separate line
-alias path="echo -e ${PATH//:/\\n}"
+alias path='echo $PATH | sed -e "s/:/\n/g" | fzf'
 # tree with ignoring specific directories
-alias tr"tree -CL 2 -I 'node_modules|cache|test_*|__pycache__'"
-alias lt="eza --tree --level=2 --long --icons --git -I 'node_modules|cache|test_*|__pycache__'"
+alias tr="tree -CL 2 -I 'node_modules|cache|test_*|__pycache__'"
 alias cls="clear"
 alias q="exit"
 alias ctrash="sudo rm -rf ~/.local/share/Trash/files/*"
@@ -16,6 +15,9 @@ alias dif="delta --pager 0 --diff-so-fancy" # Pretty diff command
 alias vimu="nvim --headless \"+Lazy! sync\" +qa"
 # Copy previous command
 alias hy="fc -ln 0 | awk '!a[\$0]++' | fzf --tac | xclip -selection clipboard"
+alias now="date '+%Y-%m-%d'"
+alias untar="tar xvf"
+alias crypto="curl rate.sx" # crypto prices
 
 if _has rg; then
     alias grep="rg --smart-case --hidden --no-heading --column"
@@ -28,7 +30,7 @@ if _has nvim; then
     alias vim="nvim"
 fi
 
-if _has colorls; then
+if _has lsd; then
     alias ls="lsd -F --group-directories-first"
     alias l="ls -l"
     alias la="ls -a"
@@ -48,19 +50,12 @@ if _has rm-improved; then
     alias rm="rip -s"
 fi 
 
-alias now="date '+%Y-%m-%d'"
-alias untar="tar xvf"
-alias crypto="curl rate.sx" # crypto prices
-
 # copy public ssh key to clipboard
 alias pubkey="pbcopy < ~/.ssh/id_rsa.pub | echo 'public key copied to clipboard'"
 
 # custom available functions
 alias fhelp="grep "^function" $DOTFILES/zsh/.functions | sed 's/function/+/g' | column -t | sed 's/() #/ - /g'"
 alias ahelp="grep "^alias" $DOTFILES/zsh/.aliases | sed 's/alias/+/g'"
-
-# howdoi colorised output
-alias how="howdoi $* -c"
 
 # YouTube DLL
 alias yt-mp3="youtube-dl --extract-audio --audio-format mp3"
@@ -69,8 +64,8 @@ alias yt-mp4=" youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4
 # Generate random password using pwgen
 alias pw="pwgen 16 -1 | pbcopy"
 
-alias weather="curl -s 'wttr.in/$1?m1ī'"
-alias fontlist="fc-list | cut -d: -f1 | less"
+alias weather="curl -s 'https://wttr.in/$1?m1ī'"
+alias fontlist="fc-list | cut -d: -f1 | fzf"
 
 # Allow for pasting lines of code that start with a dollar sign. 
 alias \$='' 
@@ -88,7 +83,7 @@ alias week="date +%V"
 # Unix timestamp
 alias timestamp="date +%s"
 # UTC Date
-alias dateutc='date -u +"%Y-%m-%dT%H:%M:%S" | pbcopy'
+alias dateutc='date -u +"%Y-%m-%dT%H:%M:%S" && echo | pbcopy'
 
 # preview files with syntax highlighting
 alias fz="fzf --preview='bat --color=always --style=numbers {}' --bind shift-up:preview-page-up,shift-down:preview-page-down"
@@ -99,20 +94,20 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias ~="cd ~"
 alias dotfiles="cd ~/dotfiles"
-alias blog="~/dev/victory-sokolov && code . && npm run dev"
+alias blog="~/dev/viktorsokolov && code . && yarn run dev"
 alias dirs="dirs -v"
 # List Git projects with fzf
 alias pm='function _pm() { local depth="${1:-3}"; local selected_folder; selected_folder=$(find . -maxdepth "$depth" -type d -name ".git" -prune -exec dirname {} \; | fzf --height=50%); [ -n "$selected_folder" ] && code "$selected_folder"; }; _pm'
 
 # quick edit
-alias zshrc="vim ~/.zshrc"
-alias bashrc="vim ~/.bashrc"
+alias zshrc="vim $DOTFILES/zsh/.zshrc"
 alias vimrc="vim ~/.vimrc"
-alias valias="vim ~/dotfiles/zsh/.aliases"
+alias valias="vim $DOTFILES/zsh/.aliases"
 alias reload="exec zsh"
 alias v="vim"
+# FZF open file in vim
 alias vo="fd --type f --hidden --exclude .git | fzf-tmux -p | xargs nvim"
-alias hosts="sudo vim /etc/hosts" # vhosts
+alias hosts="vim /etc/hosts" # vhosts
 
 # Image Optimizer
 alias iow="npx @squoosh/cli --webp auto" # <file-name>
@@ -143,7 +138,7 @@ alias undump="gunzip < db.sql.gz | mysql -u [uname] -p[pass] db" # Restore db du
 alias msql="sudo /etc/init.d/mysql" # path to mysql executable
 
 # Network
-alias my-ip="curl https://ipinfo.io/ip"
+alias myip="curl https://ipinfo.io/ip"
 alias localip="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
 alias ports="sudo lsof -i -P -n | grep LISTEN"
 
@@ -157,7 +152,7 @@ alias server="python -m http.server"
 alias encode='python -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))"'
 alias decode='python -c "import urllib.parse, sys; print(urllib.parse.unquote(sys.argv[1]))"'
 # find all virtual envs in system
-alias venvs="find -O3 $HOME -name '*activate' -type f"
+alias venvs="rg -l 'virtualenv|venv.*activate$' $HOME | fzf"
 alias pip="python -m pip"
 alias pir="python -m pip install -r requirements.txt"
 alias pfr="(pip freeze | grep -v 'pkg-resources') > requirements.txt"
@@ -172,7 +167,7 @@ alias ds="python manage.py shell"
 alias dt="python manage.py test"
 alias su="python manage.py createsuperuser"
 alias djs="django-admin startproject"
-alias django-reset-db="python manage.py reset_db --noinput --close-sessions"
+alias dj-reset-db="python manage.py reset_db --noinput --close-sessions"
 # Watch for test changes and re-run tests. Provide test file
 alias dj-watch="rg --files --type-add 'python3:*.py' --type python3 | entr python3 ./manage.py test"
 
