@@ -1,25 +1,7 @@
 #!/bin/zsh
 # shellcheck shell=bash
 
-function calc() # Simple calculator
-{
-	local result="";
-	result="$(printf "scale=10;$*\n" | bc --mathlib | tr -d '\\\n')";
-	#                       └─ default (when `--mathlib` is used) is 20
-	#
-	if [[ "$result" == *.* ]]; then
-		# improve the output for decimal numbers
-		echo "$result" |
-		sed -e 's/^\./0./'        `# add "0" for cases like ".5"` \
-		    -e 's/^-\./-0./'      `# add "0" for cases like "-.5"`\
-		    -e 's/0*$//;s/\.$//';  # remove trailing zeros
-	else
-		echo "$result";
-	fi;
-	ech0 "\n";
-}
-
-function has() # Check whether executable exists
+function _has() # Check whether executable exists
 {
     command -v "$1" >/dev/null 2>&1
 }
@@ -887,6 +869,15 @@ function brewdp() # Delete (one or multiple) selected application(s)
     if [[ $uninst ]]; then
         for prog in $(echo "$uninst"); do brew uninstall "$prog"; done
     fi
+}
+
+function brew_install() # Brew interactive install from Brewfile
+{
+  local brewfile="$DOTFILES/macos/Brewfile"
+  local selected_command=$(rg -N -e '^brew ' "$brewfile" | fzf)
+  if [ -n "$selected_command" ]; then
+    brew install $(echo "$selected_command" | sed 's/#.*//')
+  fi
 }
 
 function brewip() # Install (one or multiple) selected application(s)
