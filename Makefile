@@ -31,7 +31,7 @@ init: symlinks ## Symlink files
 	ln -vsf ${PWD}/git/.gitconfig ${HOME}/.gitconfig
 	ln -vsf ${PWD}/git/.gitattributes ${HOME}/.gitattributes
 	ln -vsf ${PWD}/git/.gitmessage ${HOME}/.gitmessage
-	ln -vsf ${PWD}/git/.gitignore_global ${HOME}/.gitignore_global
+	ln -vsf ${PWD}/git/.gitignore ${HOME}/.gitignore
 
 	# Formatter
 	ln -vsf ${PWD}/formatting/.prettierrc ${HOME}/.prettierc

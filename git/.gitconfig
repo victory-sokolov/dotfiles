@@ -11,7 +11,7 @@
     logAllRefUpdates = true
 
     # Use custom .gitignore and .gitattribute files
-    excludesfile = ~/.gitignore_global
+    excludesfile = ~/.gitignore
     attributesfile = ~/.gitattributes
     # Path to githooks
     # hookspath="~/.githooks"
