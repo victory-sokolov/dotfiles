@@ -17,14 +17,18 @@ alias vimu="nvim --headless \"+Lazy! sync\" +qa"
 # Copy previous command
 alias hy="fc -ln 0 | awk '!a[\$0]++' | fzf --tac | xclip -selection clipboard"
 
-if has rg; then
+if _has rg; then
     alias grep="rg --smart-case --hidden --no-heading --column"
 else
     alias grep="grep --color=auto"
     alias fgrep="fgrep --color=auto"
 fi
 
-if has colorls; then
+if _has nvim; then
+    alias vim="nvim"
+fi
+
+if _has colorls; then
     alias ls="lsd -F --group-directories-first"
     alias l="ls -l"
     alias la="ls -a"
@@ -32,15 +36,15 @@ if has colorls; then
     alias lt="ls --tree"
 fi
 
-if has htop; then
+if _has htop; then
     alias top="htop"
 fi
 
-if has bat; then
+if _has bat; then
     alias cat="bat"
 fi
 
-if has rm-improved; then
+if _has rm-improved; then
     alias rm="rip -s"
 fi 
 
@@ -109,10 +113,6 @@ alias reload="exec zsh"
 alias v="vim"
 alias vo="fd --type f --hidden --exclude .git | fzf-tmux -p | xargs nvim"
 alias hosts="sudo vim /etc/hosts" # vhosts
-
-if has nvim; then
-    alias vim="nvim"
-fi
 
 # Image Optimizer
 alias iow="npx @squoosh/cli --webp auto" # <file-name>
