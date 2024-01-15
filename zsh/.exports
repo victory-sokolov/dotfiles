@@ -1,7 +1,7 @@
 export EDITOR="code"
 export SHELL="/bin/zsh"
 export CLICOLOR=1
-export LSCOLORS=gxfxcxdxbxegedabagacad
+export LS_COLORS="$(vivid generate molokai)"
 export TERM="xterm-256color"
 
 export XDG_DATA_HOME=${XDG_DATA_HOME:="$HOME/.local/share"}

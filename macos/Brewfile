@@ -51,6 +51,7 @@ brew 'osv-scanner'              # Scan for packages vulnerabilities
 brew 'duf'                      # Disk usage
 brew 'zoxide'                   # Smart cd command
 brew 'htop'                     # top alternative to see running processes  
+brew 'vivid'                    # Theme for LS_COLORS
 
 # Git
 brew 'git'                      # Git Code versioning
