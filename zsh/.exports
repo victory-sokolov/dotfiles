@@ -51,9 +51,9 @@ export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 export PATH=$PATH:/usr/lib/jvm/java-11-openjdk/bin
 
 # Maven
-export M2_HOME=/usr/local/apache-maven/apache-maven-3.6.3
-export M2=$M2_HOME/bin
-export PATH=$M2:$PATH
+# export M2_HOME=/usr/local/apache-maven/apache-maven-3.6.3
+# export M2=$M2_HOME/bin
+# export PATH=$M2:$PATH
 
 # Tesseract
 export TESSDATA_PREFIX="/usr/local/tesseract-ocr/tesseract/tessdata"
@@ -94,9 +94,6 @@ export DOTFILES="$HOME/dotfiles"
 export PATH="$DOTFILES/scripts/git:$PATH"
 export PATH="$DOTFILES/scripts:$PATH"
 
-# RipGrep
-export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
-
 # FZF
 # export FZF_DEFAULT_COMMAND="fd --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build} --type f"
 export FZF_DEFAULT_COMMAND="rg \
@@ -132,4 +129,4 @@ export PATH=$HOME/.config/tmux/plugins/t-smart-tmux-session-manager/bin:$PATH
 setopt EXTENDED_HISTORY          # write the history file in the ":start:elapsed;command" format.
 setopt HIST_REDUCE_BLANKS        # remove superfluous blanks before recording entry.
 setopt HIST_IGNORE_ALL_DUPS      # delete old recorded entry if new entry is a duplicate.
-setopt SHARE_HISTORY             # share history between all sessions.
+# setopt SHARE_HISTORY             # share history between all sessions.
