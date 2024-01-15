@@ -76,6 +76,7 @@ brew 'jupyterlab'               # Python integractive development environment
 brew 'pipx'                     # Use Python library without installing it
 brew 'pyenv'                    # Python env managment
 brew 'ruff'                     # Python prettier
+brew 'bpython'                  # Better Python shell
 
 # Ruby
 brew 'rbenv'                    # Ruby package manager
