@@ -888,3 +888,12 @@ function brewip() # Install (one or multiple) selected application(s)
         for prog in $(echo "$inst"); do brew install "$prog"; done
     fi
 }
+
+function change_node_version() # Auto change node version with .nvm
+{
+	nvmrc="./.nvmrc"
+	if [ -f "$nvmrc" ]; then
+		version="$(cat "$nvmrc")"
+		nvm use "$version"
+	fi
+}

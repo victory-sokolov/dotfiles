@@ -67,7 +67,6 @@ unsetopt BG_NICE
 unsetopt CORRECT_ALL
 unsetopt share_history  # prevent sharing between running shells
 
-
 if [ -f thefuck ]; then
     eval thefuck --alias
 fi
@@ -153,16 +152,6 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 #   elif [[ ${DISTRIB} = "Debian"* ]]; then
 #   fi
-
-
-# Auto change node version with .nvm
-function change_node_version {
-	nvmrc="./.nvmrc"
-	if [ -f "$nvmrc" ]; then
-		version="$(cat "$nvmrc")"
-		nvm use "$version"
-	fi
-}
 
 autoload -U add-zsh-hook
 
