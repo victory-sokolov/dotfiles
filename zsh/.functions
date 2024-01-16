@@ -49,7 +49,7 @@ function backup() # Backup files and folders
 # Example: linecount js
 function linecount() # Count lines of a file with specific extension
 {
-    find . -name "*.$1" | xargs wc -l
+    rg --files "*.$1" . | xargs wc -l
 }
 
 function sort_remove() # Sort and remove dublicates lines
@@ -156,7 +156,7 @@ function cview() # Read csv file
 function short() # Shorten url
 {
    url=$1
-   curl http://tinyurl.com/api-create.php\?url\="$url"
+   curl -s http://tinyurl.com/api-create.php\?url\="$url" | xargs
 }
 
 function lowerDir() # Lower case every file in current directory
@@ -170,7 +170,7 @@ function findEmpty() # Find empty files and directories in current directory
 }
 
 # from alex sexton:  gist.github.com/SlexAxton/4989674
-function gifify() #
+function gifify() # Video to GIF
 {
   if [[ -n "$1" ]]; then
 	if [[ $2 == '--good' ]]; then
