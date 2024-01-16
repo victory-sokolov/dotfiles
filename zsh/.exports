@@ -107,6 +107,8 @@ export FZF_COMPLETION_TRIGGER='~~'
 export FZF_CTRL_T_OPTS="$FZF_DEFAULT_OPTS --preview='bat --color=always --style=numbers {}'"
 export PATH="$HOME/git-fuzzy/bin:$PATH"
 
+export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
+
 # Node.js
 # Enable persistent REPL history for `node`.
 export NODE_REPL_HISTORY=~/.node_history
