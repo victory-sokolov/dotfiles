@@ -1,29 +1,29 @@
 #!/bin/zsh
 # shellcheck shell=bash
 
-function _has() # Check whether executable exists
+_has() # Check whether executable exists
 {
     command -v "$1" >/dev/null 2>&1
 }
 
-function latest() # Show latest created file
+latest() # Show latest created file
 {
     ls -lt -d "$1"/*/ | head -n1 | awk '{print $NF}'
 }
 
-function mkcd() # Create a new directory and enter it
+mkcd() # Create a new directory and enter it
 {
   mkdir -p "$@"
   cd "$@" || exit
 }
 
-function cdls() # Show contents of the directory after changing to it
+cdls() # Show contents of the directory after changing to it
 {
     builtin cd "$1" || exit
     ls -ACF
 }
 
-function backup() # Backup files and folders
+backup() # Backup files and folders
 {
 	FILE=$1
 	BACKUP_NAME="$FILE-[\"$(date + '%Y-%m-%d-%H:%M:%S')\"]"
@@ -47,37 +47,37 @@ function backup() # Backup files and folders
 }
 
 # Example: linecount js
-function linecount() # Count lines of a file with specific extension
+linecount() # Count lines of a file with specific extension
 {
     rg --files "*.$1" . | xargs wc -l
 }
 
-function sort_remove() # Sort and remove dublicates lines
+sort_remove() # Sort and remove dublicates lines
 {
     vi +'%!sort | uniq' +wq "$1"
 }
 
-function file_tolower() # Rename all items in a directory to lower case
+file_tolower() # Rename all items in a directory to lower case
 {
     for i in *; do mv "$i" "${i,,}"; done
 }
 
-function file_toupper() # Rename all files in a directory to upper case
+file_toupper() # Rename all files in a directory to upper case
 {
     for i in *; do mv "$i" "${i^^}"; done
 }
 
-function convert_datetime() # Convert DD/MM/YY date format to YYYY-MM-DD
+convert_datetime() # Convert DD/MM/YY date format to YYYY-MM-DD
 {
     sed 's_\([0-9]\{1,2\}\)/\([0-9])'
 }
 
-function remove_newlines() # Remove new lines from files and folder
+remove_newlines() # Remove new lines from files and folder
 {
     rename 's/[\r\n]//g' *
 }
 
-function colormap() # Colormap
+colormap() # Colormap
 {
   for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done
 }
@@ -96,7 +96,7 @@ function man() # Shows pretty man page
 }
 
 
-function targz() # Targz a file
+targz() # Targz a file
 {
 	local tmpFile="${@%/}.tar";
 	tar -cvf "${tmpFile}" --exclude=".DS_Store" "${@}" || return 1;
@@ -141,36 +141,36 @@ if [ ! "$(uname -s)" = 'Darwin' ]; then
 	fi
 fi
 
-function cheat() # Cheatsheet function
+cheat() # Cheatsheet function
 {
   curl cheat.sh/${@:-cheat}
   # curl cheat.sh/$@
 }
 
-function cview() # Read csv file
+cview() # Read csv file
 {
 	csvtool readable "$1" | view -
 }
 
 
-function short() # Shorten url
+short() # Shorten url
 {
    url=$1
    curl -s http://tinyurl.com/api-create.php\?url\="$url" | xargs
 }
 
-function lowerDir() # Lower case every file in current directory
+lowerDir() # Lower case every file in current directory
 {
 	for i in *; do mv "$i" "${(L)i}"; done
 }
 
-function findEmpty() # Find empty files and directories in current directory
+findEmpty() # Find empty files and directories in current directory
 {
 	find . -type f -exec bash -c 'if [ `cat "{}" |wc -w` -eq 0 ]; then echo "file - {}";fi' \; -or -empty -exec bash -c "echo dir - {}" \;
 }
 
 # from alex sexton:  gist.github.com/SlexAxton/4989674
-function gifify() # Video to GIF
+gifify() # Video to GIF
 {
   if [[ -n "$1" ]]; then
 	if [[ $2 == '--good' ]]; then
@@ -185,11 +185,11 @@ function gifify() # Video to GIF
   fi
 }
 
-function fzf-down() {
+fzf-down() {
     fzf --height 50% "$@"
 }
 
-function fzf-cd() # FZF with cd command 
+fzf-cd() # FZF with cd command 
 {
   local DIR=$(
     fd --type d | fzf +m --select-1 --preview 'tree -C {} | head -n 50'
@@ -203,7 +203,7 @@ function fzf-cd() # FZF with cd command
 # Git functions
 
 # fshow_preview - git commit browser with previews
-function fshow() # git commit browser
+fshow() # git commit browser
 {
   git log --graph --color=always \
       --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
@@ -215,7 +215,7 @@ function fshow() # git commit browser
 FZF-EOF"
 }
 
-function gcbn() # Switch branch with fzf
+gcbn() # Switch branch with fzf
 {
   result=$(git branch -a --color=always | grep -v '/HEAD\s' | sort |
     fzf --height 50% --border --tac --preview-window right:70% \
@@ -231,7 +231,7 @@ function gcbn() # Switch branch with fzf
   fi
 }
 
-function gstlf() # Git stash list with fzf
+gstlf() # Git stash list with fzf
 {
   local out sha q k
   while out=$(
@@ -263,7 +263,7 @@ function gstlf() # Git stash list with fzf
   done
 }
 
-function worktree() # Git worktree with fzf
+worktree() # Git worktree with fzf
 {
     worktree=$(
         git worktree list | fzf \
@@ -276,7 +276,7 @@ function worktree() # Git worktree with fzf
 }
 
 # Ref: https://gist.github.com/Bhupesh-V/43bc0f2d8b84ea6c2ce767de56260b34
-function commit() # Interactive git commit
+commit() # Interactive git commit
 {
     gitmoji_path="$DOTFILES/.config/gitmojis.csv"
 
@@ -295,7 +295,7 @@ function commit() # Interactive git commit
     fi
 }
 
-function stage() # Git interactive stage
+stage() # Git interactive stage
 {
     readarray -t choices < <(git ls-files --other --modified --exclude-standard | fzf \
         --prompt="Stage Files: " \
@@ -306,7 +306,7 @@ function stage() # Git interactive stage
     git add "${choices[@]}"
 }
 
-function clone() # Clone repo and install dependencies
+clone() # Clone repo and install dependencies
 {
 	git clone "$1"
 	cd "$(basename "$_" .git)" || exit
@@ -334,7 +334,7 @@ function clone() # Clone repo and install dependencies
 
 }
 
-function ghexport() # Download single folder from github
+ghexport() # Download single folder from github
 {
 	github_link=$1
 	remove_path="/tree/master"
@@ -342,52 +342,52 @@ function ghexport() # Download single folder from github
 	svn export "${link}"
 }
 
-function clean-merged-branches() # Delete all merged branches
+clean-merged-branches() # Delete all merged branches
 {
     git branch --merged | grep -v "\*" | xargs -n 1 git branch -d
 }
 
-function gacp() # Git: add all, commit and push. [-m "comment"]
+gacp() # Git: add all, commit and push. [-m "comment"]
 {
 	git add .
 	git commit "$@"
 	git push
 }
 
-function ggs() # push & commit with message `update`
+ggs() # push & commit with message `update`
 {
     git add -A
     git commit -m 'update'
     git push
 }
 
-function git-https() # Git: Http to Https
+git-https() # Git: Http to Https
 {
 	git remote set-url origin https://github.com/$(git remote get-url origin | sed 's/https:\/\/github.com\///' | sed 's/git@github.com://')
 }
 
-function git-ssh() # Git: Https to SSH
+git-ssh() # Git: Https to SSH
 {
 	git remote set-url origin git@github.com:$(git remote get-url origin | sed 's/https:\/\/github.com\///' | sed 's/git@github.com://')
 }
 
-function gitFind() # Search for a string in git log
+gitFind() # Search for a string in git log
 {
     git log --all -S "$1"
 }
 
-function gitignore() # Get .gitignore file for specific lang
+gitignore() # Get .gitignore file for specific lang
 {
 	curl -sL "https://www.gitignore.io/api/$@" >> .gitignore
 }
 
 # Source: https://github.com/wesbos/dotfiles/blob/master/.zshrc#L28
-function touchh() # Create file in a nested directory
+touchh() # Create file in a nested directory
 {
   mkdir -p "$(dirname "$1")" && touch "$1"
 }
 
-function isup() # Check if URL is up
+isup() # Check if URL is up
 {
 	local uri=$1
 
@@ -398,12 +398,12 @@ function isup() # Check if URL is up
 	fi
 }
 
-function clean-comments() # remove comments (#, //) and empty lines
+clean-comments() # remove comments (#, //) and empty lines
 {
 	sed -i.tmp "/^s*[#;//]/d;/^$/d" "$1"
 }
 
-function ssh-key() # generate ssh key with specific name
+ssh-key() # generate ssh key with specific name
 {
     name="$@"
     ssh-keygen -f ~/.ssh/"$name" -q -N ""
@@ -414,7 +414,7 @@ function ssh-key() # generate ssh key with specific name
 }
 
 # Python
-function server() # Start an HTTP server from a directory
+server() # Start an HTTP server from a directory
 {
 	local port="${1:-8000}";
 	sleep 1 && open "http://localhost:${port}/" &
@@ -423,7 +423,7 @@ function server() # Start an HTTP server from a directory
 	python3 -c $'import SimpleHTTPServer;\nmap = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map;\nmap[""] = "text/plain";\nfor key, value in map.items():\n\tmap[key] = value + ";charset=UTF-8";\nSimpleHTTPServer.test();' "$port";
 }
 
-function python_venv() # Auto active virtual environment
+python_venv() # Auto active virtual environment
 {
   ENV=./venv
   # when you cd into a folder that contains $ENV
@@ -432,7 +432,7 @@ function python_venv() # Auto active virtual environment
   [[ ! -d $ENV ]] && deactivate > /dev/null 2>&1
 }
 
-function pr-checkout() # Checkout to PR
+pr-checkout() # Checkout to PR
 {
   local jq_template pr_number
 
@@ -462,12 +462,12 @@ function pr-checkout() # Checkout to PR
   fi
 }
 
-function gpip() # Global PIP instllation
+gpip() # Global PIP instllation
 {
     PIP_REQUIRE_VIRTUALENV=false pip "$@"
 }
 
-function mkenv() # create python virtual environment
+mkenv() # create python virtual environment
 {
     python3 -m venv .venv
     source .venv/bin/activate
@@ -485,13 +485,13 @@ function mkenv() # create python virtual environment
         pylint
 }
 
-function prd() # Poetry reinstall package as dev dependencie
+prd() # Poetry reinstall package as dev dependencie
 {
 	poetry remove "$1"
 	poetry add --dev "$1"
 }
 
-function dj-watch-coverage() # Watch for Django test changes and run coverage
+dj-watch-coverage() # Watch for Django test changes and run coverage
 {
     rg --files --type-add 'python3:*.py' --type python3 | entr -s "
     poetry run python manage.py test
@@ -502,7 +502,7 @@ function dj-watch-coverage() # Watch for Django test changes and run coverage
 }
 
 # Usage: json '{"foo":42}' or echo '{"foo":42}' | json
-function json() # Format json string
+json() # Format json string
 {
 	if [ -t 0 ]; then # argument
 		python3 -mjson.tool <<< "$*" | pygmentize -l javascript;
@@ -511,13 +511,13 @@ function json() # Format json string
 	fi
 }
 
-function token() # generate secret, token
+token() # generate secret, token
 {
 	python3 -c 'import secrets; print(secrets.token_urlsafe(16))'
 }
 
 # ReactNative
-function bapk() # build android apk (Must run inside react-native project)
+bapk() # build android apk (Must run inside react-native project)
 {
     apk_path="./android/app/build/outputs/apk/debug"
 
@@ -547,7 +547,7 @@ function bapk() # build android apk (Must run inside react-native project)
     xdg-open ${apk_path}
 }
 
-function rna() # clean cache & run react-native android simulator
+rna() # clean cache & run react-native android simulator
 {
     cd android && ./gradlew clean
     cd .. && react-native run-android
@@ -556,7 +556,7 @@ function rna() # clean cache & run react-native android simulator
 # Database related functions
 
 # Postgres
-function psql-recreate-db() # Drop and Create db
+psql-recreate-db() # Drop and Create db
 {
    db_name="$@"
    dropdb "$db_name"
@@ -564,7 +564,7 @@ function psql-recreate-db() # Drop and Create db
    echo "Database $db_name successfully re-created!"
 }
 
-function mysqldb() # MYSQL base commands (refresh, create, drop, list)
+mysqldb() # MYSQL base commands (refresh, create, drop, list)
 {
     if [ "$1" = "refresh" ]; then
         mysql -uroot -e "drop database $2; create database $2"
@@ -577,7 +577,7 @@ function mysqldb() # MYSQL base commands (refresh, create, drop, list)
     fi
 }
 
-function removebg() # Remove background from the image
+removebg() # Remove background from the image
 {
 	curl -H "X-API-Key: $REMOVEBG_KEY" \
        -F "image_file=@$1" \
@@ -585,7 +585,7 @@ function removebg() # Remove background from the image
        -f https://api.remove.bg/v1.0/removebg -o no-bg.png
 }
 
-function bash-file() # Create new shell file
+bash-file() # Create new shell file
 {
   FILE_PATH=$1
   mkdir -p -- "$(dirname "$FILE_PATH")" && touch -- "$FILE_PATH"
@@ -594,7 +594,7 @@ function bash-file() # Create new shell file
   chmod +x "$FILE_PATH"
 }
 
-function makerun() # Run makefile command
+makerun() # Run makefile command
 {
   local makefile_commands
   makefile_commands=$(grep -E '^[a-zA-Z0-9_-]+:.*?## .*$$' Makefile | awk 'BEGIN {FS = ":.*?## "}{printf "%-30s %s\n", $1, $2}' | fzf --height 50%)
@@ -609,9 +609,9 @@ function makerun() # Run makefile command
   fi
 }
 
-function fnpm() # Run npm scripts interactively
+fnpm() # Run npm scripts interactively
 {
-    package_manager=$(_get_node_package_manager)  
+    package_manager=$(get_node_package_manager)  
 
     if [ -f "package.json" ]; then
         scripts=$(jq -r '.scripts | keys | .[]' package.json | fzf --height 50%)
@@ -628,7 +628,7 @@ function fnpm() # Run npm scripts interactively
     fi
 }
 
-function repl() # Launch Repl for specified language using replit
+repl() # Launch Repl for specified language using replit
 {
 	lang=$1
 
@@ -645,7 +645,7 @@ function repl() # Launch Repl for specified language using replit
 	python3 -m webbrowser "https://replit.com/languages/$lang" &
 }
 
-function lorem() # Generate Loremipsum text
+lorem() # Generate Loremipsum text
 {
 	if [ "${1}" = "" ] || [ "${2}" = "" ]; then
 		echo "Usage: loremipsum [paragraphs, sentences] [integer]"
@@ -654,7 +654,7 @@ function lorem() # Generate Loremipsum text
 	fi
 }
 
-function dataurl() # Create a data URL from a file
+dataurl() # Create a data URL from a file
 {
     local mimeType
 	mimeType=$(file -b --mime-type "$1");
@@ -665,7 +665,7 @@ function dataurl() # Create a data URL from a file
 }
 
 # Source: http://superuser.com/questions/611538/is-there-a-way-to-display-a-countdown-or-stopwatch-timer-in-a-terminal
-function stopwatch() # Stopwatch, press enter to time.
+stopwatch() # Stopwatch, press enter to time.
 {
 	date1=$(date +%s);
 	while :; do
@@ -675,26 +675,26 @@ function stopwatch() # Stopwatch, press enter to time.
 	done
 }
 
-function pngtojpg() # Bulk convert png to jpg
+pngtojpg() # Bulk convert png to jpg
 {
 	for i in *.png ; do convert "$i" "${i%.*}.jpg" ; done
 }
 
-function dockerlint() # Lint Dockerfile with Hadolint
+dockerlint() # Lint Dockerfile with Hadolint
 {
   docker container run --rm -i \
     hadolint/hadolint hadolint --ignore DL3008 "${@}" - < Dockerfile
 }
 
 # C++ snippets
-function cpp-run() # compile and run executable
+cpp-run() # compile and run executable
 {
     echo "Compiling file..."
     g++ -o "$1" "$1.cpp"
     ./"$1".cpp
 }
 
-function spy() # Watch file
+spy() # Watch file
 {
     file=$1
     echo "Watching file ${file} 👀..."
@@ -704,7 +704,7 @@ function spy() # Watch file
     done
 }
 
-function clean_deps() # Remove node, python, php dependencies
+clean_deps() # Remove node, python, php dependencies
 {
     folders=("node_modules" "venv" ".env" "vendor")
     days=${1:-90}
@@ -715,7 +715,7 @@ function clean_deps() # Remove node, python, php dependencies
     done
 }
 
-function clean_containers() # Remove containers that were used N month ago
+clean_containers() # Remove containers that were used N month ago
 {
     days=${1:-90}
     hours=$((24 * days))
@@ -724,7 +724,7 @@ function clean_containers() # Remove containers that were used N month ago
 }
 
 # Source: https://kittygiraudel.com/snippets/groom-dead-code/
-function groom_dead_code() # Check whether files & folders in a given directory are imported in JavaScript files
+groom_dead_code() # Check whether files & folders in a given directory are imported in JavaScript files
 {
   root="${2:-.}"
   for entry in "$1"/*
@@ -737,7 +737,7 @@ function groom_dead_code() # Check whether files & folders in a given directory 
 }
 
 # Source: https://kittygiraudel.com/snippets/groom-dependencies/
-function groom_dependencies() # Check for unused dependencies
+groom_dependencies() # Check for unused dependencies
 {
   key=${1:-dependencies}
   for dep in $(cat package.json | jq -cr ".$key|keys|.[]");
@@ -745,7 +745,7 @@ function groom_dependencies() # Check for unused dependencies
   done
 }
 
-function node-flush() # Reinstall node deps
+node-flush() # Reinstall node deps
 {
     rm -rf node_modules/ build package.lock
 
@@ -761,7 +761,7 @@ function node-flush() # Reinstall node deps
 }
 
 # Get Node package manager
-function _get_node_package_manager() {
+get_node_package_manager() {
     if [[ -f bun.lockb ]]; then
         echo "bun"
     elif [[ -f pnpm-lock.yaml ]]; then
@@ -775,7 +775,7 @@ function _get_node_package_manager() {
     fi
 }
 
-function p() # Determine package manager and run command with it
+p() # Determine package manager and run command with it
 {
   if [[ -f bun.lockb ]]; then
     command bun "$@"
@@ -790,7 +790,7 @@ function p() # Determine package manager and run command with it
   fi
 }
 
-function install_latest_release # Download and install latest release from Github
+install_latest_release() # Download and install latest release from Github
 {
     repo=$1
     url=https://api.github.com/repos/$repo/releases/latest
@@ -806,20 +806,20 @@ function install_latest_release # Download and install latest release from Githu
     rm "$filename"
 }
 
-function upgrade-deps # Upgrade global dependencies
+upgrade-deps() # Upgrade global dependencies
 {
     npx npm-check --global --update-all
     pip3 install --upgrade pip
     pip3 freeze | grep -v "^\-e" | grep -v "@" | cut -d = -f 1 | xargs pip3 install -U
 }
 
-function timezsh() # Time ZSH load time
+timezsh() # Time ZSH load time
 {
   shell=${1-$SHELL}
   for i in $(seq 1 10); do /usr/bin/time "$shell" -i -c exit; done
 }
 
-function kport() # fzf kill process
+kport() # fzf kill process
 {
     local pid
     pid=$(ps auxr | awk '{print $2,$3,$4,$11}' | column -t | fzf -m | awk '{print $1}')
@@ -831,7 +831,7 @@ function kport() # fzf kill process
     fi
 }
 
-function djtest() # Run Django tests interactively with fzf
+djtest() # Run Django tests interactively with fzf
 {
     test_path=$1
     test_file=$(echo "$test_path" | tr '/' '.' | sed 's/\.py$//')
@@ -840,7 +840,7 @@ function djtest() # Run Django tests interactively with fzf
         | xargs -I {} poetry run python manage.py test "$test_file".{}
 }
 
-function fuzzyFavoriteCommand() # List favorited commands
+fuzzyFavoriteCommand() # List favorited commands
 {
     bookmarkedCommands=$((cat "$HOME"/.bookmark) | sed '/^s*$/d' | uniq | fzf); 
     echo "$bookmarkedCommands";
@@ -848,7 +848,7 @@ function fuzzyFavoriteCommand() # List favorited commands
     history -s "$bookmarkedCommands"
 }
 
-function addCommandToBookmarks() # Add new item to bookmark
+addCommandToBookmarks() # Add new item to bookmark
 {
     command=$@
     # description=$(grep "^function $command(" "$HOME/.functions" | sed 's/.*() # //g')
@@ -862,7 +862,7 @@ function addCommandToBookmarks() # Add new item to bookmark
     rm /tmp/syle-bookmark-temp
 }
 
-function brewdp() # Delete (one or multiple) selected application(s)
+brewdp() # Delete (one or multiple) selected application(s)
 {
     local uninst=$(brew leaves | fzf -m)
 
@@ -871,7 +871,7 @@ function brewdp() # Delete (one or multiple) selected application(s)
     fi
 }
 
-function brew_install() # Brew interactive install from Brewfile
+brew_install() # Brew interactive install from Brewfile
 {
   local brewfile="$DOTFILES/macos/Brewfile"
   local selected_command=$(rg -N -e '^brew ' "$brewfile" | fzf)
@@ -880,7 +880,7 @@ function brew_install() # Brew interactive install from Brewfile
   fi
 }
 
-function brewip() # Install (one or multiple) selected application(s)
+brewip() # Install (one or multiple) selected application(s)
 {
     local inst=$(brew search $@ | fzf -m)
 
@@ -889,11 +889,11 @@ function brewip() # Install (one or multiple) selected application(s)
     fi
 }
 
-function change_node_version() # Auto change node version with .nvm
+change_node_version() # Auto change node version with .nvm
 {
-	nvmrc="./.nvmrc"
-	if [ -f "$nvmrc" ]; then
-		version="$(cat "$nvmrc")"
-		nvm use "$version"
-	fi
+    nvmrc="./.nvmrc"
+    if [ -f "$nvmrc" ]; then
+        version="$(cat "$nvmrc")"
+        nvm use "$version"
+    fi
 }
