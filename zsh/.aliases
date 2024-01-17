@@ -59,7 +59,7 @@ alias ahelp="grep "^alias" $DOTFILES/zsh/.aliases | sed 's/alias/+/g'"
 
 # YouTube DLL
 alias yt-mp3="youtube-dl --extract-audio --audio-format mp3"
-alias yt-mp4=" youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' $1"
+alias yt-mp4="youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' $1"
 
 # Generate random password using pwgen
 alias pw="pwgen 16 -1 | pbcopy"
@@ -213,6 +213,7 @@ alias plo="poetry show --outdated | grep --file=<(poetry show --tree | grep '^\w
 # Install deps from requirements and skip commented
 alias pir="sed -e '/^#/d' requirements.txt | xargs poetry add"
 alias pshell="poetry shell"
+alias pclear="poetry cache clear --all pypi && python -m pip cache purge"
 
 # JS & Node
 alias remove_console_log="sed -i '' '/console.log(.*)/d' */**.{ts,js,tsx,jsx}"
