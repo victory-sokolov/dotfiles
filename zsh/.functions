@@ -312,8 +312,9 @@ clone() # Clone repo and install dependencies
 	cd "$(basename "$_" .git)" || exit
 
 	if test -f "./package.json"; then
-		echo "Installing NPM dependencies.."
-		npm install
+        package_manager=$(get_node_package_manager)
+		echo "Installing NPM dependencies.. Using $package_manager packagee manager"
+	    "$package_manager" install
 		return 0
 	elif test -f "./pyproject.toml"; then
 		echo "Installing Poetry dependencies..."
