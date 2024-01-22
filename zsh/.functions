@@ -348,6 +348,13 @@ clean-merged-branches() # Delete all merged branches
     git branch --merged | grep -v "\*" | xargs -n 1 git branch -d
 }
 
+pm() # List Git projects with fzf
+{ 
+    local depth="${1:-3}"
+    local selected_folder
+    selected_folder=$(find . -maxdepth "$depth" -type d -name ".git" -prune -exec dirname {} \; | fzf --height=50%); [ -n "$selected_folder" ] && code "$selected_folder"
+}
+
 gacp() # Git: add all, commit and push. [-m "comment"]
 {
 	git add .

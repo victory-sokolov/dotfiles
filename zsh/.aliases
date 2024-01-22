@@ -96,8 +96,6 @@ alias ~="cd ~"
 alias dotfiles="cd ~/dotfiles"
 alias blog="~/dev/viktorsokolov && code . && yarn run dev"
 alias dirs="dirs -v"
-# List Git projects with fzf
-alias pm='function _pm() { local depth="${1:-3}"; local selected_folder; selected_folder=$(find . -maxdepth "$depth" -type d -name ".git" -prune -exec dirname {} \; | fzf --height=50%); [ -n "$selected_folder" ] && code "$selected_folder"; }; _pm'
 
 # quick edit
 alias zshrc="vim $DOTFILES/zsh/.zshrc"
