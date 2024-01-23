@@ -905,3 +905,35 @@ change_node_version() # Auto change node version with .nvm
         nvm use "$version"
     fi
 }
+
+duplicate_file() # Duplicates a file N times 
+{
+  if [ $# -ne 2 ]; then
+    echo "Usage: duplicate_file_n_times <source_file> <number_of_duplicates>"
+    return 1
+  fi
+
+  source_file="$1"
+  number_of_duplicates="$2"
+
+  if [ ! -e "$source_file" ]; then
+    echo "Error: Source file '$source_file' not found."
+    return 1
+  fi
+
+  if ! [[ "$number_of_duplicates" =~ ^[0-9]+$ ]]; then
+    echo "Error: Invalid number of duplicates. Please provide a positive integer."
+    return 1
+  fi
+
+  # Extract file extension
+  file_extension="${source_file##*.}"
+
+  # Duplicate the file 'n' times
+  for ((i = 1; i <= number_of_duplicates; i++)); do
+    cp "$source_file" "${source_file%.*}_duplicate_$i.$file_extension"
+  done
+
+  echo "File '$source_file' duplicated $number_of_duplicates times."
+}
+
