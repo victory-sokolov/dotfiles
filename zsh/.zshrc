@@ -37,6 +37,11 @@ export DISABLE_UPDATE_PROMPT="true"
 export DISABLE_AUTO_UPDATE="true"
 export ENABLE_CORRECTION="true"
 
+# Dotfiles exports 
+export DOTFILES="$HOME/dotfiles"
+export PATH="$DOTFILES/scripts/git:$PATH"
+export PATH="$DOTFILES/scripts:$PATH"
+
 # Plugins
 plugins=(
     evalcache
@@ -99,9 +104,9 @@ source "$ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 source "$ZSH/custom/plugins/zsh-completions/zsh-completions.plugin.zsh"
 source "$ZSH/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source "$ZSH/custom/plugins/zsh-autoenv/autoenv.zsh"
+source "$DOTFILES/zsh/.exports"
 source "$DOTFILES/zsh/.functions"
 source "$DOTFILES/zsh/.aliases"
-source "$DOTFILES/zsh/.exports"
 source "$DOTFILES/zsh/.dockerfunc"
 source "$DOTFILES/git/.git-functions"
 
