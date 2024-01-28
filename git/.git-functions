@@ -1,0 +1,207 @@
+#!/bin/zsh
+
+
+# fshow_preview - git commit browser with previews
+fshow() # git commit browser
+{
+  git log --graph --color=always \
+      --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
+  fzf --no-sort --tiebreak=index --bind=ctrl-s:toggle-sort \
+      --bind "ctrl-m:execute:
+                (grep -o '[a-f0-9]\{7\}' | head -1 |
+                xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
+                {}
+FZF-EOF"
+}
+
+gcbn() # Switch branch with fzf
+{
+  result=$(git branch -a --color=always | grep -v '/HEAD\s' | sort |
+    fzf --height 50% --border --tac --preview-window right:70% \
+      --preview 'git log --oneline --graph --date=short --pretty="format:%C(auto)%cd %h%d %s" $(sed s/^..// <<< {} | cut -d" " -f1) | head -'$LINES |
+    sed 's/^..//' | cut -d' ' -f1)
+
+  if [[ $result != "" ]]; then
+    if [[ $result == remotes/* ]]; then
+      git checkout --track $(echo "$result" | sed 's#remotes/##')
+    else
+      git checkout "$result"
+    fi
+  fi
+}
+
+gstlf() # Git stash list with fzf
+{
+  local out sha q k
+  while out=$(
+    git stash list --pretty="%C(yellow)%h | %C(green)%cr %C(blue)%gs" |
+    fzf-down --no-sort --query="$q" --print-query \
+      --expect=ctrl-a,ctrl-b
+  );
+  do
+    IFS=$'\n'; set -f
+    res=($(<<< "$out"))
+    unset IFS; set +f
+
+    q="${res[0]}"
+    k="${res[1]}"
+    sha="${res[-1]}"
+    sha="${sha%% *}"
+
+    [[ -z "$sha" ]] && continue
+
+    if [[ "$k" == 'ctrl-a' ]]; then
+      git stash apply "$sha"
+      break;
+    elif [[ "$k" == 'ctrl-b' ]]; then
+      git stash branch "stash-$sha" "$sha"
+      break;
+    else
+      git diff "$sha"
+    fi
+  done
+}
+
+worktree() # Git worktree with fzf
+{
+    worktree=$(
+        git worktree list | fzf \
+            --prompt="Switch Worktree: " \
+            --height 40% |
+            awk '{print $1}'
+    )
+
+    cd "$worktree" || return
+}
+
+# Ref: https://gist.github.com/Bhupesh-V/43bc0f2d8b84ea6c2ce767de56260b34
+commit() # Interactive git commit
+{
+    gitmoji_path="$DOTFILES/.config/gitmojis.csv"
+
+    emoji=$(cat "$gitmoji_path" | fzf --prompt="Choose gitmoji: " --height 40% | awk '{print $1}')
+    printf "Emoji: %s\n" "$emoji"
+
+    read -erp "Enter Commit Title: " title
+    echo -e "Enter Commit Message (Ctrl+d when done):"
+    msg=$(</dev/stdin)
+    echo
+    read -erp "Issue / PR ref #: " issue_ref
+    if [[ "$issue_ref" ]]; then
+        git commit -m "$emoji $title (#$issue_ref)" -m "$msg"
+    else
+        git commit -m "$emoji $title" -m "$msg"
+    fi
+}
+
+stage() # Git interactive stage
+{
+    readarray -t choices < <(git ls-files --other --modified --exclude-standard | fzf \
+        --prompt="Stage Files: " \
+        --height 40% --reverse --multi \
+        --header="Choose files to stage (TAB to select multiple files)"
+    )
+
+    git add "${choices[@]}"
+}
+
+clone() # Clone repo and install dependencies
+{
+	git clone "$1"
+	cd "$(basename "$_" .git)" || exit
+
+	if test -f "./package.json"; then
+        package_manager=$(get_node_package_manager)
+		echo "Installing NPM dependencies.. Using $package_manager packagee manager"
+	    "$package_manager" install
+		return 0
+	elif test -f "./pyproject.toml"; then
+		echo "Installing Poetry dependencies..."
+        poetry init
+		poetry install
+		return 0
+	elif test -f "./requirements.txt"; then
+		python3 -m venv ./venv
+		source venv/bin/activate
+		pip install -r requirements.txt
+		echo "Installing dependenciesfrom requirements.txt..."
+		return 0
+	elif test -f "./composer.json"; then
+		echo "Installing composer dependencies..."
+		composer install
+		return 0
+	fi
+}
+
+pm() # List Git projects with fzf
+{ 
+    local depth="${1:-3}"
+    local selected_folder
+    selected_folder=$(find . -maxdepth "$depth" -type d -name ".git" -prune -exec dirname {} \; | fzf --height=50%); [ -n "$selected_folder" ] && code "$selected_folder"
+}
+
+gacp() # Git: add all, commit and push. [-m "comment"]
+{
+	git add .
+	git commit "$@"
+	git push
+}
+
+ggs() # push & commit with message `update`
+{
+    git add -A
+    git commit -m 'update'
+    git push
+}
+
+git-https() # Git: Http to Https
+{
+	git remote set-url origin https://github.com/$(git remote get-url origin | sed 's/https:\/\/github.com\///' | sed 's/git@github.com://')
+}
+
+git-ssh() # Git: Https to SSH
+{
+	git remote set-url origin git@github.com:$(git remote get-url origin | sed 's/https:\/\/github.com\///' | sed 's/git@github.com://')
+}
+
+gitFind() # Search for a string in git log
+{
+    git log --all -S "$1"
+}
+
+gitignore() # Get .gitignore file for specific lang
+{
+	curl -sL "https://www.gitignore.io/api/$@" >> .gitignore
+}
+
+pr-checkout() # Checkout to PR
+{
+  local jq_template pr_number
+
+  jq_template='"'\
+'#\(.number) - \(.title)'\
+'\t'\
+'Author: \(.user.login)\n'\
+'Created: \(.created_at)\n'\
+'Updated: \(.updated_at)\n\n'\
+'\(.body)'\
+'"'
+
+  pr_number=$(
+    gh api 'repos/:owner/:repo/pulls' |
+    jq ".[] | $jq_template" |
+    sed -e 's/"\(.*\)"/\1/' -e 's/\\t/\t/' |
+    fzf \
+      --with-nth=1 \
+      --delimiter='\t' \
+      --preview='echo -e {2}' \
+      --preview-window=top:wrap |
+    sed 's/^#\([0-9]\+\).*/\1/'
+  )
+
+  if [ -n "$pr_number" ]; then
+    gh pr checkout "$pr_number"
+  fi
+}
+
+

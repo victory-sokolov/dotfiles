@@ -19,6 +19,8 @@ init: symlinks ## Symlink files
 	ln -vsf ${PWD}/zsh/.functions ${HOME}/.functions
 	ln -vsf ${PWD}/zsh/.exports ${HOME}/.exports
 	ln -vsf ${PWD}/zsh/.inputrc ${HOME}/.inputrc
+	ln -vsf ${PWD}/zsh/.dockerfunc ${HOME}/.dockerfunc
+	ln -vsf ${PWD}/git/.git-functions ${HOME}/.git-functions	
 	ln -vsf ${PWD}/nvm ${HOME}/.config/
 	ln -vsf ${PWD}/.ignore ${HOME}/.ignore
 	ln -vsf ${PWD}/.curlrc ${HOME}/.curlrc
