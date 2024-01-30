@@ -51,7 +51,6 @@ plugins=(
     nvm
 	extract
 	sudo
-	docker
 	per-directory-history
 	react-native
     fzf-tab
