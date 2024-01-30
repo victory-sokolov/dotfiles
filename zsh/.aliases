@@ -186,7 +186,8 @@ alias dip="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
 alias dclean="dstop && docker rm -f $(docker ps -q -a)"
 
 # NPM
-alias npm-update="npx npm-check -u";
+alias npm-update="npx npm-check-updates -u";
+alias npm-check="npx npm-check -u"
 alias nlg="npm list -g --depth=0"
 alias nrd="npm run dev"
 alias nrt="npm run test"
