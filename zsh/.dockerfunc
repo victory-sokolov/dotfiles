@@ -81,7 +81,7 @@ drm() # Select a docker container to remove
   docker ps -a | sed 1d | fzf -q "$1" --no-sort -m --tac | awk '{ print $1 }' | xargs -r docker rm
 }
 
-ds() # Select a running docker container to stop
+dcs() # Select a running docker container to stop
 {
   local cid
   cid=$(docker ps | sed 1d | fzf -q "$1" | awk '{print $1}')
