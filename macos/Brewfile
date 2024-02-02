@@ -67,6 +67,8 @@ cask 'visual-studio-code'       # Visual Studio Code
 
 # Node
 brew 'node'                     # NodeJs
+tap "oven-sh/bun"               # Tap for Bun JS runtime
+brew 'bun'                      # Bun JS runtime
 brew 'yarn'                     # Yarn package manager
 brew 'nvm'                      # Yarn node version manager
 brew 'pnpm'                     # PNPM package manager
@@ -94,6 +96,7 @@ brew 'lazydocker'               # Lazydocker manage Docker containers
 brew 'ctop'                     # Container metrics and monitoring
 brew 'hadolint'                 # Docker linter
 brew 'kubernetes-cli'           # Kubernetes CLI
+brew 'minikube'                 # Minikube
 
 # ZSH, OH-MY-ZSH plugins
 brew 'autojump'
