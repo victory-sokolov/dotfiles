@@ -726,3 +726,7 @@ duplicate_file() # Duplicates a file N times
   echo "File '$source_file' duplicated $number_of_duplicates times."
 }
 
+poetry-update() ## Update Poetry packages interactively
+{
+    poetry show --outdated -T | fzf -m | awk '{printf $1"@latest" " "}' | xargs -I {} poetry add {}
+}
