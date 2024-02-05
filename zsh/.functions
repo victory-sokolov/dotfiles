@@ -313,45 +313,6 @@ token() # generate secret, token
 	python3 -c 'import secrets; print(secrets.token_urlsafe(16))'
 }
 
-# ReactNative
-bapk() # build android apk (Must run inside react-native project)
-{
-    apk_path="./android/app/build/outputs/apk/debug"
-
-	if [ ! -f package.json ]; then
-		echo "package.json was not found. Run command inside root dir of your project."
-		return 1
-	fi
-
-	if ! grep --quiet '"react-native":' package.json; then
-		echo "Not a react-native project"
-		return 1
-	fi
-
-	if [[ -d "./android/app/src/main" && ! -d "android/app/src/main/assets" ]]; then
-		mkdir android/app/src/main/assets
-	fi
-
-	react-native bundle --platform android --dev false \
-	                    --entry-file index.js \
-	                    --bundle-output android/app/src/main/assets/index.android.bundle \
-	                    --assets-dest android/app/build/intermediates/res/merged/release/ \
-	                    && rm -rf android/app/src/main/res/drawable-* \
-	                    && rm -rf android/app/src/main/res/raw/* \
-	                    && cd android && ./gradlew assembleRelease && cd ..
-
-	# open folder where apk file is stored
-    xdg-open ${apk_path}
-}
-
-rna() # clean cache & run react-native android simulator
-{
-    cd android && ./gradlew clean
-    cd .. && react-native run-android
-}
-
-# Database related functions
-
 # Postgres
 psql-recreate-db() # Drop and Create db
 {
@@ -477,12 +438,6 @@ pngtojpg() # Bulk convert png to jpg
 	for i in *.png ; do convert "$i" "${i%.*}.jpg" ; done
 }
 
-dockerlint() # Lint Dockerfile with Hadolint
-{
-  docker container run --rm -i \
-    hadolint/hadolint hadolint --ignore DL3008 "${@}" - < Dockerfile
-}
-
 # C++ snippets
 cpp-run() # compile and run executable
 {
@@ -510,14 +465,6 @@ clean_deps() # Remove node, python, php dependencies
     do
         find ~/dev -name "$folder" -type d -maxdepth 4 -mtime +"$days" -exec rm -rf {} \;
     done
-}
-
-clean_containers() # Remove containers that were used N month ago
-{
-    days=${1:-90}
-    hours=$((24 * days))
-    echo $hours
-    docker image prune --all --filter "until=4320h"
 }
 
 # Source: https://kittygiraudel.com/snippets/groom-dead-code/
