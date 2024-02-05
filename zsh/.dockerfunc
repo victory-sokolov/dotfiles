@@ -108,6 +108,20 @@ denv() # Print all env variables of the container
     docker inspect -f '{{range $index, $value := .Config.Env}}{{println $value}}{{end}}' "$@"
 }
 
+dockerlint() # Lint Dockerfile with Hadolint
+{
+  docker container run --rm -i \
+    hadolint/hadolint hadolint --ignore DL3008 "${@}" - < Dockerfile
+}
+
+clean_containers() # Remove containers that were used N month ago
+{
+    days=${1:-90}
+    hours=$((24 * days))
+    echo $hours
+    docker image prune --all --filter "until=4320h"
+}
+
 # Docker containers aliases and functions
 # Scrapy splash container for data scrapping
 alias splash="docker run --rm --name scrapy-splash -d -p 8050:8050 scrapinghub/splash"
