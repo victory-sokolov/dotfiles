@@ -50,6 +50,7 @@
     tool = vscode
     indentHeuristic = true
     compactionHeuristic = true
+    algorithm = histogram
 
 [difftool "vscode"]
     cmd = code --wait --diff $LOCAL $REMOTE
@@ -156,30 +157,20 @@
 
     co = 'checkout'
     gcb = 'copy-branch-name'
-    br = 'branch'
-    wt = 'git worktree'
-    # Switch to a branch, creating it if necessary
-	go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
 
-    # check current Github PR's
-    prs='hub pr list -L 20 -b develop --format="%t%n - Branch: [%H]%n - %U%n - %l%n%n"'
-    gac = 'git add -A && git commit -m'
-    ge = 'git-edit-new'
-    gpom = 'git push origin master'
-    gpf = 'git push --force-with-lease'
-    lg = log --color --graph --stat --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    # Worktree
+    wt = 'git worktree'
+
+    # Branches
+    br = 'branch'
+    # Switch to a branch, creating it if necessary
+	go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"    
     # Show latest used branches based on the time of the most recent commit
     lb = !git reflog show --pretty=format:'%gs ~ %gd' --date=relative | grep 'checkout:' | grep -oE '[^ ]+ ~ .*' | awk -F~ '!seen[$1]++' | head -n 10 | awk -F' ~ HEAD@{' '{printf(\"  \\033[33m%s: \\033[37m %s\\033[0m\\n\", substr($2, 1, length($2)-1), $1)}'
-    current = rev-parse --abbrev-ref HEAD
     branchcleanup = !git remote prune origin
-    # Remove all merge branches with master
+    # Remove all merged branches with master
     bclean = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
-    # remove the file from git and from the history
-    remove='git ls-files --ignored --exclude-standart | xargs -0 git rm -r'
-    undo = reset HEAD~1
-    # update all local branches. Sync with the target branch
-    up = "!f() { git pull --all --rebase --autostash; git bclean; }; f"
-    
+
     # Stash
     pop = stash pop
     st = 'git stash save --include-untracked'
@@ -192,7 +183,21 @@
     month = log --since='last month' --author="$(git config user.name)" --oneline
     # Check latest changes for specific file, requires single argument file path and --since argument
     latest-changes = "!read -p 'Enter the --since value (e.g., 2 weeks ago): ' since; git log --since=\"$since\" --follow --oneline -- \"$1\" | awk '{print $1}' | xargs -I{} git diff {}^..{} -- \"$1\""
+    lg = log --color --graph --stat --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     
+    # check current Github PR's
+    prs='hub pr list -L 20 -b develop --format="%t%n - Branch: [%H]%n - %U%n - %l%n%n"'
+    gac = 'git add -A && git commit -m'
+    ge = 'git-edit-new'
+    gpom = 'git push origin master'
+    gpf = 'git push --force-with-lease'
+    current = rev-parse --abbrev-ref HEAD
+    # remove the file from git and from the history
+    remove='git ls-files --ignored --exclude-standart | xargs -0 git rm -r'
+    undo = reset HEAD~1
+    # update all local branches. Sync with the target branch
+    up = "!f() { git pull --all --rebase --autostash; git bclean; }; f"
+
     pf = "push --force-with-lease"
     # Fuzzy switch git branch
     fs = "!f() { git branch | grep $1 | xargs git switch; }; f"
