@@ -91,6 +91,9 @@
     added = yellow
     changed = red
 
+[status]
+    submoduleSummary = true
+
 [pull]
     rebase = true
     ff = only
