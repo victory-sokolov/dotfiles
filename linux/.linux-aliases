@@ -1,7 +1,7 @@
 alias install="sudo apt-get install"
 alias remove="sudo apt-get purge --auto-remove"
 alias reboot="sudo reboot"
-alias update="sudo apt-get update --fix-missing && sudo apt-get upgrade && sudo apt autoremove -y && sudo apt-get clean && sudo apt autoclean && omz update"
+alias update="sudo apt-get update --fix-missing && sudo apt-get upgrade && sudo apt autoremove -y && sudo apt-get clean && sudo apt autoclean"
 # show installed packages
 alias show-installed="comm -23 <(apt-mark showmanual | sort -u) <(gzip -dc /var/log/installer/initial-status.gz | sed -n 's/^Package: //p' | sort -u) | sort"
 alias version="{ uname & lsb_release -r -s; } | paste -d ' ' -s"

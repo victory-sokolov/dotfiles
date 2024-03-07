@@ -222,3 +222,5 @@ alias remove_console_log="sed -i '' '/console.log(.*)/d' */**.{ts,js,tsx,jsx}"
 
 # Suffix Aliases
 alias -s {py,go,js,ts}="vim"
+
+alias _update="omz update; poetry self update; npm update -g; npm-clean; pclear"
