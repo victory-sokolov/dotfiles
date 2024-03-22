@@ -210,6 +210,10 @@ clitools: ## Install cli tools
 	# Tidy-HTML5 format html in CLI
 	install_latest_release htacg/tidy-html5
 
+	# Vivid LS
+	wget "https://github.com/sharkdp/vivid/releases/download/v0.9.0/vivid_0.9.0_amd64.deb"
+	sudo dpkg -i vivid_0.9.0_amd64.deb
+
 nvim: ## Neovim + Astrovim
 	cd ~
 	curl -LO https://github.com/neovim/neovim/releases/download/v0.9.1/nvim-linux64.deb
