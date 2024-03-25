@@ -6,6 +6,7 @@ alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 
 # copy working directory to clipboard
 alias cwd="pwd | tr -d '\r\n' | pbcopy -selection clipboard"
+alias uuid='uuidgen | tr "[:upper:]" "[:lower:]" | pbcopy && pbpaste && echo'
 
 # Generate random password using pwgen
 alias pw="pwgen 16 -1 | pbcopy"

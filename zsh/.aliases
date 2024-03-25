@@ -1,7 +1,7 @@
 # print each PATH entry on a separate line
 alias path='echo $PATH | sed -e "s/:/\n/g" | fzf'
 # tree with ignoring specific directories
-alias tr="tree -CL 2 -I 'node_modules|cache|test_*|__pycache__'"
+alias t="tree -CL 2 -I 'node_modules|cache|test_*|__pycache__'"
 alias cls="clear"
 alias q="exit"
 alias ctrash="sudo rm -rf ~/.local/share/Trash/files/*"
