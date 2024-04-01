@@ -317,7 +317,7 @@ token() # generate secret, token
 psql-recreate-db() # Drop and Create db
 {
    db_name="$@"
-   dropdb "$db_name"
+   dropdb --if-exists "$db_name"
    createdb "$db_name" 
    echo "Database $db_name successfully re-created!"
 }
