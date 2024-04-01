@@ -314,12 +314,15 @@ token() # generate secret, token
 }
 
 # Postgres
-psql-recreate-db() # Drop and Create db
+create-db() # Drop and re-create db if exists or create new one
 {
-   db_name="$@"
-   dropdb --if-exists "$db_name"
-   createdb "$db_name" 
-   echo "Database $db_name successfully re-created!"
+    if [ "${#@}" -eq 0 ]; then
+        echo "No DB name provided."
+    else
+        dropdb --if-exists "$@"
+        createdb -h localhost -p 5432 -U postgres "$@" 
+        echo "Database $@ successfully re-created!"
+    fi
 }
 
 mysqldb() # MYSQL base commands (refresh, create, drop, list)
