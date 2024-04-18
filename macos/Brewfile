@@ -53,6 +53,7 @@ brew 'zoxide'                   # Smart cd command
 brew 'htop'                     # top alternative to see running processes  
 brew 'vivid'                    # Theme for LS_COLORS
 brew 'myrepos'                  # Run commands in multiple Git repositories
+brew 'watch'                    # Executes a program periodically,
 
 # Git
 brew 'git'                      # Git Code versioning
