@@ -178,7 +178,7 @@ alias tm="tmux new -s (pwd | sed 's/.*\///g')"
 
 # Docker
 alias dc="docker-compose"
-alias dps="docker ps --format 'table 👾 {{.ID}} \t {{.Names}} \t {{.Status}} \t {{.Image}}'"
+alias dps="docker ps --format 'table 👾 {{.ID}} \t {{.Names}} \t {{.Status}} \t {{.Ports}}'"
 
 alias dm="docker-machine"
 alias dcup="docker-compose up -d"
