@@ -319,9 +319,10 @@ create-db() # Drop and re-create db if exists or create new one
     if [ "${#@}" -eq 0 ]; then
         echo "No DB name provided."
     else
-        dropdb -f --if-exists "$@"
-        createdb -h localhost -p 5432 -U postgres "$@" 
-        echo "Database $@ successfully re-created!"
+        port=${2:-5432}
+        dropdb -f --if-exists "$1"
+        createdb -h 127.0.0.1 -p "$port" -U postgres "$1" 
+        echo "Database $1 successfully re-created!"
     fi
 }
 
