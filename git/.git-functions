@@ -205,7 +205,7 @@ pr-checkout() # Checkout to PR
 }
 
 
-fzf_git_hashes() # Git FZF previe commit hash and content
+fzf-git-hashes() # Git FZF previe commit hash and content
 {
   git log --date=short --format="%C(green)%C(bold)%cd %C(auto)%h%d %s (%an)" --graph --color=always |
   fzf --no-cycle --ansi --no-sort --bind 'ctrl-s:toggle-sort' \
@@ -216,4 +216,24 @@ fzf_git_hashes() # Git FZF previe commit hash and content
     --color hl:underline,hl+:underline \
     --preview 'grep -o "[a-f0-9]\{7,\}" <<< {} | head -n 1 | xargs git show --color=always' "$@" |
   awk 'match($0, /[a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9]*/) { print substr($0, RSTART, RLENGTH) }'
+}
+
+fzf-stage() # Git interactive stage
+{
+    git add $(git ls-files \
+        --modified \
+        --deleted \
+        --other \
+        --exclude-standard \
+        --deduplicate \
+        $(git rev-parse --show-toplevel) \
+        | fzf --multi --reverse --no-sort)
+}
+
+fzf_unstage() # Git interactive unstage
+{
+    git reset -- $(git status --short \
+        | grep '^[A-Z]' \
+        | awk '{print $NF}' \
+        | fzf --multi --reverse --no-sort)
 }
