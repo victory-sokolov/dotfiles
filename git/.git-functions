@@ -94,17 +94,6 @@ commit() # Interactive git commit
     fi
 }
 
-stage() # Git interactive stage
-{
-    readarray -t choices < <(git ls-files --other --modified --exclude-standard | fzf \
-        --prompt="Stage Files: " \
-        --height 40% --reverse --multi \
-        --header="Choose files to stage (TAB to select multiple files)"
-    )
-
-    git add "${choices[@]}"
-}
-
 clone() # Clone repo and install dependencies
 {
 	git clone "$1"
@@ -218,7 +207,7 @@ fzf-git-hashes() # Git FZF previe commit hash and content
   awk 'match($0, /[a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9]*/) { print substr($0, RSTART, RLENGTH) }'
 }
 
-fzf-stage() # Git interactive stage
+stage() # Git interactive stage
 {
     git add $(git ls-files \
         --modified \
@@ -230,10 +219,73 @@ fzf-stage() # Git interactive stage
         | fzf --multi --reverse --no-sort)
 }
 
-fzf_unstage() # Git interactive unstage
+unstage() # Git interactive unstage
 {
     git reset -- $(git status --short \
         | grep '^[A-Z]' \
         | awk '{print $NF}' \
         | fzf --multi --reverse --no-sort)
+}
+
+git-preview() # Git view commit, diff between two selected commits (Select commit using Enter)
+{
+    git log --graph --color \
+    --format='%C(white)%h - %C(green)%cs - %C(blue)%s%C(red)%d' \
+    | fzf \
+    --ansi \
+    --reverse \
+    --no-sort \
+    --preview='
+        hash=$(echo {} | grep -o "[a-f0-9]\{7\}" | sed -n "1p") \
+        && [[ $hash != "" ]] \
+        && git show --color $hash
+        ' \
+    --bind='enter:execute(
+        hash=$(echo {} | grep -o "[a-f0-9]\{7\}" | sed -n "1p") \
+        && [[ $hash != "" ]] \
+        && sh -c "git show --color $hash | less -R"
+        )' \
+    --header-first \
+    --header '
+        > ENTER to display the diff
+    '
+}
+
+git-rebase() # Git interactive rebase
+{
+    git log --graph --color --format='%C(white)%h - %C(green)%cs - %C(blue)%s%C(red)%d' | fzf \
+        --ansi \
+        --reverse \
+        --no-sort \
+        --preview='
+            hash=$(echo {} | grep -o "[a-f0-9]\{7\}" | sed -n "1p") \
+            && [[ $hash != "" ]] \
+            && git show --color $hash
+            ' \
+        --bind='enter:execute(
+            hash=$(echo {} | grep -o "[a-f0-9]\{7\}" | sed -n "1p") \
+            && [[ $hash != "" ]] \
+            && sh -c "git show --color $hash | less -R"
+            )' \
+        --bind='alt-c:execute(
+            hash=$(echo {} | grep -o "[a-f0-9]\{7\}" | sed -n "1p") \
+            && [[ $hash != "" ]] \
+            && git checkout $hash
+            )+abort' \
+        --bind='alt-r:execute(
+            hash=$(echo {} | grep -o "[a-f0-9]\{7\}" | sed -n "1p") \
+            && [[ $hash != "" ]] \
+            && git reset $hash
+            )+abort' \
+        --bind='alt-i:execute(
+            hash=$(echo {} | grep -o "[a-f0-9]\{7\}" | sed -n "1p") \
+            && [[ $hash != "" ]] \
+            && git rebase --interactive $hash
+            )+abort' \
+        --header-first \
+        --header '
+        > ENTER to display the diff
+        > ALT-C to checkout the commit | ALT-R to reset to the commit
+        > ALT-I to rebase interactively
+        '
 }
