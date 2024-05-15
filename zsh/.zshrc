@@ -93,7 +93,7 @@ zstyle ":completion:*" cache-path ~/.zsh/cache
 zstyle ":completion:*:options" list-colors "=^(-- *)=34"
 zstyle ":omz:plugins:nvm" lazy true
 zstyle ":omz:plugins:rbenv" lazy true
-zstyle ":omz:plugins:pyenv" lazy true
+# zstyle ":omz:plugins:pyenv" lazy true
 # Ignore useless files, like .pyc.
 zstyle ":completion:*:(all-|)files" ignored-patterns "(|*/).pyc"
 zstyle ':autocomplete:*' default-context history-incremental-search-backward
@@ -181,12 +181,10 @@ chpwd_functions=(change_node_version python_venv)
 
 eval "$(zoxide init zsh)"
 
-pyenv() {
-    export PYENV_ROOT="$HOME/.pyenv"
-    export PATH="$PYENV_ROOT/bin:$PATH"
-    export PIPENV_PYTHON="$PYENV_ROOT/shims/python"
-    _evalcache pyenv init --path
-}
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+export PIPENV_PYTHON="$PYENV_ROOT/shims/python"
+_evalcache pyenv init --path
 
 rbenv() {
     export PATH="$HOME/.rbenv/bin:$PATH"
