@@ -159,7 +159,7 @@ short() # Shorten url
    curl -s http://tinyurl.com/api-create.php\?url\="$url" | xargs
 }
 
-lowerDir # Lower case all files in the current directory
+lowerDir() # Lower all files in the current directory
 {
     for i in *; do mv "$i" "$(echo "$i" | tr '[:upper:]' '[:lower:]')"; done
 }
