@@ -188,8 +188,11 @@ alias dip="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
 # Stop and remove all containers
 alias dclean="dstop && docker rm -f $(docker ps -q -a)"
 
+# Kubernetes
+alias kubectl="minikube kubectl --"
+
 # NPM
-alias npm-update="npx npm-check-updates -u";
+alias npm-update="npx npm-check-updates -u"
 alias npm-check="npx npm-check -u"
 alias nlg="npm list -g --depth=0"
 alias nrd="npm run dev"
