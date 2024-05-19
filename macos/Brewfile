@@ -99,7 +99,8 @@ brew 'ctop'                     # Container metrics and monitoring
 brew 'hadolint'                 # Docker linter
 brew 'kubernetes-cli'           # Kubernetes CLI
 brew 'minikube'                 # Minikube
-brew 'haproxy'                  # HAProxy       
+brew 'haproxy'                  # HAProxy 
+brew 'terraform'                # Terraform 
 
 # ZSH, OH-MY-ZSH plugins
 brew 'autojump'
