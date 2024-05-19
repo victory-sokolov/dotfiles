@@ -201,7 +201,7 @@
     # update all local branches. Sync with the target branch
     up = "!f() { git pull --all --rebase --autostash; git bclean; }; f"
 
-    pf = "push --force-with-lease"
+    pf = "push --force-with-lease --force-if-includes"
     # Fuzzy switch git branch
     fs = "!f() { git branch | grep $1 | xargs git switch; }; f"
 
@@ -216,7 +216,7 @@
     # Checkout pull-request from github
     # Usage: git copr 123 - where 123 is pr number
     copr = "!f() { git fetch -fu ${2:-origin} refs/pull/$1/head:pr/$1 && \
-               git checkout pr/$1; }; f"
+            git checkout pr/$1; }; f"
 
     # Ignoring file temporarily
     ignore = update-index --assume-unchanged
