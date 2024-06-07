@@ -101,6 +101,7 @@ brew 'kubernetes-cli'           # Kubernetes CLI
 brew 'minikube'                 # Minikube
 brew 'haproxy'                  # HAProxy 
 brew 'terraform'                # Terraform 
+brew 'helm'                     # Helm Kubernetes package manager
 
 # ZSH, OH-MY-ZSH plugins
 brew 'autojump'
