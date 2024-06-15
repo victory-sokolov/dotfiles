@@ -117,6 +117,9 @@ export CUDA_HOME=/usr/local/cuda
 export LD_LIBRARY_PATH=/usr/lib/wsl/lib:$LD_LIBRARY_PATH
 export PATH=$PATH:$CUDA_HOME/bin
 
+# macOS
+export DOCKER_DEFAULT_PLATFORM=linux/amd64
+
 # TMux
 # ~/.tmux/plugins
 export PATH=$HOME/.tmux/plugins/t-smart-tmux-session-manager/bin:$PATH
