@@ -173,23 +173,26 @@ findEmpty() # Find empty files and directories in current directory
 gifify() # Video to GIF
 {
     frames=5
-    delay=20
+    delay=16
 
   if [[ -n "$1" ]]; then
     # Extract file name without extension
     file=$(basename "$1")
     filename="${file%.*}"
 
-	if [[ $2 == '--good' ]]; then
-	  ffmpeg -i "$1" -r 10 -vcodec png out-static-%05d.png
-	  time convert -verbose +dither -layers Optimize -resize 900x900\> out-static*.png  GIF:- | gifsicle --colors 128 --delay=$delay --loop --optimize=3 --multifile - > "$filename.gif"
-	  rm out-static*.png
-	else
-	  ffmpeg -i "$1" -s 600x400 -pix_fmt rgb24 -r $frames -f gif - | gifsicle --optimize=3 --delay=$delay > "$filename.gif"
-	fi
-  else
-	echo "proper usage: gifify <input_movie.mov>. You DO need to include extension."
-  fi
+    if [[ $2 == '--good' ]]; then
+        ffmpeg -i "$1" -r 10 -vcodec png out-static-%05d.png
+        time convert -verbose +dither -layers Optimize -resize 900x900\> out-static*.png  GIF:- | gifsicle --colors 128 --delay=$delay --loop --optimize=3 --multifile - > "$filename.gif"
+        # Remove PNG files if they exist
+        if ls out-static-*.png 1> /dev/null 2>&1; then
+          rm out-static*.png
+        fi
+    else
+        ffmpeg -i "$1" -s 600x400 -pix_fmt rgb24 -r $frames -f gif - | gifsicle --optimize=3 --delay=$delay > "$filename.gif"
+    fi
+    else
+        echo "proper usage: gifify <input_movie.mov>. You DO need to include extension."
+    fi
 }
 
 fzf-down() {
