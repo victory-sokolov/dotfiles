@@ -145,11 +145,31 @@ linux: ## Install Ubuntu programms: flameshot, albert, spotify, dropbox, vlc, ch
 	sudo apt-get update -y
 	sudo apt install kazam -y
 
+brew: ## Brew package manager for Linux
+	sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+
+	test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+	test -r ~/.zshrc && echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.zshrc
+	echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.profile
+
 clitools: ## Install cli tools
 	sudo apt-get install -y \
 		at \
 		aptitude \
 		build-essential \
+		libssl-dev\
+		zlib1g-dev 
+		libncurses5-dev 
+		libncursesw5-dev \
+		libreadline-dev \
+		libsqlite3-dev \ 
+		libgdbm-dev \
+		libdb5.3-dev \ 
+		libbz2-dev \
+		libnss3-tools \
+		libexpat1-dev \ 
+		liblzma-dev \ 
+		tk-dev \
 		cmake \
 		csvtool \
 		curl \
