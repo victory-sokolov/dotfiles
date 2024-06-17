@@ -14,7 +14,6 @@ imagemagick
 inotify-tools
 jq
 libbz2-dev
-libbz2-dev
 libdb5.3-dev
 libexpat1-dev
 libffi-dev
@@ -25,8 +24,6 @@ libncursesw5-dev
 libnss3-tools
 libreadline-dev
 libsqlite3-dev
-libsqlite3-dev
-libssl-dev
 libssl-dev
 libtool
 lsd
