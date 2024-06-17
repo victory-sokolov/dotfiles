@@ -1,5 +1,3 @@
-#!/bin/bash
-
 at
 aptitude
 build-essential
