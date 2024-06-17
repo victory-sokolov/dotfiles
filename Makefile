@@ -157,8 +157,8 @@ clitools: ## Install cli tools
 		at \
 		aptitude \
 		build-essential \
-		libssl-dev\
-		zlib1g-dev 
+		libssl-dev \
+		zlib1g-dev \
 		libncurses5-dev 
 		libncursesw5-dev \
 		libreadline-dev \
