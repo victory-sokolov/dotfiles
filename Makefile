@@ -1,7 +1,9 @@
 # shellcheck disable=SC2086
-SHELL := /bin/zsh
+# Check if /bin/zsh is available or default to /bin/sh 
+ZSH_PATH := $(shell if [ -x /bin/zsh ]; then echo /bin/zsh; else echo /bin/sh; fi)
 
 ZSH_PLUGINS := "$(shell cat install/ohmyzshfile)"
+
 OS := $(shell ./scripts/detect_os.sh)
 
 .SILENT: symlinks
