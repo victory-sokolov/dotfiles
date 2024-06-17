@@ -1,8 +1,9 @@
 # shellcheck disable=SC2086
 # Check if /bin/zsh is available or default to /bin/sh 
-ZSH_PATH := $(shell if [ -x /bin/zsh ]; then echo /bin/zsh; else echo /bin/sh; fi)
+ZSH_PATH := $(shell if [ -x /bin/zsh ]; then echo /bin/zsh; else echo /bin/bash; fi)
 
 ZSH_PLUGINS := "$(shell cat install/ohmyzshfile)"
+UBUNTU_PACKAGES = "$(shell cat install/ubuntu-packages.sh)"
 
 OS := $(shell ./scripts/detect_os.sh)
 
@@ -153,66 +154,10 @@ brew: ## Brew package manager for Linux
 	echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.profile
 
 clitools: ## Install cli tools
-	sudo apt-get install -y \
-		at \
-		aptitude \
-		build-essential \
-		libssl-dev \
-		zlib1g-dev \
-		libncurses5-dev 
-		libncursesw5-dev \
-		libreadline-dev \
-		libsqlite3-dev \ 
-		libgdbm-dev \
-		libdb5.3-dev \ 
-		libbz2-dev \
-		libnss3-tools \
-		libexpat1-dev \ 
-		liblzma-dev \ 
-		tk-dev \
-		cmake \
-		csvtool \
-		curl \
-		dos2unix \
-		duf \
-		fonts-powerline \
-		ffmpeg \
-		fdupes \
-		fzf \
-		silversearcher-ag \
-		shellcheck \
-		sshpass \
-		imagemagick \
-		jq \
-		lsd \
-		libtool \
-		libbz2-dev \
-		libssl-dev \
-		inotify-tools \
-		nghttp2-client \
-		neofetch \
-		net-tools \
-		ncdu \
-		nvtop \
-		pkg-config \
-		pdftk \
-		pwgen \
-		preload \
-		powerline \
-		ripgrep \
-		openssh-server \
-		openssh-client \
-		subversion \
-		software-properties-common \
-		sqlite3 libsqlite3-dev \
-		tmux \
-		trash-cli \
-		tree \
-		traceroute \
-		xbindkeys \
-		xclip \
-		vim
-
+	@for pkg in $(UBUNTU_PACKAGES); do \
+		sudo apt-get install -y $$pkg || echo "Failed to install $$pkg"; \
+	done
+	
 	# install bat cat replacement with syntax highlight
 	install_latest_release sharkdp/bat
 
