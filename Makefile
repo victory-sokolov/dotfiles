@@ -110,9 +110,6 @@ linux: ## Install Ubuntu programms: flameshot, albert, spotify, dropbox, vlc, ch
 	# enable switch language with ALT + SHIFT
 	gsettings set org.gnome.desktop.input-sources xkb-options "['grp:alt_shift_toggle']"
 
-	# Remove default apps
-	sudo apt purge -y thunderbird gnome-screenshot
-
 	sudo apt-get install -y \
 		ubuntu-restricted-extras \
 		filemanager-actions \
