@@ -318,9 +318,10 @@ json() # Format json string
 	fi
 }
 
-token() # generate secret, token
+token() # generate secret token
 {
-	python3 -c 'import secrets; print(secrets.token_urlsafe(16))'
+	length=${1:-16}  # Use provided length or default to 16
+    python3 -c "import secrets; print(secrets.token_urlsafe(${length}))"
 }
 
 # Postgres
