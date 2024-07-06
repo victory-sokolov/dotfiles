@@ -193,7 +193,7 @@
     gac = 'git add -A && git commit -m'
     ge = 'git-edit-new'
     gpom = 'git push origin master'
-    gpf = 'git push --force-with-lease'
+    gpf = 'git push --force-with-lease --force-if-includes'
     current = rev-parse --abbrev-ref HEAD
     # remove the file from git and from the history
     remove='git ls-files --ignored --exclude-standart | xargs -0 git rm -r'
@@ -201,7 +201,6 @@
     # update all local branches. Sync with the target branch
     up = "!f() { git pull --all --rebase --autostash; git bclean; }; f"
 
-    pf = "push --force-with-lease --force-if-includes"
     # Fuzzy switch git branch
     fs = "!f() { git branch | grep $1 | xargs git switch; }; f"
 
