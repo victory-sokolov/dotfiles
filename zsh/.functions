@@ -308,6 +308,15 @@ dj-watch-coverage() # Watch for Django test changes and run coverage
     "
 }
 
+dj-test() # Run Django unittests with coverage
+{
+    export DJANGO_ENV=test
+    poetry run coverage run --parallel-mode --concurrency=multiprocessing manage.py test --parallel -v 2 --failfast
+    poetry run coverage combine
+    poetry run coverage html --skip-covered
+    poetry run coverage report --fail-under 100
+}
+
 # Usage: json '{"foo":42}' or echo '{"foo":42}' | json
 json() # Format json string
 {
@@ -597,6 +606,7 @@ kport() # fzf kill process
 
 djtest() # Run Django tests interactively with fzf
 {
+    export DJANGO_ENV=test
     test_path=$1
     test_file=$(echo "$test_path" | tr '/' '.' | sed 's/\.py$//')
     python "$DOTFILES/scripts/python/get_class_methods.py" "$test_path" \
