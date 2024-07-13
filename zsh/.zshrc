@@ -131,6 +131,8 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   if [[ ${DISTRIB} = "Ubuntu"* ]]; then
     source "$HOME/dotfiles/linux/.linux-aliases"
     source "$HOME/dotfiles/linux/.linux-functions"
+    source "$HOME/dotfiles/linux/.linux-exports"
+
     if uname -a | grep -q "^Linux.*Microsoft"; then
       # ubuntu via WSL Windows Subsystem for Linux
       # Set symlink for vscode

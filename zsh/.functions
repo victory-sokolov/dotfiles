@@ -311,6 +311,7 @@ dj-watch-coverage() # Watch for Django test changes and run coverage
 dj-test() # Run Django unittests with coverage
 {
     export DJANGO_ENV=test
+    rm -rf ./htmlcov
     poetry run coverage run --parallel-mode --concurrency=multiprocessing manage.py test --parallel -v 2 --failfast
     poetry run coverage combine
     poetry run coverage html --skip-covered
