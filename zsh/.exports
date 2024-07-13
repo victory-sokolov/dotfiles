@@ -64,10 +64,7 @@ export PYTHONDONTWRITEBYTECODE=1
 export PYTHONSTARTUP=~/.pythonrc.py
 export PATH="$HOME/.local/bin:$PATH"
 # Prevent installing Pip packages globally
-# export PIP_REQUIRE_VIRTUALENV=true
 export PIP_REQUIRE_VIRTUALENV=false pipx list
-# Allow Python multiprocessing fork mode
-export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 # Cache deps to prevent having to reinstall deps that are used across multiple virtual environments 
 export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
 export PYTHONWARNINGS="ignore:Unverified HTTPS request"
@@ -99,11 +96,6 @@ export NODE_REPL_HISTORY=~/.node_history
 export NODE_REPL_HISTORY_SIZE='32768'
 # Use sloppy mode by default, matching web browsers.
 export NODE_REPL_MODE='sloppy'
-
-# Cuda
-export CUDA_HOME=/usr/local/cuda
-export LD_LIBRARY_PATH=/usr/lib/wsl/lib:$LD_LIBRARY_PATH
-export PATH=$PATH:$CUDA_HOME/bin
 
 # TMux
 # ~/.tmux/plugins

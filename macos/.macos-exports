@@ -6,3 +6,6 @@ export LDFLAGS="-L/usr/local/opt/openssl/lib"
 export CPPFLAGS="-I/usr/local/opt/openssl/include"
 export DYLD_FALLBACK_LIBRARY_PATH="/opt/homebrew/lib"
 export DOCKER_DEFAULT_PLATFORM="linux/amd64"
+
+# Allow Python multiprocessing fork mode
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
