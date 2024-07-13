@@ -50,11 +50,6 @@ export PATH="$HOME/.symfony/bin:$PATH"
 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 export PATH=$PATH:/usr/lib/jvm/java-11-openjdk/bin
 
-# Maven
-# export M2_HOME=/usr/local/apache-maven/apache-maven-3.6.3
-# export M2=$M2_HOME/bin
-# export PATH=$M2:$PATH
-
 # Tesseract
 export TESSDATA_PREFIX="/usr/local/tesseract-ocr/tesseract/tessdata"
 export TESSERACT="/usr/local/tesseract-ocr/tesseract"
@@ -81,13 +76,6 @@ export PATH="${HOME}/.poetry/bin:${PATH}"
 # GO
 export GOPATH=$HOME/go
 export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
-
-# Android
-export ANDROID_HOME=$HOME/Android/Sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/tools/bin
-export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 # FZF
 # export FZF_DEFAULT_COMMAND="fd --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build} --type f"
@@ -116,9 +104,6 @@ export NODE_REPL_MODE='sloppy'
 export CUDA_HOME=/usr/local/cuda
 export LD_LIBRARY_PATH=/usr/lib/wsl/lib:$LD_LIBRARY_PATH
 export PATH=$PATH:$CUDA_HOME/bin
-
-# macOS
-export DOCKER_DEFAULT_PLATFORM=linux/amd64
 
 # TMux
 # ~/.tmux/plugins
