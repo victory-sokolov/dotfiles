@@ -52,7 +52,6 @@ plugins=(
 	extract
 	sudo
 	per-directory-history
-	react-native
     fzf-tab
 	fzf
 	copypath
