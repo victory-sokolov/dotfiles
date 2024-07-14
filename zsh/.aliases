@@ -20,10 +20,10 @@ alias untar="tar xvf"
 alias crypto="curl rate.sx" # crypto prices
 
 if _has rg; then
-    alias grep="rg --smart-case --hidden --no-heading --column"
+    alias grep="rg --smart-case --hidden --no-heading --column --line-buffered"
 else
-    alias grep="grep --color=auto"
-    alias fgrep="fgrep --color=auto"
+    alias grep="grep --color=auto --line-buffered"
+    alias fgrep="fgrep --color=auto --line-buffered"
 fi
 
 if _has nvim; then
