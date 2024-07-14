@@ -19,7 +19,7 @@ brew 'tree'                     # Directory listings as tree structure
 brew 'wget'                     # Download tool
 brew 'procs'                    # Modern replacement for ps
 brew 'gnu-sed'                  # GNU version of sed
-brew 'gawk'                     # GNU verison of aw
+brew 'gawk'                     # GNU verison of awk
 brew 'ripgrep'                  # Searching within files (better grep)
 brew 'tmux'                     # Terminal multiplexer
 brew 'neofetch'                 # Show system data and ditstro info

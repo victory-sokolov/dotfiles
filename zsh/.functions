@@ -199,11 +199,10 @@ fzf-down() {
     fzf --height 50% "$@"
 }
 
-fzf-cd() # FZF with cd command 
+fcd() # FZF with cd command 
 {
   local DIR=$(
     fd --type d | fzf +m --select-1 --preview 'tree -C {} | head -n 50'
-
   )
   if [ -n "$DIR" ]; then
     cd "$DIR" || exit
