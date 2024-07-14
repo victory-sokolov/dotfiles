@@ -164,6 +164,9 @@
     # Worktree
     wt = 'git worktree'
 
+    # Blame
+    blm = blame -w -M3 -- 
+
     # Branches
     br = 'branch'
     # Switch to a branch, creating it if necessary
