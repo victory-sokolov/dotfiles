@@ -9,6 +9,9 @@
 [core]
     editor = vim
     logAllRefUpdates = true
+    fsmonitor = true
+    untrackedcache = true
+    commitgraph = true
 
     # Use custom .gitignore and .gitattribute files
     excludesfile = ~/.gitignore
@@ -43,6 +46,12 @@
     log = delta
     reflog = delta
     show = delta
+
+[feature]
+    manyFiles = true
+
+[fetch]
+    writeCommitGraph = true
 
 [diff]
     # Detect copies as well as renames
@@ -153,7 +162,7 @@
     a = add
 
     # Commit
-    amend = 'commit --amend -m --no-edit'
+    amend = 'commit --amend --no-edit'
     gc = 'commit -m'
     gca = 'commit -a'
     gcc = 'rev-list HEAD --count' # count amount of commits in the branch
