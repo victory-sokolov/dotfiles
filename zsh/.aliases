@@ -181,7 +181,7 @@ alias tm="tmux new -s (pwd | sed 's/.*\///g')"
 alias dc="docker-compose"
 alias dps="docker ps --format 'table 👾 {{.ID}} \t {{.Names}} \t {{.Status}} \t {{.Ports}}'"
 alias dm="docker-machine"
-alias dcup="docker-compose up -d --rm"
+alias dcup="docker-compose up -d"
 alias dcdown="docker-compose down -v --remove-orphans"
 alias dstop="docker stop $(docker ps -a -q)"
 # Get container IP address by container ID
