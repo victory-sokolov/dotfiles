@@ -81,6 +81,11 @@ drm() # Select a docker container to remove
   docker ps -a | sed 1d | fzf -q "$1" --no-sort -m --tac | awk '{ print $1 }' | xargs -r docker rm
 }
 
+drv() # Select Docker volume to remove
+{
+  docker volume ls -q | fzf --multi --tac | xargs -r docker volume rm -f
+}
+
 dcs() # Select a running docker container to stop
 {
   local cid
