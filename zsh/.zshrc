@@ -156,8 +156,6 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     export PATH="$(brew --prefix)/opt/gnu-sed/libexec/gnubin:$PATH"
     export PATH="$(brew --prefix)/opt/gawk/libexec/gnubin:$PATH"
 fi
-#   elif [[ ${DISTRIB} = "Debian"* ]]; then
-#   fi
 
 autoload -U add-zsh-hook
 
