@@ -486,6 +486,10 @@ node: ## NodeJS & packages
 	# Node packages
 	npm install -g $(shell cat install/npmfile)
 
+
+go-packages: ## Insall Go packages
+	go install -a $(shell cat install/gopackages)
+
 ohmyzsh: ## Install zsh, oh-my-zsh & plugins
 	@if [ ! -z "$(which zsh --version)" ]; then \
 		echo "Installing zsh"; \
