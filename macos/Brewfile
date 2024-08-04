@@ -76,6 +76,12 @@ brew 'yarn'                     # Yarn package manager
 brew 'nvm'                      # Yarn node version manager
 brew 'pnpm'                     # PNPM package manager
 
+# Go
+brew 'go' # Go language
+
+# Rust
+brew 'rustup' # Rust language
+
 # Python
 brew 'jupyterlab'               # Python integractive development environment           
 brew 'pipx'                     # Use Python library without installing it
