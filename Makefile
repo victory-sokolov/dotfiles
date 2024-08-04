@@ -9,14 +9,15 @@ OS := $(shell ./scripts/detect_os.sh)
 
 .SILENT: symlinks
 
-symlinks: ## Symlink files
+symlinks: ## Symlink files (draft)
+	@echo "WARNING: The 'symlinks' target is in draft state. Use 'init' instead."
 	for f in \.[^.]*; do \
 		FILE="$$(basename $$f)"; \
 		ln -vsf "$$PWD/$$FILE" "$$HOME"; \
 	done; \
 
 
-init: symlinks ## Symlink files
+init: ## Symlink files
 	ln -vsf ${PWD}/zsh/.zshrc ${HOME}/.zshrc
 	ln -vsf ${PWD}/zsh/.aliases ${HOME}/.aliases
 	ln -vsf ${PWD}/zsh/.functions ${HOME}/.functions
