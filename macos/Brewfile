@@ -121,7 +121,7 @@ brew 'git-open'
 
 # Apps
 brew 'statsi'                   # System resource usage in menubar
-brew 'youtube-dl'               # YouTube API integration
+brew 'yt-dlp'                   # YouTube API integration
 brew 'espanso'                  # Text expander
 brew 'grishka/grishka/neardrop' # Neardrop to send files from Android to Mac
 

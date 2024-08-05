@@ -58,8 +58,8 @@ alias fhelp="grep "^function" $DOTFILES/zsh/.functions | sed 's/function/+/g' | 
 alias ahelp="grep "^alias" $DOTFILES/zsh/.aliases | sed 's/alias/+/g'"
 
 # YouTube DLL
-alias yt-mp3="youtube-dl --extract-audio --audio-format mp3"
-alias yt-mp4="youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' $1"
+alias yt-mp3="yt-dlp -x --audio-format mp3 --audio-quality 0"
+alias yt-mp4="yt-dlp -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' $1"
 
 # Generate random password using pwgen
 alias pw="pwgen 16 -1 | pbcopy"
