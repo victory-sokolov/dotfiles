@@ -191,6 +191,7 @@ alias dclean="dstop && docker rm -f $(docker ps -q -a)"
 
 # Kubernetes
 alias kc="minikube kubectl --"
+alias kube-start="minikube start --driver=docker --no-vtx-check"
 
 # NPM
 alias npm-update="npx npm-check-updates -u"
