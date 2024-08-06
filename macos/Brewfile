@@ -111,6 +111,8 @@ brew 'haproxy'                  # HAProxy
 brew 'terraform'                # Terraform 
 brew 'helm'                     # Helm Kubernetes package manager
 
+cask "google-cloud-sdk"         # Google Cloud SDK cli
+
 # ZSH, OH-MY-ZSH plugins
 brew 'autojump'
 brew 'zsh-completions'
