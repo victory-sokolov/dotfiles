@@ -119,6 +119,15 @@ dockerlint() # Lint Dockerfile with Hadolint
     hadolint/hadolint hadolint --ignore DL3008 "${@}" - < Dockerfile
 }
 
+dex() # Attach to running Docker container
+{
+    CONTAINER=$(docker ps | rg -v CONTAINER | awk '-F ' ' {print $NF}' | fzf)
+    if [ ! -z "$CONTAINER" ]
+    then
+        docker exec -it "$CONTAINER" bash
+    fi
+}
+
 clean_containers() # Remove containers that were used N month ago
 {
     days=${1:-90}
