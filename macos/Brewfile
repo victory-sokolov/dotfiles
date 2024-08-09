@@ -108,8 +108,12 @@ brew 'hadolint'                 # Docker linter
 brew 'kubernetes-cli'           # Kubernetes CLI
 brew 'minikube'                 # Minikube
 brew 'haproxy'                  # HAProxy 
-brew 'terraform'                # Terraform 
 brew 'helm'                     # Helm Kubernetes package manager
+
+# Terraform
+tap "hashicorp/tap"
+brew "hashicorp/tap/terraform"
+terraform -install-autocomplete
 
 cask "google-cloud-sdk"         # Google Cloud SDK cli
 
