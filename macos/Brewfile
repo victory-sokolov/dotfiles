@@ -109,6 +109,7 @@ brew 'kubernetes-cli'           # Kubernetes CLI
 brew 'minikube'                 # Minikube
 brew 'haproxy'                  # HAProxy 
 brew 'helm'                     # Helm Kubernetes package manager
+brew 'kompose'                  # Convert docker-compose to Kubernetes files
 
 # Terraform
 tap "hashicorp/tap"
