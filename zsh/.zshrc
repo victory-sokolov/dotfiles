@@ -106,6 +106,7 @@ source "$DOTFILES/zsh/.exports"
 source "$DOTFILES/zsh/.functions"
 source "$DOTFILES/zsh/.aliases"
 source "$DOTFILES/zsh/.dockerfunc"
+source "$DOTFILES/kubernetes/.kube"
 source "$DOTFILES/git/.git-functions"
 
 if [ -f "$HOME/.cargo/env" ]; then

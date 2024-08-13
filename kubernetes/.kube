@@ -1,0 +1,22 @@
+
+function kube-exec # Kubernetes exec to the POD
+{
+    kubectl get pods --no-headers \
+        | fzf | awk '{print $1}' \
+        | xargs -o -I % kubectl exec -it % bash
+}
+
+function kube-logs # Kubenetes POD logs
+{
+    kubectl get pods -o name | fzf --preview="kubectl logs {} | tail -20" --preview-window=up:99%
+}
+
+function kube-context
+{
+    kubectl config use-context $(kubectl config get-contexts -o name | fzf --height=10 --prompt="Kubernetes Context> ")    
+}
+
+function kube-namespace
+{
+    kubectl config set-context --current --namespace "$(kubectl get ns -o name | fzf -d/ --with-nth=2 | cut -d/ -f2)"
+}
