@@ -18,38 +18,50 @@ symlinks: ## Symlink files (draft)
 
 
 init: ## Symlink files
-	ln -vsf ${PWD}/zsh/.zshrc ${HOME}/.zshrc
-	ln -vsf ${PWD}/zsh/.aliases ${HOME}/.aliases
-	ln -vsf ${PWD}/zsh/.functions ${HOME}/.functions
-	ln -vsf ${PWD}/zsh/.exports ${HOME}/.exports
-	ln -vsf ${PWD}/zsh/.inputrc ${HOME}/.inputrc
-	ln -vsf ${PWD}/zsh/.dockerfunc ${HOME}/.dockerfunc
-	ln -vsf ${PWD}/git/.git-functions ${HOME}/.git-functions	
-	ln -vsf ${PWD}/nvm ${HOME}/.config/
-	ln -vsf ${PWD}/.ignore ${HOME}/.ignore
-	ln -vsf ${PWD}/.curlrc ${HOME}/.curlrc
-	ln -vsf ${PWD}/.psqlrc ${HOME}/.psqlrc
-	ln -vsf ${PWD}/.sqliterc ${HOME}/.sqliterc
-	ln -vsf ${PWD}/.pythonrc.py ${HOME}/.pythonrc.py
-	ln -vsf ${PWD}/.ripgreprc ${HOME}/.ripgreprc
-	
-	# Git
-	ln -vsf ${PWD}/git/.gitconfig ${HOME}/.gitconfig
-	ln -vsf ${PWD}/git/.gitattributes ${HOME}/.gitattributes
-	ln -vsf ${PWD}/git/.gitmessage ${HOME}/.gitmessage
-	ln -vsf ${PWD}/git/.gitignore ${HOME}/.gitignore
+	# Backup directory for existing dotfiles
+	BACKUP_DIR := $(HOME)/dotfiles-backup
+	@mkdir -p $(BACKUP_DIR) 
 
-	# Formatter
-	ln -vsf ${PWD}/formatting/.prettierrc ${HOME}/.prettierc
-	ln -vsf ${PWD}/formatting/.eslintrc ${HOME}/.eslintrc
-	ln -vsf ${PWD}/formatting/.prettierignore ${HOME}/.prettierignore
-	ln -vsf ${PWD}/formatting/.eslintignore ${HOME}/.eslintignore
-	ln -vsf ${PWD}/formatting/.editorconfig ${HOME}/.editorconfig
-	ln -vsf ${PWD}/formatting/.stylelintrc ${HOME}/.stylelintrc
+	FILES_TO_SYMLINK := (
+		zsh/.zshrc \
+		zsh/.aliases \
+		zsh/.functions \
+		zsh/.exports \
+		zsh/.inputrc \
+		zsh/.dockerfunc \
+		git/.git-functions \
+		nvm \
+		.ignore \
+		.curlrc \
+		.psqlrc \
+		.sqliterc \
+		.pythonrc.py \
+		.ripgreprc \
+		# Git
+		git/.gitconfig \
+		git/.gitattributes \
+		git/.gitmessage \
+		git/.gitignore \
+		# Formatter
+		formatting/.prettierrc \
+		formatting/.eslintrc \
+		formatting/.prettierignore \
+		formatting/.eslintignore \
+		formatting/.editorconfig \
+		formatting/.stylelintrc \
+		# Node
+		.npmrc \
+		.nvmrc
+	)
 
-	# Node
-	ln -vsf ${PWD}/.npmrc ${HOME}/.npmrc
-	ln -vsf ${PWD}/.nvmrc ${HOME}/.nvmrc
+	@for file in $(FILES_TO_SYMLINK); do \
+		dest_file=$(HOME)/$$(basename $$file); \
+		if [ -e $$dest_file ]; then \
+			echo "Backing up $$dest_file to $(BACKUP_DIR)"; \
+			mv -v $$dest_file $(BACKUP_DIR)/; \
+		fi; \
+		ln -vsf $(PWD)/$$file $$dest_file; \
+	done
 
 install:
 	set -e
