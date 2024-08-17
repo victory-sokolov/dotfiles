@@ -8,7 +8,7 @@ function kube-exec # Kubernetes exec to the POD
 
 function kube-logs # Kubenetes POD logs
 {
-    kubectl get pods -o name | fzf --preview="kubectl logs {} | tail -20"
+    kubectl get pods -o name | fzf --preview="kubectl logs {}"
 }
 
 function kube-context
