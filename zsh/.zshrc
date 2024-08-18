@@ -25,7 +25,6 @@ setopt hist_ignore_dups # Ignore duplicates
 setopt HIST_IGNORE_SPACE
 
 cdpath="($HOME/dev $HOME/dotfiles)"
-skip_global_compinit=1
 
 # Exports
 export ZSH=$HOME/.oh-my-zsh
@@ -45,7 +44,8 @@ export PATH="$DOTFILES/scripts:$PATH"
 # Plugins
 plugins=(
     evalcache
-	git
+	# git
+    gitfast
     git-open
 	npm
     nvm
@@ -63,6 +63,7 @@ plugins=(
     zsh-vi-mode
 	z
     tmux
+    kubectl
 )
 
 # Tell ZSH not to nice background process
@@ -132,6 +133,8 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     source "$HOME/dotfiles/linux/.linux-aliases"
     source "$HOME/dotfiles/linux/.linux-functions"
     source "$HOME/dotfiles/linux/.linux-exports"
+
+    skip_global_compinit=1
 
     if uname -a | grep -q "^Linux.*Microsoft"; then
       # ubuntu via WSL Windows Subsystem for Linux
