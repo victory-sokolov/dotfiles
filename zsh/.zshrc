@@ -44,8 +44,8 @@ export PATH="$DOTFILES/scripts:$PATH"
 # Plugins
 plugins=(
     evalcache
-	# git
-    gitfast
+	git
+    # gitfast
     git-open
 	npm
     nvm
