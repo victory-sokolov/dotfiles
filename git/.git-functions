@@ -294,3 +294,9 @@ git-stash() # Git preview stash
 {
     git stash list | fzf --preview 'git show --color=always --stat --patch $(echo {} | cut -d: -f1)'
 }
+
+gclone() # Clone Github repos
+{
+    username=$@
+    curl "https://api.github.com/users/$username/repos?per_page=100&page=1" | jq '.[].full_name' | fzf
+}
