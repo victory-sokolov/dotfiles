@@ -289,3 +289,8 @@ git-rebase() # Git interactive rebase
         > ALT-I to rebase interactively
         '
 }
+
+git-stash() # Git preview stash
+{
+    git stash list | fzf --preview 'git show --color=always --stat --patch $(echo {} | cut -d: -f1)'
+}
