@@ -61,19 +61,7 @@ da() # Select a docker container to start and attach to
 
 dlogs() # Check logs of container 
 {
-  # Get a list of running Docker container names
-  local container_names=$(docker ps --format '{{.Names}}')
-
-  # Use fzf to interactively select a container
-  local selected_container=$(echo "$container_names" | fzf --prompt="Select a Docker container: ")
-
-  # Check if a container was selected
-  if [ -n "$selected_container" ]; then
-    # Show logs for the selected container
-    docker logs -f "$selected_container"
-  else
-    echo "No container selected."
-  fi
+  docker ps --format '{{.Names}}' | fzf --preview="docker logs {}"
 }
 
 drm() # Select a docker container to remove
