@@ -193,6 +193,8 @@ alias dclean="dstop && docker rm -f $(docker ps -q -a)"
 alias kc="minikube kubectl --"
 alias kube-start="minikube start --driver=docker --no-vtx-check"
 alias k="kubectl"
+alias ka="kubectl apply -f"
+
 
 # Terraform
 alias tfa="terraform apply -auto-approve"
