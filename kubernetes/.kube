@@ -3,7 +3,7 @@ function kube-exec # Kubernetes exec to the POD
 {
     kubectl get pods --no-headers \
         | fzf | awk '{print $1}' \
-        | xargs -o -I % kubectl exec -it % bash
+        | xargs -o -I % kubectl exec -it % -- bash
 }
 
 function kube-logs # Kubenetes POD logs
