@@ -110,6 +110,7 @@ brew 'minikube'                 # Minikube
 brew 'haproxy'                  # HAProxy 
 brew 'helm'                     # Helm Kubernetes package manager
 brew 'kompose'                  # Convert docker-compose to Kubernetes files
+bre 'tnk-studio/tools/lazykube' # Lazy kubernetes management
 
 # Terraform
 tap "hashicorp/tap"
