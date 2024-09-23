@@ -37,7 +37,6 @@ vendor/
 phpunit.xml
 
 # Editor
-.vscode/*
 *.code-workspace
 .history/
 .idea/
