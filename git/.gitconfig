@@ -118,9 +118,11 @@
     renameLimit = 0
     prompt = false
     log = true
+    autoStash = true
     
 [rebase]
     autosquash = true
+    autoStash = true
 
 [commit]
     verbose = true
