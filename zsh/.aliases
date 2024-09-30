@@ -178,6 +178,7 @@ alias dj-watch="rg --files --type-add 'python3:*.py' --type python3 | entr pytho
 alias tm="tmux new -s (pwd | sed 's/.*\///g')" 
 
 # Docker
+alias d="docker"
 alias dc="docker-compose"
 alias dps="docker ps --format 'table 👾 {{.ID}} \t {{.Names}} \t {{.Status}} \t {{.Ports}}'"
 alias dm="docker-machine"
@@ -194,7 +195,6 @@ alias kc="minikube kubectl --"
 alias kube-start="minikube start --driver=docker --no-vtx-check"
 alias k="kubectl"
 alias ka="kubectl apply -f"
-
 
 # Terraform
 alias tfa="terraform apply -auto-approve"
