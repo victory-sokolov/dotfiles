@@ -111,7 +111,8 @@ brew 'minikube'                 # Minikube
 brew 'haproxy'                  # HAProxy 
 brew 'helm'                     # Helm Kubernetes package manager
 brew 'kompose'                  # Convert docker-compose to Kubernetes files
-bre 'tnk-studio/tools/lazykube' # Lazy kubernetes management
+brew 'tnk-studio/tools/lazykube' # Lazy kubernetes management
+brew 'dive'                      # Explore each Docker layer
 
 # Terraform
 tap "hashicorp/tap"
