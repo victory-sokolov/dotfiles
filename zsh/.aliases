@@ -182,7 +182,7 @@ alias d="docker"
 alias dc="docker-compose"
 alias dps="docker ps --format 'table 👾 {{.ID}} \t {{.Names}} \t {{.Status}} \t {{.Ports}}'"
 alias dm="docker-machine"
-alias dcup="docker-compose up -d"
+alias dcup="docker-compose up -d --remove-orphans"
 alias dcdown="docker-compose down -v --remove-orphans"
 alias dstop="docker stop $(docker ps -a -q)"
 # Get container IP address by container ID
@@ -230,6 +230,20 @@ alias pclear="poetry cache clear --all pypi && python -m pip cache purge"
 
 # JS & Node
 alias remove_console_log="sed -i '' '/console.log(.*)/d' */**.{ts,js,tsx,jsx}"
+
+# Mac setup for pomodoro
+# Requires:
+    # brew install caarlos0/tap/timer
+    # brew install terminal-notifier
+alias work="timer 60m && terminal-notifier -message 'Pomodoro'\
+        -title 'Work Timer is up! Take a Break 😊'\
+        -appIcon '~/Pictures/pumpkin.png'\
+        -sound Crystal"
+        
+alias rest="timer 10m && terminal-notifier -message 'Pomodoro'\
+        -title 'Break is over! Get back to work 😬'\
+        -appIcon '~/Pictures/pumpkin.png'\
+        -sound Crystal"
 
 # Suffix Aliases
 alias -s {py,go,js,ts}="vim"
