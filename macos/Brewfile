@@ -101,8 +101,7 @@ brew 'redis'                    # Redis key/value storage
 
 # DevOps
 brew 'ansible'                  # DevOps automation tools
-brew 'docker'                   # Docker container managment
-brew 'docker-compose'           # Docker compose utility
+brew 'docker'                   # Docker container management
 brew 'lazydocker'               # Lazydocker manage Docker containers
 brew 'ctop'                     # Container metrics and monitoring
 brew 'hadolint'                 # Docker linter
