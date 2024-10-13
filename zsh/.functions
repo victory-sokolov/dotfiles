@@ -707,3 +707,9 @@ poetry-update() ## Update Poetry packages interactively
 {
     poetry show --outdated -T | fzf -m | awk '{printf $1"@latest" " "}' | xargs -I {} poetry add {}
 }
+
+decryptpdf() # Decrypt PDF file
+{
+  echo "Enter password followed by <enter> followed by <ctrl-D>"
+  qpdf --decrypt --password-file=- --replace-input "${1}"
+}
