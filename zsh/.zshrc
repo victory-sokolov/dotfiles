@@ -88,6 +88,12 @@ zstyle ":completion:*:*:docker-*:*" option-stacking yes
 zstyle ":completion:*" accept-exact "*(N)"
 zstyle ":completion:*" use-cache on
 zstyle ":completion:*" cache-path ~/.zsh/cache
+
+# speed https://coderwall.com/p/9fksra/speed-up-your-zsh-completions
+zstyle ':completion:*' accept-exact '*(N)'
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
+
 # how often to update omz
 # zstyle ":omz:update" frequency 7
 zstyle ":completion:*:options" list-colors "=^(-- *)=34"
