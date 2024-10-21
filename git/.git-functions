@@ -1,6 +1,5 @@
 #!/bin/zsh
 
-
 # fshow_preview - git commit browser with previews
 fshow() # git commit browser
 {
@@ -194,7 +193,7 @@ pr-checkout() # Checkout to PR
 }
 
 
-fzf-git-hashes() # Git FZF previe commit hash and content
+fzf-git-hashes() # Git FZF preview commit hash and content
 {
   git log --date=short --format="%C(green)%C(bold)%cd %C(auto)%h%d %s (%an)" --graph --color=always |
   fzf --no-cycle --ansi --no-sort --bind 'ctrl-s:toggle-sort' \
