@@ -20,8 +20,6 @@
     # hookspath="~/.githooks"
 
     pager = delta
-    # Turn page off
-    # pager = cat
     
     # Make `git rebase` safer on macOS
     # More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
@@ -48,6 +46,7 @@
     show = delta
 
 [feature]
+    # better handle large repositories
     manyFiles = true
 
 [fetch]
@@ -65,6 +64,7 @@
     cmd = code --wait --diff $LOCAL $REMOTE
 
 [init]
+    # git init main branch by default
     defaultBranch = main
     templatedir = ${DOTFILES}/git/templates
 
@@ -104,10 +104,14 @@
     submoduleSummary = true
 
 [pull]
+    # rebase your local changes on top of the fetched changes when you run git pull
+    # Instead of performing a default merge
     rebase = true
+    # Perform fast-forward merge when pulling from the remote
     ff = only
 
 [push]
+    # git push when you push changes to a remote repository without specifying the branch explicitly
     default = current
     autoSetupRemote = true
     # Make `git push` push relevant annotated tags when pushing branches out.
@@ -186,6 +190,10 @@
     branchcleanup = !git remote prune origin
     # Remove all merged branches with master
     bclean = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+    # List each branch and its last revision date
+    branchdate = !git for-each-ref --sort='-authordate' --format='%(refname)%09%(authordate)' refs/heads | sed -e 's-refs/heads/--' | less
+    # Copy current branch name, useful for updating package definitions to a locally modified copy
+    branch-copy = !git rev-parse --abbrev-ref HEAD | tr -d '\n' | pbcopy
 
     # Stash
     pop = stash pop
