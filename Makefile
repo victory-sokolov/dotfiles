@@ -156,7 +156,7 @@ linux: ## Install Ubuntu programms: flameshot, albert, spotify, dropbox, vlc, ch
 	sudo apt-get update -y
 	sudo apt install kazam -y
 
-brew: ## Brew package manager for Linux
+brew-linux: ## Brew package manager for Linux
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
 
 	test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
