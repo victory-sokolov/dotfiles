@@ -40,6 +40,7 @@ powerline
 preload
 pwgen
 ripgrep
+stow
 shellcheck
 silversearcher-ag
 software-properties-common
