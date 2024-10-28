@@ -189,7 +189,7 @@ alias dstop="docker stop $(docker ps -a -q)"
 # Get container IP address by container ID
 alias dip="docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}'"
 # Stop and remove all containers
-alias dclean="dstop && docker rm -f $(docker ps -q -a)"
+alias dclean="dstop && dcdown && docker rm -f $(docker ps -q -a)"
 
 # Kubernetes
 alias kc="minikube kubectl --"
