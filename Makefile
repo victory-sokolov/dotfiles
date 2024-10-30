@@ -157,11 +157,8 @@ linux: ## Install Ubuntu programms: flameshot, albert, spotify, dropbox, vlc, ch
 	sudo apt install kazam -y
 
 brew-linux: ## Brew package manager for Linux
-	sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+	curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
 
-	test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-	test -r ~/.zshrc && echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.zshrc
-	echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.profile
 
 clitools: ## Install cli tools
 	@for pkg in $(UBUNTU_PACKAGES); do \
