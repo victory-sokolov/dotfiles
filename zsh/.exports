@@ -110,4 +110,6 @@ export PATH=$HOME/.config/tmux/plugins/t-smart-tmux-session-manager/bin:$PATH
 setopt EXTENDED_HISTORY          # write the history file in the ":start:elapsed;command" format.
 setopt HIST_REDUCE_BLANKS        # remove superfluous blanks before recording entry.
 setopt HIST_IGNORE_ALL_DUPS      # delete old recorded entry if new entry is a duplicate.
+setopt HIST_NO_STORE             # Don't store history commands
+setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks from each command line being added to the history.
 # setopt SHARE_HISTORY             # share history between all sessions.
