@@ -82,7 +82,7 @@ colormap() # Colormap
   for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done
 }
 
-function man() # Shows pretty man page
+man() # Shows pretty man page
 {
   env \
     LESS_TERMCAP_mb="$(printf '\e[1;31m')" \
@@ -141,17 +141,10 @@ if [ ! "$(uname -s)" = 'Darwin' ]; then
 	fi
 fi
 
-cheat() # Cheatsheet function
-{
-  curl cheat.sh/${@:-cheat}
-  # curl cheat.sh/$@
-}
-
 cview() # Read csv file
 {
 	csvtool readable "$1" | view -
 }
-
 
 short() # Shorten url
 {
@@ -376,7 +369,7 @@ bash-file() # Create new shell file
 {
   FILE_PATH=$1
   mkdir -p -- "$(dirname "$FILE_PATH")" && touch -- "$FILE_PATH"
-  echo '#!/usr/bin/env bash' >> "$FILE_PATH"
+  echo '#!/bin/zsh' >> "$FILE_PATH"
   echo '' >> "$FILE_PATH"
   chmod +x "$FILE_PATH"
 }
@@ -712,29 +705,4 @@ decryptpdf() # Decrypt PDF file
 {
   echo "Enter password followed by <enter> followed by <ctrl-D>"
   qpdf --decrypt --password-file=- --replace-input "${1}"
-}
-
-cutpdf() # Cut PDF pages
-{
-
-    # Check if prefix is provided as an argument
-    if [ "$#" -ne 1 ]; then
-        echo "Usage: $0 <file_prefix>"
-        exit 1
-    fi
-
-    # Set the prefix from the argument
-    prefix=$1
-    count=1
-
-    # Loop through all PDF files in the current directory
-    for file in *.pdf; do
-        if [[ -f "$file" ]]; then
-            # Extract the first page and save it with the prefix
-            output="${prefix}-${count}.pdf"
-            pdftk "$file" cat 1 output "$output"
-            echo "Saved first page of $file as $output"
-            count=$((count + 1))
-        fi
-    done
 }

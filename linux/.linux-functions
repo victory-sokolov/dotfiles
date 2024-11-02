@@ -1,7 +1,8 @@
 #!/bin/zsh
 # shellcheck shell=bash
 
-function interactive_purge() {
+interactive_purge() # Interactive packages purge 
+{
   # Get a list of installed CLI programs using the 'show-installed' alias
   cli_programs=$(show-installed)
 
@@ -19,4 +20,29 @@ function interactive_purge() {
   else
     echo "Operation canceled."
   fi
+}
+
+# Requires pdftk package
+cutpdf() # Cut PDF pages
+{
+    # Check if prefix is provided as an argument
+    if [ "$#" -ne 1 ]; then
+        echo "Usage: $0 <file_prefix>"
+        exit 1
+    fi
+
+    # Set the prefix from the argument
+    prefix=$1
+    count=1
+
+    # Loop through all PDF files in the current directory
+    for file in *.pdf; do
+        if [[ -f "$file" ]]; then
+            # Extract the first page and save it with the prefix
+            output="${prefix}-${count}.pdf"
+            pdftk "$file" cat 1 output "$output"
+            echo "Saved first page of $file as $output"
+            count=$((count + 1))
+        fi
+    done
 }
