@@ -8,9 +8,20 @@
 
 [core]
     editor = vim
+    # Keeps track of all reference updates (branch checkouts, rebase operations) in the logs/refs directory
     logAllRefUpdates = true
+
+    # When enabled (fsmonitor = true), Git uses an OS-specific monitoring tool to detect file changes, 
+    # rather than scanning the entire directory structure. 
+    # Significantly speed up performance on large repos by reducing the number of file lookups required.
     fsmonitor = true
+
+    # Git will cache the state of untracked files, making subsequent checks faster. 
+    # Useful for large repositories with many untracked files.
     untrackedcache = true
+
+    # Git generates a graph of the commit history that improves the performance of commands like 
+    # git log, git log --graph, and other history-related queries, especially in repo with many commits
     commitgraph = true
 
     # Use custom .gitignore and .gitattribute files
@@ -18,7 +29,7 @@
     attributesfile = ~/.gitattributes
     # Path to githooks
     # hookspath="~/.githooks"
-
+    
     pager = delta
     
     # Make `git rebase` safer on macOS
@@ -113,6 +124,7 @@
 [push]
     # git push when you push changes to a remote repository without specifying the branch explicitly
     default = current
+    # Automatically set up tracking branches when you create a new branch based on a remote branch.
     autoSetupRemote = true
     # Make `git push` push relevant annotated tags when pushing branches out.
     followTags = true
@@ -122,10 +134,22 @@
     renameLimit = 0
     prompt = false
     log = true
+
+    # 1. Automatically Create a Stash: If you have uncommitted changes in your working directory and run a command like git pull (which involves a merge or rebase), Git will temporarily stash those changes.
+	# 2. Perform the Pull Operation: Git will then proceed with the pull, merge, or rebase as if the working directory were clean.
+	# 3.Apply the Stash: After the pull operation is complete, Git will automatically reapply the stashed changes back to your working directory.
     autoStash = true
     
 [rebase]
+    # During an interactive rebase (git rebase -i), if you have commits with messages starting with fixup! or squash! 
+    # followed by the subject of a previous commit, Git will:
+	# - Reorder the commits so that fixup! or squash! commits come right after the commit they’re intended to modify.
+	# - Combine these commits according to their type:
+	#   - fixup! commits will be squashed without adding commit messages.
+	#   - squash! commits will be squashed, but you’ll get a chance to edit the commit message.
     autosquash = true
+
+    # enables automatic stashing of local changes when performing a rebase if there are uncommitted changes in the working directory
     autoStash = true
 
 [commit]
@@ -133,26 +157,41 @@
 	template = ~/.gitmessage
 	gpgsign = true
 
+# The rerere (reuse recorded resolution) helps automate the process of resolving conflicts 
+# that have been resolved before, which is especially useful in scenarios where conflicts happen repeatedly
 [rerere]
-    autoupdate = true
+    # enables the rerere feature
     enabled = true
+    # automatically apply previously recorded resolutions to conflicts without prompting the user.
+    autoupdate = true
 
 [rebase]
+    # automatically squash commits when performing a rebase if the commits have a specific format in their commit messages
+    # if you have commits that are marked with a prefix of fixup! or squash!, 
+    # Git will automatically apply the appropriate actions during the rebase process.
     autoSquash = true
+
+    # Git will preserve your working directory changes when you start a rebase operation.
+    # This means that any changes you have that are not yet committed will be kept intact.
     preserve = true
 
 [checkout]
     defaultRemote = origin
 
 [stash]
+    # display a detailed patch (a diff) of changes when you create a new stash or view a list of existing stashes
     showPatch = true
 
 [branch "master"]
     mergeoptions = --no-edit
 
+[branch "main"]
+    mergeoptions = --no-edit
+
 [branch]
+    # automatically set up a new branch to use rebase instead of merge when you create it based on a remote-tracking branch.
     autosetuprebase = always
-    autosetupmerge  = always
+    #autosetupmerge  = always
 
 [grep]
     extendRegexp = true
@@ -179,6 +218,8 @@
     wt = 'git worktree'
 
     # Blame
+    # Tracks the last modification of each line in a file, ignoring whitespace-only changes (-w)
+    # and recognizing moved code blocks that are at least 3% similar (-M3).
     blm = blame -w -M3 -- 
 
     # Branches
@@ -187,29 +228,36 @@
 	go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"    
     # Show latest used branches based on the time of the most recent commit
     lb = !git reflog show --pretty=format:'%gs ~ %gd' --date=relative | grep 'checkout:' | grep -oE '[^ ]+ ~ .*' | awk -F~ '!seen[$1]++' | head -n 10 | awk -F' ~ HEAD@{' '{printf(\"  \\033[33m%s: \\033[37m %s\\033[0m\\n\", substr($2, 1, length($2)-1), $1)}'
-    branchcleanup = !git remote prune origin
+    # clean up local references to branches that have been deleted from the remote repository
+    branchprune = !git remote prune origin
     # Remove all merged branches with master
-    bclean = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+    bclean = "!git branch --merged | grep -Ev '(^\\*|^\\+|master|main|dev)'"
     # List each branch and its last revision date
     branchdate = !git for-each-ref --sort='-authordate' --format='%(refname)%09%(authordate)' refs/heads | sed -e 's-refs/heads/--' | less
     # Copy current branch name, useful for updating package definitions to a locally modified copy
     branch-copy = !git rev-parse --abbrev-ref HEAD | tr -d '\n' | pbcopy
+    # Show most recent created branches
+    recent = "!f() { count=${1:-10}; git for-each-ref --sort=-committerdate refs/heads --format='%(HEAD)%(color:yellow)%(refname:short)|%(color:bold green)%(committerdate:relative)|%(color:blue)%(subject)|%(color:magenta)%(authorname)%(color:reset)' --color=always --count=$count | column -ts'|'; }; f"
 
     # Stash
     pop = stash pop
-    st = 'git stash save --include-untracked'
+    st = stash save --include-untracked
     apply = stash apply
+    # Git stash list
     sl = stash list --pretty=format:\"%C(bold red)%gd%C(dim yellow)%C(reset) %<(70,trunc)%s %C(green)(%ad)\"
     
     # Logging
+    # Log last commit
     last = log -1 HEAD --stat
-    recent = branch --sort=committerdate
-    month = log --since='last month' --author="$(git config user.name)" --oneline
+    # Display all commits from the last month by the current Git user in a concise, one-line format
+    month = "!f() { git log --since='last month' --author=\"$(git config user.name)\" --oneline; }; f"
     # Check latest changes for specific file, requires single argument file path and --since argument
     latest-changes = "!read -p 'Enter the --since value (e.g., 2 weeks ago): ' since; git log --since=\"$since\" --follow --oneline -- \"$1\" | awk '{print $1}' | xargs -I{} git diff {}^..{} -- \"$1\""
     lg = log --color --graph --stat --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-    
-    # check current Github PR's
+    # Checks for any unstaged changes in your working directory, clears the screen if there are changes, and then shows a detailed, one-shot summary of changes
+    d = "!f() { git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat; }; f"
+
+    # Check current Github PR's
     prs='hub pr list -L 20 -b develop --format="%t%n - Branch: [%H]%n - %U%n - %l%n%n"'
     gac = 'git add -A && git commit -m'
     ge = 'git-edit-new'
@@ -300,9 +348,6 @@
     pushInsteadOf = "github:"
     pushInsteadOf = "git://github.com/"
     insteadOf = "https://github.com/"
-    # Show the diff between the latest commit and the current state
-    d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
-    recent = "{ count=$1; git for-each-ref --sort=-committerdate refs/heads --format='%(HEAD)%(color:yellow)%(refname:short)|%(color:bold green)%(committerdate:relative)|%(color:blue)%(subject)|%(color:magenta)%(authorname)%(color:reset)' --color=always --count=${count:=10} | column -ts'|'}; r"
 
 [url "git@github.com:"]
     insteadOf = "gh:"
