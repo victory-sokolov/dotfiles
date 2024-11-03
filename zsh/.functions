@@ -82,7 +82,8 @@ colormap() # Colormap
   for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done
 }
 
-man() # Shows pretty man page
+# Override default man page
+function man() # Shows pretty man page
 {
   env \
     LESS_TERMCAP_mb="$(printf '\e[1;31m')" \
@@ -460,14 +461,6 @@ pngtojpg() # Bulk convert png to jpg
 	for i in *.png ; do convert "$i" "${i%.*}.jpg" ; done
 }
 
-# C++ snippets
-cpp-run() # compile and run executable
-{
-    echo "Compiling file..."
-    g++ -o "$1" "$1.cpp"
-    ./"$1".cpp
-}
-
 spy() # Watch file
 {
     file=$1
@@ -699,10 +692,4 @@ duplicate_file() # Duplicates a file N times
 poetry-update() ## Update Poetry packages interactively
 {
     poetry show --outdated -T | fzf -m | awk '{printf $1"@latest" " "}' | xargs -I {} poetry add {}
-}
-
-decryptpdf() # Decrypt PDF file
-{
-  echo "Enter password followed by <enter> followed by <ctrl-D>"
-  qpdf --decrypt --password-file=- --replace-input "${1}"
 }
