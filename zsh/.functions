@@ -158,9 +158,15 @@ lowerDir() # Lower all files in the current directory
     for i in *; do mv "$i" "$(echo "$i" | tr '[:upper:]' '[:lower:]')"; done
 }
 
-findEmpty() # Find empty files and directories in current directory
+find-empty() # Find empty files and directories in current directory
 {
-	find . -type f -exec bash -c 'if [ `cat "{}" |wc -w` -eq 0 ]; then echo "file - {}";fi' \; -or -empty -exec bash -c "echo dir - {}" \;
+    # Check for files with zero words
+    echo -e "🗃️  Empty Files: \n"
+    fd --type f -x bash -c 'if [ "$(wc -w < "$1")" -eq 0 ]; then echo $1; fi' bash {}
+    echo -e "----------------------------\n"
+    echo -e "📁  Empty Directories: \n"
+    # Check for empty directories
+    fd --type d -x bash -c 'if [ -z "$(ls -A "$1")" ]; then echo $1; fi' bash {}
 }
 
 # from alex sexton:  gist.github.com/SlexAxton/4989674
