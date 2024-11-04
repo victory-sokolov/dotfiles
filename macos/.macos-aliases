@@ -12,7 +12,7 @@ alias uuid='uuidgen | tr "[:upper:]" "[:lower:]" | pbcopy && pbpaste && echo'
 alias pw="pwgen 16 -1 | pbcopy"
 
 # Recursively delete `.DS_Store` files
-alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
+alias cleanup="fd -HI DS_Store -x rm"
 
 alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl; sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent'"
 
