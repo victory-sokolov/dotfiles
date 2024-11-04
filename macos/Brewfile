@@ -47,13 +47,13 @@ brew 'rsync'                    # Fast incremental file transfer
 brew 'aspell'                   # Spell check
 brew 'gnupg'                    # GnuPG allows you to encrypt and sign your data and communications
 brew 'rm-improved'              # Improved rm command
-brew 'osv-scanner'              # Scan for packages vulnerabilities
+brew 'osv-scanner'              # Scan packages for vulnerabilities
 brew 'duf'                      # Disk usage
 brew 'zoxide'                   # Smart cd command
 brew 'htop'                     # top alternative to see running processes  
 brew 'vivid'                    # Theme for LS_COLORS
 brew 'myrepos'                  # Run commands in multiple Git repositories
-brew 'watch'                    # Executes a program periodically,
+brew 'watch'                    # Executes a program periodically
 brew 'jsonnet'                  # Data templating language
 brew 'terminal-notifier'        # Terminal notifier
 
@@ -71,7 +71,7 @@ cask 'visual-studio-code'       # Visual Studio Code
 
 # Node
 brew 'node'                     # NodeJs
-tap "oven-sh/bun"               # Tap for Bun JS runtime
+tap 'oven-sh/bun'               # Tap for Bun JS runtime
 brew 'bun'                      # Bun JS runtime
 brew 'yarn'                     # Yarn package manager
 brew 'nvm'                      # Yarn node version manager
