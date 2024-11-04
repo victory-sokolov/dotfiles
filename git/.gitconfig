@@ -3,8 +3,8 @@
     email = viktorsokolov.and@gmail.com
 	signingkey = FAB76AB59DE3D70D
 
-[include]
-    path = ~/.gitconfig-local
+[includeIf "gitdir:~/projects/"]
+    path = .gitconfig-work
 
 [core]
     editor = vim
