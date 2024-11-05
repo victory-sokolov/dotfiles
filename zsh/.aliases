@@ -186,6 +186,7 @@ alias docker-compose="docker compose"
 alias dcup="docker compose up -d --remove-orphans"
 alias dcdown="docker compose down -v --remove-orphans"
 alias dstop="docker stop $(docker ps -a -q)"
+alias dprune="docker system prune -a -f --volumes"
 # Get container IP address by container ID
 alias dip="docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}'"
 # Stop and remove all containers
