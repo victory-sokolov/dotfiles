@@ -24,7 +24,7 @@ brew 'ripgrep'                  # Searching within files (better grep)
 brew 'tmux'                     # Terminal multiplexer
 brew 'neofetch'                 # Show system data and ditstro info
 brew 'lsd'                      # Listing files with info (better ls)
-brew 'openssl'                  # Cryptography and SSL/TLS Toolkit
+brew 'openssl@3'                # Cryptography and SSL/TLS Toolkit
 brew 'fzf'                      # Fuzzy file finder and filtering
 brew 'shellcheck'               # Shell script linter
 brew 'tldr'                     # Community-maintained docs (better man)
@@ -51,6 +51,7 @@ brew 'osv-scanner'              # Scan packages for vulnerabilities
 brew 'duf'                      # Disk usage
 brew 'zoxide'                   # Smart cd command
 brew 'htop'                     # top alternative to see running processes  
+brew 'glances'                  # Monitoring tool
 brew 'vivid'                    # Theme for LS_COLORS
 brew 'myrepos'                  # Run commands in multiple Git repositories
 brew 'watch'                    # Executes a program periodically
@@ -64,6 +65,7 @@ brew 'gh'                       # Interact with GitHub PRs, issues, repos
 brew 'git-delta'                # Extra git commands for common tasks
 brew 'nvie/tap/git-toolbelt'    # Suite of useful Git commands
 brew 'lazygit'                  # Full Git management app
+brew "tig"                      # Text interface for Git repositories
 
 # Editors
 brew 'neovim'                   # VIM Text editor
@@ -96,6 +98,7 @@ brew 'ruby-build'               # Ruby language
 
 # Database
 brew 'postgresql'               # Postgresql Databaae
+brew 'pgcli'                    # Postgresql CLI
 brew 'mysql'                    # MySQL Database
 brew 'redis'                    # Redis key/value storage
 
@@ -174,6 +177,7 @@ cask 'android-studio'           # Android Studio
 cask 'raycast'                  # Spotlight alternative
 cask --no-quarantine 'tomatobar'# Pomodor timer
 cask 'keycastr'                 # Visualize keystrokes while you type
+cask "flux"                     # Screen colour temperature controller
 
 # Fonts
 cask 'font-fira-code'
