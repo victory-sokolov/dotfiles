@@ -44,6 +44,7 @@ brew 'jdupes'                   # Duplicate file finder
 brew 'sd'                       # RegEx find and replace (better sed)
 brew 'tokei'                    # Count lines of code (better cloc)
 brew 'rsync'                    # Fast incremental file transfer
+brew 'pstree'                   # Display process tree
 brew 'aspell'                   # Spell check
 brew 'gnupg'                    # GnuPG allows you to encrypt and sign your data and communications
 brew 'rm-improved'              # Improved rm command
