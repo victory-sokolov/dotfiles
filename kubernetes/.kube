@@ -25,3 +25,11 @@ function kube-delete
 {
     kubectl get pods --no-headers -o custom-columns=":metadata.name" | fzf --multi --tac | xargs -I {} kubectl delete pod {}
 }
+
+
+function kube-restart-pods # Restart all pods that are not in Running state
+{
+    kubectl get pods --all-namespaces --field-selector=status.phase!=Running \
+        -o jsonpath='{range .items[*]}{.metadata.namespace}{" "}{.metadata.name}{"\n"}{end}' | \
+        while read namespace pod; do kubectl delete pod "$pod" -n "$namespace"; done
+}
