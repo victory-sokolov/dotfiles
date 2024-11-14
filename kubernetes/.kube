@@ -27,9 +27,14 @@ function kube-delete
 }
 
 
-function kube-restart-pods # Restart all pods that are not in Running state
+kube-restart-pods # Restart all pods that are not in Running state
 {
     kubectl get pods --all-namespaces --field-selector=status.phase!=Running \
         -o jsonpath='{range .items[*]}{.metadata.namespace}{" "}{.metadata.name}{"\n"}{end}' | \
         while read namespace pod; do kubectl delete pod "$pod" -n "$namespace"; done
+}
+
+kube-delete # Delete kubernetes resources
+{
+    kubectl delete pods,services,deployments,pvc --all
 }
