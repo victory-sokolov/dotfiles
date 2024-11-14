@@ -1,40 +1,40 @@
+#!/bin/zsh
 
-function kube-exec # Kubernetes exec to the POD
+kube-exec() # Kubernetes exec to the POD
 {
     kubectl get pods --no-headers \
         | fzf | awk '{print $1}' \
         | xargs -o -I % kubectl exec -it % -- bash
 }
 
-function kube-logs # Kubenetes POD logs
+kube-logs() # Kubenetes POD logs
 {
     kubectl get pods -o name | fzf --preview="kubectl logs {}"
 }
 
-function kube-context
+kube-context()
 {
     kubectl config use-context $(kubectl config get-contexts -o name | fzf --height=10 --prompt="Kubernetes Context> ")    
 }
 
-function kube-namespace
+kube-namespace()
 {
     kubectl config set-context --current --namespace "$(kubectl get ns -o name | fzf -d/ --with-nth=2 | cut -d/ -f2)"
 }
 
-function kube-delete
+kube-delete()
 {
     kubectl get pods --no-headers -o custom-columns=":metadata.name" | fzf --multi --tac | xargs -I {} kubectl delete pod {}
 }
 
-
-kube-restart-pods # Restart all pods that are not in Running state
+kube-restart-pods() # Restart all pods that are not in Running state
 {
     kubectl get pods --all-namespaces --field-selector=status.phase!=Running \
         -o jsonpath='{range .items[*]}{.metadata.namespace}{" "}{.metadata.name}{"\n"}{end}' | \
         while read namespace pod; do kubectl delete pod "$pod" -n "$namespace"; done
 }
 
-kube-delete # Delete kubernetes resources
+kube-delete() # Delete kubernetes resources
 {
     kubectl delete pods,services,deployments,pvc --all
 }
