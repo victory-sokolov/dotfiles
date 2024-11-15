@@ -179,6 +179,8 @@ cask 'raycast'                  # Spotlight alternative
 cask --no-quarantine 'tomatobar'# Pomodor timer
 cask 'keycastr'                 # Visualize keystrokes while you type
 cask "flux"                     # Screen colour temperature controller
+cask "obsidian"                 # Obsidian note taking app
+cask "spotify"
 
 # Fonts
 cask 'font-fira-code'
