@@ -4,25 +4,11 @@
 export DOCKER_REPO_PREFIX="victory-sokolov"
 
 # Helper functions
-docker-clean() # stops and cleans all docker containers & images
-{
-    docker stop $(docker ps -a -q)
-    docker rm $(docker ps -a -q)
-}
-
-dms() # docker-machine start
-{
-    machine_name="$@"
-    docker-machine start "$machine_name"
-    docker-machine env "$machine_name"
-    eval "$(docker-machine env "$machine_name")"
-}
 
 drmnone() # remove untagged images
 {
 	docker rmi -f $(docker images -f "dangling=true" -q)
 }
-
 
 docker-compose-watch() # watch and reload docker
 {
@@ -44,11 +30,6 @@ di() # Get container id by name
 dcs() # Stop container by name
 {
 	docker container stop $(docker container ls -q --filter name="$1"*)
-}
-
-docker-stop() # Stop all containers
-{
-    docker stop $(docker container ls -q)
 }
 
 da() # Select a docker container to start and attach to
@@ -131,8 +112,3 @@ dockerignore-test() # Files that would be included in a Dockerfile, with size in
     sort -k1,1nr -k2,2 | \
     less
 }
-
-# Docker containers aliases and functions
-# Scrapy splash container for data scrapping
-alias splash="docker run --rm --name scrapy-splash -d -p 8050:8050 scrapinghub/splash"
-alias docker-compose-reload="docker-compose-watch"
