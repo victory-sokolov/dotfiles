@@ -140,3 +140,6 @@ defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 
 # Disable power chime
 defaults write com.apple.PowerChime ChimeOnAllHardware -bool false;killall PowerChime
+
+# Show Library folder
+chflags nohidden ~/Library
