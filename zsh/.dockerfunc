@@ -4,12 +4,6 @@
 export DOCKER_REPO_PREFIX="victory-sokolov"
 
 # Helper functions
-
-drmnone() # remove untagged images
-{
-	docker rmi -f $(docker images -f "dangling=true" -q)
-}
-
 docker-compose-watch() # watch and reload docker
 {
   local args;
