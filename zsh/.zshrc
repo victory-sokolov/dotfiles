@@ -9,8 +9,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-set -m
-
 if [ "$TERM_PROGRAM" != "WarpTerminal" ]; then
     ZSH_THEME="powerlevel10k/powerlevel10k"
 fi
@@ -18,23 +16,18 @@ fi
 # POWERLEVEL10K_MODE="nerdfont-complete"
 
 # Setopts autocorrections
-setopt correct
 setopt correct_all
 setopt autocd
-setopt hist_ignore_dups # Ignore duplicates
-setopt HIST_IGNORE_SPACE
+setopt HIST_IGNORE_ALL_DUPS # Ignore duplicates
+# Store history per tab
+setopt inc_append_history
+setopt share_history
+
+# Tell ZSH not to nice background process
+unsetopt BG_NICE
+unsetopt CORRECT_ALL
 
 cdpath="($HOME/dev $HOME/dotfiles)"
-
-# Exports
-export ZSH=$HOME/.oh-my-zsh
-export PROMPT_SP=
-export ZSH_DISABLE_COMPFIX=true
-export GPG_TTY=$(tty)
-export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
-export DISABLE_UPDATE_PROMPT="true"
-export DISABLE_AUTO_UPDATE="true"
-export ENABLE_CORRECTION="true"
 
 # Dotfiles exports 
 export DOTFILES="$HOME/dotfiles"
@@ -47,14 +40,13 @@ plugins=(
 	git
     # gitfast
     git-open
-	npm
     nvm
 	extract
-	sudo
 	per-directory-history
     fzf-tab
 	fzf
 	copypath
+    # docs: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/web-search
 	web-search
 	you-should-use
 	zsh-syntax-highlighting
@@ -65,11 +57,6 @@ plugins=(
     tmux
     kubectl
 )
-
-# Tell ZSH not to nice background process
-unsetopt BG_NICE
-unsetopt CORRECT_ALL
-unsetopt share_history  # prevent sharing between running shells
 
 if [ -f thefuck ]; then
     eval thefuck --alias
@@ -94,11 +81,9 @@ zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
 
-# how often to update omz
-# zstyle ":omz:update" frequency 7
 zstyle ":completion:*:options" list-colors "=^(-- *)=34"
 zstyle ":omz:plugins:nvm" lazy true
-zstyle ":omz:plugins:rbenv" lazy true
+# zstyle ":omz:plugins:rbenv" lazy true
 # zstyle ":omz:plugins:pyenv" lazy true
 # Ignore useless files, like .pyc.
 zstyle ":completion:*:(all-|)files" ignored-patterns "(|*/).pyc"
@@ -168,14 +153,9 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 
 autoload -U add-zsh-hook
-
 # general autocomplete helpers
 autoload -U +X bashcompinit && bashcompinit
 autoload -Uz compinit
-
-# Store history per tab
-setopt inc_append_history
-setopt share_history
 
 if [ "(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump)" ]; then
   compinit
