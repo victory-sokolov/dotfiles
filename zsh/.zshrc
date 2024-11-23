@@ -15,6 +15,13 @@ fi
 
 # POWERLEVEL10K_MODE="nerdfont-complete"
 
+export ZSH=$HOME/.oh-my-zsh
+# Dotfiles exports 
+export DOTFILES="$HOME/dotfiles"
+export PATH="$DOTFILES/scripts/git:$PATH"
+export PATH="$DOTFILES/scripts:$PATH"
+
+
 # Setopts autocorrections
 setopt correct_all
 setopt autocd
@@ -29,31 +36,26 @@ unsetopt CORRECT_ALL
 
 cdpath="($HOME/dev $HOME/dotfiles)"
 
-# Dotfiles exports 
-export DOTFILES="$HOME/dotfiles"
-export PATH="$DOTFILES/scripts/git:$PATH"
-export PATH="$DOTFILES/scripts:$PATH"
-
 # Plugins
 plugins=(
     evalcache
-	git
+    git
     # gitfast
     git-open
     nvm
-	extract
-	per-directory-history
+    extract
+    per-directory-history
     fzf-tab
-	fzf
-	copypath
+    fzf
+    copypath
     # docs: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/web-search
-	web-search
-	you-should-use
-	zsh-syntax-highlighting
-	zsh-autosuggestions
-	zsh-completions
+    web-search
+    you-should-use
+    zsh-syntax-highlighting
+    zsh-autosuggestions
+    zsh-completions
     zsh-vi-mode
-	z
+    z
     tmux
     kubectl
 )
