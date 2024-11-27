@@ -54,7 +54,7 @@ plugins=(
     zsh-syntax-highlighting
     zsh-autosuggestions
     zsh-completions
-    zsh-vi-mode
+    # zsh-vi-mode
     z
     tmux
     kubectl
