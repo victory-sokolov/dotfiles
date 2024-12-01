@@ -36,5 +36,5 @@ kube-restart-pods() # Restart all pods that are not in Running state
 
 kube-delete() # Delete kubernetes resources
 {
-    kubectl delete pods,services,deployments,pvc,pv,configmaps --all
+    kubectl delete pods,services,deployments,pvc,pv,configmaps,jobs --all
 }
