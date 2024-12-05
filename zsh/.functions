@@ -587,7 +587,11 @@ timezsh() # Time ZSH load time
 kport() # fzf kill process
 {
     local pid
-    pid=$(ps auxr | awk '{print $2,$3,$4,$11}' | column -t | fzf -m | awk '{print $1}')
+    # $2: The PID (Process ID)
+	# $3: The CPU usage (%CPU)
+	# $4: The memory usage (%MEM)
+	# $11: The command that initiated the process
+    pid=$(ps auxr | awk '{print $2,$3,$4,$11}' | sort -n | column -t | fzf -m | awk '{print $1}')
 
     if [ "x$pid" != "x" ]
     then
