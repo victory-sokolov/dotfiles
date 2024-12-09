@@ -177,11 +177,11 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 export PIPENV_PYTHON="$PYENV_ROOT/shims/python"
 _evalcache pyenv init --path
 
-rbenv() {
-    export PATH="$HOME/.rbenv/bin:$PATH"
-    _evalcache rbenv init - --no-rehash
-    rbenv "$@"
-}
+# rbenv() {
+#     export PATH="$HOME/.rbenv/bin:$PATH"
+#     _evalcache rbenv init - --no-rehash
+#     rbenv "$@"
+# }
 
 nvm() {
   unset -f nvm
