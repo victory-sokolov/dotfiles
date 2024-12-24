@@ -1,7 +1,8 @@
 # Inserts a blank line between shell prompts
 add_newline = true
 # Change command timeout from 500 to 1000 ms
-command_timeout = 1000
+command_timeout = 30000
+scan_timeout = 30000
 # Change the default prompt format
 format = """$env_var $all"""
 
@@ -86,6 +87,7 @@ symbol = " "
 python_binary = "python3"
 disabled = true
 format = 'via [${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+# Timeout for commands executed by starship (in milliseconds).
 
 [nodejs]
 format = "via [ $version](bold green) "
