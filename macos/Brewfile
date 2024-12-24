@@ -113,6 +113,7 @@ brew 'kubernetes-cli'           # Kubernetes CLI
 brew 'minikube'                 # Minikube
 brew 'haproxy'                  # HAProxy 
 brew 'helm'                     # Helm Kubernetes package manager
+brew 'helmfile'                 # Manage and deploy Helm charts
 brew 'kompose'                  # Convert docker-compose to Kubernetes files
 brew 'tnk-studio/tools/lazykube' # Lazy kubernetes management
 brew 'dive'                      # Explore each Docker layer
