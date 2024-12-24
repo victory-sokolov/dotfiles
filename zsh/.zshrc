@@ -21,14 +21,11 @@ export DOTFILES="$HOME/dotfiles"
 export PATH="$DOTFILES/scripts/git:$PATH"
 export PATH="$DOTFILES/scripts:$PATH"
 
-
 # Setopts autocorrections
 setopt correct_all
 setopt autocd
-setopt HIST_IGNORE_ALL_DUPS # Ignore duplicates
 # Store history per tab
 setopt inc_append_history
-setopt share_history
 
 # Tell ZSH not to nice background process
 unsetopt BG_NICE
@@ -66,7 +63,7 @@ fi
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-	export EDITOR="vim"
+	export EDITOR="vi"
 else
 	export EDITOR="code"
 fi
