@@ -14,7 +14,8 @@
     # When enabled (fsmonitor = true), Git uses an OS-specific monitoring tool to detect file changes, 
     # rather than scanning the entire directory structure. 
     # Significantly speed up performance on large repos by reducing the number of file lookups required.
-    fsmonitor = true
+    # Note: Commented out, since it causes issues when installing helm plugins
+    ; fsmonitor = true
 
     # Git will cache the state of untracked files, making subsequent checks faster. 
     # Useful for large repositories with many untracked files.
