@@ -1,9 +1,29 @@
 #!/bin/zsh
 # shellcheck shell=bash
 
+fhelp() # List all custom functions
+{
+    rg -N '^[a-zA-Z]' \
+        "$DOTFILES"/zsh/.functions \
+        "$DOTFILES"/git/.git-functions \
+        "$DOTFILES"/zsh/.dockerfunc \
+        | sed -E 's/\(\)\s*#\s*/ /' \
+        | sed 's/^[^:]*://' \
+        | sort \
+        | fzf --preview="echo {} | awk -F' ' '{\$1=\"\"; print substr(\$0,2)}'" \
+            --with-nth=1 \
+            --delimiter=' '
+}
+
+
 _has() # Check whether executable exists
 {
     command -v "$1" >/dev/null 2>&1
+}
+
+_fzf-down() 
+{
+    fzf --height 50% "$@"
 }
 
 latest() # Show latest created file
@@ -131,17 +151,6 @@ targz() # Targz a file
 	echo "${tmpFile}.gz ($((zippedSize / 1000)) kB) created successfully.";
 }
 
-# Normalize `open` across Linux, macOS, and Windows.
-# This is needed to make the `o` function (see below) cross-platform.
-if [ ! "$(uname -s)" = 'Darwin' ]; then
-	if grep -q Microsoft /proc/version; then
-		# Ubuntu on Windows using the Linux subsystem
-		alias open='explorer.exe';
-	else
-		alias open='xdg-open';
-	fi
-fi
-
 cview() # Read csv file
 {
 	csvtool readable "$1" | view -
@@ -193,10 +202,6 @@ gifify() # Video to GIF
     else
         echo "proper usage: gifify <input_movie.mov>. You DO need to include extension."
     fi
-}
-
-fzf-down() {
-    fzf --height 50% "$@"
 }
 
 fcd() # FZF with cd command 
@@ -525,8 +530,8 @@ node-flush() # Reinstall node deps
     fi
 }
 
-# Get Node package manager
-get_node_package_manager() {
+get_node_package_manager() # Get Node package manager
+{
     if [[ -f bun.lockb ]]; then
         echo "bun"
     elif [[ -f pnpm-lock.yaml ]]; then
