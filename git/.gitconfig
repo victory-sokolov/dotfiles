@@ -158,6 +158,9 @@
 	template = ~/.gitmessage
 	gpgsign = true
 
+[gpg]
+    program = /opt/homebrew/bin/gpg
+
 # The rerere (reuse recorded resolution) helps automate the process of resolving conflicts 
 # that have been resolved before, which is especially useful in scenarios where conflicts happen repeatedly
 [rerere]
