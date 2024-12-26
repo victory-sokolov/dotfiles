@@ -54,8 +54,7 @@ fi
 alias pubkey="pbcopy < ~/.ssh/id_rsa.pub | echo 'public key copied to clipboard'"
 
 # custom available functions
-alias fhelp="grep "^function" $DOTFILES/zsh/.functions | sed 's/function/+/g' | column -t | sed 's/() #/ - /g'"
-alias ahelp="grep "^alias" $DOTFILES/zsh/.aliases | sed 's/alias/+/g'"
+alias ahelp="rg -N '^alias [^_]' $DOTFILES/zsh/.aliases | sed 's/alias //g' | fzf" 
 
 # YouTube DLL
 alias yt-mp3="yt-dlp -x --audio-format mp3 --audio-quality 0"
