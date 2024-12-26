@@ -119,6 +119,9 @@ fi
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   DISTRIB=$(awk -F= '/^NAME/{gsub("\"", "", $2); print $2}' /etc/os-release)
 
+    # Homebrew for Linux
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
   if [[ ${DISTRIB} = "Ubuntu"* ]]; then
     source "$HOME/dotfiles/linux/.linux-aliases"
     source "$HOME/dotfiles/linux/.linux-functions"
