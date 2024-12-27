@@ -156,7 +156,13 @@
 [commit]
     verbose = true
 	template = ~/.gitmessage
-	gpgsign = true
+	# gpgsign = true
+
+[includeIf "env:OS_MACOS"]
+    path = ~/.gitconfig-mac
+
+[includeIf "env:OS_LINUX"]
+    path = ~/.gitconfig-linux
 
 [gpg]
     program = /opt/homebrew/bin/gpg

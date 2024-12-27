@@ -9,3 +9,5 @@ export DOCKER_DEFAULT_PLATFORM="linux/arm64"
 
 # Allow Python multiprocessing fork mode
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+
+export GPG_PATH="/opt/homebrew/bin/gpg"
