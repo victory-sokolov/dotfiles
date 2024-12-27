@@ -135,7 +135,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
       # Set symlink for vscode
       ln -s "/mnt/c/Program Files/Microsoft VS Code/bin/code" /usr/local/bin/code
     
-      alias open='explorer.exe';
+      alias open='explorer.exe'
 
       export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
       export LIBGL_ALWAYS_INDIRECT=1
