@@ -442,7 +442,9 @@ clean_deps() # Remove node, python, php dependencies
 
     for folder in "${folders[@]}"
     do
-        fd -H -t d -d 4 "$folder" ~/dev/Python --changed-before "${days}days" --exec  rm -rf {};
+        fd -H -t d -d 4 "^${folder}$" ~/dev --changed-before "${days}days" \
+            --exec echo "Removing {}" \; \
+            --exec rm -rf {}
     done
 }
 
