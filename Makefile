@@ -430,8 +430,7 @@ python3: ## Python,Poetry & Dependencies
 		curl \
 		python3-pip \
 		python3-venv \
-		python3-dev \
-		thefuck
+		python3-dev
 
 	# https://powerline.readthedocs.io/en/latest/installation.html#generic-requirements
 	pip3 install \

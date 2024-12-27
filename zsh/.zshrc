@@ -40,7 +40,6 @@ plugins=(
     git
     # gitfast
     git-open
-    nvm
     extract
     per-directory-history
     fzf-tab
@@ -57,10 +56,6 @@ plugins=(
     tmux
     kubectl
 )
-
-if [ -f thefuck ]; then
-    eval thefuck --alias
-fi
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
@@ -111,6 +106,8 @@ if test -f "$PRIVATE_EXPORT_PATH"; then
     source "$PRIVATE_EXPORT_PATH"
 fi
 
+# Version manager for everything
+# brew install asdf
 if [ -f "$HOME/.asdf/asdf.sh" ]; then
     . "$HOME/.asdf/asdf.sh"
     . "$HOME/.asdf/completions/asdf.bash"
@@ -142,12 +139,9 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     fi
   fi
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-    # macOS OSX
-    export NVM_DIR=~/.nvm
 
     source "$HOME/dotfiles/macos/.macos-aliases"
     source "$HOME/dotfiles/macos/.macos-exports"
-    source $(brew --prefix nvm)/nvm.sh
 
     # Disable fork security feature for python multiprocessing
     export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
@@ -185,13 +179,6 @@ _evalcache pyenv init --path
 #     _evalcache rbenv init - --no-rehash
 #     rbenv "$@"
 # }
-
-nvm() {
-  unset -f nvm
-  export NVM_PREFIX=$(brew --prefix nvm)
-  [ -s "$NVM_PREFIX/nvm.sh" ] && . "$NVM_PREFIX/nvm.sh"
-  nvm "$@"
-}
 
 if [[ -f ~/dotfiles/starship/starship.zsh ]]; then
     source ~/dotfiles/starship/starship.zsh
