@@ -77,7 +77,8 @@ brew 'node'                     # NodeJs
 tap 'oven-sh/bun'               # Tap for Bun JS runtime
 brew 'bun'                      # Bun JS runtime
 brew 'yarn'                     # Yarn package manager
-brew 'nvm'                      # Yarn node version manager
+brew 'nvm'                      # Node version manager
+brew 'fnm'                      # Node version manager built with Rust
 brew 'pnpm'                     # PNPM package manager
 
 # Go
