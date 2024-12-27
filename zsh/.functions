@@ -97,11 +97,6 @@ remove_newlines() # Remove new lines from files and folder
     rename 's/[\r\n]//g' *
 }
 
-colormap() # Colormap
-{
-  for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done
-}
-
 # Override default man page
 function man() # Shows pretty man page
 {
@@ -264,7 +259,7 @@ server() # Start an HTTP server from a directory
 	python3 -c $'import SimpleHTTPServer;\nmap = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map;\nmap[""] = "text/plain";\nfor key, value in map.items():\n\tmap[key] = value + ";charset=UTF-8";\nSimpleHTTPServer.test();' "$port";
 }
 
-python_venv() # Auto active virtual environment
+python_venv() # Auto activate virtual environment
 {
   ENV=./venv
   # when you cd into a folder that contains $ENV
@@ -356,27 +351,6 @@ delete-db() # Deletee database if exiss
     dropdb -f --if-exists "$@"
 }
 
-mysqldb() # MYSQL base commands (refresh, create, drop, list)
-{
-    if [ "$1" = "refresh" ]; then
-        mysql -uroot -e "drop database $2; create database $2"
-    elif [ "$1" = "create" ]; then
-        mysql -uroot -e "create database $2"
-    elif [ "$1" = "drop" ]; then
-        mysql -uroot -e "drop database $2"
-    elif [ "$1" = "list" ]; then
-        mysql -uroot -e "show databases" | perl -p -e's/\|| *//g'
-    fi
-}
-
-removebg() # Remove background from the image
-{
-	curl -H "X-API-Key: $REMOVEBG_KEY" \
-       -F "image_file=@$1" \
-       -F "size=auto" \
-       -f https://api.remove.bg/v1.0/removebg -o no-bg.png
-}
-
 bash-file() # Create new shell file
 {
   FILE_PATH=$1
@@ -456,30 +430,9 @@ dataurl() # Create a data URL from a file
 	echo "data:${mimeType};base64,$(openssl base64 -in "$1" | tr -d '\n')";
 }
 
-# Source: http://superuser.com/questions/611538/is-there-a-way-to-display-a-countdown-or-stopwatch-timer-in-a-terminal
-stopwatch() # Stopwatch, press enter to time.
-{
-	date1=$(date +%s);
-	while :; do
-		days=$(( $(($(date +%s) - date1)) / 86400 ))
-		echo -ne "$days day(s) and $(date -u --date @$(($(date +%s) - $date1)) +%H:%M:%S)\r";
-		sleep 0.1
-	done
-}
-
 pngtojpg() # Bulk convert png to jpg
 {
 	for i in *.png ; do convert "$i" "${i%.*}.jpg" ; done
-}
-
-spy() # Watch file
-{
-    file=$1
-    echo "Watching file ${file} 👀..."
-    while true; do
-        watch -n 1 -g -x cat "${file}" > /dev/null 2>&1
-        echo "File ${file} changed"
-    done
 }
 
 clean_deps() # Remove node, python, php dependencies
@@ -621,28 +574,6 @@ djtest() # Run Django tests interactively with fzf
     python "$DOTFILES/scripts/python/get_class_methods.py" "$test_path" \
         | fzf \
         | xargs -I {} poetry run python manage.py test "$test_file".{}
-}
-
-fuzzyFavoriteCommand() # List favorited commands
-{
-    bookmarkedCommands=$((cat "$HOME"/.bookmark) | sed '/^s*$/d' | uniq | fzf); 
-    echo "$bookmarkedCommands";
-    eval "$bookmarkedCommands";
-    history -s "$bookmarkedCommands"
-}
-
-addCommandToBookmarks() # Add new item to bookmark
-{
-    command=$@
-    # description=$(grep "^function $command(" "$HOME/.functions" | sed 's/.*() # //g')
-
-    echo "$command" >> "$HOME"/.bookmark;
-    echo "Bookmarking '""$command""'";
-
-    # remove duplicate records in bookmark
-    perl -ne 'print unless $dup{$_}++;' ~/.bookmark > /tmp/syle-bookmark-temp;
-    cat /tmp/syle-bookmark-temp > ~/.bookmark;
-    rm /tmp/syle-bookmark-temp
 }
 
 brewdp() # Delete (one or multiple) selected application(s)
