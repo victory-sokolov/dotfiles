@@ -437,12 +437,12 @@ pngtojpg() # Bulk convert png to jpg
 
 clean_deps() # Remove node, python, php dependencies
 {
-    folders=("node_modules" "venv" ".env" "vendor")
+    folders=("node_modules" ".venv" ".env" "vendor")
     days=${1:-90}
 
     for folder in "${folders[@]}"
     do
-        find ~/dev -name "$folder" -type d -maxdepth 4 -mtime +"$days" -exec rm -rf {} \;
+        fd -H -t d -d 4 "$folder" ~/dev/Python --changed-before "${days}days" --exec  rm -rf {};
     done
 }
 
