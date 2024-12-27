@@ -20,7 +20,8 @@
 
 -- Output layout
 \pset pager on
-\setenv PAGER 'pspg -bX --vertical-cursor'
+-- Requires pspg package: brew install pspg
+-- \setenv PAGER 'pspg -bX --vertical-cursor'
 
 -- By default, NULL displays as an empty space. Is it actually an empty
 -- string, or is it null? This makes that distinction visible.
