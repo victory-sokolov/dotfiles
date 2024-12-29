@@ -119,6 +119,7 @@ brew 'helmfile'                 # Manage and deploy Helm charts
 brew 'kompose'                  # Convert docker-compose to Kubernetes files
 brew 'tnk-studio/tools/lazykube' # Lazy kubernetes management
 brew 'dive'                      # Explore each Docker layer
+brew 'orbstack'                 # Docker desktop alternative
 
 # Terraform
 tap "hashicorp/tap"
