@@ -39,9 +39,13 @@ dlogs() # Check logs of container
   docker ps --format '{{.Names}}' | fzf --preview="docker logs {}"
 }
 
-drm() # Select a docker container to remove
+drm() # Select multiple docker container to remove
 {
-  docker ps -a | sed 1d | fzf -q "$1" --no-sort -m --tac | awk '{ print $1 }' | xargs -r docker rm
+  docker ps -a \
+    | sed 1d \
+    | fzf -q "$1" --no-sort -m --tac --header="Select containers to remove (use TAB to multi-select)" \
+    | awk '{ print $1 }' \
+    | xargs -r -I {} sh -c 'docker stop {} && docker rm {}'
 }
 
 drv() # Select Docker volume to remove
