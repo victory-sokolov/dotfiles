@@ -22,7 +22,7 @@ kube-namespace()
     kubectl config set-context --current --namespace "$(kubectl get ns -o name | fzf -d/ --with-nth=2 | cut -d/ -f2)"
 }
 
-kube-delete()
+kdelete()
 {
     kubectl get pods --no-headers -o custom-columns=":metadata.name" | fzf --multi --tac | xargs -I {} kubectl delete pod {}
 }
