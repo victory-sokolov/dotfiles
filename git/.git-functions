@@ -286,3 +286,9 @@ gclone() # Clone Github repos
     username=$@
     curl "https://api.github.com/users/$username/repos?per_page=100&page=1" | jq '.[].full_name' | fzf
 }
+
+gempty() # Pussh empty commit to trigger build
+{
+    git commit --allow-empty -m "Trigger Build" --no-verify
+    git push
+}
