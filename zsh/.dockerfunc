@@ -36,7 +36,7 @@ da() # Select a docker container to start and attach to
 
 dlogs() # Check logs of container 
 {
-  docker ps --format '{{.Names}}' | fzf --preview="docker logs {}"
+  docker ps --format '{{.Names}}' | fzf --preview="docker logs {}" --bind='F2:toggle-preview'
 }
 
 drm() # Select multiple docker container to remove
