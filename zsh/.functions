@@ -26,6 +26,16 @@ _fzf-down()
     fzf --height 50% "$@"
 }
 
+tolower() # Convert text to lowercase
+{
+    echo "$1" | awk '{print tolower($0)}'
+}
+
+toupper() # Convert text to uppercase
+{
+    echo "$1" | awk '{print toupper($0)}'
+}
+
 latest() # Show latest created file
 {
     ls -lt -d "$1"/*/ | head -n1 | awk '{print $NF}'
