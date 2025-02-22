@@ -1,7 +1,6 @@
 alias update="sudo softwareupdate -i -a; brew update; brew upgrade; brew upgrade --cask; brew autoremove; brew cleanup --prune=all; brew doctor;  _update";
 alias version="sw_vers"
 alias act="act --container-architecture linux/amd64"
-alias open="xdg-open"
 
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 
