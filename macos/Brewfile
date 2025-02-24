@@ -48,6 +48,7 @@ brew 'pstree'                   # Display process tree
 brew 'aspell'                   # Spell check
 brew 'gnupg'                    # GnuPG allows you to encrypt and sign your data and communications
 brew 'rm-improved'              # Improved rm command
+brew 'rip2'                     # Rust based rm alternative
 brew 'osv-scanner'              # Scan packages for vulnerabilities
 brew 'duf'                      # Disk usage
 brew 'zoxide'                   # Smart cd command
@@ -103,6 +104,7 @@ brew 'ruby-build'               # Ruby language
 
 # Database
 brew 'postgresql'               # Postgresql Databaae
+brew 'pg_top'                   # top but for Postgresql
 brew 'pgcli'                    # Postgresql CLI
 brew 'mysql'                    # MySQL Database
 brew 'redis'                    # Redis key/value storage
@@ -154,46 +156,7 @@ cask 'owasp-zap'                # Web app security scanner
 cask 'wireshark'                # Network analyzer + packet capture
 
 # Terminal
-brew 'iterm2'                   # Iterm Terminal           
-cask 'warp'                     # AI based Terminal
-
-# Browsers
-cask 'google-chrome'            # Google Chrome browser
-cask 'firefox'                  # Firefox browser
-
-# Cloud storage
-cask 'dropbox'                  # Dropbox cloud backup
-cask 'google-drive'             # GoogleDrive cloud backup
-
-# Design
-cask 'figma'                    # Figma design app
-
-# Messaging app
-cask 'slack'                    # Slack messaging app
-cask 'discord'                  # Discord messaging app
-
-cask 'anki'                     # Anki flashcard app
-cask 'insomnia'                 # API Testing tool
-cask 'rectangle'                # Move, resize window
-cask 'amethyst'                 # Window tiling manager
-cask 'coconutbattery'           # Battely life checker
-cask 'karabiner-elements'       # Keyboard customizer
-cask 'kap'                      # Screen recorder
-cask 'alt-tab'                  # Alt tab to switch between app windows
-cask 'android-studio'           # Android Studio
-cask 'raycast'                  # Spotlight alternative
-cask --no-quarantine 'tomatobar'# Pomodor timer
-cask 'keycastr'                 # Visualize keystrokes while you type
-cask "flux"                     # Screen colour temperature controller
-cask "obsidian"                 # Obsidian note taking app
-cask "spotify"
-
-# Fonts
-cask 'font-fira-code'
-cask 'font-lato'
-cask 'font-hack-nerd-font'
-cask 'font-meslo-lg-nerd-font'
-cask 'font-meslo-lg-nerd-font'
+brew 'iterm2'                   # Iterm Terminal
 
 # Misc
 brew 'tesseract'                    # Text recognition engine
