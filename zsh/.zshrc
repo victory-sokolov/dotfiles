@@ -84,7 +84,7 @@ zstyle ":omz:plugins:nvm" lazy true
 zstyle ":completion:*:(all-|)files" ignored-patterns "(|*/).pyc"
 zstyle ':autocomplete:*' default-context history-incremental-search-backward
 
-source "$DOTFILES/zsh/.std"
+# source "$DOTFILES/zsh/.std"
 source "$ZSH/oh-my-zsh.sh"
 source "$ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 source "$ZSH/custom/plugins/zsh-completions/zsh-completions.plugin.zsh"
