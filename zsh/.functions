@@ -242,6 +242,17 @@ touchh() # Create file in a nested directory
   mkdir -p "$(dirname "$1")" && touch "$1"
 }
 
+listening() # Check what is listening on specific port
+{
+    if [ $# -eq 0 ]; then
+        sudo lsof -iTCP -sTCP:LISTEN -n -P
+    elif [ $# -eq 1 ]; then
+        sudo lsof -iTCP -sTCP:LISTEN -n -P | grep -i --color "$1"
+    else
+        echo "Usage: listening [pattern]"
+    fi
+}
+
 isup() # Check if URL is up
 {
 	local uri=$1
