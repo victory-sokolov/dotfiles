@@ -1,6 +1,6 @@
 #!/bin/zsh
 # shellcheck shell=bash
-# shellcheck disable=SC1091,SC1090,SC2034`
+# shellcheck disable=SC1091,SC1090,SC2034
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -84,6 +84,7 @@ zstyle ":omz:plugins:nvm" lazy true
 zstyle ":completion:*:(all-|)files" ignored-patterns "(|*/).pyc"
 zstyle ':autocomplete:*' default-context history-incremental-search-backward
 
+source "$DOTFILES/zsh/.std"
 source "$ZSH/oh-my-zsh.sh"
 source "$ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 source "$ZSH/custom/plugins/zsh-completions/zsh-completions.plugin.zsh"
