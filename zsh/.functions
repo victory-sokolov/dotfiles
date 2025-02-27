@@ -183,6 +183,15 @@ find-empty() # Find empty files and directories in current directory
     fd --type d -x bash -c 'if [ -z "$(ls -A "$1")" ]; then echo $1; fi' bash {}
 }
 
+find-empty-md() # Find empty markdown files
+{
+    rg --files --glob '*.md' --glob '!.*' . | while IFS= read -r file; do
+    if [[ ! -s "$file" ]]; then
+        echo "$file"
+    fi
+    done
+}
+
 # from alex sexton:  gist.github.com/SlexAxton/4989674
 gifify() # Video to GIF
 {
