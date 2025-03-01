@@ -47,7 +47,7 @@ if _has bat; then
 fi
 
 if _has rm-improved; then
-    alias rm="rip -s"
+    alias rm="rip"
 fi 
 
 # copy public ssh key to clipboard
