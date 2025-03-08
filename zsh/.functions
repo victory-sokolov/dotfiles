@@ -271,13 +271,26 @@ clean-comments() # remove comments (#, //) and empty lines
 
 ssh-key() # generate ssh key with specific name
 {
+    if [ -z "$1" ]; then
+        echo "Error: No name provided. Usage: ssh-key <key-name>"
+        return 1
+    fi
+
     name="$@"
     ssh-keygen -f ~/.ssh/"$name" -q -N ""
     eval "$(ssh-agent -s)"
     ssh-add ~/.ssh/"$name"
-    xclip -selection clipboard < ~/.ssh/"$name".pub
-    echo "public key copied to clipboard"
-}
+
+
+    # Copy public key to clipboard
+    if command -v xclip &> /dev/null; then
+        xclip -selection clipboard < ~/.ssh/"$name".pub
+        echo "Public key copied to clipboard."
+    else
+        echo "xclip is not installed. Public key:"
+        cat ~/.ssh/"$name".pub
+    fi
+} 
 
 # Python
 server() # Start an HTTP server from a directory
