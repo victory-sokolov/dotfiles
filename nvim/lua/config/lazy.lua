@@ -27,6 +27,7 @@ require("lazy").setup({
 		},
 		-- import any extras modules here
 		{ import = "lazyvim.plugins.extras.linting.eslint" },
+        { import = "lazyvim.plugins.extras.lang.docker" },
 		{ import = "lazyvim.plugins.extras.formatting.prettier" },
 		{ import = "lazyvim.plugins.extras.lang.typescript" },
 		{ import = "lazyvim.plugins.extras.lang.json" },
@@ -57,7 +58,7 @@ require("lazy").setup({
 	dev = {
 		path = "~/.ghq/github.com",
 	},
-	checker = { enabled = true }, -- automatically check for plugin updates
+	checker = { enabled = true, notify = false, frequency = 86400 }, -- automatically check for plugin updates
 	performance = {
 		cache = {
 			enabled = true,
