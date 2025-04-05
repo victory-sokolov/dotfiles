@@ -251,4 +251,4 @@ alias rest="timer 10m && terminal-notifier -message 'Pomodoro'\
 # Suffix Aliases
 alias -s {py,go,js,ts}="vim"
 
-alias _update="omz update; poetry self update; npm update -g; npm-clean; pclear"
+alias _update="omz update; npm update -g; npm-clean; nvim --headless '+Lazy! sync' +qa; pclear"
