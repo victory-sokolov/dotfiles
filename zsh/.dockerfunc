@@ -66,6 +66,11 @@ drmprefix() # Remove all containers named with the given prefix
     docker ps -aq --filter name="${1}*" | xargs docker stop | xargs docker rm 
 }
 
+drmdang() # Remove dangling images "<none>"
+{
+    docker rmi $(docker images -f "dangling=true" -q)
+}
+
 cto() # Containers resource usage overview
 {
     # https://github.com/bcicen/ctop
