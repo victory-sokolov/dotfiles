@@ -60,6 +60,7 @@ brew 'myrepos'                  # Run commands in multiple Git repositories
 brew 'watch'                    # Executes a program periodically
 brew 'jsonnet'                  # Data templating language
 brew 'terminal-notifier'        # Terminal notifier
+brew 'oha'                      # Load generator
 
 # Git
 brew 'git'                      # Git Code versioning
