@@ -50,3 +50,6 @@ end, opts)
 keymap.set("n", "<leader>r", function()
 	require("util.utils").replaceHexWithHSL()
 end)
+
+-- Run Python file
+vim.keymap.set("n", "<leader>rp", "<cmd>TermExec cmd='python3 %' go_back=0<cr>", { desc = "Run Python file" })
