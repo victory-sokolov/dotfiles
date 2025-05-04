@@ -1,2 +1,3 @@
 # Private env variables
-zsh/.exports-private
+.exports-private
+.aliases.local
