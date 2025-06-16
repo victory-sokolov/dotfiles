@@ -45,8 +45,6 @@ plugins=(
     fzf-tab
     fzf
     copypath
-    # docs: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/web-search
-    web-search
     you-should-use
     zsh-syntax-highlighting
     zsh-autosuggestions
@@ -54,7 +52,6 @@ plugins=(
     # zsh-vi-mode
     z
     tmux
-    kubectl
 )
 
 # Preferred editor for local and remote sessions
@@ -109,10 +106,10 @@ fi
 
 # Version manager for everything
 # brew install asdf
-if [ -f "$HOME/.asdf/asdf.sh" ]; then
-    . "$HOME/.asdf/asdf.sh"
-    . "$HOME/.asdf/completions/asdf.bash"
-fi
+# if [ -f "$HOME/.asdf/asdf.sh" ]; then
+#     . "$HOME/.asdf/asdf.sh"
+#     . "$HOME/.asdf/completions/asdf.bash"
+# fi
 
 # Custom settings depending on OS
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
