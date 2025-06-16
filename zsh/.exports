@@ -80,6 +80,7 @@ export PIP_REQUIRE_VIRTUALENV=false pipx list
 export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
 export PYTHONWARNINGS="ignore:Unverified HTTPS request"
 export PATH="${HOME}/.poetry/bin:${PATH}"
+export PATH="$HOME/.local/bin:${PATH}"
 
 # GO
 export GOPATH=$HOME/go
