@@ -32,13 +32,17 @@ setopt inc_append_history
 unsetopt BG_NICE
 unsetopt CORRECT_ALL
 
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+DISABLE_UNTRACKED_FILES_DIRTY="true"
+
 cdpath="($HOME/dev $HOME/dotfiles)"
 
 # Plugins
 plugins=(
     evalcache
     git
-    # gitfast
     git-open
     extract
     per-directory-history
@@ -49,7 +53,6 @@ plugins=(
     zsh-syntax-highlighting
     zsh-autosuggestions
     zsh-completions
-    # zsh-vi-mode
     z
     tmux
 )
@@ -193,3 +196,10 @@ if command -v terraform &> /dev/null
 then
     complete -o nospace -C /opt/homebrew/bin/terraform terraform
 fi
+
+export PNPM_HOME="${HOME}/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
