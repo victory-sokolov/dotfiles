@@ -75,6 +75,9 @@
 [difftool "vscode"]
     cmd = code --wait --diff $LOCAL $REMOTE
 
+[diff "nodiff"]
+    command = /usr/bin/true
+
 [init]
     # git init main branch by default
     defaultBranch = main

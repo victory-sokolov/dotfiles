@@ -115,17 +115,10 @@ pm() # List Git projects with fzf
     selected_folder=$(find . -maxdepth "$depth" -type d -name ".git" -prune -exec dirname {} \; | fzf --height=50%); [ -n "$selected_folder" ] && code "$selected_folder"
 }
 
-gacp() # Git: add all, commit and push. [-m "comment"]
-{
-	git add .
-	git commit "$@"
-	git push
-}
-
-ggs() # push & commit with message `update`
+ggs() # push & commit with message
 {
     git add -A
-    git commit -m 'update'
+    git commit -m "$@"
     git push
 }
 
@@ -287,7 +280,7 @@ gclone() # Clone Github repos
     curl "https://api.github.com/users/$username/repos?per_page=100&page=1" | jq '.[].full_name' | fzf
 }
 
-gempty() # Pussh empty commit to trigger build
+gempty() # Push empty commit to trigger build
 {
     git commit --allow-empty -m "Trigger Build" --no-verify
     git push

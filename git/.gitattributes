@@ -1,2 +1,6 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+package-lock.json diff=nodiff
+yarn.lock diff=nodiff
+pnpm-lock.yaml diff=nodiff
+docs/* diff=nodiff
