@@ -18,6 +18,9 @@
 \pset border 2
 \pset linestyle unicode
 
+-- Will immediately stop executing a script if any SQL command fails (returns an error).
+\pset ON_ERROR_STOP on
+
 -- Output layout
 \pset pager on
 -- Requires pspg package: brew install pspg
