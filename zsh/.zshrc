@@ -1,5 +1,5 @@
 #!/bin/zsh
-# shellcheck shell=bash
+# shellcheck shell=zsh
 # shellcheck disable=SC1091,SC1090,SC2034
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
