@@ -195,9 +195,10 @@ alias dip="docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{
 alias dclean='dstop && dcdown && docker rm -f $(docker ps -q -a) && dprune'
 
 # Kubernetes
+alias kubectl="kubecolor"
 alias kc="minikube kubectl --"
 alias kube-start="minikube start --driver=docker --no-vtx-check"
-alias k="kubectl"
+alias k="kubecolor"
 alias ka="kubectl apply -f"
 
 # Terraform
