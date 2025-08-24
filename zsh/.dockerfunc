@@ -16,7 +16,7 @@ docker-compose-watch() # watch and reload docker
   eval watchexec --restart "$args" -w $(pwd) "docker-compose up"
 }
 
-di() # Get container id by name
+did() # Get container id by name
 {
 	docker ps -aqf "name=$1"
 }
