@@ -22,9 +22,25 @@ kube-namespace()
     kubectl config set-context --current --namespace "$(kubectl get ns -o name | fzf -d/ --with-nth=2 | cut -d/ -f2)"
 }
 
-kdelete()
+kdelpod() # Delete selected pods
 {
-    kubectl get pods --no-headers -o custom-columns=":metadata.name" | fzf --multi --tac | xargs -I {} kubectl delete pod {}
+    kubectl get pods --all-namespaces --no-headers | \
+    awk '$1 != "kube-system" && $1 != "kube-public"' | \
+    fzf --multi --tac --prompt="Select pods to delete > " | \
+    while read namespace pod rest; do
+        kubectl delete pod -n "$namespace" "$pod"
+    done
+}
+
+kdeldeploy() # Delete selected deployments
+{
+    kubectl get deployments --all-namespaces --no-headers | \
+    fzf --multi --tac --prompt="Select deployments to delete > " | \
+    while read line; do
+        namespace=$(echo "$line" | awk '{print $1}')
+        deployment=$(echo "$line" | awk '{print $2}')
+        kubectl delete deployment -n "$namespace" "$deployment"
+    done
 }
 
 kube-restart-pods() # Restart all pods that are not in Running state
