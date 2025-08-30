@@ -43,6 +43,17 @@ kdeldeploy() # Delete selected deployments
     done
 }
 
+kdelsvc() # Delete selected services
+{
+    kubectl get svc --all-namespaces --no-headers | \
+    fzf --multi --tac --prompt="Select services to delete > " | \
+    while read line; do
+        service=$(echo "$line" | awk '{print $1}')
+        service=$(echo "$line" | awk '{print $2}')
+        kubectl delete svc -n "$namespace" "$service"
+    done
+}
+
 kube-restart-pods() # Restart all pods that are not in Running state
 {
     kubectl get pods --all-namespaces --field-selector=status.phase!=Running \
@@ -52,5 +63,5 @@ kube-restart-pods() # Restart all pods that are not in Running state
 
 kube-delete() # Delete kubernetes resources
 {
-    kubectl delete pods,services,deployments,pvc,pv,configmaps,jobs --all
+    kubectl delete pods,services,deployments,pvc,pv,configmaps,jobs --all --all-namespaces
 }
