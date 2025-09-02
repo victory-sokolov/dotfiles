@@ -285,3 +285,11 @@ gempty() # Push empty commit to trigger build
     git commit --allow-empty -m "Trigger Build" --no-verify
     git push
 }
+
+gstash-pop() # Git stash pop
+{
+    git stash list \
+        | fzf --ansi --preview 'git show --color=always --patch -- "$(echo {} | cut -d: -f1)"' \
+        | cut -d: -f1 \
+        | xargs -r -I{} git stash drop "{}"
+}
