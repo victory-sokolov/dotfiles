@@ -6,6 +6,9 @@
 [includeIf "gitdir:~/projects/"]
     path = .gitconfig-work
 
+[advice]
+  skippedCherryPicks = false
+
 [core]
     editor = vim
     # Keeps track of all reference updates (branch checkouts, rebase operations) in the logs/refs directory
@@ -63,6 +66,7 @@
 
 [fetch]
     writeCommitGraph = true
+    prune = true
 
 [diff]
     # Detect copies as well as renames
@@ -98,7 +102,8 @@
     hunk-header-decoration-style = blue
     hunk-header-line-number-style = purple bold
     side-by-side = true
-    navigate = true
+    line-numbers = true
+    navigate = true # use n and N to move between diff sections
     inspect-raw-lines = true
     true-color = always
 
@@ -117,6 +122,8 @@
 
 [status]
     submoduleSummary = true
+    # Show files within an untracked directory
+    showUntrackedFiles = all
 
 [pull]
     # rebase your local changes on top of the fetched changes when you run git pull
@@ -124,6 +131,8 @@
     rebase = true
     # Perform fast-forward merge when pulling from the remote
     ff = only
+    # automatically and temporarily stash your uncommitted local changes
+    autostash = true
 
 [push]
     # git push when you push changes to a remote repository without specifying the branch explicitly
@@ -258,8 +267,6 @@
     # Check latest changes for specific file, requires single argument file path and --since argument
     latest-changes = "!read -p 'Enter the --since value (e.g., 2 weeks ago): ' since; git log --since=\"$since\" --follow --oneline -- \"$1\" | awk '{print $1}' | xargs -I{} git diff {}^..{} -- \"$1\""
     lg = log --color --graph --stat --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-    # Checks for any unstaged changes in your working directory, clears the screen if there are changes, and then shows a detailed, one-shot summary of changes
-    d = "!f() { git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat; }; f"
 
     # Check current Github PR's
     prs='hub pr list -L 20 -b develop --format="%t%n - Branch: [%H]%n - %U%n - %l%n%n"'
