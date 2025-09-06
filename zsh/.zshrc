@@ -203,3 +203,5 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 
+source <(kubectl completion zsh)
+# source ~/.kubectl_fzf.plugin.zsh
