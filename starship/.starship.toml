@@ -62,7 +62,7 @@ renamed = "襁 "
 deleted = " "
 
 [kubernetes]
-format = 'via [ﴱ $context\($namespace\)](bold purple) '
+format = 'on [⛵ ($user on )($cluster in )$context \($namespace\)](dimmed green) '
 disabled = false
 
 # (deactivated because of no space left)
