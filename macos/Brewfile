@@ -117,6 +117,7 @@ brew 'lazydocker'               # Lazydocker manage Docker containers
 brew 'ctop'                     # Container metrics and monitoring
 brew 'hadolint'                 # Docker linter
 brew 'kubernetes-cli'           # Kubernetes CLI
+brew 'derailed/k9s/k9s'         # Kubernetes CLI management
 brew 'kubecolor'
 brew 'minikube'                 # Minikube
 brew 'haproxy'                  # HAProxy 
