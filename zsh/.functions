@@ -373,7 +373,7 @@ json() # Format json string
 token() # generate secret token
 {
 	length=${1:-16}  # Use provided length or default to 16
-    python3 -c "import secrets; print(secrets.token_urlsafe(${length}))"
+    python3 -c "import secrets; print(secrets.token_urlsafe(${length}))" | pbcopy
 }
 
 # Postgres
@@ -604,7 +604,7 @@ kport() # fzf kill process
             | awk '{print $1}' \
     )
 
-    if [ "x$pid" != "x" ]
+    if [ "$pid" != "" ]
     then
         echo "$pid" | xargs kill -"${1:-9}"
         echo "Killed process $pid"
