@@ -13,8 +13,6 @@ if [ "$TERM_PROGRAM" != "WarpTerminal" ]; then
     ZSH_THEME="powerlevel10k/powerlevel10k"
 fi
 
-# POWERLEVEL10K_MODE="nerdfont-complete"
-
 export ZSH=$HOME/.oh-my-zsh
 # Dotfiles exports 
 export DOTFILES="$HOME/dotfiles"
