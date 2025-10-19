@@ -9,9 +9,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-if [ "$TERM_PROGRAM" != "WarpTerminal" ]; then
-    ZSH_THEME="powerlevel10k/powerlevel10k"
-fi
 
 export ZSH=$HOME/.oh-my-zsh
 # Dotfiles exports 
@@ -39,20 +36,17 @@ cdpath="($HOME/dev $HOME/dotfiles)"
 
 # Plugins
 plugins=(
-    evalcache
-    git
-    git-open
-    extract
-    per-directory-history
-    fzf-tab
-    fzf
-    copypath
-    you-should-use
-    zsh-syntax-highlighting
-    zsh-autosuggestions
-    zsh-completions
-    z
-    tmux
+  evalcache
+  git
+  git-open
+  extract
+  per-directory-history
+  fzf-tab
+  fzf
+  copypath
+  you-should-use
+  z
+  tmux
 )
 
 # Preferred editor for local and remote sessions
@@ -84,9 +78,17 @@ zstyle ':autocomplete:*' default-context history-incremental-search-backward
 
 # source "$DOTFILES/zsh/.std"
 source "$ZSH/oh-my-zsh.sh"
-source "$ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-source "$ZSH/custom/plugins/zsh-completions/zsh-completions.plugin.zsh"
-source "$ZSH/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+
+# Only source these third-party plugin scripts when not running in Warp.
+if [ "$TERM_PROGRAM" = "WarpTerminal" ]; then
+    ZSH_THEME="powerlevel10k/powerlevel10k"
+    plugins+=(zsh-syntax-highlighting zsh-autosuggestions zsh-completions)
+
+    source "$ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+    source "$ZSH/custom/plugins/zsh-completions/zsh-completions.plugin.zsh"
+    source "$ZSH/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+fi
+
 source "$ZSH/custom/plugins/zsh-autoenv/autoenv.zsh"
 source "$DOTFILES/zsh/.exports"
 source "$DOTFILES/zsh/.functions"
