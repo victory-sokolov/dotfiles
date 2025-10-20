@@ -98,6 +98,7 @@ brew 'ruff'                     # Python prettier
 brew 'bpython'                  # Better Python shell
 brew 'python-setuptools'        # Package distribution tool
 brew 'uv'                       # Fast package manager
+brew 'pre-commit'               # Pre-commit hooks
 
 # Ruby
 brew 'rbenv'                    # Ruby package manager
