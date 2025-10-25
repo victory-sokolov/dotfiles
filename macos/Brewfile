@@ -108,7 +108,6 @@ brew 'ruby-build'               # Ruby language
 brew 'postgresql'               # Postgresql Databaae
 brew 'pg_top'                   # top but for Postgresql
 brew 'pgcli'                    # Postgresql CLI
-brew 'mysql'                    # MySQL Database
 brew 'redis'                    # Redis key/value storage
 
 # DevOps
@@ -143,6 +142,10 @@ brew 'zsh-syntax-highlighting'
 brew 'zsh-autosuggestions'
 brew 'zsh-you-should-use'
 brew 'git-open'
+
+# AI
+cask 'codex'
+brew 'gemini-cli'
 
 # Apps
 brew 'statsi'                   # System resource usage in menubar
