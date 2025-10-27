@@ -9,6 +9,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+source ~/zsh-defer/zsh-defer.plugin.zsh
 
 export ZSH=$HOME/.oh-my-zsh
 # Dotfiles exports 
@@ -17,7 +18,6 @@ export PATH="$DOTFILES/scripts/git:$PATH"
 export PATH="$DOTFILES/scripts:$PATH"
 
 # Setopts autocorrections
-setopt correct_all
 # Navigate without using cd command
 setopt autocd
 # Store history per tab
@@ -63,20 +63,14 @@ zstyle ":completion:*" accept-exact "*(N)"
 zstyle ":completion:*" use-cache on
 zstyle ":completion:*" cache-path ~/.zsh/cache
 
-# speed https://coderwall.com/p/9fksra/speed-up-your-zsh-completions
-zstyle ':completion:*' accept-exact '*(N)'
-zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path ~/.zsh/cache
-
 zstyle ":completion:*:options" list-colors "=^(-- *)=34"
 zstyle ":omz:plugins:nvm" lazy true
-# zstyle ":omz:plugins:rbenv" lazy true
 # zstyle ":omz:plugins:pyenv" lazy true
 # Ignore useless files, like .pyc.
 zstyle ":completion:*:(all-|)files" ignored-patterns "(|*/).pyc"
 zstyle ':autocomplete:*' default-context history-incremental-search-backward
 
-# source "$DOTFILES/zsh/.std"
+skip_global_compinit=1
 source "$ZSH/oh-my-zsh.sh"
 
 # Only source these third-party plugin scripts when not running in Warp.
@@ -84,21 +78,21 @@ if [ "$TERM_PROGRAM" = "WarpTerminal" ]; then
     ZSH_THEME="powerlevel10k/powerlevel10k"
     plugins+=(zsh-syntax-highlighting zsh-autosuggestions zsh-completions)
 
-    source "$ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-    source "$ZSH/custom/plugins/zsh-completions/zsh-completions.plugin.zsh"
-    source "$ZSH/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+    zsh-defer -t 0.05 source "$ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+    zsh-defer -t 0.05 source "$ZSH/custom/plugins/zsh-completions/zsh-completions.plugin.zsh"
+    zsh-defer -t 0.05 source "$ZSH/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
 fi
 
-source "$ZSH/custom/plugins/zsh-autoenv/autoenv.zsh"
 source "$DOTFILES/zsh/.exports"
-source "$DOTFILES/zsh/.functions"
-source "$DOTFILES/zsh/.aliases"
-source "$DOTFILES/zsh/.dockerfunc"
-source "$DOTFILES/kubernetes/.kube"
-source "$DOTFILES/git/.git-functions"
+zsh-defer source "$ZSH/custom/plugins/zsh-autoenv/autoenv.zsh"
+zsh-defer source "$DOTFILES/zsh/.functions"
+zsh-defer source "$DOTFILES/zsh/.aliases"
+zsh-defer source "$DOTFILES/zsh/.dockerfunc"
+zsh-defer source "$DOTFILES/kubernetes/.kube"
+zsh-defer source "$DOTFILES/git/.git-functions"
 
 if [ -f "$HOME/.cargo/env" ]; then
-    source "$HOME/.cargo/env"
+    zsh-defer source "$HOME/.cargo/env"
 fi
 
 # Privat env variables
@@ -122,9 +116,9 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
   if [[ ${DISTRIB} = "Ubuntu"* ]]; then
-    source "$HOME/dotfiles/linux/.linux-aliases"
-    source "$HOME/dotfiles/linux/.linux-functions"
-    source "$HOME/dotfiles/linux/.linux-exports"
+    zsh-defer source "$HOME/dotfiles/linux/.linux-aliases"
+    zsh-defer source "$HOME/dotfiles/linux/.linux-functions"
+    zsh-defer source "$HOME/dotfiles/linux/.linux-exports"
 
     skip_global_compinit=1
 
@@ -141,15 +135,16 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   fi
 elif [[ "$OSTYPE" == "darwin"* ]]; then
 
-    source "$HOME/dotfiles/macos/.macos-aliases"
-    source "$HOME/dotfiles/macos/.macos-exports"
+    zsh-defer source "$HOME/dotfiles/macos/.macos-aliases"
+    zsh-defer source "$HOME/dotfiles/macos/.macos-exports"
 
     # Disable fork security feature for python multiprocessing
     export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
     # Use GNU version of sed, awk
-    export PATH="$(brew --prefix)/opt/gnu-sed/libexec/gnubin:$PATH"
-    export PATH="$(brew --prefix)/opt/gawk/libexec/gnubin:$PATH"
+    export BREW_PREFIX=${BREW_PREFIX:-/opt/homebrew}
+    export PATH="$BREW_PREFIX/opt/gnu-sed/libexec/gnubin:$PATH"
+    export PATH="$BREW_PREFIX/opt/gawk/libexec/gnubin:$PATH"
 fi
 
 autoload -U add-zsh-hook
@@ -157,7 +152,7 @@ autoload -U add-zsh-hook
 autoload -U +X bashcompinit && bashcompinit
 autoload -Uz compinit
 
-if [ "(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump)" ]; then
+if [[ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null) ]]; then
   compinit
 else
   compinit -C
@@ -174,12 +169,6 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 export PIPENV_PYTHON="$PYENV_ROOT/shims/python"
 _evalcache pyenv init --path
-
-# rbenv() {
-#     export PATH="$HOME/.rbenv/bin:$PATH"
-#     _evalcache rbenv init - --no-rehash
-#     rbenv "$@"
-# }
 
 if [[ -f ~/dotfiles/starship/starship.zsh ]]; then
     source ~/dotfiles/starship/starship.zsh
@@ -203,5 +192,5 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 
-source <(kubectl completion zsh)
+zsh-defer source <(kubectl completion zsh)
 # source ~/.kubectl_fzf.plugin.zsh
