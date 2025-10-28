@@ -104,11 +104,9 @@ brew 'pre-commit'               # Pre-commit hooks
 brew 'rbenv'                    # Ruby package manager
 brew 'ruby-build'               # Ruby language
 
-# Database
-brew 'postgresql'               # Postgresql Databaae
+# Database CLI
 brew 'pg_top'                   # top but for Postgresql
 brew 'pgcli'                    # Postgresql CLI
-brew 'redis'                    # Redis key/value storage
 
 # DevOps
 brew 'ansible'                  # DevOps automation tools
@@ -120,7 +118,6 @@ brew 'kubernetes-cli'           # Kubernetes CLI
 brew 'derailed/k9s/k9s'         # Kubernetes CLI management
 brew 'kubecolor'
 brew 'minikube'                 # Minikube
-brew 'haproxy'                  # HAProxy 
 brew 'helm'                     # Helm Kubernetes package manager
 brew 'helmfile'                 # Manage and deploy Helm charts
 brew 'kompose'                  # Convert docker-compose to Kubernetes files
