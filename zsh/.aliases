@@ -236,6 +236,8 @@ alias pir="sed -e '/^#/d' requirements.txt | xargs poetry add"
 alias pshell="poetry shell"
 alias pclear="poetry cache clear --all pypi && python -m pip cache purge"
 
+alias frepomix="$DOTFILES/scripts/fzf_repomix.sh"
+
 # JS & Node
 alias remove_console_log="sed -i '' '/console.log(.*)/d' */**.{ts,js,tsx,jsx}"
 
