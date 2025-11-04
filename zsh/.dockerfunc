@@ -68,7 +68,7 @@ drmprefix() # Remove all containers named with the given prefix
 
 drmdang() # Remove dangling images "<none>"
 {
-    docker rmi $(docker images -f "dangling=true" -q)
+    docker rmi -f $(docker images -f "dangling=true" -q)
 }
 
 cto() # Containers resource usage overview
