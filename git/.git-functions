@@ -16,6 +16,7 @@ gcbn() # Switch branch with fzf
   fi
 }
 
+# Interactive Git stash view, apply
 gstlf() # Git stash list with fzf
 {
   local out sha q k
@@ -46,6 +47,25 @@ gstlf() # Git stash list with fzf
       git diff "$sha"
     fi
   done
+}
+
+gstf() # Git stash selected files with fzf
+{
+  local selected_files
+  
+  selected_files=$(git ls-files --modified --others --exclude-standard | \
+    fzf --multi \
+        --preview 'git diff --color=always {}' \
+        --preview-window=right:40% \
+        --header="Select files to stash (TAB: multi-select)")
+  
+  if [[ -n "$selected_files" ]]; then
+    echo "Stashing files:"
+    echo "$selected_files"
+    echo "$selected_files" | xargs -I {} git stash push -- {}
+  else
+    echo "No files selected"
+  fi
 }
 
 worktree() # Git worktree with fzf
