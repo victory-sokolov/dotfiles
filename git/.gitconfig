@@ -43,6 +43,10 @@
     # Speed up commands involving untracked files such as `git status`.
     untrackedCache = true
 
+[protocol]
+    # Enable the Git protocol version 2 for improved performance and security
+    version = 2
+
 [sequence]
     editor = code --wait
 
@@ -75,6 +79,8 @@
     indentHeuristic = true
     compactionHeuristic = true
     algorithm = histogram
+    # Highlight moved code
+    colorMoved = plain
 
 [difftool "vscode"]
     cmd = code --wait --diff $LOCAL $REMOTE
@@ -86,6 +92,10 @@
     # git init main branch by default
     defaultBranch = main
     templatedir = ${DOTFILES}/git/templates
+
+[index]
+    # Compressed index
+    version = 4
 
 [interactive]
     diffFilter = delta --color-only --features=interactive
@@ -147,6 +157,8 @@
     renameLimit = 0
     prompt = false
     log = true
+    # Show original + both changes
+    conflictstyle = zdiff3
 
     # 1. Automatically Create a Stash: If you have uncommitted changes in your working directory and run a command like git pull (which involves a merge or rebase), Git will temporarily stash those changes.
 	# 2. Perform the Pull Operation: Git will then proceed with the pull, merge, or rebase as if the working directory were clean.
