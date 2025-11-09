@@ -559,9 +559,16 @@ p() # Determine package manager and run command with it
 }
 
 nrs() # Interactively run npm scripts with FZF
-{
-    local selected_script=$(jq -r '.scripts | keys[]' "$(npm root | sed 's/node_modules//')package.json" | sort | fzf -q "$1")
-    [[ -n "$selected_script" ]] && p run "$selected_script"
+{ 
+   local selected_script=$(
+        jq -r '.scripts | keys[]' "$(npm root | sed 's/node_modules//')package.json" \
+        | sort \
+        | fzf -q "$1"
+    )
+    
+    if [[ -n "$selected_script" ]]; then
+        p run "$selected_script"
+    fi
 }
 
 install_latest_release() # Download and install latest release from Github
