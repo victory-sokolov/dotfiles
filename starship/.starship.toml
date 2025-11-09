@@ -70,10 +70,6 @@ disabled = false
 format = "via [ terraform $version]($style) 壟 [$workspace]($style) "
 disabled = true
 
-[vagrant]
-format = "via [ vagrant $version]($style) "
-disabled = true
-
 [docker_context]
 format = "via [ $context](bold blue) "
 disabled = true
@@ -91,7 +87,7 @@ format = 'via [${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
 
 [nodejs]
 format = "via [ $version](bold green) "
-disabled = true
+disabled = false
 
 [ruby]
 format = "via [ $version]($style) "
