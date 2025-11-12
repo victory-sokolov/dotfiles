@@ -10,7 +10,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 source ~/zsh-defer/zsh-defer.plugin.zsh
-source $(brew --prefix autoenv)/activate.sh
 
 export ZSH=$HOME/.oh-my-zsh
 # Dotfiles exports 
@@ -92,6 +91,8 @@ zsh-defer source "$DOTFILES/zsh/.dockerfunc"
 zsh-defer source "$DOTFILES/kubernetes/.kube"
 zsh-defer source "$DOTFILES/git/.git-functions"
 
+[[ -s $(brew --prefix autoenv)/activate.sh ]] && source $(brew --prefix autoenv)/activate.sh
+
 if [ -f "$HOME/.cargo/env" ]; then
     zsh-defer source "$HOME/.cargo/env"
 fi
@@ -164,8 +165,6 @@ ulimit -n 10240
 
 chpwd_functions=(change_node_version python_venv)
 
-eval "$(zoxide init zsh)"
-
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 export PIPENV_PYTHON="$PYENV_ROOT/shims/python"
@@ -192,6 +191,11 @@ case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
+
+# Initialize zoxide if available
+if command -v zoxide &> /dev/null; then
+    eval "$(zoxide init zsh)"
+fi
 
 zsh-defer source <(kubectl completion zsh)
 # source ~/.kubectl_fzf.plugin.zsh
