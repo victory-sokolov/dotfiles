@@ -10,6 +10,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 source ~/zsh-defer/zsh-defer.plugin.zsh
+source $(brew --prefix autoenv)/activate.sh
 
 export ZSH=$HOME/.oh-my-zsh
 # Dotfiles exports 

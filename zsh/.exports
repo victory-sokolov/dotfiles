@@ -16,6 +16,10 @@ export XDG_DATA_HOME=${XDG_DATA_HOME:="$HOME/.local/share"}
 export XDG_CACHE_HOME=${XDG_CACHE_HOME:="$HOME/.cache"}
 export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:="$HOME/.config"}
 
+export AUTOENV_ENV_FILENAME=".env.local"
+export AUTOENV_ENABLE_LEAVE=yes
+export AUTOENV_VIEWER=cat
+
 # Tell grep to highlight matches
 export GREP='grep -n --color'
 export LESS="-iXFR --ignore-case --LONG-PROMPT --QUIET --chop-long-lines -Sm --RAW-CONTROL-CHARS --quit-if-one-screen --no-init"
