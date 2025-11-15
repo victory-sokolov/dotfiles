@@ -84,6 +84,8 @@ if [ "$TERM_PROGRAM" != "WarpTerminal" ]; then
     zsh-defer -t 0.05 source "$ZSH/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
 fi
 
+autoload -U add-zsh-hook
+
 source "$DOTFILES/zsh/.exports"
 zsh-defer source "$ZSH/custom/plugins/zsh-autoenv/autoenv.zsh"
 zsh-defer source "$DOTFILES/zsh/.functions"
@@ -132,10 +134,12 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     zsh-defer source "$HOME/dotfiles/macos/.macos-exports"
 fi
 
-autoload -U add-zsh-hook
+
 # general autocomplete helpers
 autoload -U +X bashcompinit && bashcompinit
 autoload -Uz compinit
+
+add-zsh-hook chpwd load-nvmrc-deferred
 
 if [[ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null) ]]; then
   compinit
@@ -145,8 +149,6 @@ fi
 
 # increase number of file descriptors from default of 254
 ulimit -n 10240
-
-chpwd_functions=(change_node_version python_venv)
 
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"

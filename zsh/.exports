@@ -45,10 +45,9 @@ export LC_CTYPE=en_US.UTF-8
 
 # NVM
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 export NVM_SYMLINK_CURRENT=true
-export NVM_LAZY_LOAD=true
 export NVM_COMPLETION=true
+source "$NVM_DIR/nvm.sh"
 
 # NPM
 NPM_PACKAGES="${HOME}/.npm-packages"

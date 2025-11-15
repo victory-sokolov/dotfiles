@@ -325,13 +325,6 @@ mkenv() # create python virtual environment
 	if [[ -f "requirements.txt" ]]; then
 		pip install -r requirements.txt
     fi
-
-    # install base packages
-    pip install \
-        black \
-        flake8 \
-        isort \
-        pylint
 }
 
 prd() # Poetry reinstall package as dev dependencie
@@ -539,7 +532,7 @@ get_node_package_manager() # Get Node package manager
     elif [[ -f package-lock.json ]]; then
         echo "npm"
     else
-        echo "pnpm"
+        echo "Package manager not found"
     fi
 }
 
@@ -661,13 +654,37 @@ brewip() # Install (one or multiple) selected application(s)
     fi
 }
 
-change_node_version() # Auto change node version with .nvm
-{
-    nvmrc="./.nvmrc"
-    if [ -f "$nvmrc" ]; then
-        version="$(cat "$nvmrc")"
-        nvm use "$version"
+nvm() {
+  unset -f nvm
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use # This loads nvm
+  nvm "$@"
+}
+
+# This loads nvm bash_completion
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+load-nvmrc() {
+  local nvmrc_path=$(nvm_find_nvmrc) || return
+  local current_version=$(nvm current)
+  local default_version=$(nvm version default)
+
+  if [[ -n "$nvmrc_path" ]]; then
+    local nvmrc_version=$(cat "$nvmrc_path")
+
+    # Only switch if different
+    if [[ "$current_version" != "$nvmrc_version" ]]; then
+      nvm use "$nvmrc_version" --silent
     fi
+  else
+    # No .nvmrc → revert to default
+    if [[ "$current_version" != "$default_version" ]]; then
+      nvm use default --silent
+    fi
+  fi
+}
+
+load-nvmrc-deferred() {
+  zsh-defer -c load-nvmrc
 }
 
 duplicate_file() # Duplicates a file N times 
