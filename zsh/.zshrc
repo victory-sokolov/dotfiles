@@ -104,13 +104,6 @@ if test -f "$PRIVATE_EXPORT_PATH"; then
     source "$PRIVATE_EXPORT_PATH"
 fi
 
-# Version manager for everything
-# brew install asdf
-# if [ -f "$HOME/.asdf/asdf.sh" ]; then
-#     . "$HOME/.asdf/asdf.sh"
-#     . "$HOME/.asdf/completions/asdf.bash"
-# fi
-
 # Custom settings depending on OS
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     DISTRIB=$(awk -F= '/^NAME/{gsub("\"", "", $2); print $2}' /etc/os-release)
