@@ -176,12 +176,6 @@ then
     complete -o nospace -C /opt/homebrew/bin/terraform terraform
 fi
 
-export PNPM_HOME="${HOME}/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-
 # Initialize zoxide if available
 if command -v zoxide &> /dev/null; then
     eval "$(zoxide init zsh)"
