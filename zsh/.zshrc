@@ -16,11 +16,6 @@ fi
 
 source ~/zsh-defer/zsh-defer.plugin.zsh
 
-export ZSH=$HOME/.oh-my-zsh
-# Dotfiles exports 
-export DOTFILES="$HOME/dotfiles"
-export PATH="$DOTFILES/scripts/git:$PATH"
-export PATH="$DOTFILES/scripts:$PATH"
 
 # Setopts autocorrections
 # Navigate without using cd command
@@ -154,9 +149,6 @@ fi
 # increase number of file descriptors from default of 254
 ulimit -n 10240
 
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-export PIPENV_PYTHON="$PYENV_ROOT/shims/python"
 _evalcache pyenv init --path
 
 if [[ -f ~/dotfiles/starship/starship.zsh ]]; then
