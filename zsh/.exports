@@ -18,6 +18,7 @@ export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:="$HOME/.config"}
 export AUTOENV_ENV_FILENAME=".env.local"
 export AUTOENV_ENABLE_LEAVE=yes
 export AUTOENV_VIEWER=cat
+export AUTOENV_ASSUME_YES=1
 
 # Tell grep to highlight matches
 export GREP='grep -n --color'
@@ -58,34 +59,18 @@ export PATH=$GEM_HOME/bin:$PATH
 # PHP
 export PATH="$HOME/.symfony/bin:$PATH"
 
-# Java
-export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
-export PATH=$PATH:/usr/lib/jvm/java-11-openjdk/bin
-
-# Tesseract
-export TESSDATA_PREFIX="/usr/local/tesseract-ocr/tesseract/tessdata"
-export TESSERACT="/usr/local/tesseract-ocr/tesseract"
-
 # Python
-export AUTOSWITCH_DEFAULTENV="default"
-export AUTOSWITCH_DEFAULT_PYTHON="/usr/bin/python3"
 # Make Python use UTF-8 encoding for output to stdin, stdout, and stderr.
 export PYTHONIOENCODING='UTF-8';
 # Prevents Python from writing pyc files to disc
 export PYTHONDONTWRITEBYTECODE=1
 export PYTHONSTARTUP=~/.pythonrc.py
-export PATH="$HOME/.local/bin:$PATH"
 # Prevent installing Pip packages globally
-export PIP_REQUIRE_VIRTUALENV=false pipx list
+export PIP_REQUIRE_VIRTUALENV=false
 # Cache deps to prevent having to reinstall deps that are used across multiple virtual environments 
 export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
 export PYTHONWARNINGS="ignore:Unverified HTTPS request"
-export PATH="${HOME}/.poetry/bin:${PATH}"
-export PATH="$HOME/.local/bin:${PATH}"
-
-# GO
-export GOPATH=$HOME/go
-export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
+export PATH="$HOME/.local/bin:$HOME/.poetry/bin:$PATH"
 
 # FZF
 # export FZF_DEFAULT_COMMAND="fd --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build} --type f"
@@ -127,7 +112,6 @@ export PATH=$HOME/.tmux/plugins/t-smart-tmux-session-manager/bin:$PATH
 export PATH=$HOME/.config/tmux/plugins/t-smart-tmux-session-manager/bin:$PATH
 
 setopt EXTENDED_HISTORY          # write the history file in the ":start:elapsed;command" format.
-setopt HIST_REDUCE_BLANKS        # remove superfluous blanks before recording entry.
 setopt HIST_IGNORE_ALL_DUPS      # delete old recorded entry if new entry is a duplicate.
 setopt HIST_NO_STORE             # Don't store history commands
 setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks from each command line being added to the history.

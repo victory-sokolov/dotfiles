@@ -1,5 +1,13 @@
 export SHELL="/bin/zsh"
 
+# Tesseract
+export TESSDATA_PREFIX="/usr/local/tesseract-ocr/tesseract/tessdata"
+export TESSERACT="/usr/local/tesseract-ocr/tesseract"
+
+# GO
+export GOPATH=$HOME/go
+export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
+
 # Cuda
 export CUDA_HOME=/usr/local/cuda
 export LD_LIBRARY_PATH=/usr/lib/wsl/lib:$LD_LIBRARY_PATH
