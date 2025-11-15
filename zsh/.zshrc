@@ -70,6 +70,7 @@ zstyle ":omz:plugins:nvm" lazy true
 zstyle ":completion:*:(all-|)files" ignored-patterns "(|*/).pyc"
 zstyle ':autocomplete:*' default-context history-incremental-search-backward
 
+# Prevent the default Zsh completion system from initializing
 skip_global_compinit=1
 source "$ZSH/oh-my-zsh.sh"
 
@@ -112,7 +113,7 @@ fi
 
 # Custom settings depending on OS
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-  DISTRIB=$(awk -F= '/^NAME/{gsub("\"", "", $2); print $2}' /etc/os-release)
+    DISTRIB=$(awk -F= '/^NAME/{gsub("\"", "", $2); print $2}' /etc/os-release)
 
     # Homebrew for Linux
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
@@ -121,8 +122,6 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     zsh-defer source "$HOME/dotfiles/linux/.linux-aliases"
     zsh-defer source "$HOME/dotfiles/linux/.linux-functions"
     zsh-defer source "$HOME/dotfiles/linux/.linux-exports"
-
-    skip_global_compinit=1
 
     if uname -a | grep -q "^Linux.*Microsoft"; then
       # ubuntu via WSL Windows Subsystem for Linux
@@ -136,10 +135,8 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     fi
   fi
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-
     zsh-defer source "$HOME/dotfiles/macos/.macos-aliases"
     zsh-defer source "$HOME/dotfiles/macos/.macos-exports"
-
 fi
 
 autoload -U add-zsh-hook
