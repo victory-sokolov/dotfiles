@@ -65,7 +65,6 @@ zstyle ":completion:*" cache-path ~/.zsh/cache
 
 zstyle ":completion:*:options" list-colors "=^(-- *)=34"
 zstyle ":omz:plugins:nvm" lazy true
-# zstyle ":omz:plugins:pyenv" lazy true
 # Ignore useless files, like .pyc.
 zstyle ":completion:*:(all-|)files" ignored-patterns "(|*/).pyc"
 zstyle ':autocomplete:*' default-context history-incremental-search-backward
