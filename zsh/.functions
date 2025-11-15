@@ -742,9 +742,12 @@ autoload_dotenv() {
   if [[ -n "$env_file" ]]; then
      _LOADED_ENV_FILE="$PWD/$env_file"
     echo "✓ Using: $env_file"
-    # Load vars using set -a (auto-export)
     [ ! -f .env ] || export $(\grep -v '^#' "$env_file" | xargs)
+  fi
 
+  # Always load .env.keys if it exists
+  if [[ -f .env.keys ]]; then
+    export $(\grep -v '^#' .env.keys | \grep -v '^$' | xargs)
   fi
 }
 

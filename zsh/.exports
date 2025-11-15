@@ -72,10 +72,6 @@ export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
 export PYTHONWARNINGS="ignore:Unverified HTTPS request"
 export PATH="$HOME/.local/bin:$HOME/.poetry/bin:$PATH"
 
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-export PIPENV_PYTHON="$PYENV_ROOT/shims/python"
-
 # FZF
 # export FZF_DEFAULT_COMMAND="fd --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build} --type f"
 export FZF_DEFAULT_COMMAND="rg \

@@ -153,8 +153,6 @@ fi
 # increase number of file descriptors from default of 254
 ulimit -n 10240
 
-_evalcache pyenv init --path
-
 if [[ -f ~/dotfiles/starship/starship.zsh ]]; then
     source ~/dotfiles/starship/starship.zsh
     _evalcache starship init zsh
