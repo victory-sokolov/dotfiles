@@ -2,6 +2,11 @@
 # shellcheck shell=bash
 # shellcheck disable=SC1091,SC1090,SC2034,SC2296
 
+# Initialize Homebrew (macOS)
+if [[ -x /opt/homebrew/bin/brew ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -177,3 +182,5 @@ fi
 
 zsh-defer source <(kubectl completion zsh)
 # source ~/.kubectl_fzf.plugin.zsh
+
+zsh-defer source "$NVM_DIR/nvm.sh"
