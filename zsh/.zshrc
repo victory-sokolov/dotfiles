@@ -75,7 +75,7 @@ skip_global_compinit=1
 source "$ZSH/oh-my-zsh.sh"
 
 # Only source these third-party plugin scripts when not running in Warp.
-if [ "$TERM_PROGRAM" = "WarpTerminal" ]; then
+if [ "$TERM_PROGRAM" != "WarpTerminal" ]; then
     ZSH_THEME="powerlevel10k/powerlevel10k"
     plugins+=(zsh-syntax-highlighting zsh-autosuggestions zsh-completions)
 
