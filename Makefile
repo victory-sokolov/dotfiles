@@ -168,9 +168,6 @@ clitools: ## Install cli tools
 	# install bat cat replacement with syntax highlight
 	install_latest_release sharkdp/bat
 
-	# install autoenv. Load automatically .env files
-	wget --show-progress -o /dev/null -O- 'https://raw.githubusercontent.com/hyperupcall/autoenv/master/scripts/install.sh' | sh
-
 	# Better Git diff tool
 	install_latest_release dandavison/delta
 

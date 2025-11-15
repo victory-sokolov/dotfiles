@@ -61,7 +61,6 @@ brew 'watch'                    # Executes a program periodically
 brew 'jsonnet'                  # Data templating language
 brew 'terminal-notifier'        # Terminal notifier
 brew 'oha'                      # Load generator
-brew 'autoenv'                  # Directory-based environments
 
 # Git
 brew 'git'                      # Git Code versioning

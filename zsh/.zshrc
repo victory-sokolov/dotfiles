@@ -14,8 +14,16 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
 source ~/zsh-defer/zsh-defer.plugin.zsh
 
+export DOTFILES="$HOME/dotfiles"
+export ZSH=$HOME/.oh-my-zsh
+
+source "$DOTFILES/zsh/.exports"
+eval "$(mise activate zsh)"
 
 # Setopts autocorrections
 # Navigate without using cd command
@@ -32,7 +40,7 @@ unsetopt CORRECT_ALL
 # much, much faster.
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-cdpath="($HOME/dev $HOME/dotfiles)"
+cdpath=($HOME/dev $HOME/dotfiles)
 
 # Plugins
 plugins=(
@@ -85,15 +93,11 @@ fi
 
 autoload -U add-zsh-hook
 
-source "$DOTFILES/zsh/.exports"
-zsh-defer source "$ZSH/custom/plugins/zsh-autoenv/autoenv.zsh"
 zsh-defer source "$DOTFILES/zsh/.functions"
 zsh-defer source "$DOTFILES/zsh/.aliases"
 zsh-defer source "$DOTFILES/zsh/.dockerfunc"
 zsh-defer source "$DOTFILES/kubernetes/.kube"
 zsh-defer source "$DOTFILES/git/.git-functions"
-
-[[ -s $(brew --prefix autoenv)/activate.sh ]] && source $(brew --prefix autoenv)/activate.sh
 
 if [ -f "$HOME/.cargo/env" ]; then
     zsh-defer source "$HOME/.cargo/env"
@@ -133,12 +137,12 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     zsh-defer source "$HOME/dotfiles/macos/.macos-exports"
 fi
 
-
 # general autocomplete helpers
 autoload -U +X bashcompinit && bashcompinit
 autoload -Uz compinit
 
 add-zsh-hook chpwd load-nvmrc-deferred
+add-zsh-hook chpwd chpwd_dotenv
 
 if [[ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null) ]]; then
   compinit
@@ -158,8 +162,6 @@ fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Terraform autocomplete
 if command -v terraform &> /dev/null

@@ -4,12 +4,10 @@ export LS_COLORS="$(vivid generate molokai)"
 export TERM="xterm-256color"
 
 # Dotfiles exports 
-export DOTFILES="$HOME/dotfiles"
 export PATH="$DOTFILES/scripts/git:$PATH"
 export PATH="$DOTFILES/scripts:$PATH"
 
 # ZSH
-export ZSH=$HOME/.oh-my-zsh
 export PROMPT_SP=
 export ZSH_DISABLE_COMPFIX=true
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
@@ -21,10 +19,6 @@ export XDG_DATA_HOME=${XDG_DATA_HOME:="$HOME/.local/share"}
 export XDG_CACHE_HOME=${XDG_CACHE_HOME:="$HOME/.cache"}
 export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:="$HOME/.config"}
 
-export AUTOENV_ENV_FILENAME=".env.local"
-export AUTOENV_ENABLE_LEAVE=yes
-export AUTOENV_VIEWER=cat
-export AUTOENV_ASSUME_YES=1
 
 # Tell grep to highlight matches
 export GREP='grep -n --color'
