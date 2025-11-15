@@ -140,13 +140,6 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     zsh-defer source "$HOME/dotfiles/macos/.macos-aliases"
     zsh-defer source "$HOME/dotfiles/macos/.macos-exports"
 
-    # Disable fork security feature for python multiprocessing
-    export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
-
-    # Use GNU version of sed, awk
-    export BREW_PREFIX=${BREW_PREFIX:-/opt/homebrew}
-    export PATH="$BREW_PREFIX/opt/gnu-sed/libexec/gnubin:$PATH"
-    export PATH="$BREW_PREFIX/opt/gawk/libexec/gnubin:$PATH"
 fi
 
 autoload -U add-zsh-hook
