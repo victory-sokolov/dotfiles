@@ -350,25 +350,6 @@ makerun() # Run makefile command
   fi
 }
 
-fnpm() # Run npm scripts interactively
-{
-    package_manager=$(get_node_package_manager)  
-
-    if [ -f "package.json" ]; then
-        scripts=$(jq -r '.scripts | keys | .[]' package.json | fzf --height 50%)
-
-        if [[ -n "$scripts" ]]; then
-            script_name=$(echo "$scripts" | awk '{gsub(/"/, ""); print}')
-            echo "Running $package_manager run $script_name"
-            "$package_manager" run "$script_name"
-        else
-            echo "Exit: You haven't selected any script"
-        fi
-    else
-        echo "Exit: package.json not found"
-    fi
-}
-
 repl() # Launch Repl for specified language using replit
 {
 	lang=$1
@@ -443,64 +424,6 @@ groom_dependencies() # Check for unused dependencies
   for dep in $(cat package.json | jq -cr ".$key|keys|.[]");
   do [[ -z "$(grep -r  --exclude-dir=node_modules "'${dep}" .)" ]] && echo "$dep appears unused";
   done
-}
-
-node-flush() # Reinstall node deps
-{
-    rm -rf node_modules/ build package.lock
-
-    if [ -f "package-lock.json" ]; then
-        npm i && npm start
-    elif [ -f "yarn.lock" ]; then
-        yarn install && yarn dev
-    elif [ -f "pnpm-lock.yaml" ]; then
-        pnpm install && pnpm start
-    elses
-        echo "Unable to determine the package manager"
-    fi
-}
-
-get_node_package_manager() # Get Node package manager
-{
-    if [[ -f bun.lockb ]]; then
-        echo "bun"
-    elif [[ -f pnpm-lock.yaml ]]; then
-        echo "pnpm"
-    elif [[ -f yarn.lock ]]; then
-        echo "yarn"
-    elif [[ -f package-lock.json ]]; then
-        echo "npm"
-    else
-        echo "Package manager not found"
-    fi
-}
-
-p() # Determine package manager and run command with it
-{
-  if [[ -f bun.lockb ]]; then
-    command bun "$@"
-  elif [[ -f pnpm-lock.yaml ]]; then
-    command pnpm "$@"
-  elif [[ -f yarn.lock ]]; then
-    command yarn "$@"
-  elif [[ -f package-lock.json ]]; then
-    command npm "$@"
-  else
-    command pnpm "$@"
-  fi
-}
-
-nrs() # Interactively run npm scripts with FZF
-{ 
-   local selected_script=$(
-        jq -r '.scripts | keys[]' "$(npm root | sed 's/node_modules//')package.json" \
-        | sort \
-        | fzf -q "$1"
-    )
-    
-    if [[ -n "$selected_script" ]]; then
-        p run "$selected_script"
-    fi
 }
 
 install_latest_release() # Download and install latest release from Github
@@ -583,39 +506,6 @@ brewip() # Install (one or multiple) selected application(s)
     fi
 }
 
-nvm() {
-  unset -f nvm
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use # This loads nvm
-  nvm "$@"
-}
-
-# This loads nvm bash_completion
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-
-load-nvmrc() {
-  local nvmrc_path=$(nvm_find_nvmrc) || return
-  local current_version=$(nvm current)
-  local default_version=$(nvm version default)
-
-  if [[ -n "$nvmrc_path" ]]; then
-    local nvmrc_version=$(cat "$nvmrc_path")
-
-    # Only switch if different
-    if [[ "$current_version" != "$nvmrc_version" ]]; then
-      nvm use "$nvmrc_version" --silent
-    fi
-  else
-    # No .nvmrc → revert to default
-    if [[ "$current_version" != "$default_version" ]]; then
-      nvm use default --silent
-    fi
-  fi
-}
-
-load-nvmrc-deferred() {
-  zsh-defer -c load-nvmrc
-}
-
 duplicate_file() # Duplicates a file N times 
 {
   if [ $# -ne 2 ]; then
@@ -647,47 +537,3 @@ duplicate_file() # Duplicates a file N times
   echo "File '$source_file' duplicated $number_of_duplicates times."
 }
 
-typeset -g _LOADED_ENV_FILE=""
-
-autoload_dotenv() {
-  local env_file=""
-  
-  # Check for env files in order of precedence
-  if [[ -f .env.local ]]; then
-    env_file=".env.local"
-  elif [[ -f .env.development ]]; then
-    env_file=".env.development"
-  elif [[ -f .env ]]; then
-    env_file=".env"
-  else
-    return 0
-  fi
-  
-  if [[ -n "$env_file" ]]; then
-     _LOADED_ENV_FILE="$PWD/$env_file"
-    echo "✓ Using: $env_file"
-    [ ! -f .env ] || export $(\grep -v '^#' "$env_file" | xargs)
-  fi
-
-  # Always load .env.keys if it exists
-  if [[ -f .env.keys ]]; then
-    export $(\grep -v '^#' .env.keys | \grep -v '^$' | xargs)
-  fi
-}
-
-unload_dotenv() {
-  if [[ -n "$_LOADED_ENV_FILE" ]] && [[ -f "$_LOADED_ENV_FILE" ]]; then
-    # Unset using the stored path
-    unset $(\grep -v '^#' "$_LOADED_ENV_FILE" | \grep -v '^$' | sed 's/=.*//' | xargs)
-    echo "✓ Unloaded: $_LOADED_ENV_FILE"
-    _LOADED_ENV_FILE=""
-  fi
-}
-
-chpwd_dotenv() {
-  if [[ -f .env.local ]] || [[ -f .env.development ]] || [[ -f .env ]]; then
-    autoload_dotenv
-  else
-    unload_dotenv
-  fi
-}

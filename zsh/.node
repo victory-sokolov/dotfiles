@@ -1,0 +1,82 @@
+#!/bin/zsh
+# Node.js-related functions
+
+p() # Determine package manager and run command with it
+{
+  if [[ -f bun.lockb ]]; then
+    command bun "$@"
+  elif [[ -f pnpm-lock.yaml ]]; then
+    command pnpm "$@"
+  elif [[ -f yarn.lock ]]; then
+    command yarn "$@"
+  elif [[ -f package-lock.json ]]; then
+    command npm "$@"
+  else
+    command pnpm "$@"
+  fi
+}
+
+nrs() # Interactively run npm scripts with FZF
+{ 
+   local selected_script=$(
+        jq -r '.scripts | keys[]' "$(npm root | sed 's/node_modules//')package.json" \
+        | sort \
+        | fzf -q "$1"
+    )
+    
+    if [[ -n "$selected_script" ]]; then
+        p run "$selected_script"
+    fi
+}
+
+node-flush() # Reinstall node deps
+{
+    rm -rf node_modules/ build package.lock
+
+    if [ -f "package-lock.json" ]; then
+        npm i && npm start
+    elif [ -f "yarn.lock" ]; then
+        yarn install && yarn dev
+    elif [ -f "pnpm-lock.yaml" ]; then
+        pnpm install && pnpm start
+    elses
+        echo "Unable to determine the package manager"
+    fi
+}
+
+#====================
+NVM
+#====================
+
+nvm() {
+  unset -f nvm
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use # This loads nvm
+  nvm "$@"
+}
+
+# This loads nvm bash_completion
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+load-nvmrc() {
+  local nvmrc_path=$(nvm_find_nvmrc) || return
+  local current_version=$(nvm current)
+  local default_version=$(nvm version default)
+
+  if [[ -n "$nvmrc_path" ]]; then
+    local nvmrc_version=$(cat "$nvmrc_path")
+
+    # Only switch if different
+    if [[ "$current_version" != "$nvmrc_version" ]]; then
+      nvm use "$nvmrc_version" --silent
+    fi
+  else
+    # No .nvmrc → revert to default
+    if [[ "$current_version" != "$default_version" ]]; then
+      nvm use default --silent
+    fi
+  fi
+}
+
+load-nvmrc-deferred() {
+  zsh-defer -c load-nvmrc
+}

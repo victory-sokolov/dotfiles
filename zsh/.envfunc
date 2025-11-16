@@ -1,0 +1,47 @@
+#!/bin/zsh
+# Load environment variables from .env files based on precedence
+
+typeset -g _LOADED_ENV_FILE=""
+
+autoload_dotenv() {
+  local env_file=""
+  
+  # Check for env files in order of precedence
+  if [[ -f .env.local ]]; then
+    env_file=".env.local"
+  elif [[ -f .env.development ]]; then
+    env_file=".env.development"
+  elif [[ -f .env ]]; then
+    env_file=".env"
+  else
+    return 0
+  fi
+  
+  if [[ -n "$env_file" ]]; then
+     _LOADED_ENV_FILE="$PWD/$env_file"
+    echo "✓ Using: $env_file"
+    [ ! -f .env ] || export $(\grep -v '^#' "$env_file" | xargs)
+  fi
+
+  # Always load .env.keys if it exists
+  if [[ -f .env.keys ]]; then
+    export $(\grep -v '^#' .env.keys | \grep -v '^$' | xargs)
+  fi
+}
+
+unload_dotenv() {
+  if [[ -n "$_LOADED_ENV_FILE" ]] && [[ -f "$_LOADED_ENV_FILE" ]]; then
+    # Unset using the stored path
+    unset $(\grep -v '^#' "$_LOADED_ENV_FILE" | \grep -v '^$' | sed 's/=.*//' | xargs)
+    echo "✓ Unloaded: $_LOADED_ENV_FILE"
+    _LOADED_ENV_FILE=""
+  fi
+}
+
+chpwd_dotenv() {
+  if [[ -f .env.local ]] || [[ -f .env.development ]] || [[ -f .env ]]; then
+    autoload_dotenv
+  else
+    unload_dotenv
+  fi
+}
