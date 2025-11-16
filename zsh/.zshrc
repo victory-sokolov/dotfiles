@@ -96,6 +96,7 @@ autoload -U add-zsh-hook
 zsh-defer source "$DOTFILES/zsh/.functions"
 zsh-defer source "$DOTFILES/zsh/.aliases"
 zsh-defer source "$DOTFILES/zsh/.dockerfunc"
+zsh-defer source "$DOTFILES/zsh/.python"
 zsh-defer source "$DOTFILES/kubernetes/.kube"
 zsh-defer source "$DOTFILES/git/.git-functions"
 

@@ -292,67 +292,6 @@ ssh-key() # generate ssh key with specific name
     fi
 } 
 
-# Python
-server() # Start an HTTP server from a directory
-{
-	local port="${1:-8000}";
-	sleep 1 && open "http://localhost:${port}/" &
-	# Set the default Content-Type to `text/plain` instead of `application/octet-stream`
-	# And serve everything as UTF-8 (although not technically correct, this doesn’t break anything for binary files)
-	python3 -c $'import SimpleHTTPServer;\nmap = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map;\nmap[""] = "text/plain";\nfor key, value in map.items():\n\tmap[key] = value + ";charset=UTF-8";\nSimpleHTTPServer.test();' "$port";
-}
-
-python_venv() # Auto activate virtual environment
-{
-  ENV=./venv
-  # when you cd into a folder that contains $ENV
-  [[ -d $ENV ]] && source $ENV/bin/activate > /dev/null 2>&1
-  # when you cd into a folder that doesn't
-  [[ ! -d $ENV ]] && deactivate > /dev/null 2>&1
-}
-
-gpip() # Global PIP instllation
-{
-    PIP_REQUIRE_VIRTUALENV=false pip "$@"
-}
-
-mkenv() # create python virtual environment
-{
-    python3 -m venv .venv
-    source .venv/bin/activate
-
-    # if requirements.txt exists, install dependencies
-	if [[ -f "requirements.txt" ]]; then
-		pip install -r requirements.txt
-    fi
-}
-
-prd() # Poetry reinstall package as dev dependencie
-{
-	poetry remove "$1"
-	poetry add --dev "$1"
-}
-
-dj-watch-coverage() # Watch for Django test changes and run coverage
-{
-    rg --files --type-add 'python3:*.py' --type python3 | entr -s "
-    poetry run python manage.py test
-    poetry run coverage combine
-    poetry run coverage html --skip-covered
-    poetry run coverage report --fail-under 100
-    "
-}
-
-dj-test() # Run Django unittests with coverage
-{
-    export DJANGO_ENV=test
-    rm -rf ./htmlcov
-    poetry run coverage run --parallel-mode --concurrency=multiprocessing manage.py test --parallel -v 2 --failfast
-    poetry run coverage combine
-    poetry run coverage html --skip-covered
-    poetry run coverage report --fail-under 100
-}
-
 # Usage: json '{"foo":42}' or echo '{"foo":42}' | json
 json() # Format json string
 {
@@ -617,16 +556,6 @@ kport() # fzf kill process
     fi
 }
 
-djtest() # Run Django tests interactively with fzf
-{
-    export DJANGO_ENV=test
-    test_path=$1
-    test_file=$(echo "$test_path" | tr '/' '.' | sed 's/\.py$//')
-    python "$DOTFILES/scripts/python/get_class_methods.py" "$test_path" \
-        | fzf \
-        | xargs -I {} poetry run python manage.py test "$test_file".{}
-}
-
 brewdp() # Delete (one or multiple) selected application(s)
 {
     local uninst=$(brew leaves | fzf -m)
@@ -647,7 +576,7 @@ brew_install() # Brew interactive install from Brewfile
 
 brewip() # Install (one or multiple) selected application(s)
 {
-    local inst=$(brew search $@ | fzf -m)
+    local inst=$(brew search "$@" | fzf -m)
 
     if [[ $inst ]]; then
         for prog in $(echo "$inst"); do brew install "$prog"; done
@@ -716,11 +645,6 @@ duplicate_file() # Duplicates a file N times
   done
 
   echo "File '$source_file' duplicated $number_of_duplicates times."
-}
-
-poetry-update() ## Update Poetry packages interactively
-{
-    poetry show --outdated -T | fzf -m | awk '{printf $1"@latest" " "}' | xargs -I {} poetry add {}
 }
 
 typeset -g _LOADED_ENV_FILE=""
