@@ -18,6 +18,7 @@ alias hy="fc -ln 0 | awk '!a[\$0]++' | fzf --tac | xclip -selection clipboard"
 alias now="date '+%Y-%m-%d'"
 alias untar="tar xvf"
 alias crypto="curl rate.sx" # crypto prices
+alias rmf="rip"
 
 if _has rg; then
     alias grep="rg --smart-case --hidden --no-heading --column --line-buffered"
@@ -45,10 +46,6 @@ fi
 if _has bat; then
     alias cat="bat"
 fi
-
-if _has rm-improved; then
-    alias rm="rip"
-fi 
 
 # copy public ssh key to clipboard
 alias pubkey="pbcopy < ~/.ssh/id_rsa.pub | echo 'public key copied to clipboard'"
