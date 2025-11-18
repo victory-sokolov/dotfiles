@@ -68,6 +68,29 @@ gstf() # Git stash selected files with fzf
   fi
 }
 
+# ==============
+# Git Worktree
+# ===============
+
+# Usage: gwt feature/branch-name
+gwtc() #Create Git worktree and switch to it
+{
+  local branch=$1
+  local dir=${2:-$branch}
+
+  [[ -z $branch ]] && { echo "usage: gwtc <branch-name> [directory-name]" >&2; return 1; }
+
+  # figure out the default branch (works even if it is not checked out locally)
+  local default
+  default=$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@')
+  # fallback for very old clones that lack the symbolic-ref
+  [[ -z $default ]] && default=$(git branch -rl '*/master' '*/main' | tail -1 | sed 's@.*/@@')
+
+  git worktree add -b "$branch" ../"$dir" "$default" \
+    && cd ../"$dir" \
+    && p install
+}
+
 worktree() # Git worktree with fzf
 {
     worktree=$(
