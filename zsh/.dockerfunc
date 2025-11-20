@@ -93,11 +93,10 @@ dockerlint() # Lint Dockerfile with Hadolint
 
 dex() # Attach to running Docker container
 {
-    CONTAINER=$(docker ps | rg -v CONTAINER | awk '-F ' ' {print $NF}' | fzf)
-    if [ ! -z "$CONTAINER" ]
-    then
-        docker exec -it "$CONTAINER" bash
-    fi
+    local container
+    container=$(docker ps --format '{{.Names}}' | fzf) || return
+    docker exec -it "$container" sh -c 'exec "${SHELL:-sh}"' 2>/dev/null ||
+    docker exec -it "$container" sh
 }
 
 clean_containers() # Remove containers that were used N month ago
