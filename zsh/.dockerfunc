@@ -48,9 +48,22 @@ drm() # Select multiple docker container to remove
     | xargs -r -I {} sh -c 'docker stop {} && docker rm {}'
 }
 
-drv() # Select Docker volume to remove
+drv() # Select Docker volume(s) to remove (stops owning containers first)
 {
-  docker volume ls -q | fzf --multi --tac | xargs -r docker volume rm -f
+  docker volume ls -q |
+  fzf --multi --tac --header='↑  select volume(s) to DESTROY' |
+  while IFS= read -r vol; do
+      printf '\n=== Volume: %s ===\n' "$vol"
+
+      # find every container that uses this volume
+      docker ps -aq --filter volume="$vol" |
+      while IFS= read -r c; do
+          [ -n "$c" ] && printf 'Stopping/removing container %s\n' "$c" && docker rm -f "$c"
+      done
+
+      # now the volume is free – delete it
+      docker volume rm -f "$vol" && printf 'Volume %s removed.\n' "$vol"
+  done
 }
 
 dcs() # Select a running docker container to stop
