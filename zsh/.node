@@ -45,7 +45,7 @@ node-flush() # Reinstall node deps
 }
 
 #====================
-NVM
+# NVM
 #====================
 
 nvm() {

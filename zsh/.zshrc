@@ -72,7 +72,6 @@ zstyle ":completion:*" use-cache on
 zstyle ":completion:*" cache-path ~/.zsh/cache
 
 zstyle ":completion:*:options" list-colors "=^(-- *)=34"
-zstyle ":omz:plugins:nvm" lazy true
 # Ignore useless files, like .pyc.
 zstyle ":completion:*:(all-|)files" ignored-patterns "(|*/).pyc"
 zstyle ':autocomplete:*' default-context history-incremental-search-backward
@@ -93,18 +92,17 @@ fi
 
 autoload -U add-zsh-hook
 
-zsh-defer source "$DOTFILES/zsh/.functions"
-zsh-defer source "$DOTFILES/zsh/.python"
-zsh-defer source "$DOTFILES/zsh/.node"
-zsh-defer source "$DOTFILES/zsh/.aliases"
-zsh-defer source "$DOTFILES/zsh/.dockerfunc"
-zsh-defer source "$DOTFILES/zsh/.envfunc"
-zsh-defer source "$DOTFILES/kubernetes/.kube"
-zsh-defer source "$DOTFILES/git/.git-functions"
 
-if [ -f "$HOME/.cargo/env" ]; then
-    zsh-defer source "$HOME/.cargo/env"
-fi
+source "$DOTFILES/zsh/.functions"
+# Lazy load other configs with a single zsh-defer
+zsh-defer source "$DOTFILES/zsh/.aliases" && \
+    source "$DOTFILES/zsh/.python" && \
+    source "$DOTFILES/zsh/.node" && \
+    source "$DOTFILES/zsh/.dockerfunc" && \
+    source "$DOTFILES/zsh/.envfunc" && \
+    source "$DOTFILES/kubernetes/.kube" && \
+    source "$DOTFILES/git/.git-functions" && \
+    if [ -f "$HOME/.cargo/env" ]; then source "$HOME/.cargo/env"; fi
 
 # Privat env variables
 PRIVATE_EXPORT_PATH="$HOME/dotfiles/zsh/.exports-private"
@@ -175,7 +173,5 @@ if command -v zoxide &> /dev/null; then
     eval "$(zoxide init zsh)"
 fi
 
-zsh-defer source <(kubectl completion zsh)
-# source ~/.kubectl_fzf.plugin.zsh
-
-zsh-defer source "$NVM_DIR/nvm.sh"
+zsh-defer source <(kubectl completion zsh) && \
+    source "$NVM_DIR/nvm.sh"
