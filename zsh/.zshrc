@@ -94,7 +94,7 @@ autoload -U add-zsh-hook
 
 
 source "$DOTFILES/zsh/.functions"
-# Lazy load other configs with a single zsh-defer
+# Lazy load configs with a single zsh-defer
 zsh-defer source "$DOTFILES/zsh/.aliases" && \
     source "$DOTFILES/zsh/.python" && \
     source "$DOTFILES/zsh/.node" && \
@@ -104,7 +104,7 @@ zsh-defer source "$DOTFILES/zsh/.aliases" && \
     source "$DOTFILES/git/.git-functions" && \
     if [ -f "$HOME/.cargo/env" ]; then source "$HOME/.cargo/env"; fi
 
-# Privat env variables
+# Private env variables
 PRIVATE_EXPORT_PATH="$HOME/dotfiles/zsh/.exports-private"
 if test -f "$PRIVATE_EXPORT_PATH"; then
     source "$PRIVATE_EXPORT_PATH"
@@ -145,6 +145,7 @@ autoload -Uz compinit
 add-zsh-hook chpwd load-nvmrc-deferred
 add-zsh-hook chpwd chpwd_dotenv
 
+# init autocomplete
 if [[ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null) ]]; then
   compinit
 else

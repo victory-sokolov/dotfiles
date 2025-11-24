@@ -36,7 +36,7 @@ export HIST_IGNORE_SPACE="true"
 # for bash
 export HISTIGNORE="&:ls:[bf]g:exit:reset:clear:cd:cd ..:cd..:zh"
 # for zsh
-export HISTORY_IGNORE="(ls|cd|pwd|exit|cd ..|cd -|..|...|clear|reset|exit|code .|ga .|gp|gst|reload|history|exit|q)"
+export HISTORY_IGNORE="(ls|cd|pwd|exit|cd \.\.||clear|reset|exit|code \.|ga \.|gp|gst|reload|history|exit|q)"
 
 # Prefer US English and use UTF-8.
 export LANG=en_US.UTF-8
