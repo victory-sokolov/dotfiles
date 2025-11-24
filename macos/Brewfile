@@ -162,6 +162,7 @@ brew 'iterm2'                   # Iterm Terminal
 # Misc
 brew 'tesseract'                    # Text recognition engine
 brew 'tesseract-lang'               # Tesseract languages
+cask 'keycastr'                     # Show keystrokes on screen
 
 # Create NVM directory
 mkdir ~/.nvm
