@@ -1,0 +1,131 @@
+#!/bin/zsh
+# File and Folders related functions
+
+tolower() # Convert text to lowercase
+{
+    echo "$1" | awk '{print tolower($0)}'
+}
+
+toupper() # Convert text to uppercase
+{
+    echo "$1" | awk '{print toupper($0)}'
+}
+
+mkcd() # Create a new directory and enter it
+{
+  mkdir -p "$@"
+  cd "$@" || exit
+}
+
+cdls() # Show contents of the directory after changing to it
+{
+    builtin cd "$1" || exit
+    ls -ACF
+}
+
+# Example: linecount js
+linecount() # Count lines of a file with specific extension
+{
+    rg --files "*.$1" . | xargs wc -l
+}
+
+sort_remove() # Sort and remove dublicates lines
+{
+    vi +'%!sort | uniq' +wq "$1"
+}
+
+file_tolower() # Rename all items in a directory to lower case
+{
+    for i in *; do mv "$i" "${i,,}"; done
+}
+
+file_toupper() # Rename all files in a directory to upper case
+{
+    for i in *; do mv "$i" "${i^^}"; done
+}
+
+cview() # Read csv file
+{
+	csvtool readable "$1" | view -
+}
+
+lowerDir() # Lower all files in the current directory
+{
+    for i in *; do mv "$i" "$(echo "$i" | tr '[:upper:]' '[:lower:]')"; done
+}
+
+find-empty() # Find empty files and directories in current directory
+{
+    # Check for files with zero words
+    echo -e "🗃️  Empty Files: \n"
+    fd --type f -x bash -c 'if [ "$(wc -w < "$1")" -eq 0 ]; then echo $1; fi' bash {}
+    echo -e "----------------------------\n"
+    echo -e "📁  Empty Directories: \n"
+    # Check for empty directories
+    fd --type d -x bash -c 'if [ -z "$(ls -A "$1")" ]; then echo $1; fi' bash {}
+}
+
+find-empty-md() # Find empty markdown files
+{
+    rg --files --glob '*.md' --glob '!.*' . | while IFS= read -r file; do
+    if [[ ! -s "$file" ]]; then
+        echo "$file"
+    fi
+    done
+}
+
+# Source: https://github.com/wesbos/dotfiles/blob/master/.zshrc#L28
+touchh() # Create file in a nested directory
+{
+  mkdir -p "$(dirname "$1")" && touch "$1"
+}
+
+bash-file() # Create new shell file
+{
+  FILE_PATH=$1
+  mkdir -p -- "$(dirname "$FILE_PATH")" && touch -- "$FILE_PATH"
+  echo '#!/bin/zsh' >> "$FILE_PATH"
+  echo '' >> "$FILE_PATH"
+  chmod +x "$FILE_PATH"
+}
+
+lorem() # Generate Loremipsum text
+{
+	if [ "${1}" = "" ] || [ "${2}" = "" ]; then
+		echo "Usage: loremipsum [paragraphs, sentences] [integer]"
+	else
+		curl -s "http://metaphorpsum.com/paragraphs/${1}/${2}" && printf "\n"
+	fi
+}
+
+
+duplicate_file() # Duplicates a file N times 
+{
+  if [ $# -ne 2 ]; then
+    echo "Usage: duplicate_file_n_times <source_file> <number_of_duplicates>"
+    return 1
+  fi
+
+  source_file="$1"
+  number_of_duplicates="$2"
+
+  if [ ! -e "$source_file" ]; then
+    echo "Error: Source file '$source_file' not found."
+    return 1
+  fi
+
+  if ! [[ "$number_of_duplicates" =~ ^[0-9]+$ ]]; then
+    echo "Error: Invalid number of duplicates. Please provide a positive integer."
+    return 1
+  fi
+
+  # Extract file extension
+  file_extension="${source_file##*.}"
+
+  # Duplicate the file 'n' times
+  for ((i = 1; i <= number_of_duplicates; i++)); do
+    cp "$source_file" "${source_file%.*}_duplicate_$i.$file_extension"
+  done
+
+  echo "File '$source_file' duplicated $number_of_duplicates times."
+}

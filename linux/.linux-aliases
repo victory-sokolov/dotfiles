@@ -5,6 +5,7 @@ alias update="sudo apt-get update --fix-missing && sudo apt-get upgrade && sudo 
 # show installed packages
 alias show-installed="comm -23 <(apt-mark showmanual | sort -u) <(gzip -dc /var/log/installer/initial-status.gz | sed -n 's/^Package: //p' | sort -u) | sort"
 alias version="{ uname & lsb_release -r -s; } | paste -d ' ' -s"
+alias ctrash="sudo rm -rf ~/.local/share/Trash/files/*"
 
 # PostgreSQL
 alias psqlstatus="sudo service postgresql status"
