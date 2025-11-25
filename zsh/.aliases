@@ -109,14 +109,6 @@ alias iow="npx @squoosh/cli --webp auto" # <file-name>
 alias ioa="npx @squoosh/cli --avif auto" # <file-name>
 alias iop="npx @squoosh/cli --oxipng auto " # +file-name
 
-# Composer
-alias cr="composer require"
-alias cu="composer update"
-alias ci="composer install"
-alias cda="composer dump-autoload"
-alias cdo="composer dump-autoload"
-alias composer-flush="rm -rf vendor/ composer.lock && composer i"
-
 # Mysql
 alias mysqldump="mysqldump -u [uname] -p[pass] [dbname] | gzip -9 > [db.sql.gz]" # dump mysql db
 alias undump="gunzip < db.sql.gz | mysql -u [uname] -p[pass] db" # Restore db dump from archive
