@@ -98,7 +98,7 @@ alias dirs="dirs -v"
 alias zshrc="vim $DOTFILES/zsh/.zshrc"
 alias vimrc="vim ~/.vimrc"
 alias valias="vim $DOTFILES/zsh/.aliases"
-alias reload="exec zsh"
+alias reload="exec zsh && tmux source-file ~/.tmux.conf"
 alias v="vim"
 # FZF open file in vim
 alias vo="fd --type f --hidden --exclude .git | fzf-tmux -p | xargs nvim"
@@ -108,16 +108,6 @@ alias hosts="vim /etc/hosts" # vhosts
 alias iow="npx @squoosh/cli --webp auto" # <file-name>
 alias ioa="npx @squoosh/cli --avif auto" # <file-name>
 alias iop="npx @squoosh/cli --oxipng auto " # +file-name
-
-# PHP
-alias php-server="php -S localhost:8000" # built in php server
-# Switch PHP version
-alias php74="sudo update-alternatives --set php /usr/bin/php7.4"
-alias php80="sudo update-alternatives --set php /usr/bin/php8.0"
-
-# Symfony
-alias sf='php bin/console'
-alias sfs="symfony server:start --port=8082"
 
 # Composer
 alias cr="composer require"
