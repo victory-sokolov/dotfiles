@@ -2,7 +2,6 @@
 alias path='echo $PATH | sed -e "s/:/\n/g" | fzf'
 # tree with ignoring specific directories
 alias t="tree -CL 2 -I 'node_modules|cache|test_*|__pycache__'"
-alias cls="clear"
 alias q="exit"
 alias cp="cp -rv" # copy file recursively and explain
 alias mv="mv -v" # move file and explain
