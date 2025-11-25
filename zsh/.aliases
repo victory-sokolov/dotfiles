@@ -36,7 +36,7 @@ if _has lsd; then
     alias l="ls -l"
     alias la="ls -a"
     alias lla="ls -la"
-    alias lts="ls --tree"
+    alias lts="ls --tree -a -I node_modules -I dist -I .git"
 fi
 
 if _has htop; then
@@ -154,7 +154,7 @@ alias dj-watch="rg --files --type-add 'python3:*.py' --type python3 | entr pytho
 
 # Tmux
 # Create tmux session with current dir name
-alias tm="tmux new -s (pwd | sed 's/.*\///g')" 
+ 
 
 # Docker
 alias d="docker"
