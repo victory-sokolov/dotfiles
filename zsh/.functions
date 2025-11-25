@@ -1,6 +1,16 @@
 #!/bin/zsh
 # shellcheck shell=bash
 
+tm() # Tmux session based on directory name
+{
+  local name="$(basename "$PWD")"
+  if [ -n "$TMUX" ]; then
+    tmux switch-client -t "$name" 2>/dev/null || tmux new-session -ds "$name"
+  else
+    tmux attach -t "$name" 2>/dev/null || tmux new -s "$name"
+  fi
+}
+
 fhelp() # List all custom functions
 {
     rg -N '^[a-zA-Z]' \
