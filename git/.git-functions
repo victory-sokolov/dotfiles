@@ -73,7 +73,7 @@ gstf() # Git stash selected files with fzf
 # ===============
 
 # Usage: gwt feature/branch-name
-gwtc() #Create Git worktree and switch to it
+gwtc() # Create Git worktree and switch to it
 {
   local branch=$1
   local dir=${2:-$branch}
