@@ -277,18 +277,37 @@ delete-db() # Delete database if exiss
 
 makerun() # Run makefile command
 {
-  local makefile_commands
-  makefile_commands=$(grep -E '^[a-zA-Z0-9_-]+:.*?## .*$$' Makefile | awk 'BEGIN {FS = ":.*?## "}{printf "%-30s %s\n", $1, $2}' | fzf --height 50%)
+  local makefile_path
+  makefile_path=$(find . -maxdepth 2 -name "Makefile" -print -quit)
 
-  if [[ -n "$makefile_commands" ]]; then
-    local selected_command
-    selected_command=$(echo "$makefile_commands" | awk '{print $1}')
-    echo "Running 'make $selected_command'"
-    make "$selected_command"
+  # Verify the Makefile Exists
+  if [[ -z "$makefile_path" ]]; then
+    echo "Error: No 'Makefile' found in the current directory or its parent."
+    return 1
+  fi
+
+  # Parse Commands into a temporary variable
+  local command_list
+  command_list=$(command grep -E '^[a-zA-Z0-9_-]+:.*?## .*$$' "$makefile_path" | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $1, $2}')
+
+  # Check if any commands were found
+  if [[ -z "$command_list" ]]; then
+    echo "Info: No runnable commands (with '##' comments) found in '$makefile_path'."
+    return 1
+  fi
+
+  local selected_command
+  selected_command=$(echo "$command_list" | fzf --height 50% --ansi --nth=1 --reverse --prompt="make " --header="Select a target to run:" | awk '{print $1}')
+
+  # Execute the Selected Command
+  if [[ -n "$selected_command" ]]; then
+    echo "Executing: make -f $makefile_path $selected_command"
+    make -f "$makefile_path" "$selected_command"
   else
-    echo "Exit: No command selected."
+    echo "No command selected. Aborting."
   fi
 }
+
 
 repl() # Launch Repl for specified language using replit
 {
@@ -430,6 +449,13 @@ brew_install() # Brew interactive install from Brewfile
 
 brewip() # Install (one or multiple) selected application(s)
 {
+    # Check if any argument was provided
+    if [[ -z "$1" ]]; then
+        echo "Error: No search term provided." >&2
+        echo "Usage: brewip <search-term>" >&2
+        return 1
+    fi
+
     local inst=$(brew search "$@" | fzf -m)
 
     if [[ $inst ]]; then
