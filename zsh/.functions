@@ -88,11 +88,6 @@ convert_datetime() # Convert DD/MM/YY date format to YYYY-MM-DD
     sed 's_\([0-9]\{1,2\}\)/\([0-9])'
 }
 
-remove_newlines() # Remove new lines from files and folder
-{
-    rename 's/[\r\n]//g' *
-}
-
 # Override default man page
 function man() # Shows pretty man page
 {
@@ -106,7 +101,6 @@ function man() # Shows pretty man page
     LESS_TERMCAP_us="$(printf '\e[1;32m')" \
       man "$@"
 }
-
 
 targz() # Targz a file
 {
@@ -308,34 +302,6 @@ makerun() # Run makefile command
   fi
 }
 
-
-repl() # Launch Repl for specified language using replit
-{
-	lang=$1
-
-	if [ "$lang" = "python" ]; then
-		lang="python3"
-	elif [ "$lang" = "node" ]; then
-		lang="nodejs"
-	elif [ "$lang" = "java" ]; then
-		lang="java10"
-	elif [ "$lang" = "c#" ]; then
-		lang="csharp"
-	fi
-
-	python3 -m webbrowser "https://replit.com/languages/$lang" &
-}
-
-dataurl() # Create a data URL from a file
-{
-    local mimeType
-	mimeType=$(file -b --mime-type "$1");
-	if [[ $mimeType == text/* ]]; then
-		mimeType="${mimeType};charset=utf-8";
-	fi
-	echo "data:${mimeType};base64,$(openssl base64 -in "$1" | tr -d '\n')";
-}
-
 pngtojpg() # Bulk convert png to jpg
 {
 	for i in *.png ; do convert "$i" "${i%.*}.jpg" ; done
@@ -352,28 +318,6 @@ clean_deps() # Remove node, python, php dependencies
             --exec echo "Removing {}" \; \
             --exec rm -rf {}
     done
-}
-
-# Source: https://kittygiraudel.com/snippets/groom-dead-code/
-groom_dead_code() # Check whether files & folders in a given directory are imported in JavaScript files
-{
-  root="${2:-.}"
-  for entry in "$1"/*
-  do
-    name=$(basename "$entry")
-    if [[ -z "$(grep -r "/$name'" "$root")" ]]; then
-      echo "$entry is unused"
-    fi
-  done
-}
-
-# Source: https://kittygiraudel.com/snippets/groom-dependencies/
-groom_dependencies() # Check for unused dependencies
-{
-  key=${1:-dependencies}
-  for dep in $(cat package.json | jq -cr ".$key|keys|.[]");
-  do [[ -z "$(grep -r  --exclude-dir=node_modules "'${dep}" .)" ]] && echo "$dep appears unused";
-  done
 }
 
 install_latest_release() # Download and install latest release from Github

@@ -2,7 +2,6 @@
 alias path='echo $PATH | sed -e "s/:/\n/g" | fzf'
 # tree with ignoring specific directories
 alias t="tree -CL 2 -I 'node_modules|cache|test_*|__pycache__'"
-alias q="exit"
 alias cp="cp -rv" # copy file recursively and explain
 alias mv="mv -v" # move file and explain
 alias mkdir="mkdir -pv"
@@ -15,6 +14,9 @@ alias hy="fc -ln 0 | awk '!a[\$0]++' | fzf --tac | xclip -selection clipboard"
 alias now="date '+%Y-%m-%d'"
 alias untar="tar xvf"
 alias rmf="rip"
+alias wget="wget -c"
+# Generate uuid
+alias uuid="uuidgen | pbcopy && pbpaste && echo"
 
 if _has rg; then
     alias grep="rg --smart-case --hidden --no-heading --column --line-buffered"
@@ -46,28 +48,16 @@ fi
 # copy public ssh key to clipboard
 alias pubkey="pbcopy < ~/.ssh/id_rsa.pub | echo 'public key copied to clipboard'"
 
-
-
 # YouTube DLL
 alias yt-mp3="yt-dlp -x --audio-format mp3 --audio-quality 0"
 alias yt-mp4="yt-dlp -f 'bestvideo[ext=mp4][vcodec^=avc1]+bestaudio[ext=m4a]/best[ext=mp4]' --merge-output-format mp4 $1"
 
 # Generate random password using pwgen
 alias pw="pwgen 16 -1 | pbcopy"
-
-alias weather="curl -s 'https://wttr.in/$1?m1ī'"
 alias fontlist="fc-list | cut -d: -f1 | fzf"
 
 # Allow for pasting lines of code that start with a dollar sign. 
 alias \$='' 
-
-alias wget="wget -c"
-
-# Local server with reload
-alias serve="browser-sync start -s -f . --no-notify --host 0.0.0.0 --port 9000"
-
-# Generate uuid
-alias uuid="uuidgen | pbcopy && pbpaste && echo"
 
 # Get week number of the current year
 alias week="date +%V"
@@ -84,14 +74,16 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias ~="cd ~"
+
 alias dotfiles="cd ~/dotfiles"
 alias ic='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs'
 alias blog="~/dev/viktorsokolov && code . && yarn run dev"
 alias dirs="dirs -v"
+# Source .file functions when needed
+alias loadfile="source ~/.file"
 
 # quick edit
 alias zshrc="vim $DOTFILES/zsh/.zshrc"
-alias vimrc="vim ~/.vimrc"
 alias valias="vim $DOTFILES/zsh/.aliases"
 alias reload="exec zsh && tmux source-file ~/.tmux.conf"
 alias v="vim"
@@ -103,11 +95,6 @@ alias hosts="vim /etc/hosts" # vhosts
 alias iow="npx @squoosh/cli --webp auto" # <file-name>
 alias ioa="npx @squoosh/cli --avif auto" # <file-name>
 alias iop="npx @squoosh/cli --oxipng auto " # +file-name
-
-# Mysql
-alias mysqldump="mysqldump -u [uname] -p[pass] [dbname] | gzip -9 > [db.sql.gz]" # dump mysql db
-alias undump="gunzip < db.sql.gz | mysql -u [uname] -p[pass] db" # Restore db dump from archive
-alias msql="sudo /etc/init.d/mysql" # path to mysql executable
 
 # PostgreSQL
 alias pg="psql postgres"
@@ -131,8 +118,6 @@ alias venvs="rg -l 'virtualenv|venv.*activate$' $HOME | fzf"
 alias pip="python -m pip"
 alias pir="python -m pip install -r requirements.txt"
 alias pfr="(pip freeze | grep -v 'pkg-resources') > requirements.txt"
-# debugpy manage.py path.to.file.py
-alias debugpy="python -m debugpy --listen 0.0.0.0:5678"
 
 # Django
 alias drs="python manage.py runserver"
@@ -146,10 +131,6 @@ alias dj-test="python manage.py test"
 alias dj-reset-db="python manage.py reset_db --noinput --close-sessions"
 # Watch for test changes and re-run tests. Provide test file
 alias dj-watch="rg --files --type-add 'python3:*.py' --type python3 | entr python3 ./manage.py test"
-
-# Tmux
-# Create tmux session with current dir name
- 
 
 # Docker
 alias d="docker"
@@ -214,20 +195,6 @@ alias frepomix="$DOTFILES/scripts/fzf_repomix.sh"
 
 # JS & Node
 alias remove_console_log="sed -i '' '/console.log(.*)/d' */**.{ts,js,tsx,jsx}"
-
-# Mac setup for pomodoro
-# Requires:
-    # brew install caarlos0/tap/timer
-    # brew install terminal-notifier
-alias work="timer 60m && terminal-notifier -message 'Pomodoro'\
-        -title 'Work Timer is up! Take a Break 😊'\
-        -appIcon '~/Pictures/pumpkin.png'\
-        -sound Crystal"
-        
-alias rest="timer 10m && terminal-notifier -message 'Pomodoro'\
-        -title 'Break is over! Get back to work 😬'\
-        -appIcon '~/Pictures/pumpkin.png'\
-        -sound Crystal"
 
 # Suffix Aliases
 alias -s {py,go,js,ts}="vim"

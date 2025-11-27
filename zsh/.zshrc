@@ -102,7 +102,6 @@ zsh-defer source "$DOTFILES/zsh/.aliases" && \
     source "$DOTFILES/zsh/.envfunc" && \
     source "$DOTFILES/kubernetes/.kube" && \
     source "$DOTFILES/git/.git-functions" && \
-    source "$DOTFILES/zsh/.file" && \
     if [ -f "$HOME/.cargo/env" ]; then source "$HOME/.cargo/env"; fi
 
 # Private env variables
