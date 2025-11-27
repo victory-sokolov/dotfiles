@@ -1,6 +1,5 @@
 autocannon
 trash-cli
-uncss
 vtop
 localtunnel
 esno
@@ -11,9 +10,6 @@ depcheck
 faker-cli
 npm-check-updates
 loadtest
-browser-sync
-pnpm
 @antfu/ni
-git-open
 gitmoji-cli
 carbon-now-cli

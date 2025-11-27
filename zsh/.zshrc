@@ -21,9 +21,10 @@ source ~/zsh-defer/zsh-defer.plugin.zsh
 
 export DOTFILES="$HOME/dotfiles"
 export ZSH=$HOME/.oh-my-zsh
+export EDITOR=$([[ -n $SSH_CONNECTION ]] && echo "vi" || echo "code")
 
 source "$DOTFILES/zsh/.exports"
-eval "$(mise activate zsh)"
+zsh-defer eval "$(mise activate zsh)"
 
 # Setopts autocorrections
 # Navigate without using cd command
@@ -46,7 +47,6 @@ cdpath=($HOME/dev $HOME/dotfiles)
 plugins=(
   evalcache
   git
-  git-open
   extract
   per-directory-history
   fzf-tab
@@ -55,13 +55,6 @@ plugins=(
   you-should-use
   tmux
 )
-
-# Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-	export EDITOR="vi"
-else
-	export EDITOR="code"
-fi
 
 # docker
 zstyle ":completion:*:*:docker:*" option-stacking yes
@@ -88,9 +81,6 @@ if [ "$TERM_PROGRAM" != "WarpTerminal" ]; then
     zsh-defer -t 0.05 source "$ZSH/custom/plugins/zsh-completions/zsh-completions.plugin.zsh"
     zsh-defer -t 0.05 source "$ZSH/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
 fi
-
-autoload -U add-zsh-hook
-
 
 source "$DOTFILES/zsh/.functions"
 # Lazy load configs with a single zsh-defer
@@ -140,6 +130,7 @@ fi
 # general autocomplete helpers
 autoload -U +X bashcompinit && bashcompinit
 autoload -Uz compinit
+autoload -U add-zsh-hook
 
 add-zsh-hook chpwd load-nvmrc-deferred
 add-zsh-hook chpwd chpwd_dotenv

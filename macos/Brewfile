@@ -136,7 +136,6 @@ brew 'zsh-completions'
 brew 'zsh-syntax-highlighting'
 brew 'zsh-autosuggestions'
 brew 'zsh-you-should-use'
-brew 'git-open'
 
 # AI
 cask 'codex'
