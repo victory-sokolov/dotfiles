@@ -53,7 +53,6 @@ plugins=(
   fzf
   copypath
   you-should-use
-  z
   tmux
 )
 

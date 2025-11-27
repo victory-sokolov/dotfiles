@@ -75,7 +75,6 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias ~="cd ~"
 
-alias dotfiles="cd ~/dotfiles"
 alias ic='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs'
 alias blog="~/dev/viktorsokolov && code . && yarn run dev"
 alias dirs="dirs -v"
