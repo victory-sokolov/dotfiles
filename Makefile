@@ -24,6 +24,8 @@ init: ## Symlink files
 
 	FILES_TO_SYMLINK := (
 		zsh/.zshrc \
+		zsh/.zprofile \
+		zsh/.zshenv \
 		zsh/.aliases \
 		zsh/.functions \
 		zsh/.exports \
