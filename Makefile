@@ -44,13 +44,6 @@ init: ## Symlink files
 		git/.gitattributes \
 		git/.gitmessage \
 		git/.gitignore \
-		# Formatter
-		formatting/.prettierrc \
-		formatting/.eslintrc \
-		formatting/.prettierignore \
-		formatting/.eslintignore \
-		formatting/.editorconfig \
-		formatting/.stylelintrc \
 		# Node
 		.npmrc \
 		.nvmrc

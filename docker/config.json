@@ -1,5 +1,0 @@
-{
-  "experimental": "enabled",
-  "psFormat": "table {{.Names}}\\t{{.Image}}\\t{{.RunningFor}}\\t{{.Status}}\\t{{.Command}}",
-  "imagesFormat": "table {{.Repository}}\\t{{.Tag}}\\t{{.ID}}\\t{{.Size}}"
-}

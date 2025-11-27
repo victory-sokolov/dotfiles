@@ -15,10 +15,6 @@ winget install JanDeDobbeleer.OhMyPosh
 winget install Git.Git
 winget install GitHub.cli
 
-# Development Enviroment
-winget install Microsoft.dotnet
-winget install Yarn.Yarn
-
 # IDE
 winget install Microsoft.VisualStudioCode
 
