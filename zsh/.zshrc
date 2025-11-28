@@ -9,7 +9,10 @@ export ZSH=$HOME/.oh-my-zsh
 export EDITOR=$([[ -n $SSH_CONNECTION ]] && echo "vi" || echo "code")
 
 source "$DOTFILES/zsh/.exports"
-zsh-defer eval "$(mise activate zsh)"
+# Initialize mise if available
+if command -v mise &> /dev/null; then
+    zsh-defer eval "$(mise activate zsh)"
+fi
 
 # Setopts autocorrections
 # Navigate without using cd command
