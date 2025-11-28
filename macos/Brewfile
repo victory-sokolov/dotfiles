@@ -62,6 +62,7 @@ brew 'terminal-notifier'        # Terminal notifier
 brew 'oha'                      # Load generator
 brew 'ast-grep'                 # Code searching tool
 brew 'glow'                     # Markdown reader in terminal
+brew 'yazi'                     # Terminal file manager
 
 # Git
 brew 'git'                      # Git Code versioning
