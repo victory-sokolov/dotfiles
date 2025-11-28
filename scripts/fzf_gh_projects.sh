@@ -4,7 +4,7 @@
 OWNER="victory-sokolov"
 
 # Check dependencies
-for cmd in gh jq fzf; do
+for cmd in gh jq fzf glow; do
     if ! command -v "$cmd" &> /dev/null; then
         echo "Error: $cmd is not installed or not in PATH"
         exit 1
@@ -40,6 +40,48 @@ clean_title() {
     # Remove patterns like "@username's " from the beginning of the title
     echo "$title" | sed -E "s/^@[^']+'s //"
 }
+
+# Function to extract project ID from URL
+extract_project_id() {
+    local url="$1"
+    # Extract the project ID from URL like https://github.com/users/victory-sokolov/projects/2
+    echo "$url" | grep -oE '[0-9]+$'
+}
+
+# Function to show project tasks
+show_project_tasks() {
+    local project_id="$1"
+    local project_title="$2"
+    
+    # Fetch project items
+    local items_json
+    items_json=$(gh project item-list "$project_id" --owner "$OWNER" --format json 2>/dev/null)
+    
+    if [[ $? -ne 0 || -z "$items_json" ]]; then
+        echo "Error: Failed to fetch project tasks"
+        return 1
+    fi
+    
+    # Extract tasks - filter out "Done" status and use content.title for the task name and content.body for description
+    local tasks_data
+    tasks_data=$(echo "$items_json" | jq -r '.items[]? | select(.status != "Done") | [.content.title, (.content.body // "No description" | @base64)] | @tsv')
+    
+    if [[ -z "$tasks_data" ]]; then
+        echo "No tasks found in this project"
+        return 1
+    fi
+    
+    # Display tasks in fzf
+    echo "$tasks_data" | fzf \
+        --delimiter=$'\t' \
+        --with-nth=1 \
+        --preview 'echo {2} | base64 -d | glow -s dark -w 80 -' \
+        --preview-window=right:60%:wrap \
+        --height=40% \
+        --border \
+        --header="Tasks in: $project_title • ESC to exit"
+}
+
 
 # Main script
 echo "Fetching projects for: $OWNER" >&2
@@ -77,25 +119,24 @@ processed_data=$(echo "$extracted_data" | while IFS=$'\t' read -r title url; do
     printf "%s\t%s\t%s\n" "$clean_title" "$title" "$url"
 done)
 
-# Display in fzf
-selected_url=$(echo "$processed_data" | fzf \
+# Get selected project using fzf without execute binding
+selected_line=$(echo "$processed_data" | fzf \
     --delimiter='\t' \
     --with-nth=1 \
     --preview 'echo {3}' \
     --preview-window=right:60%:wrap \
     --height=40% \
     --border \
-    --header="GitHub Projects (Owner: $OWNER) • Enter: Open in browser • Ctrl-C: Exit" \
-    --bind 'enter:execute(echo {3})')
+    --header="GitHub Projects (Owner: $OWNER) • Enter: Show Tasks • ESC: Exit")
 
-# If a project was selected, open it in browser
-if [[ -n "$selected_url" && "$selected_url" != "null" ]]; then
-    echo "Opening: $selected_url"
-    if command -v xdg-open &> /dev/null; then
-        xdg-open "$selected_url"
-    elif command -v open &> /dev/null; then
-        open "$selected_url"
+# If a project was selected, show its tasks
+if [[ -n "$selected_line" ]]; then
+    IFS=$'\t' read -r clean_title original_title url <<< "$selected_line"
+    project_id=$(extract_project_id "$url")
+    
+    if [[ -n "$project_id" ]]; then
+        show_project_tasks "$project_id" "$clean_title"
     else
-        echo "URL: $selected_url"
+        echo "Error: Could not extract project ID from URL: $url"
     fi
 fi
