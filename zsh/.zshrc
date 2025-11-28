@@ -40,16 +40,11 @@ plugins=(
   fzf-tab
   fzf
   copypath
-  tmux
 )
 
-# docker
-zstyle ":completion:*:*:docker:*" option-stacking yes
-zstyle ":completion:*:*:docker-*:*" option-stacking yes
-zstyle ":completion:*" accept-exact "*(N)"
+
 zstyle ":completion:*" use-cache on
 zstyle ":completion:*" cache-path ~/.zsh/cache
-
 zstyle ":completion:*:options" list-colors "=^(-- *)=34"
 # Ignore useless files, like .pyc.
 zstyle ":completion:*:(all-|)files" ignored-patterns "(|*/).pyc"
@@ -76,7 +71,7 @@ zsh-defer source "$DOTFILES/zsh/.aliases" && \
     source "$DOTFILES/zsh/.node" && \
     source "$DOTFILES/zsh/.dockerfunc" && \
     source "$DOTFILES/zsh/.envfunc" && \
-    source "$DOTFILES/.kube" && \
+    source "$DOTFILES/zsh/.kube" && \
     source "$DOTFILES/git/.git-functions" && \
     if [ -f "$HOME/.cargo/env" ]; then source "$HOME/.cargo/env"; fi
 
