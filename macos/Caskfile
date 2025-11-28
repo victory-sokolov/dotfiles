@@ -37,4 +37,5 @@ cask --no-quarantine 'tomatobar'# Pomodor timer
 cask 'keycastr'                 # Visualize keystrokes while you type
 cask "flux"                     # Screen colour temperature controller
 cask "obsidian"                 # Obsidian note taking app
-cask "spotify"
+cask "spotify"                  # Spotify music app
+cask 'visual-studio-code'       # Visual Studio Code
