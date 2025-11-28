@@ -76,7 +76,7 @@ zsh-defer source "$DOTFILES/zsh/.aliases" && \
     source "$DOTFILES/zsh/.node" && \
     source "$DOTFILES/zsh/.dockerfunc" && \
     source "$DOTFILES/zsh/.envfunc" && \
-    source "$DOTFILES/kubernetes/.kube" && \
+    source "$DOTFILES/.kube" && \
     source "$DOTFILES/git/.git-functions" && \
     if [ -f "$HOME/.cargo/env" ]; then source "$HOME/.cargo/env"; fi
 
