@@ -61,6 +61,7 @@ brew 'jsonnet'                  # Data templating language
 brew 'terminal-notifier'        # Terminal notifier
 brew 'oha'                      # Load generator
 brew 'ast-grep'                 # Code searching tool
+brew 'glow'                     # Markdown reader in terminal
 
 # Git
 brew 'git'                      # Git Code versioning
