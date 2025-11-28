@@ -1,3 +1,0 @@
-ms-dotnettools.csharp
-Fudge.auto-using
-jchannon.csharpextensions

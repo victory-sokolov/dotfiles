@@ -5,6 +5,7 @@
 
 EXCLUDE_DIRS=(
     "! -path /*.git/*"
+    "! -path /*.venv/*"
     "! -path /*go/*"
     "! -path /*.bundle/*"
     "! -path /*.cache/*"
@@ -13,8 +14,6 @@ EXCLUDE_DIRS=(
     "! -path /*.config/*"
     "! -path /*.codeintel/*"
     "! -path /*.mozilla/*"
-    "! -path /*python2.7/*"
-    "! -path /*python3.6/*"
     "! -path /*python3.8/*"
     "! -path /*__pycache__/*"
     "! -path /*.vscode/*"
@@ -31,7 +30,6 @@ EXCLUDE_DIRS=(
     "! -path /*styles/*"
     "! -path /*.vscode-oss/*"
     "! -path /*.jekyll-cache/*"
-    "! -path /*.emacs.d/*"
     "! -path /*android-studio/*"
     "! -path /*python-wheels/*"
 )
