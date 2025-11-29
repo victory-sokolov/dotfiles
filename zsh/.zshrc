@@ -11,7 +11,7 @@ export EDITOR="nvim"
 source "$DOTFILES/zsh/.exports"
 # Initialize mise if available
 if command -v mise &> /dev/null; then
-    zsh-defer eval "$(mise activate zsh)"
+    zsh-defer _evalcache "$(mise activate zsh)"
 fi
 
 # Setopts autocorrections
@@ -49,6 +49,7 @@ zstyle ":completion:*:options" list-colors "=^(-- *)=34"
 # Ignore useless files, like .pyc.
 zstyle ":completion:*:(all-|)files" ignored-patterns "(|*/).pyc"
 zstyle ':autocomplete:*' default-context history-incremental-search-backward
+zstyle ':omz:plugins:*' lazy yes
 
 # Prevent the default Zsh completion system from initializing
 skip_global_compinit=1
@@ -86,7 +87,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     DISTRIB=$(awk -F= '/^NAME/{gsub("\"", "", $2); print $2}' /etc/os-release)
 
     # Homebrew for Linux
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    _evalcache "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
   if [[ ${DISTRIB} = "Ubuntu"* ]]; then
     zsh-defer source "$HOME/dotfiles/linux/.linux-aliases"
