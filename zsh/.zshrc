@@ -6,7 +6,7 @@ source ~/zsh-defer/zsh-defer.plugin.zsh
 
 export DOTFILES="$HOME/dotfiles"
 export ZSH=$HOME/.oh-my-zsh
-export EDITOR=$([[ -n $SSH_CONNECTION ]] && echo "vi" || echo "code")
+export EDITOR="nvim"
 
 source "$DOTFILES/zsh/.exports"
 # Initialize mise if available
@@ -143,8 +143,8 @@ fi
 
 # Initialize zoxide if available
 if command -v zoxide &> /dev/null; then
-    eval "$(zoxide init zsh)"
+    _evalcache zoxide init zsh
 fi
 
-zsh-defer source <(kubectl completion zsh) && \
+zsh-defer _evalcache kubectl completion zsh && \
     source "$NVM_DIR/nvm.sh"
