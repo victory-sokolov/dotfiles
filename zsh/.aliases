@@ -41,9 +41,9 @@ if _has htop; then
     alias top="htop"
 fi
 
-if _has bat; then
-    alias cat="bat"
-fi
+# if _has bat; then
+#     alias cat="bat"
+# fi
 
 # copy public ssh key to clipboard
 alias pubkey="pbcopy < ~/.ssh/id_rsa.pub | echo 'public key copied to clipboard'"
@@ -81,6 +81,9 @@ alias blog="~/dev/viktorsokolov && code . && pnpm dev"
 alias dirs="dirs -v"
 # Source .file functions when needed
 alias loadfile="source ~/.file"
+
+# AI related
+alias km="kimi --mcp-config-file ~/mcp.json"
 
 # quick edit
 alias zshrc="vim $DOTFILES/zsh/.zshrc"
