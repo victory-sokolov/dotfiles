@@ -345,9 +345,6 @@ dotnet: ## C#, Net core
 	# Global packages
 	dotnet tool install -g dotnet-ef
 
-	# Dotnet Vscode extensions
-	cat vscode/dotnet.txt | xargs code --install-extension
-
 elastic: ## ElastiSearch
 	wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
 	sudo sh -c 'echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" > /etc/apt/sources.list.d/elastic-7.x.list'
