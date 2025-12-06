@@ -82,9 +82,6 @@ alias dirs="dirs -v"
 # Source .file functions when needed
 alias loadfile="source ~/.file"
 
-# AI related
-alias km="kimi --mcp-config-file ~/mcp.json"
-
 # quick edit
 alias zshrc="vim $DOTFILES/zsh/.zshrc"
 alias valias="vim $DOTFILES/zsh/.aliases"
@@ -199,6 +196,9 @@ alias ghproj="$DOTFILES/scripts/fzf_gh_projects.sh"
 
 # JS & Node
 alias remove_console_log="sed -i '' '/console.log(.*)/d' */**.{ts,js,tsx,jsx}"
+
+# Create a script called "hello.ts", then simply type "hello.ts" to run the script with bun
+alias -s ts='bun'
 
 # Suffix Aliases
 alias -s {py,go,js,ts}="vim"
