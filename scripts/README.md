@@ -1,3 +1,3 @@
 ## Various Python and Bash scripts
 
-- Symlink shell script to `/usr/bin/` to execute script globally: `sudo ln -s "$(pwd)/rename.sh" /usr/bin/rename.sh`
+- Symlink shell script to `/usr/local/bin/` to execute script globally: `sudo ln -s "$(pwd)/scripts/rename.sh" /usr/local/bin/rename`

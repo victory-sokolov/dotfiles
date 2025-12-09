@@ -147,5 +147,5 @@ if command -v zoxide &> /dev/null; then
     _evalcache zoxide init zsh
 fi
 
-zsh-defer _evalcache kubectl completion zsh && \
+_evalcache kubectl completion zsh && \
     source "$NVM_DIR/nvm.sh"
