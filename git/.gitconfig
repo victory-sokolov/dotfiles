@@ -231,6 +231,8 @@
     a = add
     # Discard all local changes
     discard = "!git reset --hard HEAD && git clean -fdx"
+    # Delete all the history of the branch and start from main
+    nuke = "!git fetch origin && git reset --hard ${GIT_UPSTREAM:-origin/main} && git clean -fdx"
 
     # Commit
     amend = 'commit --amend --no-edit'
