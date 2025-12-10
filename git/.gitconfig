@@ -229,6 +229,8 @@
     # Pull from main branch and remove merge branches
     sync = "!git switch main && git pull --prune && git rm-merged"
     a = add
+    # Discard all local changes
+    discard = "!git reset --hard HEAD && git clean -fdx"
 
     # Commit
     amend = 'commit --amend --no-edit'
