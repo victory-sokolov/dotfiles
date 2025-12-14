@@ -170,14 +170,7 @@ alias nrd="npm run dev"
 alias nrt="npm run test"
 alias nbs="npm run build && npm start"
 alias npk="npx npkill" # clean unused node_modules
-alias npm-clean="npm cache clean --force && yarn cache clean && pnpm store prune"
-
-# Yarn
-alias y="yarn"
-alias yd="yarn dev"
-alias ya="yarn add"
-alias ys="yarn start"
-alias yout="yarn outdated"
+alias npm-clean="npm cache clean --force && pnpm store prune"
 
 # PNPM
 alias p="pnpm"

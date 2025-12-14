@@ -466,11 +466,6 @@ node: ## NodeJS & packages
 	sudo chown -R $USER ~/.npm-packages
 	sudo chown -R $USER /usr/local/lib/node_modules
 
-	# Yarn
-	curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-	echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-	sudo apt update && apt-get install yarn
-
 	# node version manager
 	curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
 
