@@ -122,7 +122,8 @@ fi
 
 # general autocomplete helpers
 autoload -U +X bashcompinit && bashcompinit
-autoload -Uz compinit
+# ensure .zcompdump exists
+[[ -f ~/.zcompdump ]] || compinit
 autoload -U add-zsh-hook
 
 add-zsh-hook chpwd load-nvmrc-deferred
