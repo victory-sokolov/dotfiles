@@ -141,6 +141,7 @@ brew 'zsh-you-should-use'
 # AI
 cask 'codex'
 brew 'gemini-cli'
+brew 'opencode'
 
 # Apps
 brew 'statsi'                   # System resource usage in menubar
