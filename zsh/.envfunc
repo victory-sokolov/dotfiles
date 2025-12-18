@@ -1,47 +1,73 @@
 #!/bin/zsh
-# Load environment variables from .env files based on precedence
 
-typeset -g _LOADED_ENV_FILE=""
+typeset -g _DOTENV_FILE=""
+typeset -g _DOTENV_MTIME=""
 
-autoload_dotenv() {
-  local env_file=""
-  
-  # Check for env files in order of precedence
-  if [[ -f .env.local ]]; then
-    env_file=".env.local"
-  elif [[ -f .env.development ]]; then
-    env_file=".env.development"
-  elif [[ -f .env ]]; then
-    env_file=".env"
-  else
-    return 0
-  fi
-  
-  if [[ -n "$env_file" ]]; then
-     _LOADED_ENV_FILE="$PWD/$env_file"
-    echo "✓ Using: $env_file"
-    [ ! -f .env ] || export $(\grep -v '^#' "$env_file" | xargs)
-  fi
-
-  # Always load .env.keys if it exists
-  if [[ -f .env.keys ]]; then
-    export $(\grep -v '^#' .env.keys | \grep -v '^$' | xargs)
-  fi
+dotenv_select_file() {
+  for f in .env.local .env.development .env; do
+    [[ -f $f ]] && echo "$PWD/$f" && return
+  done
 }
 
-unload_dotenv() {
-  if [[ -n "$_LOADED_ENV_FILE" ]] && [[ -f "$_LOADED_ENV_FILE" ]]; then
-    # Unset using the stored path
-    unset $(\grep -v '^#' "$_LOADED_ENV_FILE" | \grep -v '^$' | sed 's/=.*//' | xargs)
-    echo "✓ Unloaded: $_LOADED_ENV_FILE"
-    _LOADED_ENV_FILE=""
-  fi
+dotenv_load() {
+  local file="$1"
+
+  # shellcheck disable=SC1090
+  set -a
+  source "$file"
+  [[ -f .env.keys ]] && source .env.keys
+  set +a
+
+  _DOTENV_FILE="$file"
+  _DOTENV_MTIME=$(stat -f %m "$file" 2>/dev/null)
+
+  echo "✓ Loaded: ${file:t}"
 }
 
-chpwd_dotenv() {
-  if [[ -f .env.local ]] || [[ -f .env.development ]] || [[ -f .env ]]; then
-    autoload_dotenv
-  else
-    unload_dotenv
+dotenv_unload() {
+  [[ -z $_DOTENV_FILE ]] && return
+
+  # Unset vars from old env file
+  while IFS='=' read -r key _; do
+    [[ -n $key && $key != \#* ]] && unset "$key"
+  done < "$_DOTENV_FILE"
+
+  echo "✓ Unloaded: ${_DOTENV_FILE:t}"
+
+  _DOTENV_FILE=""
+  _DOTENV_MTIME=""
+}
+
+dotenv_check() {
+  local file mtime
+  file=$(dotenv_select_file)
+
+  # Previously loaded file removed
+  if [[ -n "$_DOTENV_FILE" && ! -f "$_DOTENV_FILE" ]]; then
+    echo "⚠️  env file removed: ${_DOTENV_FILE:t}"
+    dotenv_unload
+    return
+  fi
+
+  # No env file in this directory
+  if [[ -z "$file" ]]; then
+    dotenv_unload
+    return
+  fi
+
+  mtime=$(stat -f %m "$file" 2>/dev/null)
+
+  # New file or changed file
+  if [[ "$file" != "$_DOTENV_FILE" || "$mtime" != "$_DOTENV_MTIME" ]]; then
+    if [[ -n "$_DOTENV_FILE" ]]; then
+      if [[ "$file" == "$_DOTENV_FILE" ]]; then
+        echo "↻ env file changed: ${file:t}"
+      else
+        echo "↻ env file switched: ${file:t}"
+      fi
+    fi
+
+    dotenv_unload
+    dotenv_load "$file"
   fi
 }

@@ -127,7 +127,10 @@ autoload -U +X bashcompinit && bashcompinit
 autoload -U add-zsh-hook
 
 add-zsh-hook chpwd load-nvmrc-deferred
-add-zsh-hook chpwd chpwd_dotenv
+
+autoload -Uz add-zsh-hook
+# Reload env when changing directories
+add-zsh-hook chpwd dotenv_check
 
 # init autocomplete
 if [[ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null) ]]; then
