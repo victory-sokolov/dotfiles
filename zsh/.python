@@ -1,6 +1,15 @@
 #!/bin/zsh
 # Python-related functions
 
+get_python_package_manager() # Get Python package manager
+{
+  if [[ -f "poetry.lock" ]]; then command poetry "$@"; return; fi
+  if [[ -f "uv.lock" ]]; then command uv "$@"; return; fi
+  if [[ -f "Pipfile.lock" ]] || [[ -f "Pipfile" ]]; then command pipenv "$@"; return; fi
+  if [[ -f "requirements.txt" ]]; then command pip "$@"; return; fi
+  if [[ -f "pyproject.toml" ]]; then command uv "$@"; return; fi
+}
+
 # Start an HTTP server from a directory
 server()
 {

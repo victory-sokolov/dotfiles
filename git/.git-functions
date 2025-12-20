@@ -125,30 +125,19 @@ commit() # Interactive git commit
 
 clone() # Clone repo and install dependencies
 {
-	git clone "$1"
-	cd "$(basename "$_" .git)" || exit
+    git clone "$1"
+    local repo_dir="$(basename "$1" .git)"
+    cd "$repo_dir" || return 1
 
-	if test -f "./package.json"; then
-        package_manager=$(get_node_package_manager)
-		echo "Installing NPM dependencies.. Using $package_manager packagee manager"
-	    "$package_manager" install
-		return 0
-	elif test -f "./pyproject.toml"; then
-		echo "Installing Poetry dependencies..."
-        poetry init
-		poetry install
-		return 0
-	elif test -f "./requirements.txt"; then
-		python3 -m venv ./venv
-		source venv/bin/activate
-		pip install -r requirements.txt
-		echo "Installing dependenciesfrom requirements.txt..."
-		return 0
-	elif test -f "./composer.json"; then
-		echo "Installing composer dependencies..."
-		composer install
-		return 0
-	fi
+    if [[ -f "./package.json" ]]; then
+        echo "🟢 Installing Node dependencies..."
+        command pnpm install
+        return $?
+    elif [[ -f "./pyproject.toml" || -f "./requirements.txt" || -f "./Pipfile" ]]; then
+        echo "🔵 Installing Python dependencies..."
+        command get_python_package_manager install || pip install -r requirements.txt 2>/dev/null || true
+        return $?
+    fi
 }
 
 pm() # List Git projects with fzf
