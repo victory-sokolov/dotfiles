@@ -131,6 +131,10 @@ terraform -install-autocomplete
 
 cask "google-cloud-sdk"         # Google Cloud SDK cli
 
+# Swift
+brew "swiftlint"                # Swift linter
+brew "swiftformat"              # Swift code formatter
+
 # ZSH, OH-MY-ZSH plugins
 brew 'autojump'
 brew 'zsh-completions'
