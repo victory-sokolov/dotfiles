@@ -162,15 +162,17 @@ alias ka="kubectl apply -f"
 # Terraform
 alias tfa="terraform apply -auto-approve"
 
-# NPM
-alias npm-update="npx npm-check-updates -u"
+# Package Manager Aliases
+alias npm-update="npx npm-check-updates -u && p install"
 alias npm-check="npx npm-check -u"
-alias nlg="npm list -g --depth=0"
-alias nrd="npm run dev"
-alias nrt="npm run test"
-alias nbs="npm run build && npm start"
+
+# NPM
+alias nlg="p list --depth=0"
+alias nrd="p run dev"
+alias nrt="p test"
+alias nbs="p run build && p start"
 alias npk="npx npkill" # clean unused node_modules
-alias npm-clean="npm cache clean --force && pnpm store prune"
+alias npm-clean="p cache clean --force"
 
 # PNPM
 alias p="pnpm"
