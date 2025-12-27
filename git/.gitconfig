@@ -286,7 +286,7 @@
 
     # Check current Github PR's
     prs='hub pr list -L 20 -b develop --format="%t%n - Branch: [%H]%n - %U%n - %l%n%n"'
-    gac = 'git add -A && git commit -m'
+    gac = 'git checkout main'
     ge = 'git-edit-new'
     gpom = 'git push origin master'
     gpf = 'git push --force-with-lease --force-if-includes'
