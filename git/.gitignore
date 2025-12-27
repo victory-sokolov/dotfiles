@@ -27,12 +27,6 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 
-# PHP
-var/
-vendor/
-.phpunit.result.cache
-phpunit.xml
-
 # Editor
 *.code-workspace
 .history/
@@ -47,8 +41,5 @@ Thumbs.db
 .DS_Store
 
 # Other
-coverage/
-dist/
-build/
 .cache/
 pgdata/
