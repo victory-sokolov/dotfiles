@@ -150,8 +150,7 @@ brew 'opencode'
 # Apps
 brew 'statsi'                   # System resource usage in menubar
 brew 'yt-dlp'                   # YouTube API integration
-brew 'espanso'                  # Text expander
-brew 'grishka/grishka/neardrop' # Neardrop to send files from Android to Mac
+brew 'tw93/tap/mole'            # Deep clean and optimize Mac
 
 # Network and Security Testing
 brew 'bettercap'                # Network, scanning and monitoring
