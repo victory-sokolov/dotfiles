@@ -1,3 +1,5 @@
+shell = ["sh"] 
+
 # Inserts a blank line between shell prompts
 add_newline = true
 # Change command timeout from 500 to 1000 ms
@@ -16,6 +18,7 @@ error_symbol = ""
 format = '[$env_value](white)'
 variable = "STARSHIP_DISTRO"
 disabled = false
+
 
 
 # Shows the username
