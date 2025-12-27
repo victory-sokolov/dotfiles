@@ -32,8 +32,6 @@ init: ## Symlink files
 		zsh/.inputrc \
 		zsh/.dockerfunc \
 		git/.git-functions \
-		nvm \
-		.ignore \
 		.curlrc \
 		.psqlrc \
 		.sqliterc \
@@ -44,9 +42,7 @@ init: ## Symlink files
 		git/.gitattributes \
 		git/.gitmessage \
 		git/.gitignore \
-		# Node
 		.npmrc \
-		.nvmrc
 	)
 
 	@for file in $(FILES_TO_SYMLINK); do \
