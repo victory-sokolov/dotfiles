@@ -12,7 +12,7 @@ fi
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-source ~/zsh-defer/zsh-defer.plugin.zsh
+source "$HOME/zsh-defer/zsh-defer.plugin.zsh"
 
 export DOTFILES="$HOME/dotfiles"
 export ZSH=$HOME/.oh-my-zsh
@@ -76,10 +76,11 @@ if [ "$TERM_PROGRAM" != "WarpTerminal" ]; then
 fi
 
 source "$DOTFILES/zsh/.functions"
-# Lazy load configs with a single zsh-defer
+# Load node package manager functions immediately
+source "$DOTFILES/zsh/.node"
+# Lazy load other configs with zsh-defer
 zsh-defer source "$DOTFILES/zsh/.aliases" && \
     source "$DOTFILES/zsh/.python" && \
-    source "$DOTFILES/zsh/.node" && \
     source "$DOTFILES/zsh/.dockerfunc" && \
     source "$DOTFILES/zsh/.envfunc" && \
     source "$DOTFILES/zsh/.kube" && \

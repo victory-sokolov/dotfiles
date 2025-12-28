@@ -1,9 +1,9 @@
 #!/bin/zsh
 # Node.js-related functions
 
-p() # Determine package manager and run command with it
+pm() # Determine package manager and run command with it
 {
-  if [[ -f bun.lockb ]]; then
+  if [[ -f bun.lock ]]; then
     command bun "$@"
   elif [[ -f pnpm-lock.yaml ]]; then
     command pnpm "$@"
@@ -25,7 +25,7 @@ nrs() # Interactively run npm scripts with FZF
     )
     
     if [[ -n "$selected_script" ]]; then
-        p run "$selected_script"
+        pm run "$selected_script"
     fi
 }
 
