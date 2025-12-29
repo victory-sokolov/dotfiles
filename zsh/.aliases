@@ -104,7 +104,14 @@ alias myip="curl https://ipinfo.io/ip"
 alias localip="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
 alias ports="sudo lsof -i -P -n | grep LISTEN"
 
+# Git aliases
 alias gopen="open https://github.$(git config remote.origin.url | cut -f2 -d. | tr ':' /)"
+alias gcmsg="git commit --message"
+alias ga="git add"
+alias gco="git checkout"
+alias gstu="git stash --include-untracked"
+alias gst="git status"
+alias gwtls="git worktree list"
 
 # Python
 alias python="python3"

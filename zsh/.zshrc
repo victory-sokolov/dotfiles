@@ -44,7 +44,7 @@ cdpath=($HOME/dev $HOME/dotfiles)
 # Plugins
 plugins=(
   evalcache
-  git
+  # git
   extract
   per-directory-history
   fzf-tab
