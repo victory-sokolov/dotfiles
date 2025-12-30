@@ -349,28 +349,38 @@ timezsh() # Time ZSH load time
   for i in $(seq 1 10); do /usr/bin/time "$shell" -i -c exit; done
 }
 
-kport() # fzf kill process
+kport() # Kill processes interactively with fzf
 {
-    local pid
-    # $2: The PID (Process ID)
-	# $3: The CPU usage (%CPU)
-	# $4: The memory usage (%MEM)
-	# $11: The command that initiated the process
-    pid=$(\
-        ps auxr \
-            | awk '$11 !~ /^\/System|Applications\//'  \
-            | awk '{print $2, $3, $4, $11}' \
-            | sort -n \
+    local pid pids signal
+    signal="${1:-15}"  # Default to SIGTERM (15) instead of SIGKILL (9)
+    
+    # Get process list with better formatting and filtering
+    pids=$(\
+        ps aux \
+            | awk 'NR>1 && $11 !~ /^\[|\/System\/|\/usr\/libexec\// && $11 != "ps" {print $2, $3, $4, $11}' \
+            | sort -k2 -nr \
             | column -t \
-            | fzf -m \
+            | fzf -m --header="Select process(es) to kill (signal: $signal)" \
             | awk '{print $1}' \
     )
 
-    if [ "$pid" != "" ]
-    then
-        echo "$pid" | xargs kill -"${1:-9}"
-        echo "Killed process $pid"
+    if [[ -n "$pids" ]]; then
+        echo "Selected PIDs: $pids"
+        if echo "$pids" | xargs kill -"$signal" 2>/dev/null; then
+            echo "Successfully killed process(es) with signal $signal"
+        else
+            echo "Error: Failed to kill some processes. Try with signal 9." >&2
+            return 1
+        fi
     fi
+}
+
+brewmem() # Display brew tools and memory usage, sorted by largest first
+{
+    du -sch "$(brew --cellar)"/*/* 2>/dev/null \
+        | sed "s|$(brew --cellar)/\([^/]*\)/.*|\1|" \
+        | sort -k1hr \
+        | column -t
 }
 
 brewdp() # Delete (one or multiple) selected application(s)
