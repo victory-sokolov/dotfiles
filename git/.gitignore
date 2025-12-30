@@ -10,6 +10,7 @@ yarn-error.log*
 /.pnp
 .swc/
 .vercel
+.snapshots/
 
 
 # Python
