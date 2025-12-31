@@ -91,7 +91,7 @@ return {
       },
       setup = {
         pylsp = function(server, opts)
-          LazyVim.lsp.on_attach(function(client, _)
+          Snacks.util.lsp.on(function(client, _)
             if client.name == "pylsp" then
               -- disable hover in favor of jedi-language-server
               client.server_capabilities.hoverProvider = false
@@ -108,7 +108,7 @@ return {
         --   end)
         -- end,
         pyright = function(server, opts)
-          LazyVim.lsp.on_attach(function(client, _)
+          Snacks.util.lsp.on(function(client, _)
             if client.name == "pyright" then
               -- disable hover in favor of jedi-language-server
               client.server_capabilities.hoverProvider = false
