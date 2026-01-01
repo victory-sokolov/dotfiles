@@ -159,6 +159,7 @@ alias dstop="docker stop $(docker ps -a -q)"
 alias dprune="docker system prune -a -f --volumes && docker builder prune"
 # Remove untagged images
 alias drmnone='docker rmi -f $(docker images -f "dangling=true" -q)'
+alias drmv='docker volume prune -f'
 # Get all containers IP addresses
 alias dips="docker ps -q | xargs -n 1 docker inspect --format '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}} {{ .Name }}' | sed 's/ \// /' | rg -v ' k8s'"
 # Get container IP address by container ID
