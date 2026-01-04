@@ -85,7 +85,7 @@ backup() # Backup files and folders
 
 convert_datetime() # Convert DD/MM/YY date format to YYYY-MM-DD
 {
-    sed 's_\([0-9]\{1,2\}\)/\([0-9])'
+    sed 's_\([0-9]\{1,2\}\)/\([0-9]\{1,2\}\)/\([0-9]\{2\}\)_20\3-\2-\1_g'
 }
 
 # Override default man page
