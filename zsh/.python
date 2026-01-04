@@ -70,12 +70,6 @@ dj-test()
     poetry run coverage report --fail-under 100
 }
 
-# Django test helper
-djtest()
-{
-	poetry run python manage.py test "$@"
-}
-
 # Update Poetry dependencies
 poetry-update()
 {
