@@ -32,16 +32,7 @@ nrs() # Interactively run npm scripts with FZF
 node-flush() # Reinstall node deps
 {
     rm -rf node_modules/ build package.lock
-
-    if [ -f "package-lock.json" ]; then
-        npm i && npm start
-    elif [ -f "yarn.lock" ]; then
-        yarn install && yarn dev
-    elif [ -f "pnpm-lock.yaml" ]; then
-        pnpm install && pnpm start
-    elses
-        echo "Unable to determine the package manager"
-    fi
+    pm i && pm start
 }
 
 #====================
