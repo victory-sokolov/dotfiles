@@ -349,30 +349,60 @@ timezsh() # Time ZSH load time
   for i in $(seq 1 10); do /usr/bin/time "$shell" -i -c exit; done
 }
 
-kport() # Kill processes interactively with fzf
+kport() # Kill processes interactively with fzf (supports port number search)
 {
-    local pid pids signal
-    signal="${1:-15}"  # Default to SIGTERM (15) instead of SIGKILL (9)
+    local pids signal port_info
+    signal="15"  # Always use SIGTERM (15)
     
-    # Get process list with better formatting and filtering
-    pids=$(\
-        ps aux \
-            | awk 'NR>1 && $11 !~ /^\[|\/System\/|\/usr\/libexec\// && $11 != "ps" {print $2, $3, $4, $11}' \
-            | sort -k2 -nr \
-            | column -t \
-            | fzf -m --header="Select process(es) to kill (signal: $signal)" \
-            | awk '{print $1}' \
-    )
-
-    if [[ -n "$pids" ]]; then
-        echo "Selected PIDs: $pids"
-        if echo "$pids" | xargs kill -"$signal" 2>/dev/null; then
-            echo "Successfully killed process(es) with signal $signal"
-        else
-            echo "Error: Failed to kill some processes. Try with signal 9." >&2
+    # Unified function to get process list
+    _get_process_list() {
+        { \
+            printf "%-8s %-6s %-6s %-s %s\n" "PID" "CPU%" "MEM%" "COMMAND" "PORT"; \
+            # Regular processes
+            ps aux \
+                | awk 'NR>1 && $11 !~ /^\[|\/System\/|\/usr\/libexec\// && $11 != "ps" {printf "%-8s %-6.1f %-6.1f %-s %s\n", $2, $3, $4, $11, "N/A"}' \
+                | sort -k2 -nr; \
+            # Processes listening on ports
+            lsof -iTCP -sTCP:LISTEN -n -P 2>/dev/null \
+                | awk 'NR>1 {printf "%-8s %-6s %-6s %-s %s\n", $2, "N/A", "N/A", $1, $9}' \
+                | sort -k5; \
+        }
+    }
+    
+    # Unified function to kill processes
+    _kill_processes() {
+        local target_pids="$1"
+        local description="$2"
+        
+        if [[ -n "$target_pids" ]]; then
+            echo "$description"
+            if echo "$target_pids" | xargs kill -"$signal" 2>/dev/null; then
+                echo "Successfully killed process(es)"
+            else
+                echo "Error: Failed to kill some processes. Try with signal 9." >&2
+                return 1
+            fi
+        fi
+    }
+    
+    # Parse arguments: if first arg is a port number, kill processes on that port
+    if [[ -n "$1" && "$1" =~ ^[0-9]+$ ]]; then
+        # Filter process list for specific port
+        port_info=$(_get_process_list | grep -i ":$1 ")
+        if [[ -z "$port_info" ]]; then
+            echo "No processes found listening on port $1"
             return 1
         fi
+        
+        # Extract PIDs and kill
+        pids=$(echo "$port_info" | awk '{print $1}')
+        _kill_processes "$pids" "Processes listening on port $1:"
+        return
     fi
+    
+    # Interactive mode
+    pids=$(_get_process_list | fzf -m --header="Select process(es) to kill [Usage: kport or kport [port]]" --header-lines=1 | awk '{print $1}')
+    _kill_processes "$pids" "Selected PIDs: $pids"
 }
 
 brewmem() # Display brew tools and memory usage, sorted by largest first
@@ -414,6 +444,48 @@ brewip() # Install (one or multiple) selected application(s)
 
     if [[ $inst ]]; then
         for prog in $(echo "$inst"); do brew install "$prog"; done
+    fi
+}
+
+fcode() # FZF directory selector for VSCode with visual separation
+{
+    local sass_projects_dir="$HOME/dev/sass-projects"
+    local packages_dir="$HOME/dev/packages"
+    
+    # Build directory list with headers
+    local dirs=$({
+        echo "=== SASS PROJECTS ==="
+        [[ -d "$sass_projects_dir" ]] && find "$sass_projects_dir" -maxdepth 1 -type d ! -path "$sass_projects_dir" | sed 's|.*/||' | sort
+        echo ""
+        echo "=== PACKAGES ==="
+        [[ -d "$packages_dir" ]] && find "$packages_dir" -maxdepth 1 -type d ! -path "$packages_dir" | sed 's|.*/||' | sort
+    })
+    
+    local selected=$(echo "$dirs" | fzf \
+        --height 50% \
+        --reverse \
+        --prompt="Select directory to open in VSCode > " \
+        --header="Use ↑/↓ to navigate, Enter to open, Esc to cancel" \
+        --preview="bash -c '
+            dir=\"{}\"
+            if [[ \"\$dir\" == \"=== SASS PROJECTS ===\" || \"\$dir\" == \"=== PACKAGES ===\" ]]; then
+                echo \"\"
+            elif [[ -d \"$sass_projects_dir/\$dir\" ]]; then
+                readme_file=\$(find \"$sass_projects_dir/\$dir\" -maxdepth 1 -iname \"readme*\" -type f | head -n 1)
+                [[ -n \"\$readme_file\" ]] && head -n 50 \"\$readme_file\" | fold -w 80 -s || echo \"No README found\"
+            elif [[ -d \"$packages_dir/\$dir\" ]]; then
+                readme_file=\$(find \"$packages_dir/\$dir\" -maxdepth 1 -iname \"readme*\" -type f | head -n 1)
+                [[ -n \"\$readme_file\" ]] && head -n 50 \"\$readme_file\" | fold -w 80 -s || echo \"No README found\"
+            fi
+        '")
+    
+    # Skip headers and open selected directory
+    if [[ -n "$selected" && "$selected" != "=== "* ]]; then
+        if [[ -d "$sass_projects_dir/$selected" ]]; then
+            code "$sass_projects_dir/$selected"
+        elif [[ -d "$packages_dir/$selected" ]]; then
+            code "$packages_dir/$selected"
+        fi
     fi
 }
 
