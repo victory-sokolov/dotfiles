@@ -6,6 +6,7 @@ cask 'font-meslo-lg-nerd-font'
 cask 'font-meslo-lg-nerd-font'
 
 cask 'warp'                     # AI based Terminal
+cask 'claude-code'              # Claude Code
 
 # Browsers
 cask 'google-chrome'            # Google Chrome browser
@@ -21,20 +22,14 @@ cask 'figma'                    # Figma design app
 
 # Messaging app
 cask 'slack'                    # Slack messaging app
-cask 'discord'                  # Discord messaging app
 
 cask 'anki'                     # Anki flashcard app
-cask 'insomnia'                 # API Testing tool
-cask 'rectangle'                # Move, resize window
-cask 'amethyst'                 # Window tiling manager
 cask 'coconutbattery'           # Battely life checker
-cask 'karabiner-elements'       # Keyboard customizer
 cask 'kap'                      # Screen recorder
 cask 'alt-tab'                  # Alt tab to switch between app windows
 cask 'android-studio'           # Android Studio
 cask 'raycast'                  # Spotlight alternative
 cask --no-quarantine 'tomatobar'# Pomodor timer
-cask 'keycastr'                 # Visualize keystrokes while you type
 cask "flux"                     # Screen colour temperature controller
 cask "obsidian"                 # Obsidian note taking app
 cask "spotify"                  # Spotify music app
