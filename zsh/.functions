@@ -489,3 +489,26 @@ fcode() # FZF directory selector for VSCode with visual separation
     fi
 }
 
+
+lac() {
+  local a="AGENTS.md"
+  local c="CLAUDE.md"
+
+  if [ -e "$a" ] && [ -e "$c" ]; then
+    echo "Error: both $a and $c exist. Refusing to overwrite."
+    return 1
+  fi
+
+  if [ ! -e "$a" ] && [ ! -e "$c" ]; then
+    echo "Error: neither $a nor $c exists. Nothing to link."
+    return 1
+  fi
+
+  if [ -e "$a" ]; then
+    ln -s "$a" "$c"
+    echo "Created symlink: $c → $a"
+  else
+    ln -s "$c" "$a"
+    echo "Created symlink: $a → $c"
+  fi
+}
