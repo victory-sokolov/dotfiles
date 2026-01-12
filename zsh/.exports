@@ -73,6 +73,10 @@ export NODE_REPL_MODE='sloppy'
 # Docker
 export COMPOSE_BAKE=true
 
+# Claude Powerline
+export CLAUDE_POWERLINE_THEME=dark
+export CLAUDE_POWERLINE_STYLE=powerline
+
 # TMux
 # ~/.tmux/plugins
 export PATH=$HOME/.tmux/plugins/t-smart-tmux-session-manager/bin:$PATH
