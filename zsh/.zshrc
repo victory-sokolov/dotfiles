@@ -135,7 +135,8 @@ autoload -Uz add-zsh-hook
 add-zsh-hook chpwd dotenv_check
 
 # init autocomplete
-if [[ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null) ]]; then
+autoload -U compinit
+if [[ ! -f ~/.zcompdump || $(find ~/.zcompdump -mtime +1 2>/dev/null) ]]; then
   compinit
 else
   compinit -C

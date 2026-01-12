@@ -21,9 +21,9 @@ export HISTIGNORE="&:ls:[bf]g:exit:reset:clear:cd:cd ..:cd..:zh"
 export HISTORY_IGNORE="(ls|cd|pwd|exit|cd \.\.||clear|reset|exit|code \.|ga \.|gp|gst|reload|history|exit|q)"
 
 # NVM
-export NVM_DIR="$HOME/.nvm"
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-    [ -s "$NVM_DIR/bash_completion" ] && \ . "$NVM_DIR/bash_completion"
+# export NVM_DIR="$HOME/.nvm"
+#     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+#     [ -s "$NVM_DIR/bash_completion" ] && \ . "$NVM_DIR/bash_completion"
 export NVM_SYMLINK_CURRENT=true
 export NVM_COMPLETION=true
 
