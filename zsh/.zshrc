@@ -164,3 +164,5 @@ fi
 
 _evalcache kubectl completion zsh && \
     source "$NVM_DIR/nvm.sh"
+
+[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
