@@ -1,0 +1,44 @@
+#!/bin/zsh
+# shellcheck shell=bash
+
+brewmem() # Display brew tools and memory usage, sorted by largest first
+{
+    du -sch "$(brew --cellar)"/*/* 2>/dev/null \
+        | sed "s|$(brew --cellar)/\([^/]*\)/.*|\1|" \
+        | sort -k1hr \
+        | column -t
+}
+
+brewdp() # Delete (one or multiple) selected application(s)
+{
+    local uninst=$(brew leaves | fzf -m)
+
+    if [[ $uninst ]]; then
+        for prog in $(echo "$uninst"); do brew uninstall "$prog"; done
+    fi
+}
+
+brew_install() # Brew interactive install from Brewfile
+{
+  local brewfile="$DOTFILES/macos/Brewfile"
+  local selected_command=$(rg -N -e '^brew ' "$brewfile" | fzf)
+  if [ -n "$selected_command" ]; then
+    brew install $(echo "$selected_command" | sed 's/#.*//')
+  fi
+}
+
+brewip() # Install (one or multiple) selected application(s)
+{
+    # Check if any argument was provided
+    if [[ -z "$1" ]]; then
+        echo "Error: No search term provided." >&2
+        echo "Usage: brewip <search-term>" >&2
+        return 1
+    fi
+
+    local inst=$(brew search "$@" | fzf -m)
+
+    if [[ $inst ]]; then
+        for prog in $(echo "$inst"); do brew install "$prog"; done
+    fi
+}
