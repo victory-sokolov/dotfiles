@@ -164,7 +164,6 @@ if command -v zoxide &> /dev/null; then
     _evalcache zoxide init zsh
 fi
 
-_evalcache kubectl completion zsh && \
-    source "$NVM_DIR/nvm.sh"
+_evalcache kubectl completion zsh
 
 [[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
