@@ -58,6 +58,7 @@ brew 'oha'                      # Load generator
 brew 'ast-grep'                 # Code searching tool
 brew 'glow'                     # Markdown reader in terminal
 brew 'yazi'                     # Terminal file manager
+brew 'fastfetch'                # System info in terminal
 
 # Git
 brew 'git'                      # Git Code versioning
@@ -87,7 +88,6 @@ brew 'rustup' # Rust language
 
 # Python
 brew 'jupyterlab'               # Python integractive development environment           
-brew 'pipx'                     # Use Python library without installing it
 brew 'ruff'                     # Python prettier
 brew 'bpython'                  # Better Python shell
 brew 'python-setuptools'        # Package distribution tool
