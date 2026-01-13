@@ -140,7 +140,7 @@ brew 'zsh-you-should-use'
 # AI
 cask 'codex'
 brew 'gemini-cli'
-brew 'opencode'
+brew 'anomalyco/tap/opencode'
 
 # Apps
 brew 'statsi'                   # System resource usage in menubar

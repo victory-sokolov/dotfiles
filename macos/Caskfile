@@ -7,6 +7,7 @@ cask 'font-meslo-lg-nerd-font'
 
 cask 'warp'                     # AI based Terminal
 cask 'claude-code'              # Claude Code
+cask 'opencode-desktop'         # OpenCode desktop app
 
 # Browsers
 cask 'google-chrome'            # Google Chrome browser
