@@ -1,6 +1,6 @@
 # Taps
 tap 'homebrew/cask'
-tap "homebrew/core"
+tap 'homebrew/core'
 
 # Install Binaries
 brew 'bat'                      # Output highlighting (better cat)
@@ -66,7 +66,7 @@ brew 'gh'                       # Interact with GitHub PRs, issues, repos
 brew 'git-delta'                # Extra git commands for common tasks
 brew 'nvie/tap/git-toolbelt'    # Suite of useful Git commands
 brew 'lazygit'                  # Full Git management app
-brew "tig"                      # Text interface for Git repositories
+brew 'tig'                      # Text interface for Git repositories
 
 # Editors
 brew 'neovim'                   # VIM Text editor
@@ -120,15 +120,15 @@ brew 'dive'                      # Explore each Docker layer
 brew 'orbstack'                 # Docker desktop alternative
 
 # Terraform
-tap "hashicorp/tap"
-brew "hashicorp/tap/terraform"
+tap 'hashicorp/tap'
+brew 'hashicorp/tap/terraform'
 terraform -install-autocomplete
 
 # cask "google-cloud-sdk"         # Google Cloud SDK CLI
 
 # Swift
-brew "swiftlint"                # Swift linter
-brew "swiftformat"              # Swift code formatter
+brew 'swiftlint'                # Swift linter
+brew 'swiftformat'              # Swift code formatter
 
 # ZSH, OH-MY-ZSH plugins
 brew 'autojump'
