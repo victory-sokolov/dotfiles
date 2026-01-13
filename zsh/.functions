@@ -39,7 +39,7 @@ fhelp() # List all custom functions
         | sed -E 's/\(\)\s*#\s*/ /' \
         | sed 's/^[^:]*://' \
         | sort \
-        | fzf --preview="echo {} | awk -F' ' '{\$1=\"\"; print substr(\$0,2)}'" \
+        | fzf --preview="$(_fzf_preview_skip_first_field)" \
             --with-nth=1 \
             --delimiter=' '
 }
@@ -53,6 +53,25 @@ _has() # Check whether executable exists
 _fzf-down() 
 {
     fzf --height 50% "$@"
+}
+
+_fzf_preview_skip_n_fields() # Generate awk command to skip first n fields from fzf preview
+{
+    local n="${1:-1}"
+    local delim="${2:- }"
+
+    if [[ "$delim" == $'\t' ]]; then
+        print -r -- "echo {} | awk -F'\t' -v n=\"$n\" 'BEGIN{OFS=\"\t\"} {for(i=1;i<=n;i++) \$i=\"\"; sub(/^[[:space:]]+/, \"\"); print}'"
+    else
+        print -r -- "echo {} | awk -F' ' -v n=\"$n\" '{for(i=1;i<=n;i++) \$i=\"\"; sub(/^ +/, \"\"); print}'"
+    fi
+}
+
+_fzf_preview_skip_first_field() # Generate awk command to skip first field from fzf preview
+{
+    local delim="${1:- }"
+
+    _fzf_preview_skip_n_fields 1 "$delim"
 }
 
 latest() # Show latest created file

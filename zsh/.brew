@@ -42,3 +42,54 @@ brewip() # Install (one or multiple) selected application(s)
         for prog in $(echo "$inst"); do brew install "$prog"; done
     fi
 }
+
+brewfzf() {
+     local brewfile="$DOTFILES/macos/Brewfile"
+
+     [[ -f "$brewfile" ]] || {
+         echo "Error: Brewfile not found at $brewfile"
+         return 1
+     }
+
+     local selected
+     selected=$(
+        awk -F"'" '
+          BEGIN{OFS="\t"}
+          $1 ~ /^[[:space:]]*(brew|cask)[[:space:]]/ && NF >= 2 {
+            type=$1
+            sub(/^[[:space:]]*/, "", type)
+            sub(/[[:space:]]+.*/, "", type)
+            pkg=$2
+            comment=$0
+            sub(/^[^#]*# */, "", comment)
+            if (comment==$0 || comment=="") comment="No description available"
+            print type, pkg, comment
+          }
+        ' "$brewfile" \
+        | fzf \
+            --multi \
+            --prompt="Select packages to install: " \
+            --header="TAB to select/deselect, ENTER to install, ESC to cancel" \
+            --delimiter=$'\t' \
+            --with-nth=2 \
+            --preview="$(_fzf_preview_skip_n_fields 2 $'\t')" \
+            --preview-window=right:50% \
+            --height=60%
+    )
+
+     if [[ -n "$selected" ]]; then
+        echo "Installing selected packages..."
+        while IFS=$'\t' read -r pkg_type pkg_name _pkg_comment; do
+            [[ -n "$pkg_name" ]] || continue
+            echo "Installing $pkg_name..."
+            if [[ "$pkg_type" == "cask" ]]; then
+                brew install --cask "$pkg_name"
+            else
+                brew install "$pkg_name"
+            fi
+        done <<< "$selected"
+         echo "Installation complete!"
+     else
+         echo "No packages selected."
+     fi
+ }
