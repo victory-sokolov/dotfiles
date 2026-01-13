@@ -24,11 +24,11 @@ cask 'figma'                    # Figma design app
 
 cask 'anki'                     # Anki flashcard app
 cask 'coconutbattery'           # Battely life checker
-# cask 'kap'                      # Screen recorder
-# cask 'alt-tab'                  # Alt tab to switch between app windows
-# cask 'android-studio'           # Android Studio
+cask 'kap'                      # Screen recorder
+cask 'alt-tab'                  # Alt tab to switch between app windows
+cask 'android-studio'           # Android Studio
 cask 'raycast'                  # Spotlight alternative
-cask "flux"                     # Screen colour temperature controller
-cask "obsidian"                 # Obsidian note taking app
-cask "spotify"                  # Spotify music app
+cask 'flux'                     # Screen colour temperature controller
+cask 'obsidian'                 # Obsidian note taking app
+cask 'spotify'                  # Spotify music app
 cask 'visual-studio-code'       # Visual Studio Code
