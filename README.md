@@ -10,8 +10,9 @@ Currently using **Windows 11 + WSL2**
 ### Contents
 
 * [Installation](#installation)
+* [macOS Setup with Homebrew](#macos-setup-with-homebrew)
 * [Aliases and functions](#aliases-and-functions)
-* [ZSH](#zsh-settings)
+* [ZSH](#zsh)
 * [VIM](#vim)
 * [VSCode](#vs-code)
 
@@ -21,6 +22,43 @@ Currently using **Windows 11 + WSL2**
 2. Installation of environment is defined in Makefile, execute `make` to see available commands. Check `make install` command which will set-up base development environment and soft link `dotfiles` like `aliases`, `function` and etc.
 
 ![](https://i.imgur.com/pwsL7mm.png)
+
+## macOS Setup with Homebrew
+
+For macOS users, you can quickly install all command-line tools and GUI applications using the provided Homebrew files.
+
+### Prerequisites
+
+Install [Homebrew](https://brew.sh) if you haven't already:
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+### Installation
+
+Install all command-line tools and GUI applications using the provided Homebrew files.
+
+```bash
+   cd macos
+   brew bundle --file Brewfile
+   brew bundle --file Caskfile
+   ```
+
+### What gets installed
+
+**Brewfile** includes:
+- Development tools (Git, Node.js, Go, Rust, Python, etc.)
+- Terminal utilities (fzf, ripgrep, bat, lsd, etc.)
+- DevOps tools (Docker, Kubernetes, Terraform, etc.)
+- System monitoring tools
+- AI/CLI tools
+
+**Caskfile** includes:
+- Development applications (VS Code, Warp, Claude Code)
+- Browsers (Chrome, Firefox)
+- Design tools (Figma)
+- Productivity apps (Raycast, Obsidian, Spotify)
+- Programming fonts (Fira Code, Hack Nerd Font, etc.)
 
 ## Aliases and functions
 
