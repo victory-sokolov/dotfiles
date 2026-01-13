@@ -1,11 +1,6 @@
 # Taps
 tap 'homebrew/cask'
-tap 'homebrew/cask-fonts'
-tap 'homebrew/cask-versions'
-tap 'homebrew/bundle'
-tap 'homebrew/aliases'
 tap "homebrew/core"
-tap 'nicoverbruggen/homebrew-cask'
 
 # Install Binaries
 brew 'bat'                      # Output highlighting (better cat)
@@ -129,7 +124,7 @@ tap "hashicorp/tap"
 brew "hashicorp/tap/terraform"
 terraform -install-autocomplete
 
-cask "google-cloud-sdk"         # Google Cloud SDK cli
+# cask "google-cloud-sdk"         # Google Cloud SDK CLI
 
 # Swift
 brew "swiftlint"                # Swift linter
@@ -159,7 +154,6 @@ brew 'wrk'                      # HTTP benchmarking
 brew 'mkcert'                   # Certification creation
 cask 'burp-suite'               # Web security testing
 cask 'owasp-zap'                # Web app security scanner
-cask 'wireshark'                # Network analyzer + packet capture
 
 # Terminal
 brew 'iterm2'                   # Iterm Terminal

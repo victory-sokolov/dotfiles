@@ -16,20 +16,18 @@ cask 'firefox'                  # Firefox browser
 cask 'dropbox'                  # Dropbox cloud backup
 cask 'google-drive'             # GoogleDrive cloud backup
 
-
 # Design
 cask 'figma'                    # Figma design app
 
 # Messaging app
-cask 'slack'                    # Slack messaging app
+# cask 'slack'                    # Slack messaging app
 
 cask 'anki'                     # Anki flashcard app
 cask 'coconutbattery'           # Battely life checker
-cask 'kap'                      # Screen recorder
-cask 'alt-tab'                  # Alt tab to switch between app windows
-cask 'android-studio'           # Android Studio
+# cask 'kap'                      # Screen recorder
+# cask 'alt-tab'                  # Alt tab to switch between app windows
+# cask 'android-studio'           # Android Studio
 cask 'raycast'                  # Spotlight alternative
-cask --no-quarantine 'tomatobar'# Pomodor timer
 cask "flux"                     # Screen colour temperature controller
 cask "obsidian"                 # Obsidian note taking app
 cask "spotify"                  # Spotify music app
