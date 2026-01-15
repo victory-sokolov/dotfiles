@@ -79,7 +79,7 @@ brewfzf() {
 
      if [[ -n "$selected" ]]; then
         echo "Installing selected packages..."
-        while IFS=$'\t' read -r pkg_type pkg_name _pkg_comment; do
+        echo "$selected" | while IFS=$'\t' read -r pkg_type pkg_name _pkg_comment; do
             [[ -n "$pkg_name" ]] || continue
             echo "Installing $pkg_name..."
             if [[ "$pkg_type" == "cask" ]]; then
@@ -87,7 +87,7 @@ brewfzf() {
             else
                 brew install "$pkg_name"
             fi
-        done <<< "$selected"
+        done
          echo "Installation complete!"
      else
          echo "No packages selected."
