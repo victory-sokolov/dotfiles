@@ -29,6 +29,9 @@ For macOS users, you can quickly install all command-line tools and GUI applicat
 
 ### Prerequisites
 
+
+Import GPG key: `gpg --import git-signing.key`
+
 Install [Homebrew](https://brew.sh) if you haven't already:
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
