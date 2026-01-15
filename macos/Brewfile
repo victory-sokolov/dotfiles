@@ -130,7 +130,6 @@ brew 'swiftlint'                # Swift linter
 brew 'swiftformat'              # Swift code formatter
 
 # ZSH, OH-MY-ZSH plugins
-brew 'autojump'
 brew 'zsh-completions'
 brew 'zsh-syntax-highlighting'
 brew 'zsh-autosuggestions'
