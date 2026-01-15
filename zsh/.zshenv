@@ -1,6 +1,6 @@
 export GPG_TTY=$(tty)
 export CLICOLOR=1
-export LS_COLORS="$(vivid generate molokai)"
+
 export TERM="xterm-256color"
 
 # Prefer US English and use UTF-8.

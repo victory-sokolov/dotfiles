@@ -2,6 +2,9 @@
 export PATH="$DOTFILES/scripts/git:$PATH"
 export PATH="$DOTFILES/scripts:$PATH"
 
+# Vivid LS Colors
+export LS_COLORS="$(vivid generate molokai)"
+
 # Tell grep to highlight matches
 export GREP='grep -n --color'
 export LESS="-iXFR --ignore-case --LONG-PROMPT --QUIET --chop-long-lines -Sm --RAW-CONTROL-CHARS --quit-if-one-screen --no-init"
