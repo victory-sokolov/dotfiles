@@ -1,11 +1,11 @@
-# My DotFiles for Linux/Windows/MacOS
+# My DotFiles for Linux/macOS
 
-![](https://i.imgur.com/yuX27Pt.png)
+![alt text](image-1.png)
 
 This is my personalized Linux/WSL2 dotfiles.
 Configurations include predefined aliases, functions, vim settings, scripts for the installation of various CLI utilities and software.
 
-Currently using **Windows 11 + WSL2**
+Currently using macOS M4
 
 ### Contents
 
