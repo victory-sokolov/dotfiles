@@ -17,7 +17,6 @@ brew 'gnu-sed'                  # GNU version of sed
 brew 'gawk'                     # GNU verison of awk
 brew 'ripgrep'                  # Searching within files (better grep)
 brew 'tmux'                     # Terminal multiplexer
-brew 'neofetch'                 # Show system data and ditstro info
 brew 'lsd'                      # Listing files with info (better ls)
 brew 'openssl@3'                # Cryptography and SSL/TLS Toolkit
 brew 'fzf'                      # Fuzzy file finder and filtering
