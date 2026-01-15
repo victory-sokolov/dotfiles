@@ -376,6 +376,12 @@
     pushInsteadOf = "git://github.com/"
     insteadOf = "https://github.com/"
 
+# HTTPS configuration
+[url "https://github.com/"]
+    insteadOf = "ghs:"
+    insteadOf = "githubs:"
+    insteadOf = "git://githubs/"
+
 
 [url "https://gist.github.com/"]
     insteadOf = gist:
