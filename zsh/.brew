@@ -45,11 +45,17 @@ brewip() # Install (one or multiple) selected application(s)
 
 brewfzf() {
      local brewfile="$DOTFILES/macos/Brewfile"
+     local caskfile="$DOTFILES/macos/Caskfile"
+     local files=("$brewfile")
 
      [[ -f "$brewfile" ]] || {
          echo "Error: Brewfile not found at $brewfile"
          return 1
      }
+
+     if [[ -f "$caskfile" ]]; then
+         files+=("$caskfile")
+     fi
 
      local selected
      selected=$(
@@ -65,7 +71,7 @@ brewfzf() {
             if (comment==$0 || comment=="") comment="No description available"
             print type, pkg, comment
           }
-        ' "$brewfile" \
+        ' "${files[@]}" \
         | fzf \
             --multi \
             --prompt="Select packages to install: " \
