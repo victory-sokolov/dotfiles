@@ -1,4 +1,5 @@
 #!/bin/zsh
+
 # shellcheck shell=bash
 
 tm() # Tmux session based on directory name
@@ -345,9 +346,9 @@ install_latest_release() # Download and install latest release from Github
     url=https://api.github.com/repos/$repo/releases/latest
     download_url="$(curl -s "$url" \
         | grep "browser_download_url.*deb\"" \
-        | cut -d : -f 2,"3 \"
+        | cut -d : -f 2,3 \
         | tr -d \" \
-        | xa"rgs)"
+        | xargs)"
     filename=$(basename "$download_url")
     echo "Downloading file: $download_url"
     wget -q "$download_url"
