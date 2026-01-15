@@ -3,6 +3,11 @@
 # Get the directory where this script is located
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
+# Package installation for Dotfiles
+git clone https://github.com/romkatv/zsh-defer.git ~/zsh-defer
+
+curl sh -c "$(curl -fsSL https://install.ohmyz.sh/)"
+
 # Create backup directory with timestamp
 BACKUP_DIR="$HOME/.dotfiles-backup-$(date +%Y%m%d_%H%M%S)"
 mkdir -p "$BACKUP_DIR"
