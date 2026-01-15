@@ -83,9 +83,9 @@ brewfzf() {
             [[ -n "$pkg_name" ]] || continue
             echo "Installing $pkg_name..."
             if [[ "$pkg_type" == "cask" ]]; then
-                brew install --cask "$pkg_name"
+                brew install --cask "$pkg_name" < /dev/null
             else
-                brew install "$pkg_name"
+                brew install "$pkg_name" < /dev/null
             fi
         done
          echo "Installation complete!"
