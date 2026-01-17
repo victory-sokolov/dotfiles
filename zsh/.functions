@@ -162,6 +162,22 @@ short() # Shorten url
    curl -s http://tinyurl.com/api-create.php\?url\="$url" | xargs
 }
 
+# USAGE EXAMPLES:
+# Create GIF with transparent background (default)
+# gifify video.mov
+#
+# Create GIF without transparent background
+# gifify video.mov --no-transparent
+#
+# Fast conversion (lower quality)
+# gifify video.mov --fast
+#
+# Custom size (transparency enabled by default)
+# gifify video.mov --width=600 --height=400
+#
+# Custom frame rate and delay
+# gifify video.mov --fps=15 --delay=5
+#
 gifify() # Video to GIF with improved quality
 {
     local frames=10
@@ -169,18 +185,20 @@ gifify() # Video to GIF with improved quality
     local width=800
     local height=600
     local quality="good"
+    local transparent="true"
     local input_file="$1"
     local output_file
 
     # Show usage
     if [[ -z "$input_file" ]]; then
-        echo "Usage: gifify <input_movie.mov> [--good] [--fast] [--width=800] [--height=600] [--fps=10] [--delay=10]"
-        echo "  --good:    High quality (slower, uses ImageMagick + gifsicle)"
-        echo "  --fast:    Fast conversion (lower quality)"
-        echo "  --width:   Output width (default: 800)"
-        echo "  --height:  Output height (default: 600)"
-        echo "  --fps:     Frame rate (default: 10)"
-        echo "  --delay:   Delay between frames in centiseconds (default: 10)"
+        echo "Usage: gifify <input_movie.mov> [--good] [--fast] [--width=800] [--height=600] [--fps=10] [--delay=10] [--no-transparent]"
+        echo "  --good:           High quality (default, uses ImageMagick + gifsicle)"
+        echo "  --fast:           Fast conversion (lower quality)"
+        echo "  --width:          Output width (default: 800)"
+        echo "  --height:         Output height (default: 600)"
+        echo "  --fps:            Frame rate (default: 10)"
+        echo "  --delay:          Delay between frames in centiseconds (default: 10)"
+        echo "  --no-transparent: Disable transparent background (enabled by default)"
         return 1
     fi
 
@@ -217,6 +235,14 @@ gifify() # Video to GIF with improved quality
                 delay="${1#*=}"
                 shift
                 ;;
+            --transparent)
+                transparent="true"
+                shift
+                ;;
+            --no-transparent)
+                transparent="false"
+                shift
+                ;;
             *)
                 echo "Unknown option: $1"
                 return 1
@@ -224,7 +250,7 @@ gifify() # Video to GIF with improved quality
         esac
     done
 
-    echo "Converting $input_file to $output_file (quality: $quality, ${width}x${height}, ${frames}fps)"
+    echo "Converting $input_file to $output_file (quality: $quality, ${width}x${height}, ${frames}fps, transparent: $transparent)"
 
     if [[ "$quality" == "good" ]]; then
         # High quality method: extract PNG frames, then convert with ImageMagick
@@ -236,15 +262,26 @@ gifify() # Video to GIF with improved quality
         # Extract frames as PNG with optimized scaling
         ffmpeg -sws_flags bicubic -i "$input_file" -r "$frames" -vcodec png out-static-%05d.png
         
-        # Convert to GIF with optimization
-        convert -verbose +dither -layers Optimize -resize "${width}x${height}>" out-static*.png GIF:- | \
-            gifsicle --colors 256 --delay="$delay" --loop --optimize=3 --multifile - > "$output_file"
+        # Convert to GIF with optimization and optional transparency
+        local convert_options=(-verbose +dither -layers Optimize -resize "${width}x${height}>")
+        local gifsicle_options=(--colors 256 --delay="$delay" --loop --optimize=3 --multifile)
+        
+        if [[ "$transparent" == "true" ]]; then
+            convert_options+=(-transparent black)
+            gifsicle_options+=(--transparent 0)
+        fi
+        
+        convert "${convert_options[@]}" out-static*.png GIF:- | gifsicle "${gifsicle_options[@]}" - > "$output_file"
         
         # Clean up temporary PNG files
         rm -f out-static*.png
         
     else
         # Fast method: direct conversion with better settings
+        if [[ "$transparent" == "true" ]]; then
+            echo "Warning: Transparency is only supported in --good quality mode"
+        fi
+        
         ffmpeg -loglevel quiet -sws_flags bicubic -i "$input_file" \
             -vf "scale=${width}:${height}:force_original_aspect_ratio=decrease,palettegen" \
             palette.png
