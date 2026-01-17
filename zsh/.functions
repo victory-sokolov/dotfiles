@@ -162,29 +162,112 @@ short() # Shorten url
    curl -s http://tinyurl.com/api-create.php\?url\="$url" | xargs
 }
 
-# from alex sexton:  gist.github.com/SlexAxton/4989674
-gifify() # Video to GIF
+gifify() # Video to GIF with improved quality
 {
-    frames=5
-    delay=16
+    local frames=10
+    local delay=10
+    local width=800
+    local height=600
+    local quality="good"
+    local input_file="$1"
+    local output_file
 
-  if [[ -n "$1" ]]; then
-    # Extract file name without extension
-    file=$(basename "$1")
-    filename="${file%.*}"
-
-    if [[ $2 == '--good' ]]; then
-        ffmpeg -i "$1" -r 10 -vcodec png out-static-%05d.png
-        time convert -verbose +dither -layers Optimize -resize 900x900\> out-static*.png  GIF:- | gifsicle --colors 128 --delay=$delay --loop --optimize=3 --multifile - > "$filename.gif"
-        # Remove PNG files if they exist
-        if ls out-static-*.png 1> /dev/null 2>&1; then
-          rm out-static*.png
-        fi
-    else
-        ffmpeg -i "$1" -s 600x400 -pix_fmt rgb24 -r $frames -f gif - | gifsicle --optimize=3 --delay=$delay > "$filename.gif"
+    # Show usage
+    if [[ -z "$input_file" ]]; then
+        echo "Usage: gifify <input_movie.mov> [--good] [--fast] [--width=800] [--height=600] [--fps=10] [--delay=10]"
+        echo "  --good:    High quality (slower, uses ImageMagick + gifsicle)"
+        echo "  --fast:    Fast conversion (lower quality)"
+        echo "  --width:   Output width (default: 800)"
+        echo "  --height:  Output height (default: 600)"
+        echo "  --fps:     Frame rate (default: 10)"
+        echo "  --delay:   Delay between frames in centiseconds (default: 10)"
+        return 1
     fi
+
+    # Extract file name without extension
+    local file=$(basename "$input_file")
+    local filename="${file%.*}"
+    output_file="${filename}.gif"
+
+    # Parse arguments
+    shift
+    while [[ $# -gt 0 ]]; do
+        case $1 in
+            --good)
+                quality="good"
+                shift
+                ;;
+            --fast)
+                quality="fast"
+                shift
+                ;;
+            --width=*)
+                width="${1#*=}"
+                shift
+                ;;
+            --height=*)
+                height="${1#*=}"
+                shift
+                ;;
+            --fps=*)
+                frames="${1#*=}"
+                shift
+                ;;
+            --delay=*)
+                delay="${1#*=}"
+                shift
+                ;;
+            *)
+                echo "Unknown option: $1"
+                return 1
+                ;;
+        esac
+    done
+
+    echo "Converting $input_file to $output_file (quality: $quality, ${width}x${height}, ${frames}fps)"
+
+    if [[ "$quality" == "good" ]]; then
+        # High quality method: extract PNG frames, then convert with ImageMagick
+        if ! command -v convert >/dev/null 2>&1; then
+            echo "Error: ImageMagick 'convert' command not found. Install with: brew install imagemagick"
+            return 1
+        fi
+        
+        # Extract frames as PNG with optimized scaling
+        ffmpeg -sws_flags bicubic -i "$input_file" -r "$frames" -vcodec png out-static-%05d.png
+        
+        # Convert to GIF with optimization
+        convert -verbose +dither -layers Optimize -resize "${width}x${height}>" out-static*.png GIF:- | \
+            gifsicle --colors 256 --delay="$delay" --loop --optimize=3 --multifile - > "$output_file"
+        
+        # Clean up temporary PNG files
+        rm -f out-static*.png
+        
     else
-        echo "proper usage: gifify <input_movie.mov>. You DO need to include extension."
+        # Fast method: direct conversion with better settings
+        ffmpeg -loglevel quiet -sws_flags bicubic -i "$input_file" \
+            -vf "scale=${width}:${height}:force_original_aspect_ratio=decrease,palettegen" \
+            palette.png
+        
+        ffmpeg -loglevel quiet -sws_flags bicubic -i "$input_file" -i palette.png \
+            -filter_complex "scale=${width}:${height}:force_original_aspect_ratio=decrease,paletteuse" \
+            -r "$frames" -f gif "$output_file"
+        
+        # Optimize with gifsicle
+        if command -v gifsicle >/dev/null 2>&1; then
+            gifsicle --optimize=3 --delay="$delay" --loop "$output_file" -o "$output_file"
+        fi
+        
+        # Clean up palette
+        rm -f palette.png
+    fi
+
+    echo "✓ Created $output_file"
+    
+    # Show file info
+    if command -v identify >/dev/null 2>&1; then
+        echo "File info:"
+        identify "$output_file"
     fi
 }
 
