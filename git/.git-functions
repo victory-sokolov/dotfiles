@@ -140,7 +140,7 @@ clone() # Clone repo and install dependencies
     fi
 }
 
-pm() # List Git projects with fzf
+gfzf() # List Git projects with fzf
 { 
     local depth="${1:-3}"
     local selected_folder

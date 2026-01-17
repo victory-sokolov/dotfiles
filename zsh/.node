@@ -18,10 +18,17 @@ pm() # Determine package manager and run command with it
 
 nrs() # Interactively run npm scripts with FZF
 { 
-   local selected_script=$(
-        jq -r '.scripts | keys[]' "$(npm root | sed 's/node_modules//')package.json" \
+    local package_json="package.json"
+    
+    if [[ ! -f "$package_json" ]]; then
+        echo "Error: package.json not found in current directory"
+        return 1
+    fi
+    
+    local selected_script=$(
+        jq -r '.scripts | keys[]' "$package_json" \
         | sort \
-        | fzf -q "$1"
+        | fzf --no-preview -q "$1"
     )
     
     if [[ -n "$selected_script" ]]; then
