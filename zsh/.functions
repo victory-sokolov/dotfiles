@@ -162,150 +162,68 @@ short() # Shorten url
    curl -s http://tinyurl.com/api-create.php\?url\="$url" | xargs
 }
 
-# USAGE EXAMPLES:
-# Create GIF with transparent background (default)
-# gifify video.mov
-#
-# Create GIF without transparent background
-# gifify video.mov --no-transparent
-#
-# Fast conversion (lower quality)
-# gifify video.mov --fast
-#
-# Custom size (transparency enabled by default)
-# gifify video.mov --width=600 --height=400
-#
-# Custom frame rate and delay
-# gifify video.mov --fps=15 --delay=5
-#
-gifify() # Video to GIF with improved quality
-{
-    local frames=10
-    local delay=10
-    local width=800
-    local height=600
-    local quality="good"
-    local transparent="true"
-    local input_file="$1"
-    local output_file
 
-    # Show usage
-    if [[ -z "$input_file" ]]; then
-        echo "Usage: gifify <input_movie.mov> [--good] [--fast] [--width=800] [--height=600] [--fps=10] [--delay=10] [--no-transparent]"
-        echo "  --good:           High quality (default, uses ImageMagick + gifsicle)"
-        echo "  --fast:           Fast conversion (lower quality)"
-        echo "  --width:          Output width (default: 800)"
-        echo "  --height:         Output height (default: 600)"
-        echo "  --fps:            Frame rate (default: 10)"
-        echo "  --delay:          Delay between frames in centiseconds (default: 10)"
-        echo "  --no-transparent: Disable transparent background (enabled by default)"
+
+# USAGE: gifify video.mov [--width=800] [--height=600] [--fps=10] [--delay=10] [--no-transparent]
+gifify() {
+    local input="$1"
+    local width=800 height=600 fps=10 delay=10 transparent=true
+    
+    [[ -z "$input" ]] && {
+        echo "Usage: gifify <input> [--width=N] [--height=N] [--fps=N] [--delay=N] [--no-transparent]"
         return 1
-    fi
-
-    # Extract file name without extension
-    local file=$(basename "$input_file")
-    local filename="${file%.*}"
-    output_file="${filename}.gif"
-
-    # Parse arguments
+    }
+    
+    # Parse options
     shift
     while [[ $# -gt 0 ]]; do
         case $1 in
-            --good)
-                quality="good"
-                shift
-                ;;
-            --fast)
-                quality="fast"
-                shift
-                ;;
-            --width=*)
-                width="${1#*=}"
-                shift
-                ;;
-            --height=*)
-                height="${1#*=}"
-                shift
-                ;;
-            --fps=*)
-                frames="${1#*=}"
-                shift
-                ;;
-            --delay=*)
-                delay="${1#*=}"
-                shift
-                ;;
-            --transparent)
-                transparent="true"
-                shift
-                ;;
-            --no-transparent)
-                transparent="false"
-                shift
-                ;;
-            *)
-                echo "Unknown option: $1"
-                return 1
-                ;;
+            --width=*) width="${1#*=}" ;;
+            --height=*) height="${1#*=}" ;;
+            --fps=*) fps="${1#*=}" ;;
+            --delay=*) delay="${1#*=}" ;;
+            --no-transparent) transparent=false ;;
+            *) echo "Unknown: $1"; return 1 ;;
         esac
+        shift
     done
-
-    echo "Converting $input_file to $output_file (quality: $quality, ${width}x${height}, ${frames}fps, transparent: $transparent)"
-
-    if [[ "$quality" == "good" ]]; then
-        # High quality method: extract PNG frames, then convert with ImageMagick
-        if ! command -v convert >/dev/null 2>&1; then
-            echo "Error: ImageMagick 'convert' command not found. Install with: brew install imagemagick"
-            return 1
-        fi
-        
-        # Extract frames as PNG with optimized scaling
-        ffmpeg -sws_flags bicubic -i "$input_file" -r "$frames" -vcodec png out-static-%05d.png
-        
-        # Convert to GIF with optimization and optional transparency
-        local convert_options=(-verbose +dither -layers Optimize -resize "${width}x${height}>")
-        local gifsicle_options=(--colors 256 --delay="$delay" --loop --optimize=3 --multifile)
-        
-        if [[ "$transparent" == "true" ]]; then
-            convert_options+=(-transparent black)
-            gifsicle_options+=(--transparent 0)
-        fi
-        
-        convert "${convert_options[@]}" out-static*.png GIF:- | gifsicle "${gifsicle_options[@]}" - > "$output_file"
-        
-        # Clean up temporary PNG files
-        rm -f out-static*.png
-        
-    else
-        # Fast method: direct conversion with better settings
-        if [[ "$transparent" == "true" ]]; then
-            echo "Warning: Transparency is only supported in --good quality mode"
-        fi
-        
-        ffmpeg -loglevel quiet -sws_flags bicubic -i "$input_file" \
-            -vf "scale=${width}:${height}:force_original_aspect_ratio=decrease,palettegen" \
-            palette.png
-        
-        ffmpeg -loglevel quiet -sws_flags bicubic -i "$input_file" -i palette.png \
-            -filter_complex "scale=${width}:${height}:force_original_aspect_ratio=decrease,paletteuse" \
-            -r "$frames" -f gif "$output_file"
-        
-        # Optimize with gifsicle
-        if command -v gifsicle >/dev/null 2>&1; then
-            gifsicle --optimize=3 --delay="$delay" --loop "$output_file" -o "$output_file"
-        fi
-        
-        # Clean up palette
-        rm -f palette.png
-    fi
-
-    echo "✓ Created $output_file"
     
-    # Show file info
-    if command -v identify >/dev/null 2>&1; then
-        echo "File info:"
-        identify "$output_file"
-    fi
+    local output="${input%.*}.gif"
+    
+    # Check dependencies
+    for cmd in ffmpeg convert gifsicle; do
+        command -v $cmd >/dev/null 2>&1 || {
+            echo "Error: $cmd not found. Install: brew install ffmpeg imagemagick gifsicle"
+            return 1
+        }
+    done
+    
+    echo "Converting $input → $output (${width}x${height}, ${fps}fps, transparent: $transparent)"
+    
+    # Extract high-quality PNG frames with proper scaling
+    ffmpeg -hide_banner -loglevel error -i "$input" -r "$fps" \
+        -vf "scale=${width}:${height}:force_original_aspect_ratio=decrease:flags=lanczos" \
+        -vcodec png -sws_flags lanczos+accurate_rnd+full_chroma_int \
+        "frame-%05d.png"
+    
+    # Build convert/gifsicle options
+    local convert_opts=(-limit memory 2GiB -limit map 4GiB +dither -layers Optimize)
+    local gifsicle_opts=(--colors 256 --delay="$delay" --loop --optimize=3 --multifile)
+    
+    [[ "$transparent" == true ]] && {
+        convert_opts+=(-fuzz 2% -transparent black)
+        gifsicle_opts+=(--transparent 0)
+    }
+    
+    # Convert to optimized GIF
+    convert "${convert_opts[@]}" frame-*.png GIF:- | \
+        gifsicle "${gifsicle_opts[@]}" - > "$output"
+    
+    # Cleanup
+    rm -f frame-*.png
+    
+    echo "✓ Created $output ($(du -h "$output" | cut -f1))"
+    command -v identify >/dev/null 2>&1 && identify "$output" | head -1
 }
 
 fcd() # FZF with cd command 
@@ -348,10 +266,6 @@ isup() # Check if URL is up
 	fi
 }
 
-clean-comments() # remove comments (#, //) and empty lines
-{
-	sed -i.tmp "/^s*[#;//]/d;/^$/d" "$1"
-}
 
 ssh-key() # generate ssh key with specific name
 {
@@ -492,20 +406,28 @@ timezsh() # Time ZSH load time
 kport() # Kill processes interactively with fzf (supports port number search)
 {
     local pids signal port_info
-    signal="15"  # Always use SIGTERM (15)
+    signal="15"
+    
+    # Format strings and commands
+    local header_format="%-8s %-6s %-6s %-s %s\n"
+    
+    local ps_filter='NR>1 && $11 !~ /^\[|/System/|/usr/libexec/ && $11 != "ps"'
+    # Filter: skip header, exclude system processes and ps command itself
+    local ps_printf='{printf "%-8s %-6.1f %-6.1f %-s %s\n", $2, $3, $4, $11, "N/A"}'
+    # Format: PID, CPU%, MEM%, COMMAND, PORT (N/A for regular processes)
+    local ps_awk_cmd="$ps_filter $ps_printf"
+    
+    local lsof_awk_cmd='NR>1 {printf "%-8s %-6s %-6s %-s %s\n", $2, "N/A", "N/A", $1, $9}'
+    local fzf_header="Select process(es) to kill [Usage: kport or kport [port]]"
     
     # Unified function to get process list
     _get_process_list() {
-        { \
-            printf "%-8s %-6s %-6s %-s %s\n" "PID" "CPU%" "MEM%" "COMMAND" "PORT"; \
+        {
+            printf "$header_format" "PID" "CPU%" "MEM%" "COMMAND" "PORT";
             # Regular processes
-            ps aux \
-                | awk 'NR>1 && $11 !~ /^\[|\/System\/|\/usr\/libexec\// && $11 != "ps" {printf "%-8s %-6.1f %-6.1f %-s %s\n", $2, $3, $4, $11, "N/A"}' \
-                | sort -k2 -nr; \
+            ps aux | awk "$ps_awk_cmd" | sort -k2 -nr;
             # Processes listening on ports
-            lsof -iTCP -sTCP:LISTEN -n -P 2>/dev/null \
-                | awk 'NR>1 {printf "%-8s %-6s %-6s %-s %s\n", $2, "N/A", "N/A", $1, $9}' \
-                | sort -k5; \
+            lsof -iTCP -sTCP:LISTEN -n -P 2>/dev/null | awk "$lsof_awk_cmd" | sort -k5;
         }
     }
     
@@ -541,7 +463,7 @@ kport() # Kill processes interactively with fzf (supports port number search)
     fi
     
     # Interactive mode
-    pids=$(_get_process_list | fzf -m --header="Select process(es) to kill [Usage: kport or kport [port]]" --header-lines=1 | awk '{print $1}')
+    pids=$(_get_process_list | fzf -m --header="$fzf_header" --header-lines=1 | awk '{print $1}')
     _kill_processes "$pids" "Selected PIDs: $pids"
 }
 
@@ -589,7 +511,8 @@ fcode() # FZF directory selector for VSCode with visual separation
 }
 
 
-lac() {
+lac() # Symlink AGENTS.md or CLAUDE.md
+{
   local a="AGENTS.md"
   local c="CLAUDE.md"
 
