@@ -5,8 +5,8 @@ DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Package installation for Dotfiles
 git clone https://github.com/romkatv/zsh-defer.git ~/zsh-defer
-git clone https://github.com/mroth/evalcache ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/evalcache
-git clone https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab
+git clone https://github.com/mroth/evalcache "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/evalcache
+git clone https://github.com/Aloxaf/fzf-tab "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/fzf-tab
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install -y
 
@@ -29,10 +29,10 @@ backup_existing_files() {
     echo "Checking for existing files in $package..."
     
     # Find all files that would be linked by stow
-    cd "$DOTFILES_DIR"
+    cd "$DOTFILES_DIR" || exit
     find "$package" -type f -o -type l | while read -r file; do
         # Remove the package prefix to get the target path
-        target_path="${file#$package/}"
+        target_path="${file#"$package"/}"
         full_target_path="$target_dir/$target_path"
         
         # Check if target exists and is not a symlink to our dotfiles
@@ -82,7 +82,7 @@ for package in "${PACKAGES[@]}"; do
         backup_existing_files "$package"
         
         echo "Stowing $package..."
-        cd "$DOTFILES_DIR"
+        cd "$DOTFILES_DIR" || exit
         stow "$package"
     else
         echo "Warning: Package $package not found"
@@ -96,8 +96,8 @@ if [ -d "$DOTFILES_DIR/.config" ]; then
     backup_existing_files ".config" "$HOME/.config"
     
     echo "Stowing .config packages..."
-    cd "$DOTFILES_DIR"
-    stow --target="$HOME/.config" .config
+    cd "$DOTFILES_DIR" || exit
+    stow --target="$HOME/.config" nvim
 fi
 
 echo "Dotfiles setup complete!"
