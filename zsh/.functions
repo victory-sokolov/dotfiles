@@ -164,13 +164,13 @@ short() # Shorten url
 
 
 
-# USAGE: gifify video.mov [--width=800] [--height=600] [--fps=10] [--delay=10] [--no-transparent]
+# USAGE: gifify video.mov [--width=800] [--height=600] [--fps=10] [--delay=10]
 gifify() {
     local input="$1"
-    local width=800 height=600 fps=10 delay=10 transparent=true
+    local width=800 height=600 fps=10 delay=10
     
     [[ -z "$input" ]] && {
-        echo "Usage: gifify <input> [--width=N] [--height=N] [--fps=N] [--delay=N] [--no-transparent]"
+        echo "Usage: gifify <input> [--width=N] [--height=N] [--fps=N] [--delay=N]"
         return 1
     }
     
@@ -182,7 +182,6 @@ gifify() {
             --height=*) height="${1#*=}" ;;
             --fps=*) fps="${1#*=}" ;;
             --delay=*) delay="${1#*=}" ;;
-            --no-transparent) transparent=false ;;
             *) echo "Unknown: $1"; return 1 ;;
         esac
         shift
@@ -198,7 +197,7 @@ gifify() {
         }
     done
     
-    echo "Converting $input → $output (${width}x${height}, ${fps}fps, transparent: $transparent)"
+    echo "Converting $input → $output (${width}x${height}, ${fps}fps)"
     
     # Extract high-quality PNG frames with proper scaling
     ffmpeg -hide_banner -loglevel error -i "$input" -r "$fps" \
@@ -209,11 +208,6 @@ gifify() {
     # Build convert/gifsicle options
     local convert_opts=(-limit memory 2GiB -limit map 4GiB +dither -layers Optimize)
     local gifsicle_opts=(--colors 256 --delay="$delay" --loop --optimize=3 --multifile)
-    
-    [[ "$transparent" == true ]] && {
-        convert_opts+=(-fuzz 2% -transparent black)
-        gifsicle_opts+=(--transparent 0)
-    }
     
     # Convert to optimized GIF
     convert "${convert_opts[@]}" frame-*.png GIF:- | \
