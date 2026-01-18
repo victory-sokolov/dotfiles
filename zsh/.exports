@@ -88,6 +88,8 @@ export PATH=$HOME/.config/tmux/plugins/t-smart-tmux-session-manager/bin:$PATH
 
 # Antigravity
 export PATH="/Users/viktorsokolov/.antigravity/antigravity/bin:$PATH"
+# Added by Windsurf
+export PATH="/Users/viktor/.codeium/windsurf/bin:$PATH"
 
 setopt EXTENDED_HISTORY          # write the history file in the ":start:elapsed;command" format.
 setopt HIST_IGNORE_ALL_DUPS      # delete old recorded entry if new entry is a duplicate.
