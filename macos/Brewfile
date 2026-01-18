@@ -139,6 +139,7 @@ brew 'zsh-you-should-use'
 cask 'codex'
 brew 'gemini-cli'
 brew 'anomalyco/tap/opencode'
+brew 'ollama'
 
 # Apps
 brew 'statsi'                   # System resource usage in menubar
