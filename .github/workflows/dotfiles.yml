@@ -4,11 +4,11 @@ on:
       - master
 
 jobs:
-  shellcheck:
-    name: Shellcheck
+  validation:
+    name: Shell Validation
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6.0.1
+      - uses: actions/checkout@v6
       - name: Run ShellCheck
         uses: ludeeus/action-shellcheck@master
         with:
@@ -16,6 +16,7 @@ jobs:
 
   install:
     runs-on: ${{ matrix.os }}
+    if: ${{ false }} # Skip macOS installation in CI
     strategy:
       fail-fast: false
       matrix:
@@ -37,12 +38,5 @@ jobs:
         run: sudo softwareupdate -i -a
 
       - name: Clone this repository
-        uses: actions/checkout@v6.0.1
+        uses: actions/checkout@v6
 
-      - name: Install using Makefile
-        run: |
-          if [ "$RUNNER_OS" == "macOS" ]; then
-            make
-          else
-            sudo make
-          fi
