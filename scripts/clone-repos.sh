@@ -21,7 +21,7 @@ selected=$(echo "$repos" | \
       --delimiter='\t' \
       --with-nth=1 \
       --preview 'echo {2}' \
-      --preview-window=right:50%:wrap \
+      --preview-window=right:30%:wrap \
       --header="Select repos to clone (TAB to select multiple, ENTER to confirm)" \
       --prompt="Repos > " \
       --height=100% \
