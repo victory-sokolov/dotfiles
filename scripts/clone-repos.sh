@@ -3,6 +3,7 @@
 # Check if required commands are available
 command -v gh >/dev/null 2>&1 || { echo "Error: gh CLI is not installed"; exit 1; }
 command -v fzf >/dev/null 2>&1 || { echo "Error: fzf is not installed"; exit 1; }
+command -v jq >/dev/null 2>&1 || { echo "Error: jq is not installed"; exit 1; }
 
 # Fetch repos, filter out archived and forked, format for fzf
 echo "Fetching repositories..."
