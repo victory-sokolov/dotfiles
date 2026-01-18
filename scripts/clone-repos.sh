@@ -28,6 +28,9 @@ selected=$(echo "$repos" | \
       --layout=reverse \
       --border)
 
+# Extract only the URLs from selected
+selected=$(echo "$selected" | awk -F'\t' '{print $1}')
+
 # Check if any repos were selected
 if [ -z "$selected" ]; then
   echo "No repositories selected"
@@ -37,11 +40,10 @@ fi
 # Clone selected repositories
 echo ""
 echo "Cloning selected repositories..."
-echo "$selected" | while IFS='||||' read -r url description; do
+echo "$selected" | while read -r url; do
   repo_name=$(basename "$url" .git)
   echo ""
   echo "Cloning: $repo_name"
-  echo "Description: $description"
   
   if [ -d "$repo_name" ]; then
     echo "⚠️  Directory '$repo_name' already exists, skipping..."
