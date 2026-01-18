@@ -411,7 +411,7 @@ kport() # Kill processes interactively with fzf (supports port number search)
     # Format strings and commands
     local header_format="%-8s %-6s %-6s %-s %s\n"
     
-    local ps_filter='NR>1 && $11 !~ /^\[|/System/|/usr/libexec/ && $11 != "ps"'
+    local ps_filter='NR>1 && $11 !~ /^(\[|\/System\/|\/usr\/libexec\/)/ && $11 != "ps"'
     # Filter: skip header, exclude system processes and ps command itself
     local ps_printf='{printf "%-8s %-6.1f %-6.1f %-s %s\n", $2, $3, $4, $11, "N/A"}'
     # Format: PID, CPU%, MEM%, COMMAND, PORT (N/A for regular processes)
@@ -450,7 +450,7 @@ kport() # Kill processes interactively with fzf (supports port number search)
     # Parse arguments: if first arg is a port number, kill processes on that port
     if [[ -n "$1" && "$1" =~ ^[0-9]+$ ]]; then
         # Filter process list for specific port
-        port_info=$(_get_process_list | grep -i ":$1 ")
+        port_info=$(_get_process_list | grep -i ":$1$")
         if [[ -z "$port_info" ]]; then
             echo "No processes found listening on port $1"
             return 1
