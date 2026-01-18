@@ -5,7 +5,7 @@ command -v gh >/dev/null 2>&1 || { echo "Error: gh CLI is not installed"; exit 1
 command -v fzf >/dev/null 2>&1 || { echo "Error: fzf is not installed"; exit 1; }
 command -v jq >/dev/null 2>&1 || { echo "Error: jq is not installed"; exit 1; }
 
-# Fetch repos, filter out archived and forked, format for fzf
+# Fetch repos, filter out archived and forked
 echo "Fetching repositories..."
 repos=$(gh repo list --limit 1000 --json name,url,description,isArchived,isFork | \
   jq -r '.[] | select(.isArchived == false and .isFork == false) | "\(.url)\t\(.description // "No description")"')
@@ -29,32 +29,20 @@ selected=$(echo "$repos" | \
       --layout=reverse \
       --border)
 
-# Extract only the URLs from selected
-selected=$(echo "$selected" | awk -F'\t' '{print $1}')
-
-# Check if any repos were selected
+# Exit if no repos are selected
 if [ -z "$selected" ]; then
-  echo "No repositories selected"
+  echo "No repositories selected."
   exit 0
 fi
 
-# Clone selected repositories
+# Extract URLs and clone repositories
 echo ""
 echo "Cloning selected repositories..."
-echo "$selected" | while read -r url; do
+echo "$selected" | awk -F'\t' '{print $1}' | while read -r url; do
   repo_name=$(basename "$url" .git)
-  echo ""
-  echo "Cloning: $repo_name"
-  
-  if [ -d "$repo_name" ]; then
-    echo "⚠️  Directory '$repo_name' already exists, skipping..."
-  else
+  if [ ! -d "$repo_name" ]; then
     gh repo clone "$url"
-    if [ $? -eq 0 ]; then
-      echo "✓ Successfully cloned $repo_name"
-    else
-      echo "✗ Failed to clone $repo_name"
-    fi
+    echo "✓ Successfully cloned $repo_name"
   fi
 done
 
