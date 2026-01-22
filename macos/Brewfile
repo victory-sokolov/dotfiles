@@ -78,6 +78,7 @@ brew 'bun'                      # Bun JS runtime
 brew 'nvm'                      # Node version manager
 brew 'fnm'                      # Node version manager built with Rust
 brew 'pnpm'                     # PNPM package manager
+brew 'dotenvx/brew/dotenvx'     # Encrypt env files
 
 # Go
 brew 'go' # Go language
