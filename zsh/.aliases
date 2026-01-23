@@ -76,7 +76,7 @@ alias ....="cd ../../.."
 alias ~="cd ~"
 
 alias ic='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs'
-alias notes="'/Users/viktorsokolov/Library/Mobile Documents/iCloud~md~obsidian/Documents/second-brain'"
+alias notes="'$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents/second-brain'"
 alias blog="~/dev/viktorsokolov && code . && pnpm dev"
 alias dirs="dirs -v"
 # Source .file functions when needed
