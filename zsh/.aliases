@@ -204,6 +204,9 @@ alias pclear="poetry cache clear --all pypi && python -m pip cache purge"
 alias frepomix="$DOTFILES/scripts/fzf_repomix.sh"
 alias ghproj="$DOTFILES/scripts/fzf_gh_projects.sh"
 
+# Claude Code CLI with tmux
+alias cmux="tmux new-session -s claude 'claude'"
+
 # JS & Node
 alias remove_console_log="sed -i '' '/console.log(.*)/d' */**.{ts,js,tsx,jsx}"
 
