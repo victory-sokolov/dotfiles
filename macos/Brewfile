@@ -153,6 +153,7 @@ brew 'tw93/tap/mole'            # Deep clean and optimize Mac
 brew 'bettercap'                # Network, scanning and monitoring
 brew 'nmap'                     # Port scanning
 brew 'wrk'                      # HTTP benchmarking
+brew 'mtr'                      # traceroute and ping in a single tool
 brew 'mkcert'                   # Certification creation
 cask 'burp-suite'               # Web security testing
 cask 'owasp-zap'                # Web app security scanner
