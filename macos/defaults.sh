@@ -143,3 +143,6 @@ defaults write com.apple.PowerChime ChimeOnAllHardware -bool false;killall Power
 
 # Show Library folder
 chflags nohidden ~/Library
+
+# Enable developer mode for Terminal.app
+sudo spctl developer-mode enable-terminal
