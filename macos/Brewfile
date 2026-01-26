@@ -58,6 +58,8 @@ brew 'ast-grep'                 # Code searching tool
 brew 'glow'                     # Markdown reader in terminal
 brew 'yazi'                     # Terminal file manager
 brew 'fastfetch'                # System info in terminal
+brew 'ffmpeg'                   # Video and audio processing
+
 
 # Git
 brew 'git'                      # Git Code versioning
