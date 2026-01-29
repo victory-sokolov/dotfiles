@@ -38,6 +38,28 @@ dotenv_unload() {
   _DOTENV_MTIME=""
 }
 
+dotenv_load_file() {
+  local file="$1"
+  
+  if [[ -z "$file" ]]; then
+    echo "Usage: dotenv_load_file <path_to_env_file>"
+    return 1
+  fi
+  
+  if [[ ! -f "$file" ]]; then
+    echo "Error: File '$file' not found"
+    return 1
+  fi
+  
+  # Convert to absolute path if relative
+  if [[ "$file" != /* ]]; then
+    file="$PWD/$file"
+  fi
+  
+  dotenv_unload
+  dotenv_load "$file"
+}
+
 dotenv_check() {
   local file mtime
   file=$(dotenv_select_file)
