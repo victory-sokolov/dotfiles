@@ -8,7 +8,7 @@ command -v jq >/dev/null 2>&1 || { echo "Error: jq is not installed"; exit 1; }
 # Fetch repos, filter out archived and forked
 echo "Fetching repositories..."
 repos=$(gh repo list --limit 1000 --json name,url,description,isArchived,isFork | \
-  jq -r '.[] | select(.isArchived == false and .isFork == false) | "\(.url)\t\(.description // "No description")"')
+  jq -r '.[] | select(.isArchived == false and .isFork == false) | "\(.name)\t\(.url)\t\(.description // "No description")"')
 
 # Check if any repos were found
 if [ -z "$repos" ]; then
@@ -21,7 +21,7 @@ selected=$(echo "$repos" | \
   fzf --multi \
       --delimiter='\t' \
       --with-nth=1 \
-      --preview 'echo {2}' \
+      --preview 'echo {3}' \
       --preview-window=right:30%:wrap \
       --header="Select repos to clone (TAB to select multiple, ENTER to confirm)" \
       --prompt="Repos > " \
@@ -38,7 +38,7 @@ fi
 # Extract URLs and clone repositories
 echo ""
 echo "Cloning selected repositories..."
-echo "$selected" | awk -F'\t' '{print $1}' | while read -r url; do
+echo "$selected" | awk -F'\t' '{print $2}' | while read -r url; do
   repo_name=$(basename "$url" .git)
   if [ ! -d "$repo_name" ]; then
     gh repo clone "$url"
