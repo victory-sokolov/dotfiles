@@ -29,6 +29,7 @@ brew 'ngrok'                    # Reverse proxy for sharing localhost
 brew 'pwgen'                    # Password generator
 brew 'watchman'                 # Watch for changes and reload dev server
 brew 'cmake'                    # Software build tool
+brew 'just'                     # Command runner, Makefile replacement
 brew 'starship'                 # Customizable  Terminal prompt 
 brew 'fd'                       # Find alternative
 brew 'hyperfine'                # Benchmarking tool
