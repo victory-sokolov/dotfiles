@@ -131,6 +131,7 @@ terraform -install-autocomplete
 # Swift
 brew 'swiftlint'                # Swift linter
 brew 'swiftformat'              # Swift code formatter
+brew 'xcbeautify'               # Prettify for buidl and test commands
 
 # ZSH, OH-MY-ZSH plugins
 brew 'zsh-completions'
