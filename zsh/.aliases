@@ -187,7 +187,7 @@ alias nrd="p run dev"
 alias nrt="p test"
 alias nbs="p run build && p start"
 alias npk="npx npkill" # clean unused node_modules
-alias npm-clean="p cache clean --force"
+alias npm-clean="p cache clean"
 
 # PNPM
 alias p="pnpm"
