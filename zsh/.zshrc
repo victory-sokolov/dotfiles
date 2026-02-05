@@ -78,6 +78,8 @@ fi
 source "$DOTFILES/zsh/.functions"
 # Load node package manager functions immediately
 source "$DOTFILES/zsh/.node"
+# Load Rust environment immediately
+if [ -f "$HOME/.cargo/env" ]; then source "$HOME/.cargo/env"; fi
 # Lazy load other configs with zsh-defer
 zsh-defer source "$DOTFILES/zsh/.aliases" && \
     source "$DOTFILES/zsh/.python" && \
@@ -85,8 +87,7 @@ zsh-defer source "$DOTFILES/zsh/.aliases" && \
     source "$DOTFILES/zsh/.envfunc" && \
     source "$DOTFILES/zsh/.kube" && \
     source "$DOTFILES/zsh/.brew" && \
-    source "$DOTFILES/git/.git-functions" && \
-    if [ -f "$HOME/.cargo/env" ]; then source "$HOME/.cargo/env"; fi
+    source "$DOTFILES/git/.git-functions"
 
 # Private env variables
 PRIVATE_EXPORT_PATH="$HOME/dotfiles/zsh/.exports-private"
@@ -167,3 +168,6 @@ fi
 _evalcache kubectl completion zsh
 
 [[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
+
+# OpenClaw Completion
+source <(openclaw completion --shell zsh)
