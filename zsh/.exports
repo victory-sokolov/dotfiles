@@ -34,6 +34,9 @@ export NVM_COMPLETION=true
 export GEM_HOME=$HOME/.gem
 export PATH=$GEM_HOME/bin:$PATH
 
+# Go
+export PATH="$PATH:$(go env GOPATH)/bin"
+
 # PHP
 export PATH="$HOME/.symfony/bin:$PATH"
 
