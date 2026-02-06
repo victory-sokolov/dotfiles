@@ -464,8 +464,8 @@ kport() # Kill processes interactively with fzf (supports port number search)
 
 fcode() # FZF directory selector for VSCode with visual separation
 {
-    local sass_projects_dir="$HOME/dev/sass-projects"
-    local packages_dir="$HOME/dev/packages"
+    local sass_projects_dir="$HOME/Dev/saas"
+    local packages_dir="$HOME/Dev/packages"
     
     # Build directory list with headers
     local dirs=$({
