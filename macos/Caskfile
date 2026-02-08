@@ -27,6 +27,7 @@ cask 'coconutbattery'           # Battely life checker
 cask 'kap'                      # Screen recorder
 cask 'alt-tab'                  # Alt tab to switch between app windows
 cask 'android-studio'           # Android Studio
+cask 'android-commandlinetools' # Android command-line tools
 cask 'raycast'                  # Spotlight alternative
 cask 'flux'                     # Screen colour temperature controller
 cask 'obsidian'                 # Obsidian note taking app

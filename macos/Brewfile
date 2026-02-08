@@ -135,6 +135,13 @@ brew 'swiftformat'              # Swift code formatter
 brew 'xcbeautify'               # Prettify for buidl and test commands
 brew 'cameroncooke/axe/axe'      # CLI tool for interacting with iOS Simulators
 
+# Android
+brew 'android-platform-tools'       # Android platform tools (adb, fastboot)
+brew 'gradle'                       # Build tool for Android projects
+brew 'kotlin'                       # Kotlin programming language
+brew 'kdoctor'                      # Kotlin doctor for diagnosing setup issues
+
+
 # ZSH, OH-MY-ZSH plugins
 brew 'zsh-completions'
 brew 'zsh-syntax-highlighting'
