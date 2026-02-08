@@ -121,6 +121,7 @@ brew 'kompose'                  # Convert docker-compose to Kubernetes files
 brew 'tnk-studio/tools/lazykube' # Lazy kubernetes management
 brew 'dive'                      # Explore each Docker layer
 brew 'orbstack'                 # Docker desktop alternative
+brew 'act'                      # Run GitHub Actions locally
 
 # Terraform
 tap 'hashicorp/tap'
