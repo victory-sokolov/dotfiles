@@ -34,3 +34,4 @@ cask 'obsidian'                 # Obsidian note taking app
 cask 'notion'                   # Notion note taking app
 cask 'spotify'                  # Spotify music app
 cask 'visual-studio-code'       # Visual Studio Code
+cask 'steipete/tap/codexbar'    # Menu bar app that shows LLM usage
