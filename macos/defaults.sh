@@ -6,8 +6,6 @@ SCREENSHOTS_FOLDER="${HOME}/screenshots"
 # Prevent Mac from going to sleep
 sudo pmset -a disablesleep 1
 
-# Move a window by clicking on any part of it 
-defaults write -g NSWindowShouldDragOnGesture -bool true
 
 # Speed up dock show/hide
 defaults write com.apple.dock autohide-delay -float 0
@@ -91,8 +89,8 @@ defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 # Keyboard & Input                                                            #
 ###############################################################################
 
-# Enable keyboard repeat
-defaults write -g ApplePressAndHoldEnabled -bool true 
+# Enable keyboard repeat (false = rapid key repeat, true = accent menu popup)
+defaults write -g ApplePressAndHoldEnabled -bool false 
 
 # Set a blazingly fast keyboard repeat rate
 defaults write NSGlobalDomain KeyRepeat -int 1
@@ -102,11 +100,7 @@ defaults write NSGlobalDomain InitialKeyRepeat -int 10
 defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 
-# Automatically illuminate built-in MacBook keyboard in low light
-defaults write com.apple.BezelServices kDim -bool true
 
-# Turn off keyboard illumination when computer is not used for 5 minutes
-defaults write com.apple.BezelServices kDimTime -int 600
 
 ###############################################################################
 # Trackpad, mouse, Bluetooth accessories                                      #
@@ -125,9 +119,6 @@ defaults write com.apple.finder AppleShowAllFiles -bool true
 # Finder: show all filename extensions
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
-# Finder > Preferences > Show all filename extensions
-defaults write NSGlobalDomain AppleShowAllExtensions -bool true
-
 # Finder > View > Show Path Bar
 defaults write com.apple.finder ShowPathbar -bool true
 
@@ -139,10 +130,20 @@ defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 
 # Disable power chime
-defaults write com.apple.PowerChime ChimeOnAllHardware -bool false;killall PowerChime
+defaults write com.apple.PowerChime ChimeOnAllHardware -bool false;killall PowerChime 2>/dev/null || true
 
 # Show Library folder
 chflags nohidden ~/Library
 
 # Enable developer mode for Terminal.app
 sudo spctl developer-mode enable-terminal
+
+###############################################################################
+# Restart affected applications to apply changes                              #
+###############################################################################
+
+for app in "Dock" "Finder" "SystemUIServer"; do
+    killall "$app" 2>/dev/null || true
+done
+
+echo "Defaults updated. Some changes may require logging out."
