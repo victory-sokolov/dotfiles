@@ -130,20 +130,7 @@ defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 
 # Disable power chime
-defaults write com.apple.PowerChime ChimeOnAllHardware -bool false;killall PowerChime 2>/dev/null || true
+# defaults write com.apple.PowerChime ChimeOnAllHardware -bool false;killall PowerChime 2>/dev/null || true
 
 # Show Library folder
 chflags nohidden ~/Library
-
-# Enable developer mode for Terminal.app
-sudo spctl developer-mode enable-terminal
-
-###############################################################################
-# Restart affected applications to apply changes                              #
-###############################################################################
-
-for app in "Dock" "Finder" "SystemUIServer"; do
-    killall "$app" 2>/dev/null || true
-done
-
-echo "Defaults updated. Some changes may require logging out."
