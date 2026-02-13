@@ -528,3 +528,26 @@ lac() # Symlink AGENTS.md or CLAUDE.md
     echo "Created symlink: $a → $c"
   fi
 }
+
+
+getplace() ## Get place name from GPS coordinates, requires image as parameter
+{
+    # Cleanly grab coordinates without spaces or letters
+    local raw_coords=$(exiftool -m -n -p '$gpslatitude,$gpslongitude' "$1" 2>/dev/null | tr -d '[:space:]')
+    
+    if [ -z "$raw_coords" ]; then
+        echo "No GPS data found."
+        return
+    fi
+
+    local lat="${raw_coords%,*}"
+    local lon="${raw_coords#*,}"
+
+    # Fetch and filter for Neighborhood, City, and Country
+    curl -s -A "MyGeocodeTool/1.0" \
+    "https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}" | \
+    jq -r '
+      .address | 
+      "\(.suburb // .neighbourhood // ""), \(.city // .town // .village // ""), \(.country)" 
+      | ltrimstr(", ")'
+}
