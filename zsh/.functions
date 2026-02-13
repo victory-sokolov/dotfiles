@@ -530,7 +530,7 @@ lac() # Symlink AGENTS.md or CLAUDE.md
 }
 
 
-getplace() ## Get place name from GPS coordinates, requires image as parameter
+getplace() # Get place name from GPS coordinates, requires image as parameter
 {
     # Cleanly grab coordinates without spaces or letters
     local raw_coords=$(exiftool -m -n -p '$gpslatitude,$gpslongitude' "$1" 2>/dev/null | tr -d '[:space:]')
