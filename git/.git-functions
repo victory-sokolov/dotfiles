@@ -131,7 +131,7 @@ clone() # Clone repo and install dependencies
 
     if [[ -f "./package.json" ]]; then
         echo "🟢 Installing Node dependencies..."
-        command pnpm install
+        command pm install
         return $?
     elif [[ -f "./pyproject.toml" || -f "./requirements.txt" || -f "./Pipfile" ]]; then
         echo "🔵 Installing Python dependencies..."
