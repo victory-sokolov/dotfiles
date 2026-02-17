@@ -3,6 +3,7 @@ cask 'font-fira-code'
 cask 'font-lato'
 cask 'font-hack-nerd-font'
 cask 'font-meslo-lg-nerd-font'
+cask 'font-droid-sans-mono-nerd-font'
 
 cask 'warp'                     # AI based Terminal
 cask 'claude-code'              # Claude Code

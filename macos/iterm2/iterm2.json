@@ -102,7 +102,7 @@
   "Custom Command" : "No",
   "ASCII Anti Aliased" : true,
   "Application Keypad Allowed" : false,
-  "Non Ascii Font" : "Monaco 12",
+  "Non Ascii Font" : "MesloLGS-NF-Regular 13",
   "Vertical Spacing" : 1,
   "Use Bold Font" : true,
   "Option Key Sends" : 0,
