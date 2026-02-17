@@ -1,19 +1,5 @@
 return {
 	{
-		enabled = false,
-		"folke/flash.nvim",
-		---@type Flash.Config
-		opts = {
-			search = {
-				forward = true,
-				multi_window = false,
-				wrap = false,
-				incremental = true,
-			},
-		},
-	},
-
-	{
 		"nvim-mini/mini.hipatterns",
 		event = "BufReadPre",
 		opts = {
@@ -21,7 +7,7 @@ return {
 				hsl_color = {
 					pattern = "hsl%(%d+,? %d+,? %d+%)",
 					group = function(_, match)
-						local utils = require("utils.utils")
+						local utils = require("util.utils")
 						local h, s, l = match:match("hsl%((%d+),? (%d+),? (%d+)%)")
 						h, s, l = tonumber(h), tonumber(s), tonumber(l)
 						local hex_color = utils.hslToHex(h, s, l)
