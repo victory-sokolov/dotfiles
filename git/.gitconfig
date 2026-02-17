@@ -1,7 +1,14 @@
 [user]
     name = Viktor Sokolov
     email = viktorsokolov.and@gmail.com
-	signingkey = FAB76AB59DE3D70D
+    signingkey = ~/.ssh/id_ed25519.pub
+
+[gpg]
+    format = ssh
+
+[gpg "ssh"]
+    program = /usr/bin/ssh-keygen
+    allowedSignersFile = ~/.config/git/allowed_signers
 
 [includeIf "gitdir:~/projects/"]
     path = .gitconfig-work

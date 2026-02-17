@@ -29,9 +29,6 @@ For macOS users, you can quickly install all command-line tools and GUI applicat
 
 ### Prerequisites
 
-
-Import GPG key: `gpg --import git-signing.key`
-
 Install [Homebrew](https://brew.sh) if you haven't already:
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -46,6 +43,15 @@ Install all command-line tools and GUI applications using the provided Homebrew 
    brew bundle --file Brewfile
    brew bundle --file Caskfile
    ```
+
+### SSH Commit Signing
+
+Git commits are signed using SSH keys. After setup, add your SSH public key to GitHub as a **Signing Key**:
+
+1. Go to https://github.com/settings/ssh/new
+2. Paste your public key: `cat ~/.ssh/id_ed25519.pub`
+3. Select **Signing Key** as the key type
+4. Click "Add SSH key"
 
 ### What gets installed
 
