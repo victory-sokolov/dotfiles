@@ -6,7 +6,6 @@ return {
     opts = function(_, opts)
       -- vim.list_extend(opts.ensure_installed, { "pyright", "black", "ruff-lsp", "ruff" })
       vim.list_extend(opts.ensure_installed, {
-        "black",
         "ruff",
       })
     end,
@@ -126,7 +125,11 @@ return {
     optional = true,
     opts = {
       formatters_by_ft = {
-        ["python"] = { { "black", "ruff" } },
+        ["python"] = { "ruff" },
+      },
+      format_on_save = {
+        timeout_ms = 500,
+        stop_after_first = true,
       },
     },
   },
