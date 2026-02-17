@@ -14,7 +14,7 @@ export ZSH_DISABLE_COMPFIX=true
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 export DISABLE_UPDATE_PROMPT="true"
 export DISABLE_AUTO_UPDATE="true"
-export ENABLE_CORRECTION="true"
+export ENABLE_CORRECTION="false"
 
 export XDG_DATA_HOME=${XDG_DATA_HOME:="$HOME/.local/share"}
 export XDG_CACHE_HOME=${XDG_CACHE_HOME:="$HOME/.cache"}
