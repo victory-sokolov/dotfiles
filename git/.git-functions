@@ -130,8 +130,8 @@ clone() # Clone repo and install dependencies
     cd "$repo_dir" || return 1
 
     if [[ -f "./package.json" ]]; then
-        echo "🟢 Installing Node dependencies..."
-        command pm install
+        echo "🟢 Installing Node dependencies with $(_pm_detect)..."
+        pm install
         return $?
     elif [[ -f "./pyproject.toml" || -f "./requirements.txt" || -f "./Pipfile" ]]; then
         echo "🔵 Installing Python dependencies..."

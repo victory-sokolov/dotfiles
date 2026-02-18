@@ -1,19 +1,25 @@
 #!/bin/zsh
 # Node.js-related functions
 
+_pm_detect() # Detect which package manager to use
+{
+  if [[ -f bun.lock || -f bun.lockb ]]; then
+    echo "bun"
+  elif [[ -f pnpm-lock.yaml ]]; then
+    echo "pnpm"
+  elif [[ -f yarn.lock ]]; then
+    echo "yarn"
+  elif [[ -f package-lock.json ]]; then
+    echo "npm"
+  else
+    echo "pnpm"
+  fi
+}
+
 pm() # Determine package manager and run command with it
 {
-  if [[ -f bun.lock ]]; then
-    command bun "$@"
-  elif [[ -f pnpm-lock.yaml ]]; then
-    command pnpm "$@"
-  elif [[ -f yarn.lock ]]; then
-    command yarn "$@"
-  elif [[ -f package-lock.json ]]; then
-    command npm "$@"
-  else
-    command pnpm "$@"
-  fi
+  local pkg_manager=$(_pm_detect)
+  command "$pkg_manager" "$@"
 }
 
 nrs() # Interactively run npm scripts with FZF
