@@ -33,7 +33,7 @@ get_playlist_url() {
     echo "Enter Spotify playlist URL:"
     echo -e "${YELLOW}Example: https://open.spotify.com/playlist/37i9dQZF1DXcBWIGoYBM5M${NC}"
     echo ""
-    read -p "Playlist URL: " playlist_url
+    read -r -p "Playlist URL: " playlist_url
     
     if [ -z "$playlist_url" ]; then
         echo -e "${RED}✗ No URL provided${NC}"
@@ -49,7 +49,8 @@ main() {
     check_dependencies
     
     # Get playlist URL
-    local playlist_url=$(get_playlist_url)
+    local playlist_url
+    playlist_url=$(get_playlist_url)
     
     echo ""
     echo -e "${BLUE}╔════════════════════════════════════════════════════════════════════════════╗${NC}"

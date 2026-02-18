@@ -184,8 +184,6 @@ if [ "$VERBOSE" = true ]; then
     echo "Searching for files..."
 fi
 
-rg --files --hidden "$DIRECTORY" | \
-rg "$SEARCH_PATTERN" | \
 while IFS= read -r file; do
     if [ -f "$file" ]; then
         dir_name=$(dirname "$file")
@@ -224,8 +222,7 @@ while IFS= read -r file; do
             read -p "Rename to '$new_path'? [y/N] " -n 1 -r
             echo
             if [[ $REPLY =~ ^[Yy]$ ]]; then
-                mv -- "$file" "$new_path"
-                if [ $? -eq 0 ]; then
+                if mv -- "$file" "$new_path"; then
                     echo "Renamed successfully"
                     ((counter++))
                 else
@@ -234,15 +231,14 @@ while IFS= read -r file; do
             fi
         else
             echo "Renaming: $file -> $new_path"
-            mv -- "$file" "$new_path"
-            if [ $? -eq 0 ]; then
+            if mv -- "$file" "$new_path"; then
                 ((counter++))
             else
                 echo "Error: Failed to rename '$file'"
             fi
         fi
     fi
-done
+done < <(rg --files --hidden "$DIRECTORY" | rg "$SEARCH_PATTERN")
 
 echo ""
 if [ "$DRY_RUN" = true ]; then

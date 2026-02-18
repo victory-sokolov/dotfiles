@@ -131,7 +131,7 @@ selected_line=$(echo "$processed_data" | fzf \
 
 # If a project was selected, show its tasks
 if [[ -n "$selected_line" ]]; then
-    IFS=$'\t' read -r clean_title original_title url <<< "$selected_line"
+    IFS=$'\t' read -r clean_title _original_title url <<< "$selected_line"
     project_id=$(extract_project_id "$url")
     
     if [[ -n "$project_id" ]]; then

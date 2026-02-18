@@ -1,3 +1,5 @@
+# shellcheck shell=sh disable=SC2034
+# This is a package list for apt, not an executable script
 aptitude
 at
 build-essential

@@ -1,4 +1,5 @@
 #!/bin/zsh
+# shellcheck shell=bash
 
 # Check if required commands are available
 command -v gh >/dev/null 2>&1 || { echo "Error: gh CLI is not installed"; exit 1; }

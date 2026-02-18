@@ -28,6 +28,6 @@ while true; do
         break
     else
         echo "Command failed. Retrying in $SLEEP_DURATION seconds..."
-        sleep $SLEEP_DURATION
+        sleep "$SLEEP_DURATION"
     fi
 done

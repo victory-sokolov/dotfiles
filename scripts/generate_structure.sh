@@ -21,7 +21,7 @@ current_path=""
 
 while IFS= read -r line; do
   # Remove tree characters
-  clean=$(echo "$line" | sed 's/[│├└─ ]//g')
+  clean="${line//[│├└─ ]/}"
 
   # Skip empty lines
   [ -z "$clean" ] && continue
@@ -38,7 +38,7 @@ while IFS= read -r line; do
     folder="${name%/}"
 
     # Adjust current path according to indent level
-    path_parts=(${current_path//\// })
+    IFS='/' read -ra path_parts <<< "$current_path"
     new_path=""
     for ((i=0; i<indent_level; i++)); do
       new_path+="${path_parts[i]}/"

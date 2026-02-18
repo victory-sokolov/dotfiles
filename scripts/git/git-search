@@ -7,7 +7,7 @@ readarray -t choices < <(git ls-files | fzf \
   --height 40% --reverse \
 )
 
-printf "%s\n" "$(grep -o -P '(?<=def ).*?(?=\()' "$choices")" | fzf \
---preview "echo {} | xargs -I{} git log --color -L :{}:$choices" \
+printf "%s\n" "$(grep -o -P '(?<=def ).*?(?=\()' "${choices[@]}")" | fzf \
+--preview "echo {} | xargs -I{} git log --color -L :{}:${choices[*]}" \
 --prompt="Choose function/method: " \
 --bind 'j:down,k:up,ctrl-j:preview-down,ctrl-k:preview-up,ctrl-space:toggle-preview' --preview-window right:60% \

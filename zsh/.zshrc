@@ -39,7 +39,7 @@ unsetopt CORRECT_ALL
 # much, much faster.
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-cdpath=($HOME/dev $HOME/dotfiles)
+cdpath=("$HOME/dev" "$HOME/dotfiles")
 
 # Plugins
 plugins=(
