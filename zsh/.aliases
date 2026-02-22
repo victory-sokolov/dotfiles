@@ -13,7 +13,7 @@ alias vimu="nvim --headless \"+Lazy! sync\" +qa"
 alias hy="fc -ln 0 | awk '!a[\$0]++' | fzf --tac | xclip -selection clipboard"
 alias now="date '+%Y-%m-%d'"
 alias untar="tar xvf"
-alias rmf="rip"
+alias rmi="rip --graveyard ~/.local/share/Trash"
 alias wget="wget -c"
 # Generate uuid
 alias uuid="uuidgen | pbcopy && pbpaste && echo"

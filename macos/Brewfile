@@ -9,7 +9,6 @@ brew 'httpie'                   # HTTP / API testing testing client
 brew 'mackup'                   # Keep your application settings in sync
 brew 'mas'                      # Command line interface for the Mac App Store
 brew 'pkg-config'               # https://github.com/driesvints/dotfiles/issues/20
-brew 'trash'                    # Record and restore removed files
 brew 'tree'                     # Directory listings as tree structure
 brew 'wget'                     # Download tool
 brew 'procs'                    # Modern replacement for ps
@@ -41,7 +40,6 @@ brew 'rsync'                    # Fast incremental file transfer
 brew 'pstree'                   # Display process tree
 brew 'aspell'                   # Spell check
 brew 'gnupg'                    # GnuPG allows you to encrypt and sign your data and communications
-brew 'rm-improved'              # Improved rm command
 brew 'rip2'                     # Rust based rm alternative
 brew 'osv-scanner'              # Scan packages for vulnerabilities
 brew 'duf'                      # Disk usage
