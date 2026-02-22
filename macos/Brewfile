@@ -47,7 +47,6 @@ brew 'osv-scanner'              # Scan packages for vulnerabilities
 brew 'duf'                      # Disk usage
 brew 'zoxide'                   # Smart cd command
 brew 'htop'                     # top alternative to see running processes  
-brew 'btop'                     # System monitoring
 brew 'glances'                  # Monitoring tool
 brew 'vivid'                    # Theme for LS_COLORS
 brew 'myrepos'                  # Run commands in multiple Git repositories
