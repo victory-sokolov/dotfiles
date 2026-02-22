@@ -20,6 +20,7 @@ brew 'lsd'                      # Listing files with info (better ls)
 brew 'openssl@3'                # Cryptography and SSL/TLS Toolkit
 brew 'fzf'                      # Fuzzy file finder and filtering
 brew 'shellcheck'               # Shell script linter
+brew 'typos-cli'                # Check for typos in your code
 brew 'tldr'                     # Community-maintained docs (better man)
 brew 'entr'                     # Run arbitrary commands when files change
 brew 'jq'                       # JSON parser, output and query files
