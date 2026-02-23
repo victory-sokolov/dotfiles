@@ -2,27 +2,72 @@
 
 # clean-xcode.sh
 #
-# This script removes various Xcode cache and derived data directories to
-# free up disk space and resolve common build issues. It also deletes
-# unavailable simulators using `xcrun simctl`.
-#
-# Usage: Run this script from any location. It will operate on standard
-# Xcode data paths under the current user’s home directory.
+# Enhanced script: shows sizes of common Xcode caches / derived-data,
+# prints a total, and prompts the user before removing anything.
 
-# Remove Xcode derived data (build artifacts, indexes, etc.)
-rm -rf "${HOME}/Library/Developer/Xcode/DerivedData"
+set -euo pipefail
 
-# Remove device support files for iOS (usually contains symbol files)
-rm -rf "${HOME}/Library/Developer/Xcode/iOS DeviceSupport"
+TARGETS=(
+	"${HOME}/Library/Developer/Xcode/DerivedData"
+	"${HOME}/Library/Developer/Xcode/iOS DeviceSupport"
+	"${HOME}/Library/Developer/Xcode/watchOS DeviceSupport"
+	"${HOME}/Library/Developer/CoreSimulator/Caches"
+	"${HOME}/Library/Caches/com.apple.dt.Xcode"
+)
 
-# Remove device support files for watchOS
-rm -rf "${HOME}/Library/Developer/Xcode/watchOS DeviceSupport"
+human_kb() {
+	kb=${1:-0}
+	if [ "$kb" -lt 1024 ]; then
+		echo "${kb}K"
+		return
+	fi
+	mb=$((kb/1024))
+	if [ "$mb" -lt 1024 ]; then
+		echo "${mb}M"
+		return
+	fi
+	# show one decimal for GB
+	gb=$(awk "BEGIN {printf \"%.1f\", ${mb}/1024}")
+	echo "${gb}G"
+}
 
-# Clear simulator cache data
-rm -rf "${HOME}/Library/Developer/CoreSimulator/Caches"
+total_kb=0
+any_found=false
 
-# Remove Xcode-specific caches
-rm -rf "${HOME}/Library/Caches/com.apple.dt.Xcode"
+printf "%-66s %10s\n" "Path" "Size"
+printf "%s\n" "$(printf '%.0s-' {1..80})"
+for p in "${TARGETS[@]}"; do
+	if [ -e "$p" ]; then
+		kb=$(du -sk "$p" 2>/dev/null | awk '{print $1}')
+		human=$(human_kb "$kb")
+		printf "%-66s %10s\n" "$p" "$human"
+		total_kb=$((total_kb + (kb + 0)))
+		any_found=true
+	else
+		printf "%-66s %10s\n" "$p" "(missing)"
+	fi
+done
 
-# Delete unavailable simulators to clean up simctl state
-xcrun simctl delete unavailable
+if ! $any_found; then
+	echo "No Xcode-related directories found to evaluate. Exiting."
+	exit 0
+fi
+
+human_total=$(human_kb "$total_kb")
+printf "%s\n" "$(printf '%.0s-' {1..80})"
+printf "%-66s %10s\n" "Total" "$human_total"
+
+read -r -p "Delete all listed items? [y/N]: " confirm
+if [[ "$confirm" =~ ^[Yy]$ ]]; then
+	echo "Removing..."
+	for p in "${TARGETS[@]}"; do
+		if [ -e "$p" ]; then
+			rm -rf "$p"
+			echo "Removed: $p"
+		fi
+	done
+	xcrun simctl delete unavailable || true
+	echo "Cleanup finished."
+else
+	echo "Aborted: no files were removed."
+fi
