@@ -48,6 +48,44 @@ node-flush() # Reinstall node deps
     pm i && pm start
 }
 
+nui() # Interactive package updates (pnpm, npm, bun)
+{
+  local pm=$(_pm_detect)
+  case "$pm" in
+      bun)
+        bun update --interactive
+        ;;
+      pnpm)
+        pnpm update --interactive || pnpm dlx npm-check-updates --interactive || bunx npm-check-updates --interactive || bun x npm-check-updates --interactive || npx npm-check-updates --interactive
+        ;;
+      npm)
+        bunx npm-check-updates --interactive || bun x npm-check-updates --interactive || pnpm dlx npm-check-updates --interactive || npx npm-check-updates --interactive
+        ;;
+      *)
+        pm update --interactive
+        ;;
+  esac
+}
+
+nua() # Update all packages to latest (pnpm, npm, bun)
+{
+  local pm=$(_pm_detect)
+  case "$pm" in
+      bun)
+        bun update --latest
+        ;;
+      pnpm)
+        pnpm update --latest || { pnpm dlx npm-check-updates -u && pnpm install; } || { bunx npm-check-updates -u && pnpm install; } || { bun x npm-check-updates -u && pnpm install; } || { npx npm-check-updates -u && pnpm install; } || pnpm update
+        ;;
+      npm)
+        { bunx npm-check-updates -u && npm install; } || { bun x npm-check-updates -u && npm install; } || { pnpm dlx npm-check-updates -u && npm install; } || { npx npm-check-updates -u && npm install; } || npm update
+        ;;
+      *)
+        pm update --latest
+        ;;
+  esac
+}
+
 #====================
 # NVM
 #====================

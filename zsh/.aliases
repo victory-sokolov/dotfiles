@@ -177,10 +177,6 @@ alias ka="kubectl apply -f"
 # Terraform
 alias tfa="terraform apply -auto-approve"
 
-# Package Manager Aliases
-alias npm-update="npx npm-check-updates -u"
-alias npm-check="npx npm-check-updates --interactive"
-
 # NPM
 alias nlg="p list --depth=0"
 alias nrd="p run dev"
