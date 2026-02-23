@@ -524,12 +524,19 @@ fcode() # FZF directory selector for VSCode with visual separation
             fi
         '")
     
-    # Skip headers and open selected directory
+    # Skip headers and open selected directory — cd there in the current shell
     if [[ -n "$selected" && "$selected" != "=== "* ]]; then
+        local dirpath=""
+
         if [[ -d "$sass_projects_dir/$selected" ]]; then
-            code "$sass_projects_dir/$selected"
+            dirpath="$sass_projects_dir/$selected"
         elif [[ -d "$packages_dir/$selected" ]]; then
-            code "$packages_dir/$selected"
+            dirpath="$packages_dir/$selected"
+        fi
+
+        if [[ -n "$dirpath" ]]; then
+            cd "$dirpath" || return
+            code "$dirpath"
         fi
     fi
 }
