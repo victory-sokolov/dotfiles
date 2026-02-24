@@ -170,4 +170,4 @@ _evalcache kubectl completion zsh
 [[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
 
 # OpenClaw Completion
-source <(openclaw completion --shell zsh)
+command -v openclaw &>/dev/null && source <(openclaw completion --shell zsh)
