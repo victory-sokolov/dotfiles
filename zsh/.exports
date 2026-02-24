@@ -21,7 +21,7 @@ export HIST_IGNORE_SPACE="true"
 # for bash
 export HISTIGNORE="&:ls:[bf]g:exit:reset:clear:cd:cd ..:cd..:zh"
 # for zsh
-export HISTORY_IGNORE="(ls|cd|pwd|exit|cd \.\.||clear|reset|exit|code \.|ga \.|gp|gst|reload|history|exit|q)"
+export HISTORY_IGNORE="(ls(| *)|pwd(| *)|exit(| *)|clear|code(| *)|ga(| *)|gp(| *)|gst(| *)|gcmsg(| *)|reload(| *)|history(| *))"
 
 # NVM
 # export NVM_DIR="$HOME/.nvm"
@@ -54,7 +54,6 @@ export PYTHONWARNINGS="ignore:Unverified HTTPS request"
 export PATH="$HOME/.local/bin:$HOME/.poetry/bin:$PATH"
 
 # FZF
-# export FZF_DEFAULT_COMMAND="fd --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build} --type f"
 export FZF_DEFAULT_COMMAND="rg \
     --files \
     --hidden \
@@ -96,6 +95,7 @@ export PATH="/Users/viktorsokolov/.antigravity/antigravity/bin:$PATH"
 # Added by Windsurf
 export PATH="/Users/viktor/.codeium/windsurf/bin:$PATH"
 
+setopt EXTENDED_GLOB             # enable extended glob patterns (needed for HISTORY_IGNORE)
 setopt EXTENDED_HISTORY          # write the history file in the ":start:elapsed;command" format.
 setopt HIST_IGNORE_ALL_DUPS      # delete old recorded entry if new entry is a duplicate.
 setopt HIST_NO_STORE             # Don't store history commands
