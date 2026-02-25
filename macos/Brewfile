@@ -58,6 +58,7 @@ brew 'glow'                     # Markdown reader in terminal
 brew 'yazi'                     # Terminal file manager
 brew 'fastfetch'                # System info in terminal
 brew 'ffmpeg'                   # Video and audio processing
+brew 'scc'                      # Line code counter 
 
 
 # Git
