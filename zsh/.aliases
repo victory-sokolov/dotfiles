@@ -18,6 +18,7 @@ alias wget="wget -c"
 # Generate uuid
 alias uuid="uuidgen | pbcopy && pbpaste && echo"
 alias loc="scc"
+alias cl="claude"
 
 if _has rg; then
     alias grep="rg --smart-case --hidden --no-heading --column --line-buffered"
