@@ -15,3 +15,5 @@ export PATH="$HOME/.npm-packages/bin:$PATH"
 # This won't be added again if you remove it.
 # shellcheck source=~/.orbstack/shell/init.zsh
 source ~/.orbstack/shell/init.zsh 2>/dev/null || :
+
+eval "$(/opt/homebrew/bin/brew shellenv zsh)"

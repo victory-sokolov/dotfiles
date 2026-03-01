@@ -84,32 +84,24 @@ for package in "${PACKAGES[@]}"; do
     if [ -d "$DOTFILES_DIR/$package" ]; then
         echo "Processing $package..."
         
+        target_dir="$HOME"
         if [ "$package" = "nvim" ]; then
-            echo "Ensuring .config directory exists for nvim..."
-            mkdir -p "$HOME/.config"
+            target_dir="$HOME/.config/nvim"
+            mkdir -p "$target_dir"
         fi
         
         # Backup existing files before stowing
-        backup_existing_files "$package"
+        backup_existing_files "$package" "$target_dir"
         
-        echo "Stowing $package..."
+        echo "Stowing $package to $target_dir..."
         cd "$DOTFILES_DIR" || exit
-        stow "$package"
+        stow --target="$target_dir" "$package"
     else
         echo "Warning: Package $package not found"
     fi
 done
 
-# Handle .config packages separately
-if [ -d "$DOTFILES_DIR/.config" ]; then
-    echo "Processing .config packages..."
-    # Backup existing files before stowing
-    backup_existing_files ".config" "$HOME/.config"
-    
-    echo "Stowing .config packages..."
-    cd "$DOTFILES_DIR" || exit
-    stow --target="$HOME/.config" nvim
-fi
+
 
 echo "Dotfiles setup complete!"
 echo "Any conflicting files have been backed up to: $BACKUP_DIR"

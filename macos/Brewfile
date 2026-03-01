@@ -62,7 +62,6 @@ brew 'scc'                      # Line code counter
 
 
 # Git
-brew 'git'                      # Git Code versioning
 brew 'git-lfs'                  # Git large files storage
 brew 'gh'                       # Interact with GitHub PRs, issues, repos
 brew 'git-delta'                # Extra git commands for common tasks
