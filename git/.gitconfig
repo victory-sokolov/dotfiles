@@ -187,7 +187,7 @@
 [commit]
     verbose = true
 	template = ~/.gitmessage
-	gpgsign = true
+	gpgsign = false
 
 # The rerere (reuse recorded resolution) helps automate the process of resolving conflicts 
 # that have been resolved before, which is especially useful in scenarios where conflicts happen repeatedly
