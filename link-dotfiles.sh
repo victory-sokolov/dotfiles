@@ -7,19 +7,19 @@ DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # Add homebrew to path
-echo >> /Users/viktor/.zprofile
-echo 'eval "$(/opt/homebrew/bin/brew shellenv zsh)"' >> /Users/viktor/.zprofile
+echo >> $HOME/.zprofile
+echo 'eval "$(/opt/homebrew/bin/brew shellenv zsh)"' >> $HOME/.zprofile
 eval "$(/opt/homebrew/bin/brew shellenv zsh)"
 
 # Brew packages
 brew install stow
 
 # Package installation for Dotfiles
-git clone https://github.com/romkatv/zsh-defer.git ~/zsh-defer
-git clone https://github.com/mroth/evalcache "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/evalcache
-git clone https://github.com/Aloxaf/fzf-tab "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/fzf-tab
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install -y
+git clone https://github.com/romkatv/zsh-defer.git $HOME/zsh-defer
+git clone https://github.com/mroth/evalcache "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"/plugins/evalcache
+git clone https://github.com/Aloxaf/fzf-tab "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"/plugins/fzf-tab
+git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
+$HOME/.fzf/install -y
 
 yes | sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
