@@ -3,6 +3,17 @@
 # Get the directory where this script is located
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
+# Install homebrew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# Add homebrew to path
+echo >> /Users/viktor/.zprofile
+echo 'eval "$(/opt/homebrew/bin/brew shellenv zsh)"' >> /Users/viktor/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv zsh)"
+
+# Brew packages
+brew install stow
+
 # Package installation for Dotfiles
 git clone https://github.com/romkatv/zsh-defer.git ~/zsh-defer
 git clone https://github.com/mroth/evalcache "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/evalcache
@@ -59,7 +70,6 @@ backup_existing_files() {
 }
 
 # List of packages to stow
-brew install stow
 PACKAGES=(
     "zsh"
     "git"
