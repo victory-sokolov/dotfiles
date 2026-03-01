@@ -37,6 +37,9 @@ export PATH=$GEM_HOME/bin:$PATH
 # Go
 export PATH="$PATH:$(go env GOPATH)/bin"
 
+# Rust
+export PATH="$HOME/.cargo/bin:$PATH"
+
 # PHP
 export PATH="$HOME/.symfony/bin:$PATH"
 
@@ -52,6 +55,7 @@ export PIP_REQUIRE_VIRTUALENV=false
 export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
 export PYTHONWARNINGS="ignore:Unverified HTTPS request"
 export PATH="$HOME/.local/bin:$HOME/.poetry/bin:$PATH"
+export GEMINI_YOLO_MODE=true
 
 # FZF
 export FZF_DEFAULT_COMMAND="rg \
