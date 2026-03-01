@@ -59,6 +59,7 @@ backup_existing_files() {
 }
 
 # List of packages to stow
+brew install stow
 PACKAGES=(
     "zsh"
     "git"
