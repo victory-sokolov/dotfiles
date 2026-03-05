@@ -238,8 +238,10 @@
     a = add
     # Discard all local changes
     discard = "!git reset --hard HEAD && git clean -fdx"
-    # Delete all the history of the branch and start from main
-    nuke = "!git fetch origin && git reset --hard ${GIT_UPSTREAM:-origin/main} && git clean -fdx"
+    # Delete local changes and reset branch to upstream while keeping a recovery pointer
+    nuke = "!zsh -lc 'source \"${DOTFILES:-$HOME/dotfiles}/git/.git-functions\"; git_nuke'"
+    # Restore HEAD to the latest backup created by git nuke
+    unnuke = "!zsh -lc 'source \"${DOTFILES:-$HOME/dotfiles}/git/.git-functions\"; git_unnuke'"
 
     # Commit
     amend = 'commit --amend --no-edit'

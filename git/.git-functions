@@ -262,6 +262,96 @@ git-preview() # Git view commit, diff between two selected commits (Select commi
     '
 }
 
+git_nuke() # Reset to upstream and clean repo with recovery backup
+{
+    local upstream ts backup_ref stash_mode did_stash
+
+    upstream="${GIT_UPSTREAM:-origin/main}"
+    ts="$(date +%Y%m%d-%H%M%S)"
+    backup_ref="refs/backup/pre-nuke-${ts}"
+    stash_mode="${GIT_NUKE_STASH_MODE:-auto}"
+    did_stash=0
+
+    git update-ref "$backup_ref" HEAD
+    echo "Saved backup ref: $backup_ref"
+
+    case "$stash_mode" in
+      none)
+        ;;
+      tracked)
+        if ! git diff --quiet || ! git diff --cached --quiet; then
+          git stash push -m "pre-nuke ${ts}" >/dev/null 2>&1 || true
+          did_stash=1
+        fi
+        ;;
+      all)
+        git stash push -a -m "pre-nuke ${ts}" >/dev/null 2>&1 || true
+        did_stash=1
+        ;;
+      auto|*)
+        if ! git diff --quiet || ! git diff --cached --quiet || [[ -n "$(git ls-files --others --exclude-standard)" ]]; then
+          git stash push -u -m "pre-nuke ${ts}" >/dev/null 2>&1 || true
+          did_stash=1
+        fi
+        ;;
+    esac
+
+    if [[ "${GIT_NUKE_SKIP_FETCH:-0}" != "1" ]]; then
+      git fetch origin
+    fi
+    git reset --hard "$upstream"
+    git clean -fdx
+
+    if [[ "$did_stash" -eq 1 ]]; then
+      git_prune_pre_nuke_stashes
+      echo "Nuke complete. Recover with: git unnuke (and optionally git stash pop)"
+    else
+      echo "Nuke complete. Recover with: git unnuke"
+    fi
+}
+
+git_prune_pre_nuke_stashes() # Keep only latest pre-nuke stashes
+{
+    local keep ref pruned
+
+    keep="${GIT_NUKE_STASH_KEEP:-3}"
+    pruned=0
+
+    if [[ ! "$keep" =~ ^[0-9]+$ ]]; then
+      keep=3
+    fi
+
+    while true; do
+      ref="$(git stash list --format='%gd %gs' | awk '/pre-nuke / {print $1}' | sed -n "$((keep + 1))p")"
+      if [[ -z "$ref" ]]; then
+        break
+      fi
+
+      git stash drop "$ref" >/dev/null 2>&1 || break
+      pruned=1
+    done
+
+    if [[ "$pruned" -eq 1 ]]; then
+      echo "Pruned old pre-nuke stashes (kept latest ${keep})."
+    fi
+}
+
+git_unnuke() # Restore to the latest nuke backup ref
+{
+    local ref
+
+    ref="$(git for-each-ref --sort=-creatordate --format='%(refname)' refs/backup/pre-nuke-* | head -n1)"
+
+    if [[ -z "$ref" ]]; then
+      echo "No pre-nuke backup ref found."
+      return 1
+    fi
+
+    git reset --hard "$ref"
+    echo "Restored to: $ref"
+    echo "Optional: recover removed files from stash with: git stash list && git stash pop"
+}
+
 git-rebase() # Git interactive rebase
 {
     git log --graph --color --format='%C(white)%h - %C(green)%cs - %C(blue)%s%C(red)%d' | fzf \
