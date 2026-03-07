@@ -588,3 +588,14 @@ getplace() # Get place name from GPS coordinates, requires image as parameter
       "\(.suburb // .neighbourhood // ""), \(.city // .town // .village // ""), \(.country)" 
       | ltrimstr(", ")'
 }
+
+gh-pr-comments() # List GitHub PR inline comments
+{
+    if ! _has gh; then
+        echo "Error: gh CLI not found. Install from https://github.com/cli/cli"
+        return 1
+    fi
+
+    OWNER_REPO=$(gh repo view --json nameWithOwner --jq .nameWithOwner)
+    gh pr-review review view --repo "$OWNER_REPO" 41 | jq
+}
