@@ -24,8 +24,8 @@ if [[ -z "$PR_NUMBER" ]]; then
     exit 1
 fi
 
-echo "Starting run-gh-pr-comments for $OWNER_REPO PR#$PR_NUMBER: initial wait 30s..."
-sleep 30
+echo "Starting run-gh-pr-comments for $OWNER_REPO PR#$PR_NUMBER: initial wait 60s..."
+sleep 60
 
 for i in {1..5}; do
     echo "Run #$i — $(date)"
