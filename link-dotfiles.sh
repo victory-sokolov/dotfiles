@@ -103,5 +103,55 @@ done
 
 
 
+# Function to symlink scripts to a target directory
+symlink_scripts() {
+    local scripts_dir="$1"
+    local target_dir="$2"
+    shift 2
+    local scripts=("$@")
+
+    mkdir -p "$target_dir"
+
+    for script in "${scripts[@]}"; do
+        local source="$scripts_dir/$script"
+        local target="$target_dir/${script%.sh}"  # remove .sh extension
+
+        if [ ! -f "$source" ]; then
+            echo "Warning: Script not found: $source"
+            continue
+        fi
+
+        # Backup existing file if not a symlink to our dotfiles
+        if [ -e "$target" ] && [ ! -L "$target" ]; then
+            mkdir -p "$BACKUP_DIR"
+            echo "Backing up: $target -> $BACKUP_DIR/"
+            mv "$target" "$BACKUP_DIR/"
+        fi
+
+        # Remove existing symlink (even if pointing elsewhere)
+        [ -L "$target" ] && rm "$target"
+
+        echo "Linking: $source -> $target"
+        ln -s "$source" "$target"
+        chmod +x "$source"
+    done
+}
+
+# Scripts to symlink
+SCRIPTS=(
+    "backup.sh"
+    "clone-repos.sh"
+    "clone_repo_by_topic.sh"
+    "clean-xcode.sh"
+    "gh-projects.sh"
+    "refactoring.sh"
+    "rename.sh"
+    "run-gh-pr-comments.sh"
+)
+
+# Symlink scripts to ~/.local/bin
+SCRIPTS_TARGET="$HOME/.local/bin"
+symlink_scripts "$DOTFILES_DIR/scripts" "$SCRIPTS_TARGET" "${SCRIPTS[@]}"
+
 echo "Dotfiles setup complete!"
 echo "Any conflicting files have been backed up to: $BACKUP_DIR"
