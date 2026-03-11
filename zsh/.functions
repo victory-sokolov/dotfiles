@@ -192,8 +192,6 @@ short() # Shorten url
    curl -s http://tinyurl.com/api-create.php\?url\="$url" | xargs
 }
 
-
-
 # USAGE: gifify video.mov [--width=800] [--height=600] [--fps=10] [--delay=10]
 gifify() {
     local input="$1"
@@ -412,13 +410,6 @@ install_latest_release() # Download and install latest release from Github
     wget -q "$download_url"
     sudo dpkg -i "$filename"
     rm "$filename"
-}
-
-upgrade-deps() # Upgrade global dependencies
-{
-    npx npm-check --global --update-all
-    pip3 install --upgrade pip
-    pip3 freeze | grep -v "^\-e" | grep -v "@" | cut -d = -f 1 | xargs pip3 install -U
 }
 
 timezsh() # Time ZSH load time
