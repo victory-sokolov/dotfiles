@@ -48,6 +48,25 @@ node-flush() # Reinstall node deps
     pm i && pm start
 }
 
+bun-next() # Run next command with bun
+{
+    # Define the project name from the first argument
+    PROJECT_NAME="$1"
+
+    bunx create-next-app@latest "$PROJECT_NAME" \
+        --ts \
+        --tailwind \
+        --no-react-compiler \
+        --eslint \
+        --app \
+        --src-dir \
+        --import-alias "@/*" \
+        --use-bun
+
+    # Move into the directory only if the creation was successful
+    cd "$PROJECT_NAME" || exit
+}
+
 nui() # Interactive package updates (pnpm, npm, bun)
 {
   local pm=$(_pm_detect)
