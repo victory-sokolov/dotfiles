@@ -59,7 +59,7 @@ brew 'yazi'                     # Terminal file manager
 brew 'fastfetch'                # System info in terminal
 brew 'ffmpeg'                   # Video and audio processing
 brew 'scc'                      # Line code counter 
-
+brew 'bats-core'                # Bash testing framework
 
 # Git
 brew 'git-lfs'                  # Git large files storage
