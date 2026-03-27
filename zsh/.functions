@@ -260,10 +260,64 @@ fcd() # FZF with cd command
 
 ghexport() # Download single folder from github
 {
-	github_link=$1
-	remove_path="/tree/master"
-  	link="${github_link/$remove_path/trunk/}"
-	svn export "${link}"
+    local github_link=$1
+    local curl_bin jq_bin mkdir_bin owner_repo branch relpath api_base dest_dir
+
+    if [ -z "$github_link" ]; then
+        echo "Usage: ghexport <github_folder_url>"
+        return 1
+    fi
+
+    curl_bin=$(whence -p curl 2>/dev/null)
+    jq_bin=$(whence -p jq 2>/dev/null)
+    mkdir_bin=$(whence -p mkdir 2>/dev/null)
+
+    [ -z "$curl_bin" ] && [ -x /usr/bin/curl ] && curl_bin=/usr/bin/curl
+    [ -z "$mkdir_bin" ] && [ -x /bin/mkdir ] && mkdir_bin=/bin/mkdir
+
+    if [ -z "$curl_bin" ] || [ -z "$jq_bin" ] || [ -z "$mkdir_bin" ]; then
+        echo "ghexport requires 'curl', 'jq', and 'mkdir'"
+        return 1
+    fi
+
+    owner_repo=$(printf '%s' "$github_link" | sed -E 's#https?://github.com/([^/]+/[^/]+).*#\1#')
+    branch=$(printf '%s' "$github_link" | sed -nE 's#https?://github.com/[^/]+/[^/]+/tree/([^/]+).*#\1#p')
+    relpath=$(printf '%s' "$github_link" | sed -nE 's#https?://github.com/[^/]+/[^/]+/tree/[^/]+/(.*)#\1#p')
+
+    if [ -z "$owner_repo" ] || [ -z "$branch" ] || [ -z "$relpath" ]; then
+        echo "Could not parse URL. Expected format: https://github.com/owner/repo/tree/branch/path"
+        return 1
+    fi
+
+    api_base="https://api.github.com/repos/$owner_repo/contents"
+    dest_dir=${relpath:t}
+    "$mkdir_bin" -p "$dest_dir" || return 1
+
+    _ghexport_download() {
+        local path="$1"
+        local outdir="$2"
+        local url="$api_base/$path?ref=$branch"
+        local data type name download_url
+
+        data=$($curl_bin -sSfL "$url") || return 1
+
+        echo "$data" | "$jq_bin" -c '.[]' | while read -r item; do
+            type=$(printf '%s' "$item" | "$jq_bin" -r '.type')
+            name=$(printf '%s' "$item" | "$jq_bin" -r '.name')
+            download_url=$(printf '%s' "$item" | "$jq_bin" -r '.download_url')
+
+            if [ "$type" = "file" ]; then
+                "$mkdir_bin" -p "$outdir" || return 1
+                echo "Downloading $path/$name -> $outdir/$name"
+                "$curl_bin" -sSfL "$download_url" -o "$outdir/$name" || return 1
+            elif [ "$type" = "dir" ]; then
+                "$mkdir_bin" -p "$outdir/$name" || return 1
+                _ghexport_download "$path/$name" "$outdir/$name" || return 1
+            fi
+        done
+    }
+
+    _ghexport_download "$relpath" "$dest_dir"
 }
 
 listen() # Check what is listening on specific port
