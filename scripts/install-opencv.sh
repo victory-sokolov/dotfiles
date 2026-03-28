@@ -1,5 +1,4 @@
-#!/bin/zsh
-# shellcheck shell=bash
+#!/bin/bash
 
 # Build OpenCV from source
 sudo apt-get update && sudo apt-get upgrade -y

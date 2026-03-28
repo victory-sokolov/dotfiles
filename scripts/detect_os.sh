@@ -1,5 +1,4 @@
-#!/bin/zsh
-# shellcheck shell=bash
+#!/bin/bash
 
 
 unameOut="$(uname -s)"

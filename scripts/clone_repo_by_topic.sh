@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# shellcheck source=lib/common.sh
+source "$(dirname "$0")/lib/common.sh"
+
 # -------- ARGUMENTS --------
 if [[ $# -ne 2 ]]; then
   echo "Usage: $0 <topic> <clone-directory>"
@@ -11,8 +14,7 @@ TOPIC="$1"
 CLONE_DIR="$2"
 
 # -------- DEPENDENCY CHECK --------
-command -v gh >/dev/null || { echo "gh CLI is required"; exit 1; }
-command -v jq >/dev/null || { echo "jq is required"; exit 1; }
+check_deps gh jq || exit 1
 
 mkdir -p "$CLONE_DIR"
 

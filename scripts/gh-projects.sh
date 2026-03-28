@@ -1,15 +1,12 @@
 #!/bin/bash
 
+# shellcheck source=lib/common.sh
+source "$(dirname "$0")/lib/common.sh"
+
 # Set your GitHub username or organization here
 OWNER="victory-sokolov"
 
-# Check dependencies
-for cmd in gh jq fzf glow; do
-    if ! command -v "$cmd" &> /dev/null; then
-        echo "Error: $cmd is not installed or not in PATH"
-        exit 1
-    fi
-done
+check_deps gh jq fzf glow || exit 1
 
 # Function to extract projects from JSON
 extract_projects() {

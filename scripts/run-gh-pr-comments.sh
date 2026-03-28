@@ -4,10 +4,10 @@
 
 set -euo pipefail
 
-if ! command -v gh >/dev/null 2>&1; then
-    echo "Error: gh CLI not found. Install: https://github.com/cli/cli"
-    exit 1
-fi
+# shellcheck source=lib/common.sh
+source "$(dirname "$0")/lib/common.sh"
+
+check_deps gh || exit 1
 
 OWNER_REPO=$(gh repo view --json nameWithOwner --jq .nameWithOwner)
 
