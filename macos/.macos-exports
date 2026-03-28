@@ -15,4 +15,10 @@ export BREW_PREFIX=${BREW_PREFIX:-/opt/homebrew}
 export PATH="$BREW_PREFIX/opt/gnu-sed/libexec/gnubin:$PATH"
 export PATH="$BREW_PREFIX/opt/gawk/libexec/gnubin:$PATH"
 
+# Android SDK
+export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+
 export GPG_PATH="/opt/homebrew/bin/gpg"
