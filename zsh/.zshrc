@@ -131,9 +131,6 @@ autoload -U add-zsh-hook
 
 add-zsh-hook chpwd load-nvmrc-deferred
 
-autoload -Uz add-zsh-hook
-# Reload env when changing directories
-add-zsh-hook chpwd dotenv_check
 
 # init autocomplete
 autoload -U compinit

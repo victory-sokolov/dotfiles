@@ -93,3 +93,6 @@ dotenv_check() {
     dotenv_load "$file"
   fi
 }
+
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd dotenv_check
