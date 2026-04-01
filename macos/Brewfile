@@ -26,6 +26,7 @@ brew 'entr'                     # Run arbitrary commands when files change
 brew 'jq'                       # JSON parser, output and query files
 brew 'imagemagick'              # Editor and image manipulator
 brew 'ngrok'                    # Reverse proxy for sharing localhost
+brew 'cloudflared'              # Cloudflare tunnel to expose localhost
 brew 'pwgen'                    # Password generator
 brew 'watchman'                 # Watch for changes and reload dev server
 brew 'cmake'                    # Software build tool
