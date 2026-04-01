@@ -179,6 +179,15 @@ alias ka="kubectl apply -f"
 # Terraform
 alias tfa="terraform apply -auto-approve"
 
+# Socket Firewall - security check before installing packages
+alias npm="sfw npm"
+alias pnpm="sfw pnpm"
+alias yarn="sfw yarn"
+alias bun="sfw bun"
+alias pip="sfw pip"
+alias uv="sfw uv"
+alias cargo="sfw cargo"
+
 # NPM
 alias nlg="p list --depth=0"
 alias nrd="p run dev"
