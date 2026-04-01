@@ -658,3 +658,36 @@ gh-pr-comments() # List GitHub PR inline comments
 
     gh pr-review review view --repo "$OWNER_REPO" "$pr_number" | jq
 }
+
+ollama_launch_claude() # Launch Claude via Ollama with interactive fzf model picker
+{
+    if ! command -v ollama >/dev/null 2>&1; then
+        echo "ollama not found in PATH" >&2
+        return 1
+    fi
+    if ! command -v fzf >/dev/null 2>&1; then
+        echo "fzf not found in PATH" >&2
+        return 1
+    fi
+
+    local models selected
+    models=("${(@f)$(ollama list 2>/dev/null | sed -n '2,$p' | awk '{print $1}')}")
+
+    if (( ${#models[@]} == 0 )); then
+        echo "No Ollama models found." >&2
+        return 1
+    fi
+
+    selected=$(printf '%s\n' "${models[@]}" | \
+        fzf --height=20% \
+                --preview "ollama list | sed -n '2,\$p' | grep --color=always -i \"{}\" || true" \
+                --preview-window=right:60%)
+
+    if [[ -z $selected ]]; then
+        echo "Selection cancelled." >&2
+        return 130
+    fi
+
+    echo "Launching Claude with model: $selected"
+    ollama launch claude --model "$selected"
+}

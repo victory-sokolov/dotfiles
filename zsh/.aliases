@@ -224,3 +224,4 @@ alias -s ts='bun'
 alias -s {py,go,js,ts}="vim"
 
 alias _update="omz update; npm update -g; npm-clean; nvim --headless '+Lazy! sync' +qa; pclear"
+alias olc='ollama_launch_claude'
