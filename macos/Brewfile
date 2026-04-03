@@ -64,6 +64,7 @@ brew 'bats-core'                # Bash testing framework
 
 # Git
 brew 'git-lfs'                  # Git large files storage
+brew 'git-filter-repo'          # Git history rewriting tool (replacement for git filter-branch)
 brew 'gh'                       # Interact with GitHub PRs, issues, repos
 brew 'git-delta'                # Extra git commands for common tasks
 brew 'nvie/tap/git-toolbelt'    # Suite of useful Git commands
@@ -71,7 +72,7 @@ brew 'lazygit'                  # Full Git management app
 brew 'tig'                      # Text interface for Git repositories
 
 # Editors
-brew 'neovim'                   # VIM Text editor
+brew 'neovim'                   # VIM Text editor``
 
 # Node
 brew 'node'                     # NodeJs
