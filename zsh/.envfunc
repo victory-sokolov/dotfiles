@@ -28,8 +28,20 @@ dotenv_unload() {
   [[ -z $_DOTENV_FILE ]] && return
 
   # Unset vars from old env file
-  while IFS='=' read -r key _; do
-    [[ -n $key && $key != \#* ]] && unset "$key"
+  while IFS= read -r line; do
+    # skip empty lines and comments
+    [[ -z $line || $line == \#* ]] && continue
+
+    # support lines like 'export KEY=val' or 'KEY=val'
+    if [[ $line =~ ^[[:space:]]*export[[:space:]]+([A-Za-z_][A-Za-z0-9_]*) ]]; then
+      key=${match[1]}
+    elif [[ $line =~ ^[[:space:]]*([A-Za-z_][A-Za-z0-9_]*) ]]; then
+      key=${match[1]}
+    else
+      continue
+    fi
+
+    unset "$key"
   done < "$_DOTENV_FILE"
 
   echo "✓ Unloaded: ${_DOTENV_FILE:t}"
