@@ -33,9 +33,9 @@ dotenv_unload() {
     [[ -z $line || $line == \#* ]] && continue
 
     # support lines like 'export KEY=val' or 'KEY=val'
-    if [[ $line =~ ^[[:space:]]*export[[:space:]]+([A-Za-z_][A-Za-z0-9_]*) ]]; then
+    if [[ $line =~ ^[[:space:]]*export[[:space:]]+([A-Za-z_][A-Za-z0-9_]*)= ]]; then
       key=${match[1]}
-    elif [[ $line =~ ^[[:space:]]*([A-Za-z_][A-Za-z0-9_]*) ]]; then
+    elif [[ $line =~ ^[[:space:]]*([A-Za-z_][A-Za-z0-9_]*)= ]]; then
       key=${match[1]}
     else
       continue
