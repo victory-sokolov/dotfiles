@@ -1,0 +1,24 @@
+name: Check duplicate git config entries
+
+on:
+  push: {}
+  pull_request: {}
+
+jobs:
+  check-git-config:
+    name: Check duplicate git config entries
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Detect duplicate git config entries
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Collect any entries whose count is not 1
+          output=$(git config --list --show-origin | sort | uniq -c | grep -v ' 1 ' || true)
+          if [ -n "$output" ]; then
+            echo "$output"
+            echo "::error::Duplicate git config entries found"
+            exit 1
+          fi
