@@ -11,7 +11,7 @@
     allowedSignersFile = ~/.config/git/allowed_signers
 
 [includeIf "gitdir:~/projects/"]
-    path = .gitconfig-work
+    path = ~/.gitconfig-work
 
 [advice]
   skippedCherryPicks = false
@@ -26,10 +26,6 @@
     # Significantly speed up performance on large repos by reducing the number of file lookups required.
     # Note: Commented out, since it causes issues when installing helm plugins
     ; fsmonitor = true
-
-    # Git will cache the state of untracked files, making subsequent checks faster. 
-    # Useful for large repositories with many untracked files.
-    untrackedcache = true
 
     # Git generates a graph of the commit history that improves the performance of commands like 
     # git log, git log --graph, and other history-related queries, especially in repo with many commits
@@ -62,7 +58,6 @@
     whitespace = fix
 
 [help]
-    autocorrect = 20
     autocorrect = prompt
 
 [pager]
@@ -98,7 +93,7 @@
 [init]
     # git init main branch by default
     defaultBranch = main
-    templatedir = ${DOTFILES}/git/templates
+    templatedir = ~/git/templates
 
 [index]
     # Compressed index
@@ -158,6 +153,8 @@
     autoSetupRemote = true
     # Make `git push` push relevant annotated tags when pushing branches out.
     followTags = true
+    # Ensure all submodule commits are pushed to a remote
+    recurseSubmodules = check
 
 [merge]
     tool = opendiff
@@ -184,6 +181,10 @@
     # enables automatic stashing of local changes when performing a rebase if there are uncommitted changes in the working directory
     autoStash = true
 
+    # Git will preserve your working directory changes when you start a rebase operation.
+    # This means that any changes you have that are not yet committed will be kept intact.
+    rebaseMerges = true
+
 [commit]
     verbose = true
 	template = ~/.gitmessage
@@ -196,16 +197,6 @@
     enabled = true
     # automatically apply previously recorded resolutions to conflicts without prompting the user.
     autoupdate = true
-
-[rebase]
-    # automatically squash commits when performing a rebase if the commits have a specific format in their commit messages
-    # if you have commits that are marked with a prefix of fixup! or squash!, 
-    # Git will automatically apply the appropriate actions during the rebase process.
-    autoSquash = true
-
-    # Git will preserve your working directory changes when you start a rebase operation.
-    # This means that any changes you have that are not yet committed will be kept intact.
-    preserve = true
 
 [checkout]
     defaultRemote = origin
@@ -273,7 +264,7 @@
     # List each branch and its last revision date
     branchdate = !git for-each-ref --sort='-authordate' --format='%(refname)%09%(authordate)' refs/heads | sed -e 's-refs/heads/--' | less
     # Copy current branch name, useful for updating package definitions to a locally modified copy
-    branch-copy = !git rev-parse --abbrev-ref HEAD | tr -d '\n' | pbcopy
+    branch-copy = "!git rev-parse --abbrev-ref HEAD | tr -d '\n' | pbcopy"
     # Show most recent created branches
     recent = "!f() { count=${1:-10}; git for-each-ref --sort=-committerdate refs/heads --format='%(HEAD)%(color:yellow)%(refname:short)|%(color:bold green)%(committerdate:relative)|%(color:blue)%(subject)|%(color:magenta)%(authorname)%(color:reset)' --color=always --count=$count | column -ts'|'; }; f"
 
@@ -301,7 +292,7 @@
     gpf = 'git push --force-with-lease --force-if-includes'
     current = rev-parse --abbrev-ref HEAD
     # remove the file from git and from the history
-    remove='git ls-files --ignored --exclude-standart | xargs -0 git rm -r'
+    remove='git ls-files --ignored --exclude-standard | xargs -0 git rm -r'
     undo = reset HEAD~1
     # update all local branches. Sync with the target branch
     up = "!f() { git pull --all --rebase --autostash; git bclean; }; f"
