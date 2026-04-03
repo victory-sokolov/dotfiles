@@ -1,8 +1,7 @@
 name: Check duplicate git config entries
 
 on:
-  push: {}
-  pull_request: {}
+  pull_request:
 
 jobs:
   check-git-config:
