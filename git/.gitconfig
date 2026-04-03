@@ -93,7 +93,7 @@
 [init]
     # git init main branch by default
     defaultBranch = main
-    templatedir = ${DOTFILES}/git/templates
+    templatedir = ~/git/templates
 
 [index]
     # Compressed index
@@ -183,7 +183,7 @@
 
     # Git will preserve your working directory changes when you start a rebase operation.
     # This means that any changes you have that are not yet committed will be kept intact.
-    preserve = true
+    rebaseMerges = true
 
 [commit]
     verbose = true
@@ -292,7 +292,7 @@
     gpf = 'git push --force-with-lease --force-if-includes'
     current = rev-parse --abbrev-ref HEAD
     # remove the file from git and from the history
-    remove='git ls-files --ignored --exclude-standart | xargs -0 git rm -r'
+    remove='git ls-files --ignored --exclude-standard | xargs -0 git rm -r'
     undo = reset HEAD~1
     # update all local branches. Sync with the target branch
     up = "!f() { git pull --all --rebase --autostash; git bclean; }; f"
