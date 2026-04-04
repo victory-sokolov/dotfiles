@@ -18,7 +18,6 @@ alias wget="wget -c"
 # Generate uuid
 alias uuid="uuidgen | pbcopy && pbpaste && echo"
 alias loc="scc"
-alias cl="claude"
 
 if _has rg; then
     alias grep="rg --smart-case --hidden --no-heading --column --line-buffered"
@@ -58,8 +57,8 @@ alias yt-mp4="yt-dlp -f 'bestvideo[ext=mp4][vcodec^=avc1]+bestaudio[ext=m4a]/bes
 alias pw="pwgen 16 -1 | pbcopy"
 alias fontlist="fc-list | cut -d: -f1 | fzf"
 
-# Allow for pasting lines of code that start with a dollar sign. 
-alias \$='' 
+# Allow for pasting lines of code that start with a dollar sign.
+alias \$=''
 
 # Get week number of the current year
 alias week="date +%V"
@@ -213,6 +212,9 @@ alias ghproj="$DOTFILES/scripts/fzf_gh_projects.sh"
 
 # Claude Code CLI with tmux
 alias cmux="tmux new-session -s claude 'claude'"
+alias olc="ollama_launch_claude"
+alias cl="claude"
+alias oc="opencode"
 
 # JS & Node
 alias remove_console_log="sed -i '' '/console.log(.*)/d' */**.{ts,js,tsx,jsx}"
@@ -224,4 +226,3 @@ alias -s ts='bun'
 alias -s {py,go,js,ts}="vim"
 
 alias _update="omz update; npm update -g; npm-clean; nvim --headless '+Lazy! sync' +qa; pclear"
-alias olc='ollama_launch_claude'
