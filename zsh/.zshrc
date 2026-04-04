@@ -87,7 +87,8 @@ zsh-defer source "$DOTFILES/zsh/.aliases" && \
     source "$DOTFILES/zsh/.envfunc" && \
     source "$DOTFILES/zsh/.kube" && \
     source "$DOTFILES/zsh/.brew" && \
-    source "$DOTFILES/git/.git-functions"
+    source "$DOTFILES/git/.git-functions" && \
+    source "$DOTFILES/git/.git-worktree"
 
 # Private env variables
 PRIVATE_EXPORT_PATH="$HOME/dotfiles/zsh/.exports-private"
@@ -111,7 +112,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
       # ubuntu via WSL Windows Subsystem for Linux
       # Set symlink for vscode
       ln -s "/mnt/c/Program Files/Microsoft VS Code/bin/code" /usr/local/bin/code
-    
+
       alias open='explorer.exe'
 
       export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0

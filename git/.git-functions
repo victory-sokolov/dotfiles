@@ -52,13 +52,13 @@ gstlf() # Git stash list with fzf
 gstf() # Git stash selected files with fzf
 {
   local selected_files
-  
+
   selected_files=$(git ls-files --modified --others --exclude-standard | \
     fzf --multi \
         --preview 'git diff --color=always {}' \
         --preview-window=right:40% \
         --header="Select files to stash (TAB: multi-select)")
-  
+
   if [[ -n "$selected_files" ]]; then
     echo "Stashing files:"
     echo "$selected_files"
@@ -68,40 +68,6 @@ gstf() # Git stash selected files with fzf
   fi
 }
 
-# ==============
-# Git Worktree
-# ===============
-
-# Usage: gwt feature/branch-name
-gwtc() # Create Git worktree and switch to it
-{
-  local branch=$1
-  local dir=${2:-$branch}
-
-  [[ -z $branch ]] && { echo "usage: gwtc <branch-name> [directory-name]" >&2; return 1; }
-
-  # figure out the default branch (works even if it is not checked out locally)
-  local default
-  default=$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@')
-  # fallback for very old clones that lack the symbolic-ref
-  [[ -z $default ]] && default=$(git branch -rl '*/master' '*/main' | tail -1 | sed 's@.*/@@')
-
-  git worktree add -b "$branch" ../"$dir" "$default" \
-    && cd ../"$dir" \
-    && p install
-}
-
-worktree() # Git worktree with fzf
-{
-    worktree=$(
-        git worktree list | fzf \
-            --prompt="Switch Worktree: " \
-            --height 40% |
-            awk '{print $1}'
-    )
-
-    cd "$worktree" || return
-}
 
 # Ref: https://gist.github.com/Bhupesh-V/43bc0f2d8b84ea6c2ce767de56260b34
 commit() # Interactive git commit
@@ -141,7 +107,7 @@ clone() # Clone repo and install dependencies
 }
 
 gfzf() # List Git projects with fzf
-{ 
+{
     local depth="${1:-3}"
     local selected_folder
     selected_folder=$(find . -maxdepth "$depth" -type d -name ".git" -prune -exec dirname {} \; | fzf --height=50%); [ -n "$selected_folder" ] && code "$selected_folder"
