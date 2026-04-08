@@ -21,7 +21,7 @@ export EDITOR="nvim"
 source "$DOTFILES/zsh/.exports"
 # Initialize mise if available
 if command -v mise &> /dev/null; then
-    zsh-defer _evalcache "$(mise activate zsh)"
+    eval "$(mise activate zsh)"
 fi
 
 # Setopts autocorrections
@@ -163,14 +163,8 @@ if command -v zoxide &> /dev/null; then
     _evalcache zoxide init zsh
 fi
 
-# Initialize fnm if available
-if command -v fnm &> /dev/null; then
-    eval "$(fnm env --use-on-cd --shell zsh)"
-fi
-
 _evalcache kubectl completion zsh
 
-[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
 
 # OpenClaw Completion
 command -v openclaw &>/dev/null && source <(openclaw completion --shell zsh)
