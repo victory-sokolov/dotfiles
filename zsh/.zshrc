@@ -163,6 +163,11 @@ if command -v zoxide &> /dev/null; then
     _evalcache zoxide init zsh
 fi
 
+# Initialize fnm if available
+if command -v fnm &> /dev/null; then
+    eval "$(fnm env --use-on-cd --shell zsh)"
+fi
+
 _evalcache kubectl completion zsh
 
 [[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
