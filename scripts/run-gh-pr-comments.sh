@@ -5,7 +5,12 @@
 set -euo pipefail
 
 # shellcheck source=lib/common.sh
-source "$(dirname "$0")/lib/common.sh"
+if [ -L "$0" ]; then
+  SCRIPT_DIR="$(dirname "$(readlink "$0")")"
+else
+  SCRIPT_DIR="$(dirname "$0")"
+fi
+source "${SCRIPT_DIR}/lib/common.sh"
 
 check_deps gh || exit 1
 
