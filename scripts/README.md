@@ -1,6 +1,6 @@
 ## Various Python and Bash scripts
 - Make file executable: `chmod +x rename.sh`
-- Symlink shell script to `/usr/local/bin/` to execute script globally: `sudo ln -s "$(pwd)/scripts/rename.sh" /usr/local/bin/rename`
+- Symlink shell script to `/opt/homebrew/bin/` to execute script globally: `sudo ln -s "$(pwd)/scripts/rename.sh" /opt/homebrew/bin/rename`
 
 
 ## Scripts
