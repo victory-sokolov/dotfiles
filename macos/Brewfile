@@ -31,7 +31,7 @@ brew 'pwgen'                    # Password generator
 brew 'watchman'                 # Watch for changes and reload dev server
 brew 'cmake'                    # Software build tool
 brew 'just'                     # Command runner, Makefile replacement
-brew 'starship'                 # Customizable  Terminal prompt 
+brew 'starship'                 # Customizable  Terminal prompt
 brew 'fd'                       # Find alternative
 brew 'hyperfine'                # Benchmarking tool
 brew 'navi'                     # Execute one-liners from cheatsheet
@@ -46,7 +46,7 @@ brew 'rip2'                     # Rust based rm alternative
 brew 'osv-scanner'              # Scan packages for vulnerabilities
 brew 'duf'                      # Disk usage
 brew 'zoxide'                   # Smart cd command
-brew 'htop'                     # top alternative to see running processes  
+brew 'htop'                     # top alternative to see running processes
 brew 'glances'                  # Monitoring tool
 brew 'vivid'                    # Theme for LS_COLORS
 brew 'myrepos'                  # Run commands in multiple Git repositories
@@ -59,8 +59,9 @@ brew 'glow'                     # Markdown reader in terminal
 brew 'yazi'                     # Terminal file manager
 brew 'fastfetch'                # System info in terminal
 brew 'ffmpeg'                   # Video and audio processing
-brew 'scc'                      # Line code counter 
+brew 'scc'                      # Line code counter
 brew 'bats-core'                # Bash testing framework
+brew 'atuin'                    # Shell history manager with search and sync
 
 # Git
 brew 'git-lfs'                  # Git large files storage
@@ -90,7 +91,7 @@ brew 'go' # Go language
 brew 'rustup' # Rust language
 
 # Python
-brew 'jupyterlab'               # Python integractive development environment           
+brew 'jupyterlab'               # Python integractive development environment
 brew 'ruff'                     # Python prettier
 brew 'bpython'                  # Better Python shell
 brew 'python-setuptools'        # Package distribution tool

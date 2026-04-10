@@ -1,4 +1,4 @@
-# Dotfiles exports 
+# Dotfiles exports
 export PATH="$DOTFILES/scripts/git:$PATH"
 export PATH="$DOTFILES/scripts:$PATH"
 
@@ -51,7 +51,7 @@ export PYTHONDONTWRITEBYTECODE=1
 export PYTHONSTARTUP=~/.pythonrc.py
 # Prevent installing Pip packages globally
 export PIP_REQUIRE_VIRTUALENV=false
-# Cache deps to prevent having to reinstall deps that are used across multiple virtual environments 
+# Cache deps to prevent having to reinstall deps that are used across multiple virtual environments
 export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
 export PYTHONWARNINGS="ignore:Unverified HTTPS request"
 export PATH="$HOME/.local/bin:$HOME/.poetry/bin:$PATH"
@@ -63,7 +63,7 @@ export FZF_DEFAULT_COMMAND="rg \
     --hidden \
     --follow \
     --no-ignore-vcs \
-"      
+"
 export FZF_DEFAULT_OPTS="--color=dark --reverse --cycle --border=rounded"
 export FZF_COMPLETION_TRIGGER='~~'
 export FZF_CTRL_T_OPTS="$FZF_DEFAULT_OPTS --preview='bat --color=always --style=numbers {}'"
@@ -80,6 +80,7 @@ export NODE_REPL_HISTORY_SIZE='32768'
 export NODE_REPL_MODE='sloppy'
 # npm global packages
 export PATH="$HOME/.npm-global/bin:$PATH"
+export PATH="/Users/viktor/.cache/.bun/bin:$PATH"
 
 # Docker
 export COMPOSE_BAKE=true
