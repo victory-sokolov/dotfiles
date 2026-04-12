@@ -77,8 +77,7 @@ brew 'neovim'                   # VIM Text editor``
 
 # Node
 brew 'node'                     # NodeJs
-tap 'oven-sh/bun'               # Tap for Bun JS runtime
-brew 'bun'                      # Bun JS runtime
+brew 'oven-sh/bun/bun'          # Bun JS runtime
 brew 'nvm'                      # Node version manager
 brew 'fnm'                      # Node version manager built with Rust
 brew 'pnpm'                     # PNPM package manager
