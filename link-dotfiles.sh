@@ -149,6 +149,9 @@ SCRIPTS=(
     "run-gh-pr-comments.sh"
 )
 
+# Install global npm packages
+npm install -g $(cat install/npmfile)
+
 # Symlink scripts to ~/.local/bin
 SCRIPTS_TARGET="$HOME/.local/bin"
 symlink_scripts "$DOTFILES_DIR/scripts" "$SCRIPTS_TARGET" "${SCRIPTS[@]}"
