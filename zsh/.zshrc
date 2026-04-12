@@ -163,7 +163,9 @@ if command -v zoxide &> /dev/null; then
     _evalcache zoxide init zsh
 fi
 
-eval "$(atuin init zsh)"
+if command -v atuin &> /dev/null; then
+    eval "$(atuin init zsh)"
+fi
 
 _evalcache kubectl completion zsh
 
