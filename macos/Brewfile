@@ -122,6 +122,7 @@ brew 'tnk-studio/tools/lazykube' # Lazy kubernetes management
 brew 'dive'                      # Explore each Docker layer
 brew 'orbstack'                 # Docker desktop alternative
 brew 'act'                      # Run GitHub Actions locally
+brew 'docker/tap/sbx'           # Sandbox for testing Docker images
 
 # Terraform
 tap 'hashicorp/tap'
