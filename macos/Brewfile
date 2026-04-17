@@ -10,7 +10,8 @@ brew 'mackup'                   # Keep your application settings in sync
 brew 'mas'                      # Command line interface for the Mac App Store
 brew 'pkg-config'               # https://github.com/driesvints/dotfiles/issues/20
 brew 'tree'                     # Directory listings as tree structure
-brew 'wget'                     # Download tool
+brew 'wget'                     # Download wget
+brew 'curl'                     # Upgrade to the latest cUrl version
 brew 'procs'                    # Modern replacement for ps
 brew 'gnu-sed'                  # GNU version of sed
 brew 'gawk'                     # GNU verison of awk

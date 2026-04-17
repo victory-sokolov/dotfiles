@@ -102,6 +102,9 @@ export PATH="/Users/viktor/.codeium/windsurf/bin:$PATH"
 # Added by Obsidian
 export PATH="$PATH:/Applications/Obsidian.app/Contents/MacOS"
 
+# Curl
+# Use the latest cUrl version installed by Homebrew, which supports HTTP/3
+export PATH="$(brew --prefix)/opt/curl/bin:$PATH"
 
 setopt EXTENDED_GLOB             # enable extended glob patterns (needed for HISTORY_IGNORE)
 setopt EXTENDED_HISTORY          # write the history file in the ":start:elapsed;command" format.
