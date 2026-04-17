@@ -1,6 +1,7 @@
 # Taps
 tap 'homebrew/cask'
 tap 'homebrew/core'
+tap 'mobile-dev-inc/tap' # Maestro mobile UI testing framework
 
 # Install Binaries
 brew 'bat'                      # Output highlighting (better cat)
@@ -91,12 +92,13 @@ brew 'go' # Go language
 brew 'rustup' # Rust language
 
 # Python
-brew 'jupyterlab'               # Python integractive development environment
-brew 'ruff'                     # Python prettier
-brew 'bpython'                  # Better Python shell
-brew 'python-setuptools'        # Package distribution tool
-brew 'uv'                       # Fast package manager
-brew 'pre-commit'               # Pre-commit hooks
+brew 'jupyterlab'                   # Python integractive development environment
+brew 'ruff'                         # Python prettier
+brew 'bpython'                      # Better Python shell
+brew 'python-setuptools'            # Package distribution tool
+brew 'uv'                           # Fast package manager
+brew 'pre-commit'                   # Pre-commit hooks
+brew 'mobile-dev-inc/tap/maestro' # Mobile UI testing framework
 
 # Ruby
 brew 'rbenv'                    # Ruby package manager
