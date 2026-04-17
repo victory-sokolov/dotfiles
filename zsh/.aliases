@@ -102,7 +102,7 @@ alias iop="npx @squoosh/cli --oxipng auto " # +file-name
 alias pg="psql postgres"
 
 # Network
-alias myip="curl https://ipinfo.io/ip"
+alias myip="curl -s https://ipinfo.io/ip; echo"
 alias localip="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
 alias ports="sudo lsof -i -P -n | grep LISTEN"
 
