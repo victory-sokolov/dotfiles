@@ -98,7 +98,7 @@ brew 'bpython'                      # Better Python shell
 brew 'python-setuptools'            # Package distribution tool
 brew 'uv'                           # Fast package manager
 brew 'pre-commit'                   # Pre-commit hooks
-brew 'mobile-dev-inc/tap/maestro' # Mobile UI testing framework
+brew 'mobile-dev-inc/tap/maestro'   # Mobile UI testing framework
 
 # Ruby
 brew 'rbenv'                    # Ruby package manager
@@ -117,15 +117,16 @@ brew 'hadolint'                 # Docker linter
 brew 'kubernetes-cli'           # Kubernetes CLI
 brew 'derailed/k9s/k9s'         # Kubernetes CLI management
 brew 'kubecolor'
-brew 'minikube'                 # Minikube
-brew 'helm'                     # Helm Kubernetes package manager
-brew 'helmfile'                 # Manage and deploy Helm charts
-brew 'kompose'                  # Convert docker-compose to Kubernetes files
+brew 'minikube'                  # Minikube
+brew 'helm'                      # Helm Kubernetes package manager
+brew 'helmfile'                  # Manage and deploy Helm charts
+brew 'kompose'                   # Convert docker-compose to Kubernetes files
 brew 'tnk-studio/tools/lazykube' # Lazy kubernetes management
 brew 'dive'                      # Explore each Docker layer
-brew 'orbstack'                 # Docker desktop alternative
-brew 'act'                      # Run GitHub Actions locally
-brew 'docker/tap/sbx'           # Sandbox for testing Docker images
+brew 'orbstack'                  # Docker desktop alternative
+brew 'act'                       # Run GitHub Actions locally
+brew 'docker/tap/sbx'            # Sandbox for testing Docker images
+brew 'pulumi/tap/pulumi'         # Pulumi infrastructure as code tool
 
 # Terraform
 tap 'hashicorp/tap'
