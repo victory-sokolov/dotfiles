@@ -81,7 +81,7 @@ _has() # Check whether executable exists
     command -v "$1" >/dev/null 2>&1
 }
 
-_fzf-down() 
+_fzf-down()
 {
     fzf --height 50% "$@"
 }
@@ -196,12 +196,12 @@ short() # Shorten url
 gifify() {
     local input="$1"
     local width=800 height=600 fps=10 delay=10
-    
+
     [[ -z "$input" ]] && {
         echo "Usage: gifify <input> [--width=N] [--height=N] [--fps=N] [--delay=N]"
         return 1
     }
-    
+
     # Parse options
     shift
     while [[ $# -gt 0 ]]; do
@@ -214,9 +214,9 @@ gifify() {
         esac
         shift
     done
-    
+
     local output="${input%.*}.gif"
-    
+
     # Check dependencies
     for cmd in ffmpeg convert gifsicle; do
         command -v $cmd >/dev/null 2>&1 || {
@@ -224,31 +224,31 @@ gifify() {
             return 1
         }
     done
-    
+
     echo "Converting $input → $output (${width}x${height}, ${fps}fps)"
-    
+
     # Extract high-quality PNG frames with proper scaling
     ffmpeg -hide_banner -loglevel error -i "$input" -r "$fps" \
         -vf "scale=${width}:${height}:force_original_aspect_ratio=decrease:flags=lanczos" \
         -vcodec png -sws_flags lanczos+accurate_rnd+full_chroma_int \
         "frame-%05d.png"
-    
+
     # Build convert/gifsicle options
     local convert_opts=(-limit memory 2GiB -limit map 4GiB +dither -layers Optimize)
     local gifsicle_opts=(--colors 256 --delay="$delay" --loop --optimize=3 --multifile)
-    
+
     # Convert to optimized GIF
     convert "${convert_opts[@]}" frame-*.png GIF:- | \
         gifsicle "${gifsicle_opts[@]}" - > "$output"
-    
+
     # Cleanup
     rm -f frame-*.png
-    
+
     echo "✓ Created $output ($(du -h "$output" | cut -f1))"
     command -v identify >/dev/null 2>&1 && identify "$output" | head -1
 }
 
-fcd() # FZF with cd command 
+fcd() # FZF with cd command
 {
   local DIR=$(
     fd --type d | fzf +m --select-1 --preview 'tree -C {} | head -n 50'
@@ -363,7 +363,7 @@ ssh-key() # generate ssh key with specific name
         echo "xclip is not installed. Public key:"
         cat ~/.ssh/"$name".pub
     fi
-} 
+}
 
 # Usage: json '{"foo":42}' or echo '{"foo":42}' | json
 json() # Format json string
@@ -377,7 +377,7 @@ json() # Format json string
 
 token() # generate secret token
 {
-	length=${1:-16}  # Use provided length or default to 16
+	length=${1:-32}  # Use provided length or default to 32
     python3 -c "import secrets; print(secrets.token_urlsafe(${length}))" | pbcopy
 }
 
@@ -389,7 +389,7 @@ create-db() # Drop and re-create db if exists or create new one
     else
         port=${2:-5432}
         dropdb -f --if-exists "$1"
-        createdb -h 127.0.0.1 -p "$port" -U postgres "$1" 
+        createdb -h 127.0.0.1 -p "$port" -U postgres "$1"
         echo "Database $1 successfully re-created!"
     fi
 }
@@ -476,19 +476,19 @@ kport() # Kill processes interactively with fzf (supports port number search)
 {
     local pids signal port_info
     signal="15"
-    
+
     # Format strings and commands
     local header_format="%-8s %-6s %-6s %-s %s\n"
-    
+
     local ps_filter='NR>1 && $11 !~ /^(\[|\/System\/|\/usr\/libexec\/)/ && $11 != "ps"'
     # Filter: skip header, exclude system processes and ps command itself
     local ps_printf='{printf "%-8s %-6.1f %-6.1f %-s %s\n", $2, $3, $4, $11, "N/A"}'
     # Format: PID, CPU%, MEM%, COMMAND, PORT (N/A for regular processes)
     local ps_awk_cmd="$ps_filter $ps_printf"
-    
+
     local lsof_awk_cmd='NR>1 {printf "%-8s %-6s %-6s %-s %s\n", $2, "N/A", "N/A", $1, $9}'
     local fzf_header="Select process(es) to kill [Usage: kport or kport [port]]"
-    
+
     # Unified function to get process list
     _get_process_list() {
         {
@@ -499,12 +499,12 @@ kport() # Kill processes interactively with fzf (supports port number search)
             lsof -iTCP -sTCP:LISTEN -n -P 2>/dev/null | awk "$lsof_awk_cmd" | sort -k5;
         }
     }
-    
+
     # Unified function to kill processes
     _kill_processes() {
         local target_pids="$1"
         local description="$2"
-        
+
         if [[ -n "$target_pids" ]]; then
             echo "$description"
             if echo "$target_pids" | xargs kill -"$signal" 2>/dev/null; then
@@ -515,7 +515,7 @@ kport() # Kill processes interactively with fzf (supports port number search)
             fi
         fi
     }
-    
+
     # Parse arguments: if first arg is a port number, kill processes on that port
     if [[ -n "$1" && "$1" =~ ^[0-9]+$ ]]; then
         # Filter process list for specific port
@@ -524,13 +524,13 @@ kport() # Kill processes interactively with fzf (supports port number search)
             echo "No processes found listening on port $1"
             return 1
         fi
-        
+
         # Extract PIDs and kill
         pids=$(echo "$port_info" | awk '{print $1}')
         _kill_processes "$pids" "Processes listening on port $1:"
         return
     fi
-    
+
     # Interactive mode
     pids=$(_get_process_list | fzf -m --header="$fzf_header" --header-lines=1 | awk '{print $1}')
     _kill_processes "$pids" "Selected PIDs: $pids"
@@ -541,7 +541,7 @@ fcode() # FZF directory selector for VSCode with visual separation
 {
     local sass_projects_dir="$HOME/Dev/saas"
     local packages_dir="$HOME/Dev/packages"
-    
+
     # Build directory list with headers
     local dirs=$({
         echo "=== SASS PROJECTS ==="
@@ -550,7 +550,7 @@ fcode() # FZF directory selector for VSCode with visual separation
         echo "=== PACKAGES ==="
         [[ -d "$packages_dir" ]] && find "$packages_dir" -maxdepth 1 -type d ! -path "$packages_dir" | sed 's|.*/||' | sort
     })
-    
+
     local selected=$(echo "$dirs" | fzf \
         --height 50% \
         --reverse \
@@ -568,7 +568,7 @@ fcode() # FZF directory selector for VSCode with visual separation
                 [[ -n \"\$readme_file\" ]] && head -n 50 \"\$readme_file\" | fold -w 80 -s || echo \"No README found\"
             fi
         '")
-    
+
     # Skip headers and open selected directory — cd there in the current shell
     if [[ -n "$selected" && "$selected" != "=== "* ]]; then
         local dirpath=""
@@ -616,7 +616,7 @@ getplace() # Get place name from GPS coordinates, requires image as parameter
 {
     # Cleanly grab coordinates without spaces or letters
     local raw_coords=$(exiftool -m -n -p '$gpslatitude,$gpslongitude' "$1" 2>/dev/null | tr -d '[:space:]')
-    
+
     if [ -z "$raw_coords" ]; then
         echo "No GPS data found."
         return
@@ -629,8 +629,8 @@ getplace() # Get place name from GPS coordinates, requires image as parameter
     curl -s -A "MyGeocodeTool/1.0" \
     "https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}" | \
     jq -r '
-      .address | 
-      "\(.suburb // .neighbourhood // ""), \(.city // .town // .village // ""), \(.country)" 
+      .address |
+      "\(.suburb // .neighbourhood // ""), \(.city // .town // .village // ""), \(.country)"
       | ltrimstr(", ")'
 }
 
