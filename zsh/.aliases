@@ -203,6 +203,7 @@ alias cmux="tmux new-session -s claude 'claude'"
 alias olc="ollama_launch_claude"
 alias cl="claude"
 alias oc="opencode"
+alias gm="gemini --yolo"
 
 # JS & Node
 alias remove_console_log="sed -i '' '/console.log(.*)/d' */**.{ts,js,tsx,jsx}"
