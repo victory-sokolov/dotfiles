@@ -64,6 +64,7 @@ brew 'ffmpeg'                   # Video and audio processing
 brew 'scc'                      # Line code counter
 brew 'bats-core'                # Bash testing framework
 brew 'atuin'                    # Shell history manager with search and sync
+brew 'mise'                     # Environment switcher for development
 
 # Git
 brew 'git-lfs'                  # Git large files storage
