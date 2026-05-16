@@ -128,6 +128,7 @@ brew 'orbstack'                  # Docker desktop alternative
 brew 'act'                       # Run GitHub Actions locally
 brew 'docker/tap/sbx'            # Sandbox for testing Docker images
 brew 'pulumi/tap/pulumi'         # Pulumi infrastructure as code tool
+brew 'hcloud'                    # Hetzner Cloud CLI
 
 # Terraform
 tap 'hashicorp/tap'
