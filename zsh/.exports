@@ -24,11 +24,12 @@ export HISTIGNORE="&:ls:[bf]g:exit:reset:clear:cd:cd ..:cd..:zh"
 export HISTORY_IGNORE="(ls(| *)|pwd(| *)|exit(| *)|clear|code(| *)|ga(| *)|gp(| *)|gst(| *)|gcmsg(| *)|reload(| *)|history(| *))"
 
 # NVM
-# export NVM_DIR="$HOME/.nvm"
-#     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-#     [ -s "$NVM_DIR/bash_completion" ] && \ . "$NVM_DIR/bash_completion"
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use # This loads nvm, without auto-using the default version
 export NVM_SYMLINK_CURRENT=true
 export NVM_COMPLETION=true
+export NVM_AUTO_USE=true
+
 
 # Ruby
 export GEM_HOME=$HOME/.gem
