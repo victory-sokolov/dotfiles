@@ -204,6 +204,7 @@ alias olc="ollama_launch_claude"
 alias cl="claude"
 alias oc="opencode"
 alias co='codex --yolo'
+alias ag="agy --dangerously-skip-permissions"
 
 # JS & Node
 alias remove_console_log="sed -i '' '/console.log(.*)/d' */**.{ts,js,tsx,jsx}"
