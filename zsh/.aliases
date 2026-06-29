@@ -115,6 +115,7 @@ alias gg="git add . && git commit -m 'update' && git push && gh pr create --fill
 alias gp="git push"
 alias gl="git pull"
 alias ggo="git switch -c"
+alias gg="git add . && git commit -m 'update' && git push && gh pr create --fill"
 alias gpo="git stash pop 0"
 alias gco="git checkout"
 alias gcm="git checkout main && git pull"
