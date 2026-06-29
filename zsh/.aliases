@@ -207,6 +207,7 @@ alias cmux="tmux new-session -s claude 'claude'"
 alias olc="ollama_launch_claude"
 alias cl="claude"
 alias oc="opencode"
+alias ocm="oc --model opencode/deepseek-v4-flash-free"
 alias co='codex --yolo'
 alias ag="agy --dangerously-skip-permissions"
 
