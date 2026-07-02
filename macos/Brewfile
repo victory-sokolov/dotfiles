@@ -17,6 +17,7 @@ brew 'procs'                    # Modern replacement for ps
 brew 'gnu-sed'                  # GNU version of sed
 brew 'gawk'                     # GNU verison of awk
 brew 'ripgrep'                  # Searching within files (better grep)
+brew 'dmtrKovalenko/fff/fff-mcp'# Most accurate file search SDK for AI agents
 brew 'tmux'                     # Terminal multiplexer
 brew 'lsd'                      # Listing files with info (better ls)
 brew 'openssl@3'                # Cryptography and SSL/TLS Toolkit
