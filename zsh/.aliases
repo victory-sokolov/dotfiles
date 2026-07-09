@@ -199,6 +199,8 @@ alias pir="sed -e '/^#/d' requirements.txt | xargs poetry add"
 alias pshell="poetry shell"
 alias pclear="poetry cache clear --all pypi && python -m pip cache purge"
 
+alias actionup="npx actions-up --yes"
+
 alias frepomix="$DOTFILES/scripts/fzf_repomix.sh"
 alias ghproj="$DOTFILES/scripts/fzf_gh_projects.sh"
 
