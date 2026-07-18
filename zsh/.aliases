@@ -145,7 +145,6 @@ alias dc="docker compose"
 alias dps="docker ps --format 'table 👾 {{.ID}} \t {{.Names}} \t {{.Status}} \t {{.Ports}}'"
 alias dstat='docker ps -q | xargs docker stats --no-stream --format "table {{.Container}}\t{{.Name}}\t{{.CPUPerc}}\t{{.MemUsage}}\t{{.MemPerc}}"'
 alias di="docker images | docker-color-output"
-alias docker-compose="docker compose"
 alias dcup="docker compose up -d --remove-orphans"
 alias dcdown="docker compose down -v --remove-orphans"
 alias dstop="docker stop $(docker ps -a -q)"
