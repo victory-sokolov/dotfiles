@@ -1,4 +1,4 @@
-alias update="sudo softwareupdate -i -a; brew update; brew upgrade; brew upgrade --cask; brew autoremove; brew cleanup --prune=all; brew doctor;  _update";
+alias update="sudo softwareupdate -i -a; brew update; brew upgrade -y; brew upgrade --cask; brew autoremove; brew cleanup --prune=all; brew doctor;  _update";
 alias version="sw_vers"
 alias act="act --container-architecture linux/amd64"
 
