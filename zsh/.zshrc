@@ -170,7 +170,7 @@ _evalcache kubectl completion zsh
 
 
 # OpenClaw Completion
-command -v openclaw &>/dev/null && source <(openclaw completion --shell zsh)
+# command -v openclaw &>/dev/null && source <(openclaw completion --shell zsh)
 
 export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
