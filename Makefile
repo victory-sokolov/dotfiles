@@ -410,7 +410,7 @@ php: ## PHP8/Symfony, Apache
 	wget https://get.symfony.com/cli/installer -O - | bash
 
 
-python3: ## Python,Poetry & Dependencies
+python3: ## Python & Dependencies
 	sudo apt-get install -y \
 		curl \
 		python3-pip \
@@ -431,10 +431,6 @@ python3: ## Python,Poetry & Dependencies
 	--upgrade setuptools
 
 	python3 -m pip install --user pipx pylint black pipenv bandit mypy flake8
-
-	# Poetry dependency managment
-	curl -sSL https://install.python-poetry.org | python3 -
-	echo 'export PATH="${HOME}/.poetry/bin:${PATH}"' >> ~/.exports
 
 	# Python version manager
 	git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.0
