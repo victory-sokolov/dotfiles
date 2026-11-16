@@ -204,6 +204,7 @@ alias oc="opencode"
 alias ocm="oc --model opencode/deepseek-v4-flash-free"
 alias co='codex --yolo'
 alias ag="agy --dangerously-skip-permissions"
+alias skillup="npx skills update -g --yes"
 
 # JS & Node
 alias remove_console_log="sed -i '' '/console.log(.*)/d' */**.{ts,js,tsx,jsx}"
