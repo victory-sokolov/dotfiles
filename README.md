@@ -76,6 +76,11 @@ You can list all available custom aliases and functions via the following comman
 * aliases - `lalias`
 * functions - `fhelp`
 
+Run `archive-pdfs [folder]` to create `pdfs.zip` in the given folder (the
+current folder by default). It includes PDFs in subfolders, including hidden
+folders, and leaves the original files unchanged. An existing `pdfs.zip` is not
+overwritten. The `zip` command must be installed.
+
 ## ZSH
 
 List of ZSH plugins I use

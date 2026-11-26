@@ -75,6 +75,39 @@ fhelp() # List all custom functions
             --delimiter=' '
 }
 
+archive-pdfs() # Archive PDFs in a folder and its subfolders
+(
+    emulate -L zsh
+    if (( $# > 1 )); then
+        print -u2 "Usage: archive-pdfs [folder]"
+        return 1
+    fi
+
+    local folder="${1:-.}"
+    if ! cd -- "$folder"; then
+        return 1
+    fi
+
+    local archive="pdfs.zip"
+    if [[ -e "$archive" || -L "$archive" ]]; then
+        print -u2 "Error: $folder/$archive already exists."
+        return 1
+    fi
+
+    local -a pdfs
+    pdfs=(./**/*.[pP][dD][fF](.DN))
+    if (( ${#pdfs} == 0 )); then
+        print -u2 "Error: No PDF files found in $folder."
+        return 1
+    fi
+
+    if ! zip -q "$archive" "${pdfs[@]}"; then
+        print -u2 "Error: Failed to create $folder/$archive."
+        return 1
+    fi
+    print "Created $folder/$archive with ${#pdfs} PDF file(s)."
+)
+
 
 _has() # Check whether executable exists
 {
