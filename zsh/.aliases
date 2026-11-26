@@ -79,7 +79,8 @@ alias ~="cd ~"
 
 alias ic='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs'
 alias notes="'$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents/second-brain'"
-alias blog="~/dev/viktorsokolov && code . && pnpm dev"
+alias blog="~/dev/viktorsokolov && code . && bun dev"
+alias drive="'/Users/viktor/Google Drive/My Drive'"
 alias dirs="dirs -v"
 # Source .file functions when needed
 alias loadfile="source ~/.file"
